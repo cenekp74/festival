@@ -41,7 +41,7 @@ button:not(:disabled) {
     max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 fieldset {
@@ -72,6 +72,7 @@ legend {
     border-color: #dc3545;
     padding-right: calc(1.5em + .75rem);
 }
+
 .form-check {
     display: block;
     min-height: 1rem;
@@ -85,17 +86,20 @@ legend {
     border-radius: .25rem;
     font-size: 1rem;
     line-height: 1.5;
-    
+
 }
+
 .border-top {
     border-top: 1px solid;
 }
+
 .invalid-feedback {
     width: 100%;
     margin-top: .25rem;
     font-size: .875em;
     color: #dc3545;
 }
+
 .alert {
     position: relative;
     margin-left: auto;
@@ -104,15 +108,16 @@ legend {
     padding: 1rem 1rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
-        border-top-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
     border-radius: .25rem;
     color: #842029;
     background-color: #f8d7da;
     border-color: #f5c2c7;
 }
+
 /* end login/register forms */
 
 /* .dropdown:hover .account-menu {
@@ -152,6 +157,26 @@ legend {
 
 .topnav-left {
     float: left;
+}
+
+footer {
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 @media screen and (min-width: 600px) {

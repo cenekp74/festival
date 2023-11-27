@@ -1,4 +1,4 @@
-from app.dbClasses import User
+from app.db_classes import User
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response
 from app.forms import LoginForm# , UpdateaccForm, RegistrationForm
 from app import app, db, bcrypt
