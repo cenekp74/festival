@@ -1,23 +1,34 @@
 body {
+    --text-color: #f2f2f2;
+    --bg-color: #161618;
+    --secondary-color: #333;
+    --active-page-color: #666565;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #161618;
-    color: white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 * {
     box-sizing: border-box;
 }
 
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+}
+
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: var(--secondary-color);
 }
 
 .topnav a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: var(--text-color);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -32,13 +43,15 @@ body {
     margin-right: auto;
     margin-top: 3rem;
 }
+
 fieldset {
     padding: 0;
     margin: 0;
     border: 0;
 }
+
 legend {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--text-color);
     float: left;
     width: 100%;
     padding: 0;
@@ -46,15 +59,32 @@ legend {
     font-size: calc(1.275rem + .3vw);
     line-height: inherit;
 }
+
 .form-group {
     margin-bottom: 1rem;
 }
+
 .form-input {
     width: 100%;
 }
+
 .form-check {
     display: block;
     min-height: 1rem;
+}
+
+.btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid transparent;
+    border-color: var(--text-color);
+    border-radius: .25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    
+}
+.border-top {
+    border-top: 1px solid;
 }
 
 /* end login/register forms */
@@ -72,18 +102,18 @@ legend {
     padding: 8px 20px 8px 0;
     padding-right: 20px;
     margin-left: 1vw;
-    border-right: 2px solid gray;
+    border-right: 2px solid var(--text-color);
 }
 
 .topnav-links a:hover {
-    background-color: #ddd;
+    background-color: var(--text-color);
     transition: 1s ease;
-    color: black;
+    color: var(--bg-color);
 }
 
 .topnav a.active {
-    background-color: #666565;
-    color: white;
+    background-color: var(--active-page-color);
+    color: var(--text-color);
 }
 
 .topnav .icon {
@@ -114,6 +144,7 @@ legend {
         float: right;
         display: block;
     }
+
     .topnav.responsive {
         position: relative;
     }
@@ -135,9 +166,11 @@ legend {
         padding: 11px 20px 8px 3px;
         padding-right: 14px;
     }
+
     .topnav-links a {
         text-transform: none;
     }
+
     .topnav.responsive .topnav-links {
         float: right;
     }
@@ -147,6 +180,7 @@ legend {
     .topnav-links a {
         display: none;
     }
+
     .topnav a.logo {
         font-size: 19px;
     }
