@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" , shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body">
+
+    <div class="topnav" id="topnav">
+        <a href="#default" class="logo">Jeden svět na ohradní</a>
+        <div class="topnav-left topnav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div class="content" onclick="hide_topnav()">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %} 
+        {% block body %}
+        {% endblock %}
+    </div>
+    
+    <script>
+        function topnav_drop() {
+            var x = document.getElementById("topnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+        function hide_topnav() {
+            var x = document.getElementById("topnav");
+            x.className = "topnav";
+        }
+    </script>
+</body>
+
+</html>
