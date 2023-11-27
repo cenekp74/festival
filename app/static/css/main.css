@@ -20,6 +20,7 @@ button:not(:disabled) {
     cursor: pointer;
 }
 
+/* topnav */
 .topnav {
     overflow: hidden;
     background-color: var(--secondary-color);
@@ -35,6 +36,38 @@ button:not(:disabled) {
     font-size: 17px;
     text-transform: uppercase;
 }
+.topnav a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 8px 20px 8px 0;
+    padding-right: 20px;
+    margin-left: 1vw;
+    border-right: 2px solid var(--text-color);
+}
+
+.topnav-links a:hover {
+    background-color: var(--text-color);
+    transition: 1s ease;
+    color: var(--bg-color);
+}
+
+.topnav a.active {
+    background-color: var(--active-page-color);
+    color: var(--text-color);
+}
+
+.topnav .icon {
+    display: none;
+}
+
+.topnav-right {
+    float: right;
+}
+
+.topnav-left {
+    float: left;
+}
+/* end topnav */
 
 /* login/register forms */
 .container-form {
@@ -117,50 +150,11 @@ legend {
     background-color: #f8d7da;
     border-color: #f5c2c7;
 }
-
 /* end login/register forms */
 
-/* .dropdown:hover .account-menu {
-    display: block;
-    margin-top: 0;
-    right: 0;
-    left: auto;
-} */
-
-.topnav a.logo {
-    font-size: 25px;
-    font-weight: bold;
-    padding: 8px 20px 8px 0;
-    padding-right: 20px;
-    margin-left: 1vw;
-    border-right: 2px solid var(--text-color);
-}
-
-.topnav-links a:hover {
-    background-color: var(--text-color);
-    transition: 1s ease;
-    color: var(--bg-color);
-}
-
-.topnav a.active {
-    background-color: var(--active-page-color);
-    color: var(--text-color);
-}
-
-.topnav .icon {
-    display: none;
-}
-
-.topnav-right {
-    float: right;
-}
-
-.topnav-left {
-    float: left;
-}
-
+/* footer */
 footer {
-    color: #fff;
+    color: var(--text-color);
     text-align: center;
     padding: 5px;
     position: fixed;
@@ -174,10 +168,11 @@ footer {
 .social-icons a {
     display: inline-block;
     margin: 0 10px;
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
 }
+/* end footer */
 
 @media screen and (min-width: 600px) {
     .topnav a {
