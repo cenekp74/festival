@@ -13,7 +13,7 @@
             <div class="form-group">
                 {{ form.email.label(class="form-label") }}
                 {% if form.email.errors %}
-                    {{ form.email(class="form-error") }}
+                    {{ form.email(class="form-input invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.email.errors %}
                             <span>{{ error }}</span>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 {{ form.password.label(class="form-label") }}
                 {% if form.password.errors %}
-                    {{ form.password(class="form-error") }}
+                    {{ form.password(class="form-input invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.password.errors %}
                             <span>{{ error }}</span>
