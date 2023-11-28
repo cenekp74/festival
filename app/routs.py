@@ -3,12 +3,6 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from app.forms import LoginForm# , UpdateaccForm, RegistrationForm
 from app import app, db, bcrypt
 from flask_login import login_user, logout_user, current_user
-import os
-import secrets
-from PIL import Image
-import random
-import hashlib
-import json
 
 @app.route('/')
 @app.route('/index')
