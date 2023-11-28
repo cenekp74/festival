@@ -25,8 +25,6 @@ button:not(:disabled) {
     overflow: hidden;
     background-color: var(--secondary-color);
     height: 3.1rem;
-    align-items: center;
-    display: flex;
 }
 
 .topnav a {
@@ -209,7 +207,6 @@ footer {
 
     .topnav.responsive {
         position: relative;
-        display: block;
     }
 
     .topnav.responsive .icon {
