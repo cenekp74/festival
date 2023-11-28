@@ -24,6 +24,9 @@ button:not(:disabled) {
 .topnav {
     overflow: hidden;
     background-color: var(--secondary-color);
+    height: 3.1rem;
+    align-items: center;
+    display: flex;
 }
 
 .topnav a {
@@ -206,6 +209,7 @@ footer {
 
     .topnav.responsive {
         position: relative;
+        display: block;
     }
 
     .topnav.responsive .icon {
@@ -226,7 +230,8 @@ footer {
     .topnav a.logo {
         font-size: 20px;
         padding: 11px 20px 8px 3px;
-        padding-right: 14px;
+        padding-right: 10px;
+        margin-right: 10px;
     }
 
     .topnav-links a {
@@ -234,7 +239,11 @@ footer {
     }
 
     .topnav.responsive .topnav-links {
-        float: right;
+        position: fixed;
+        right: 0;
+        background-color: var(--secondary-color);
+        border-radius: 10px;
+        z-index: 10;
     }
 }
 
@@ -245,5 +254,9 @@ footer {
 
     .topnav a.logo {
         font-size: 19px;
+        padding-right: 10px;
+    }
+    .topnav .icon {
+        padding-left: 0;
     }
 }
