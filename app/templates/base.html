@@ -15,7 +15,7 @@
 
     <div class="topnav" id="topnav">
         <a href="#default" class="logo">Jeden svět na ohradní</a>
-        <div class="topnav-left topnav-links">
+        <div id="topnav-links" class="topnav-left topnav-links">
             <a href="#home" class="active">Home</a>
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
@@ -47,19 +47,54 @@
           </div>
     </footer>
     <script>
+        var disableanim = false
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
         function topnav_drop() {
-            var x = document.getElementById("topnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
+            var topnav = document.getElementById("topnav");
+            var topnav_links = document.getElementById("topnav-links");
+            if (topnav.className === "topnav") {
+                topnav.className += " responsive";
+                animateHeight(0, topnav_links.scrollHeight, topnav_links);
+                // sleep(320).then(() => {topnav_links.style.height = "auto";});
+                
             } else {
-                x.className = "topnav";
+                disableanim = true
+                topnav_links.style.height = "auto";
+                topnav.className = "topnav";
+                sleep(320).then(() => {disableanim=false;});
             }
         }
         function hide_topnav() {
-            var x = document.getElementById("topnav");
-            x.className = "topnav";
+            var topnav = document.getElementById("topnav");
+            var topnav_links = document.getElementById("topnav-links");
+            disableanim = true
+            topnav_links.style.height = "auto";
+            topnav.className = "topnav";
+            sleep(320).then(() => {disableanim=false;});
+        }
+        function animateHeight(start, target, element) {
+            var duration = 300; // Adjust the duration as needed
+            var startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = timestamp - startTime;
+                var percentage = Math.min(progress / duration, 1);
+
+                element.style.height = start + (target - start) * percentage + 'px';
+
+                if (progress < duration) {
+                    if (disableanim) {
+                        element.style.height = "auto";
+                        return;
+                    }
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
         }
     </script>
-    </body>
 </body>
 </html>
