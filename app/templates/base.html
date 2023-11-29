@@ -56,9 +56,8 @@
             var topnav_links = document.getElementById("topnav-links");
             if (topnav.className === "topnav") {
                 topnav.className += " responsive";
+                disableanim = false;
                 animateHeight(0, topnav_links.scrollHeight, topnav_links);
-                // sleep(320).then(() => {topnav_links.style.height = "auto";});
-                
             } else {
                 disableanim = true
                 topnav_links.style.height = "auto";
