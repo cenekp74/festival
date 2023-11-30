@@ -7,7 +7,7 @@ from flask_login import login_user, logout_user, current_user
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return redirect(url_for('uvod'))
 
 @app.route('/img/<path:path>')
 def send_img(path):
@@ -18,7 +18,7 @@ def send_favicon():
     return send_from_directory('static/img', 'favicon.ico')
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -29,10 +29,34 @@ def login():
         flash('Přihlášení se nezdařilo - zkontrolujte email a heslo', 'danger')
     return render_template('login.html', form=form)
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/uvod')
+def uvod():
+    return render_template('uvod.html')
+
+@app.route('/program')
+def program():
+    return render_template('program.html')
+
+@app.route('/hoste')
+def hoste():
+    return render_template('hoste.html')
+
+@app.route('/workshopy')
+def workshopy():
+    return render_template('workshopy.html')
+
+@app.route('/historie')
+def historie():
+    return render_template('historie.html')
+
+@app.route('/tym')
+def tym():
+    return render_template('tym.html')
 
 # @app.route('/account', methods=['GET', 'POST'])
 # def account():

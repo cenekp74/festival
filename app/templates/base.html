@@ -14,12 +14,14 @@
 <body>
 
     <div class="topnav" id="topnav">
-        <a href="#default" class="logo">Jeden svět na ohradní</a>
+        <a href="/" class="logo">Jeden svět na ohradní</a>
         <div id="topnav-links" class="topnav-left topnav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
+            <a id="uvod" href="{{url_for('uvod')}}">Úvod</a>
+            <a id="program" href="{{url_for('program')}}">Program</a>
+            <a id="hoste" href="{{url_for('hoste')}}">Hosté</a>
+            <a id="workshopy" href="{{url_for('workshopy')}}">Workshopy</a>
+            <a id="historie" href="{{url_for('historie')}}">Historie</a>
+            <a id="tym" href="{{url_for('tym')}}">Tým</a>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
             <i class="fa fa-bars"></i>

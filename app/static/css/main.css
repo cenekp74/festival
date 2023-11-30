@@ -13,6 +13,11 @@ body {
     box-sizing: border-box;
 }
 
+.content {
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled),
@@ -187,7 +192,21 @@ footer {
 }
 /* end footer */
 
+@media screen and (max-width: 1300px) {
+    .topnav a {
+        font-size: 16px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
 
+@media screen and (max-width: 1150px) {
+    .topnav a {
+        font-size: 16px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
 
 @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {
