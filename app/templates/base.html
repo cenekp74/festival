@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" , shrink-to-fit=no">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     {% block head %}
     {% endblock %}
 </head>
@@ -24,7 +24,7 @@
             <a id="tym" href="{{url_for('tym')}}">Tým</a>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
-            <i class="fa fa-bars"></i>
+            <i id="icon" class="fa fa-bars"></i>
         </a>
     </div>
     <div class="content" onclick="hide_topnav()">
@@ -43,9 +43,9 @@
     <footer>
         <p>&copy; 2023 JSNO</p>
         <div class="social-icons">
-            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
           </div>
     </footer>
     <script>
@@ -56,11 +56,15 @@
         function topnav_drop() {
             var topnav = document.getElementById("topnav");
             var topnav_links = document.getElementById("topnav-links");
+            var icon = document.getElementById("icon");
+            icon.className = "fa fa-xmark"
             if (topnav.className === "topnav") {
                 topnav.className += " responsive";
                 disableanim = false;
                 animateHeight(0, topnav_links.scrollHeight, topnav_links);
             } else {
+                var icon = document.getElementById("icon");
+                icon.className = "fa fa-bars"
                 disableanim = true
                 topnav_links.style.height = "auto";
                 topnav.className = "topnav";
@@ -70,6 +74,8 @@
         function hide_topnav() {
             var topnav = document.getElementById("topnav");
             var topnav_links = document.getElementById("topnav-links");
+            var icon = document.getElementById("icon");
+            icon.className = "fa fa-bars"
             disableanim = true
             topnav_links.style.height = "auto";
             topnav.className = "topnav";
