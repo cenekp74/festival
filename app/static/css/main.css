@@ -45,7 +45,7 @@ button:not(:disabled) {
 .topnav a.logo {
     font-size: 25px;
     font-weight: bold;
-    padding: 8px 20px 8px 0;
+    padding: 11px 20px 10px 0;
     padding-right: 1.4vw;
     margin-left: 1vw;
     margin-right: 1.4vw;
@@ -204,7 +204,7 @@ footer {
         display: block;
     }
     .topnav.responsive a.logo {
-        border-right: none;
+        width: fit-content;
     }
 
     .topnav.responsive {
