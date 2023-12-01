@@ -1,0 +1,18 @@
+{
+    "films":[
+        {
+            "id":0,
+            "name":"Test film",
+            "link":"google.com",
+            "from":"08:00",
+            "to":"09:00",
+            "day":1
+        }
+    ],
+    "workshops":[
+
+    ],
+    "hoste":[
+
+    ]
+}
