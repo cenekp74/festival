@@ -224,9 +224,7 @@ footer {
     .topnav:not(.responsive) a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
-    /* .topnav a.active {
-        align-self: end;
-    } */
+    
     .topnav a {
         padding-left: 20px;
         padding-right: 20px;
