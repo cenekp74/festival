@@ -31,7 +31,7 @@ button:not(:disabled) {
     background-color: var(--secondary-color);
     align-items: center;
     display: flex;
-    min-height: 46px; /* to je soucet marginu paddingu a vysky topnav linku (.topnav a) */
+    min-height: 54px; /* 46px je soucet marginu paddingu a vysky topnav linku (.topnav a) */
 }
 
 .topnav a {
@@ -49,13 +49,24 @@ button:not(:disabled) {
 }
 
 .topnav a.logo {
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     padding: 11px 20px 10px 0;
     padding-right: 1.4vw;
     margin-left: 1vw;
     margin-right: 1.4vw;
+    position: relative;
+}
+
+/* tohle je aby mohl border zabirat jenom nejakou cast vysky elementu */
+.topnav a.logo::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 75%;
     border-right: 2px solid var(--text-color);
+    transform: translateY(-50%);
 }
 
 .topnav-links a:hover {
@@ -220,6 +231,7 @@ footer {
         padding-left: 20px;
         padding-right: 20px;
         margin-right: 0;
+        padding: 10px;
     }
 
     .topnav a.icon {
@@ -266,7 +278,7 @@ footer {
         position: fixed;
         right: 0;
         background-color: var(--secondary-color);
-        border-radius: 25px;
+        border-radius: 20px;
         z-index: 10;
         overflow: hidden;
     }
