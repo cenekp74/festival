@@ -8,6 +8,15 @@
             "to": "09:00",
             "day": 1,
             "room": "test"
+        },
+        {
+            "id": 1,
+            "name": "Test 2",
+            "link": "google.com",
+            "from": "14:15",
+            "to": "15:30",
+            "day": 2,
+            "room": "IV"
         }
     ],
     "workshops": [],
