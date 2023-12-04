@@ -1,18 +1,1 @@
-{
-    "films":[
-        {
-            "id":0,
-            "name":"Test film",
-            "link":"google.com",
-            "from":"08:00",
-            "to":"09:00",
-            "day":1
-        }
-    ],
-    "workshops":[
-
-    ],
-    "hoste":[
-
-    ]
-}
+{"films": [{"id": 0, "name": "Test film", "link": "google.com", "from": "08:00", "to": "09:00", "day": 1}, {"id": 1, "name": "test", "link": "test", "from": "19:30", "to": "14:03", "day": 2}], "workshops": [], "hoste": []}

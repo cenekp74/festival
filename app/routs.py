@@ -1,8 +1,8 @@
 from app.db_classes import User
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
-from app.forms import LoginForm# , UpdateaccForm, RegistrationForm
+from app.forms import LoginForm, FilmForm
 from app import app, db, bcrypt
-from app.json_db import load_db as load_json_db
+from app.json_db import load_db as load_json_db, get_new_film_id, commit_db as commit_json_db
 from flask_login import login_required, login_user, logout_user, current_user
 
 try:
@@ -48,7 +48,7 @@ def historie():
 def tym():
     return render_template('tym.html')
 
-
+#region login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -70,5 +70,27 @@ def logout():
 def reload_db():
     if not current_user.admin:
         return '403'
+    global json_db
     json_db = load_json_db()
     return redirect(url_for('uvod'))
+
+@app.route('/add_film', methods=['GET', 'POST'])
+@login_required
+def add_film():
+    if not current_user.admin:
+        return '403'
+    form = FilmForm()
+    if form.validate_on_submit():
+        film = {}
+        film["id"] = get_new_film_id(db=json_db)
+        film["name"] = form.name.data
+        film["link"] = form.link.data
+        film["from"] = form.from_.data.strftime('%H:%M')
+        film["to"] = form.to.data.strftime('%H:%M')
+        film["day"] = form.day.data
+        json_db["films"].append(film)
+        commit_json_db(json_db)
+    return render_template('add_film.html', form=form)
+    
+
+#endregion login

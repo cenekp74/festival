@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<div class="container container-form">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend>Přidat nový film</legend>
+            <div class="form-group">
+                {{ form.name.label(class="form-label") }}
+                {% if form.name.errors %}
+                    {{ form.name(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.name(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.link.label(class="form-label") }}
+                {% if form.link.errors %}
+                    {{ form.link(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.link.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.link(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.from_.label(class="form-label") }}
+                {% if form.from_.errors %}
+                    {{ form.from_(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.from_.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.from_(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.to.label(class="form-label") }}
+                {% if form.to.errors %}
+                    {{ form.to(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.to.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.to(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.day.label(class="form-label") }}
+                {% if form.day.errors %}
+                    {{ form.day(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.day.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.day(class="form-input") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn") }}
+        </div>
+    </form>
+    <!-- <div class="border-top">
+        <small>
+            Ještě nemáš účet? <a href="{\{ url_for('register') }\}">Zaregistuj se zde</a>
+        </small>
+    </div> -->
+</div>
+
+{% endblock %}
