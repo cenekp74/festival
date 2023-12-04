@@ -4,7 +4,7 @@ def load_db():
     return json.load(open('app/static/db.json', 'r'))
 
 def commit_db(db):
-    if "films" not in db or "workshops" not in db or "hoste" not in db:
+    if "films" not in db or "workshops" not in db or "hoste" not in db or "besedy" not in db:
         raise Exception('invalid db provided')
         return
     json.dump(db, open('app/static/db.json', 'w'))
