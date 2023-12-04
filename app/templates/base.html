@@ -42,6 +42,12 @@
     </div>
     <footer>
         <p>&copy; 2023 JSNO</p>
+        {% if current_user.is_authenticated %}
+        <div class="system-links">
+            <a href="{{ url_for('add_film') }}">Přidat film</a>
+            <a href="{{ url_for('logout') }}">Log out</a>
+        </div>
+        {% endif %}
         <div class="social-icons">
             <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
