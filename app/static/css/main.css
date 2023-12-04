@@ -16,7 +16,6 @@ body {
 .content {
     margin-left: 3vw;
     margin-right: 3vw;
-    width: 100%;
 }
 
 [type="button"]:not(:disabled),
