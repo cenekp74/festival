@@ -17,6 +17,7 @@ class FilmForm(FlaskForm):
     from_ = TimeField('Od', validators=[DataRequired()])
     to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
+    room = StringField('Třída', validators=[DataRequired()])
     submit = SubmitField('Přidat film')
 
     # PRIDAT overeni jestli uz film neexistuje

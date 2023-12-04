@@ -32,6 +32,10 @@ def uvod():
 def program():
     return render_template('program.html')
 
+@app.route('/program/all')
+def program_all():
+    return render_template('program_all.html', db=json_db)
+
 @app.route('/hoste')
 def hoste():
     return render_template('hoste.html')
@@ -88,6 +92,7 @@ def add_film():
         film["from"] = form.from_.data.strftime('%H:%M')
         film["to"] = form.to.data.strftime('%H:%M')
         film["day"] = form.day.data
+        film["room"] = form.room.data
         json_db["films"].append(film)
         commit_json_db(json_db)
     return render_template('add_film.html', form=form)
