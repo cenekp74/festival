@@ -12,3 +12,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     admin = db.Column(db.Integer, nullable=False, default=0)
+
+class Film(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    link = db.Column(db.String(100))
+    time_from = db.Column(db.String(5))
+    time_to = db.Column(db.String(5))
+    day = db.Column(db.Integer)
+    room = db.Column(db.String(10))

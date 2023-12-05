@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block body %}
-<h1 class="film-title">{{ film["name"] }}</h1>
+<h1 class="film-title">{{ film.name }}</h1>
 <div class="film-details">
-    <p>Den: {{ film["day"] }}</p>
-    <p>Čas: {{ film["from"] }} - {{ film["to"] }}</p>
+    <p>Den: {{ film.day }}</p>
+    <p>Čas: {{ film.time_from }} - {{ film.time_to }}</p>
 </div>
 
 <script>

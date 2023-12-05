@@ -14,14 +14,14 @@
         <th>Čas</th>
         <th>Třída</th>
     </tr>
-    {% for film in db["films"] %}
+    {% for film in films %}
     <tr>
         <td>
-            <a href="/film/{{ film['id'] }}">{{ film["name"] }}</a>
+            <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
         </td>
-        <td>{{ film["day"] }}</td>
-        <td>{{ film["from"] }} - {{ film["to"] }}</td>
-        <td>{{ film["room"] }}</td>
+        <td>{{ film.day }}</td>
+        <td>{{ film.time_from }} - {{ film.time_to }}</td>
+        <td>{{ film.room }}</td>
     </tr>
     {% endfor %}
 </table>

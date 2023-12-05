@@ -37,29 +37,29 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.from_.label(class="form-label") }}
-                {% if form.from_.errors %}
-                    {{ form.from_(class="form-input invalid") }}
+                {{ form.time_from.label(class="form-label") }}
+                {% if form.time_from.errors %}
+                    {{ form.time_from(class="form-input invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.from_.errors %}
+                        {% for error in form.time_from.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.from_(class="form-input") }}
+                    {{ form.time_from(class="form-input") }}
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.to.label(class="form-label") }}
-                {% if form.to.errors %}
-                    {{ form.to(class="form-input invalid") }}
+                {{ form.time_to.label(class="form-label") }}
+                {% if form.time_to.errors %}
+                    {{ form.time_to(class="form-input invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.to.errors %}
+                        {% for error in form.time_to.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.to(class="form-input") }}
+                    {{ form.time_to(class="form-input") }}
                 {% endif %}
             </div>
             <div class="form-group">
