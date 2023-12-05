@@ -18,7 +18,7 @@ class FilmForm(FlaskForm):
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Třída', validators=[DataRequired()])
-    submit = SubmitField('Přidat film')
+    submit = SubmitField('Potvrdit')
 
     # PRIDAT overeni jestli uz film neexistuje
     # def validate_name(self, name):

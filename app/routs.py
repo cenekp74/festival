@@ -4,6 +4,7 @@ from app.forms import LoginForm, FilmForm
 from app import app, db, bcrypt
 from app.json_db import load_db as load_json_db, get_new_film_id, commit_db as commit_json_db
 from flask_login import login_required, login_user, logout_user, current_user
+import datetime
 
 #region routs
 @app.route('/')
@@ -33,7 +34,7 @@ def program_all():
 
 @app.route('/film/<id>')
 def film(id):
-    if not id.isdigit(): return '404'
+    if not id.isdigit(): return '500'
     id = int(id)
     return render_template('film.html', film=Film.query.get(id))
 
@@ -91,5 +92,33 @@ def add_film():
         db.session.add(film)
         db.session.commit()
     return render_template('add_film.html', form=form)
+
+@app.route('/program/edit')
+@login_required
+def edit_program():
+    if not current_user.admin:
+        return '403'
+    return render_template('edit_program.html', films=Film.query.all())
+
+@app.route('/edit_film/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_film(id):
+    if not current_user.admin:
+        return '403'
+    if not id.isdigit(): return '500'
+    id = int(id)
+    film = Film.query.get(id)
+    form = FilmForm(name=film.name, 
+                    link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(), day=film.day, room=film.room)
+    if form.validate_on_submit():
+        film.name = form.name.data
+        film.link = form.link.data
+        film.time_from = form.time_from.data.strftime('%H:%M')
+        film.time_to = form.time_to.data.strftime('%H:%M')
+        film.day = form.day.data
+        film.room = form.room.data
+        db.session.commit()
+    return render_template('edit_film.html', film=film, form=form)
+
 #endregion admin
 

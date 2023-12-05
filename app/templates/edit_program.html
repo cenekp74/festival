@@ -6,6 +6,7 @@
 
 
 {% block body %}
+<h1>Editování programu</h1>
 <div class="program-all-filmy">
     <h2>Filmy</h2>
     <table>
@@ -15,6 +16,7 @@
             <th>Čas</th>
             <th>Třída</th>
             <th>Link</th>
+            <th>Edit</th>
         </tr>
         {% for film in films %}
         <tr>
@@ -27,11 +29,15 @@
             <td>
                 <a href="{{ film.link }}">link</a>
             </td>
+            <td>
+                <a href="/edit_film/{{ film.id }}">edit</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
+    <a href="{{ url_for('add_film') }}">Přidat nový film</a>
 </div>
-
+    
 <script>
     document.getElementById('program').classList.add('active');
 </script>

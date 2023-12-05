@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<div class="container container-form">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend>Editovat film (id {{ film.id }})</legend>
+            <div class="form-group">
+                {{ form.name.label(class="form-label") }}
+                {% if form.name.errors %}
+                    {{ form.name(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.name(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.link.label(class="form-label") }}
+                {% if form.link.errors %}
+                    {{ form.link(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.link.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.link(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.time_from.label(class="form-label") }}
+                {% if form.time_from.errors %}
+                    {{ form.time_from(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.time_from.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.time_from(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.time_to.label(class="form-label") }}
+                {% if form.time_to.errors %}
+                    {{ form.time_to(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.time_to.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.time_to(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.day.label(class="form-label") }}
+                {% if form.day.errors %}
+                    {{ form.day(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.day.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.day(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.room.label(class="form-label") }}
+                {% if form.room.errors %}
+                    {{ form.room(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.room.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.room(class="form-input") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn") }}
+        </div>
+    </form>
+    <!-- <div class="border-top">
+        <small>
+            Ještě nemáš účet? <a href="{\{ url_for('register') }\}">Zaregistuj se zde</a>
+        </small>
+    </div> -->
+</div>
+
+{% endblock %}
