@@ -30,6 +30,7 @@ def program():
 @app.route('/program/all')
 def program_all():
     return render_template('program_all.html', films=Film.query.all())
+
 @app.route('/film/<id>')
 def film(id):
     if not id.isdigit(): return '404'
