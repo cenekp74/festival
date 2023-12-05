@@ -9,8 +9,10 @@ try:
     json_db = load_json_db()
 except Exception as e:
     print(e)
-    json_db = {}
+    quit()
+films_by_id = {d['id']: d for d in json_db["films"]}
 
+#region routs
 @app.route('/')
 @app.route('/index')
 def index():
@@ -35,6 +37,11 @@ def program():
 @app.route('/program/all')
 def program_all():
     return render_template('program_all.html', db=json_db)
+@app.route('/film/<id>')
+def film(id):
+    if not id.isdigit(): return '404'
+    id = int(id)
+    return render_template('film.html', film=films_by_id[id])
 
 @app.route('/hoste')
 def hoste():
@@ -51,6 +58,8 @@ def historie():
 @app.route('/tym')
 def tym():
     return render_template('tym.html')
+#endregion routs
+
 
 #region login
 @app.route('/login', methods=['GET', 'POST'])
@@ -68,7 +77,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+#endregion login
 
+#region admin
 @app.route('/reload_db')
 @login_required
 def reload_db():
@@ -76,6 +87,8 @@ def reload_db():
         return '403'
     global json_db
     json_db = load_json_db()
+    global films_by_id
+    films_by_id = {d['id']: d for d in json_db["films"]}
     return redirect(url_for('uvod'))
 
 @app.route('/add_film', methods=['GET', 'POST'])
@@ -95,7 +108,7 @@ def add_film():
         film["room"] = form.room.data
         json_db["films"].append(film)
         commit_json_db(json_db)
+        reload_db()
     return render_template('add_film.html', form=form)
-    
+#endregion admin
 
-#endregion login

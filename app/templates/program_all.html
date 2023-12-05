@@ -8,22 +8,22 @@
 {% block body %}
 <h2>Filmy</h2>
 <table>
-    <tbody>
-        <tr>
-            <th>Název filmu</th>
-            <th>Den</th>
-            <th>Čas</th>
-            <th>Třída</th>
-        </tr>
-        {% for film in db["films"] %}
-        <tr>
-            <td>{{ film["name"] }}</td>
-            <td>{{ film["day"] }}</td>
-            <td>{{ film["from"] }} - {{ film["to"] }}</td>
-            <td>{{ film["room"] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+    <tr>
+        <th>Film</th>
+        <th>Den</th>
+        <th>Čas</th>
+        <th>Třída</th>
+    </tr>
+    {% for film in db["films"] %}
+    <tr>
+        <td>
+            <a href="/film/{{ film['id'] }}">{{ film["name"] }}</a>
+        </td>
+        <td>{{ film["day"] }}</td>
+        <td>{{ film["from"] }} - {{ film["to"] }}</td>
+        <td>{{ film["room"] }}</td>
+    </tr>
+    {% endfor %}
 </table>
 
 <script>

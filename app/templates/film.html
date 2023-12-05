@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/film.css') }}">
+{% endblock %}
+
+{% block body %}
+<h1 class="film-title">{{ film["name"] }}</h1>
+<div class="film-details">
+    <p>Den: {{ film["day"] }}</p>
+    <p>Čas: {{ film["from"] }} - {{ film["to"] }}</p>
+</div>
+
+<script>
+    document.getElementById('program').classList.add('active');
+</script>
+{% endblock %}
