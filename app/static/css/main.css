@@ -3,6 +3,7 @@ body {
     --bg-color: #161618;
     --secondary-color: #333;
     --active-page-color: #666565;
+    --link-color: #0162C3;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
@@ -11,6 +12,15 @@ body {
 
 * {
     box-sizing: border-box;
+}
+
+a:visited {
+    color: var(--link-color)
+}
+
+/* Change link color on hover */
+a:hover {
+    color: #005299;
 }
 
 .content {

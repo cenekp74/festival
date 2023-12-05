@@ -17,6 +17,7 @@
             <th>Třída</th>
             <th>Link</th>
             <th>Edit</th>
+            <th>Delete</th>
         </tr>
         {% for film in films %}
         <tr>
@@ -31,6 +32,9 @@
             </td>
             <td>
                 <a href="/edit_film/{{ film.id }}">edit</a>
+            </td>
+            <td>
+                <a href="/delete_film/{{ film.id }}" onclick="return confirm('Smazat film?')">delete</a>
             </td>
         </tr>
         {% endfor %}

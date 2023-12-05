@@ -120,5 +120,16 @@ def edit_film(id):
         db.session.commit()
     return render_template('edit_film.html', film=film, form=form)
 
+@app.route('/delete_film/<id>')
+@login_required
+def delete_film(id):
+    if not current_user.admin:
+        return '403'
+    if not id.isdigit(): return '500'
+    id = int(id)
+    Film.query.filter_by(id=id).delete()
+    db.session.commit()
+    return redirect(url_for('edit_program'))
+
 #endregion admin
 
