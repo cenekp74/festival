@@ -1,0 +1,18 @@
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--text-color);
+}
+
+th {
+    background-color: var(--secondary-color);
+}
+
+tr:hover {
+    background-color: var(--active-page-color);
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid var(--text-color)
+}

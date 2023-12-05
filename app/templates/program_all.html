@@ -1,14 +1,30 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/tables.css') }}">
 {% endblock %}
 
 
 {% block body %}
 <h2>Filmy</h2>
-{% for film in db["films"] %}
-<p>{{ film["name"] }}</p>
-{% endfor %}
+<table>
+    <tbody>
+        <tr>
+            <th>Název filmu</th>
+            <th>Den</th>
+            <th>Čas</th>
+            <th>Třída</th>
+        </tr>
+        {% for film in db["films"] %}
+        <tr>
+            <td>{{ film["name"] }}</td>
+            <td>{{ film["day"] }}</td>
+            <td>{{ film["from"] }} - {{ film["to"] }}</td>
+            <td>{{ film["room"] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 <script>
     document.getElementById('program').classList.add('active');
