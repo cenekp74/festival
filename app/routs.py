@@ -32,6 +32,10 @@ def program():
 def program_all():
     return render_template('program_all.html', films=Film.query.all())
 
+@app.route('/program/day/<dayn>')
+def program_day(dayn):
+    return render_template('program_day.html')
+
 @app.route('/film/<id>')
 def film(id):
     if not id.isdigit(): return '500'
