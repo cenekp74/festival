@@ -11,6 +11,7 @@
     <h2>Filmy</h2>
     <table>
         <tr>
+            <th>ID</th>
             <th>Film</th>
             <th>Den</th>
             <th>Čas</th>
@@ -21,6 +22,7 @@
         </tr>
         {% for film in films %}
         <tr>
+            <td>{{ film.id }}</td>
             <td>
                 <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
             </td>
