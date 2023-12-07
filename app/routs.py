@@ -2,9 +2,11 @@ from app.db_classes import User, Film
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
 from app.forms import LoginForm, FilmForm
 from app import app, db, bcrypt
-from app.json_db import load_db as load_json_db, get_new_film_id, commit_db as commit_json_db
 from flask_login import login_required, login_user, logout_user, current_user
+from app.utils import get_rooms
 import datetime
+
+rooms = None
 
 #region routs
 @app.route('/')
@@ -34,7 +36,16 @@ def program_all():
 
 @app.route('/program/day/<dayn>')
 def program_day(dayn):
-    return render_template('program_day.html')
+    if not dayn.isdigit(): return '500'
+    dayn = int(dayn)
+    if dayn not in [1,2,3]: return '404'
+    global rooms
+    if rooms is None:
+        rooms = get_rooms()
+    program = {}
+    for room in rooms:
+        program[room] = Film.query.filter_by(day=dayn, room=room).all()
+    return render_template('program_day.html', program=program, rooms=rooms)
 
 @app.route('/film/<id>')
 def film(id):
@@ -95,6 +106,8 @@ def add_film():
                     )
         db.session.add(film)
         db.session.commit()
+        global rooms
+        rooms = get_rooms()
         return redirect(url_for('edit_program'))
     return render_template('add_film.html', form=form)
 

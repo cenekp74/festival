@@ -4,10 +4,13 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='/css/tables.css') }}">
 {% endblock %}
 
-
 {% block body %}
 
-
+{% for room in rooms %}
+{% for film in program[room] %}
+<p>{{ film }}</p>
+{% endfor %}
+{% endfor %}
 
 <script>
     document.getElementById('program').classList.add('active');
