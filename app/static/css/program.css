@@ -1,4 +1,12 @@
 .program-container {
     display: grid;
     grid-template-columns: repeat(360, 1fr);
+    margin-top: 2rem;
+    row-gap: 5px;
+}
+
+.program-item {
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    text-align: center;
 }
