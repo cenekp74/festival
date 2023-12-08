@@ -136,6 +136,7 @@ def edit_film(id):
         film.day = form.day.data
         film.room = form.room.data
         db.session.commit()
+        return redirect(url_for('edit_program'))
     return render_template('edit_film.html', film=film, form=form)
 
 @app.route('/delete_film/<id>')
