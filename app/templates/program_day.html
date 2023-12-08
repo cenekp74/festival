@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/tables.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/program.css') }}">
 {% endblock %}
 
 {% block body %}
 
-{% for room in rooms %}
-{% for film in program[room] %}
-<p>{{ film.name }} | {{ film.room }}</p>
-{% endfor %}
-{% endfor %}
+<div class="program-container">
+    {% for room in rooms %}
+    {% for film in program[room] %}
+    <div class="program-item" start-time="{{film.time_from}}", end-time="{{film.time_to}}", room="{{film.room}}">{{ film.name }} | {{ film.room }}</div>
+    {% endfor %}
+    {% endfor %}
+</div>
 
+<script src="{{ url_for('static', filename='/js/program.js') }}"></script>
 <script>
     document.getElementById('program').classList.add('active');
 </script>
