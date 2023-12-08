@@ -44,7 +44,7 @@ def program_day(dayn):
         rooms = get_rooms()
     program = {}
     for room in rooms:
-        program[room] = Film.query.filter_by(day=dayn, room=room).all()
+        program[room] = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
     return render_template('program_day.html', program=program, rooms=rooms)
 
 @app.route('/film/<id>')
