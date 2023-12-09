@@ -13,10 +13,32 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     admin = db.Column(db.Integer, nullable=False, default=0)
 
+class Host(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(1000))
+
 class Film(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     link = db.Column(db.String(100))
+    time_from = db.Column(db.String(5))
+    time_to = db.Column(db.String(5))
+    day = db.Column(db.Integer)
+    room = db.Column(db.String(10))
+
+class Workshop(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    time_from = db.Column(db.String(5))
+    time_to = db.Column(db.String(5))
+    day = db.Column(db.Integer)
+    room = db.Column(db.String(10))
+
+class Beseda(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    beseda_type = db.Column(db.String(1)) # f pro beseda k filmu, h pro beseda s hostem
     time_from = db.Column(db.String(5))
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)

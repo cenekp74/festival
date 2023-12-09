@@ -6,31 +6,91 @@
 
 
 {% block body %}
-<div class="program-all-filmy">
-    <h2>Filmy</h2>
-    <table>
-        <tr>
-            <th>Film</th>
-            <th>Den</th>
-            <th>Čas</th>
-            <th>Třída</th>
-            <th>Link</th>
-        </tr>
-        {% for film in films %}
-        <tr>
-            <td>
-                <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
-            </td>
-            <td>{{ film.day }}</td>
-            <td>{{ film.time_from }} - {{ film.time_to }}</td>
-            <td>{{ film.room }}</td>
-            <td>
-                <a href="{{ film.link }}">link</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="program-all-container">
+    <div class="program-all-filmy">
+        <h2>Filmy</h2>
+        <table>
+            <tr>
+                <th>Film</th>
+                <th>Den</th>
+                <th>Čas</th>
+                <th>Třída</th>
+                <th>Link</th>
+            </tr>
+            {% for film in films %}
+            <tr>
+                <td>
+                    <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
+                </td>
+                <td>{{ film.day }}</td>
+                <td>{{ film.time_from }} - {{ film.time_to }}</td>
+                <td>{{ film.room }}</td>
+                <td>
+                    <a href="{{ film.link }}">link</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="program-all-besedy">
+        <h2>Besedy</h2>
+        <table>
+            <tr>
+                <th>Film</th>
+                <th>Den</th>
+                <th>Čas</th>
+                <th>Třída</th>
+                <th>Typ</th>
+            </tr>
+            {% for beseda in besedy %}
+            <tr>
+                <td>
+                    <a href="/beseda/{{ beseda.id }}">{{ beseda["name"] }}</a>
+                </td>
+                <td>{{ beseda.day }}</td>
+                <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>
+                <td>{{ beseda.room }}</td>
+                <td>{{"k filmu" if beseda.type == 'f' else "s hostem"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="program-all-workshops">
+        <h2>Workshopy</h2>
+        <table>
+            <tr>
+                <th>Film</th>
+                <th>Den</th>
+                <th>Čas</th>
+                <th>Třída</th>
+            </tr>
+            {% for workshop in workshops %}
+            <tr>
+                <td>
+                    <a href="/workshop/{{ workshop.id }}">{{ workshop["name"] }}</a>
+                </td>
+                <td>{{ workshop.day }}</td>
+                <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
+                <td>{{ workshop.room }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
+
+<style>
+    .program-all-container {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    @media (max-width: 1100px) {
+        .program-all-container {
+            flex-flow: column wrap;
+        }
+    }
+</style>
 
 <script>
     document.getElementById('program').classList.add('active');

@@ -40,7 +40,6 @@ for (var i = 0; i < items.length; i++) {
 function updateTimeVerticalLine() {
     const root = document.querySelector(":root");
     var minutes = getMinutesFrom8am()
-    console.log(minutes)
     if (minutes < 0 | minutes > 360) {
         root.style.setProperty("--vline-visibility", "hidden");
         return

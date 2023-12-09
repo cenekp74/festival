@@ -43,7 +43,69 @@
     </table>
     <a href="{{ url_for('add_film') }}">Přidat nový film</a>
 </div>
-    
+
+<div class="program-all-besedy">
+    <h2>Besedy</h2>
+    <table>
+        <tr>
+            <th>Film</th>
+            <th>Den</th>
+            <th>Čas</th>
+            <th>Třída</th>
+            <th>Typ</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for beseda in besedy %}
+        <tr>
+            <td>
+                <a href="/beseda/{{ beseda.id }}">{{ beseda["name"] }}</a>
+            </td>
+            <td>{{ beseda.day }}</td>
+            <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>
+            <td>{{ beseda.room }}</td>
+            <td>{{"k filmu" if beseda.type == 'f' else "s hostem"}}</td>
+            <td>
+                <a href="/edit_beseda/{{ beseda.id }}">edit</a>
+            </td>
+            <td>
+                <a href="/delete_beseda/{{ beseda.id }}" onclick="return confirm('Smazat film?')">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="program-all-workshops">
+    <h2>Workshopy</h2>
+    <table>
+        <tr>
+            <th>Film</th>
+            <th>Den</th>
+            <th>Čas</th>
+            <th>Třída</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for workshop in workshops %}
+        <tr>
+            <td>
+                <a href="/workshop/{{ workshop.id }}">{{ workshop["name"] }}</a>
+            </td>
+            <td>{{ workshop.day }}</td>
+            <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
+            <td>{{ workshop.room }}</td>
+            <td>
+                <a href="/edit_workshop/{{ workshop.id }}">edit</a>
+            </td>
+            <td>
+                <a href="/delete_workshop/{{ workshop.id }}" onclick="return confirm('Smazat film?')">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
 <script>
     document.getElementById('program').classList.add('active');
 </script>

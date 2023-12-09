@@ -1,4 +1,4 @@
-from app.db_classes import User, Film
+from app.db_classes import Host, User, Film, Beseda, Workshop
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
 from app.forms import LoginForm, FilmForm
 from app import app, db, bcrypt
@@ -32,7 +32,7 @@ def program():
 
 @app.route('/program/all')
 def program_all():
-    return render_template('program_all.html', films=Film.query.all())
+    return render_template('program_all.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
 @app.route('/program/day/<dayn>')
 def program_day(dayn):
@@ -44,7 +44,10 @@ def program_day(dayn):
         rooms = get_rooms()
     program = {}
     for room in rooms:
-        program[room] = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
+        program[room] = {}
+        program[room]["films"] = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
+        program[room]["besedy"] = sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from)
+        program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
     return render_template('program_day.html', program=program, rooms=rooms)
 
 @app.route('/film/<id>')
