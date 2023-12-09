@@ -9,4 +9,29 @@
     background-color: var(--secondary-color);
     border-radius: 20px;
     text-align: center;
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.program-wrapper {
+    display: flex;
+    justify-content: left;
+}
+
+.rooms-container {
+    margin-top: 3.5rem;
+    margin-right: 5px;
+}
+
+.room {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.time-item {
+    font-size: 20px;
+    line-height: 1.5rem;
 }
