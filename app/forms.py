@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField
 from wtforms.validators import DataRequired, NumberRange
 # from app.db_classes import User
 # from flask_login import current_user
@@ -23,3 +23,20 @@ class FilmForm(FlaskForm):
     # PRIDAT overeni jestli uz film neexistuje
     # def validate_name(self, name):
     #     if name 
+
+class WorkshopForm(FlaskForm):
+    name = StringField('Název workshopu', validators=[DataRequired()])
+    time_from = TimeField('Od', validators=[DataRequired()])
+    time_to = TimeField('Do', validators=[DataRequired()])
+    day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
+    room = StringField('Třída', validators=[DataRequired()])
+    submit = SubmitField('Potvrdit')
+
+class BesedaForm(FlaskForm):
+    name = StringField('Název besedy', validators=[DataRequired()])
+    beseda_type = SelectField('Typ besedy', choices=[('f', 'k filmu'), ('h', 's hostem')], validators=[DataRequired()])
+    time_from = TimeField('Od', validators=[DataRequired()])
+    time_to = TimeField('Do', validators=[DataRequired()])
+    day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
+    room = StringField('Třída', validators=[DataRequired()])
+    submit = SubmitField('Potvrdit')

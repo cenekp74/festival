@@ -1,6 +1,6 @@
 from app.db_classes import Host, User, Film, Beseda, Workshop
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
-from app.forms import LoginForm, FilmForm
+from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.utils import get_rooms
@@ -114,12 +114,54 @@ def add_film():
         return redirect(url_for('edit_program'))
     return render_template('add_film.html', form=form)
 
+@app.route('/add_workshop', methods=['GET', 'POST'])
+@login_required
+def add_workshop():
+    if not current_user.admin:
+        return '403'
+    form = WorkshopForm()
+    if form.validate_on_submit():
+        workshop = Workshop(name=form.name.data,
+                    time_from = form.time_from.data.strftime('%H:%M'),
+                    time_to = form.time_to.data.strftime('%H:%M'),
+                    day = form.day.data,
+                    room = form.room.data
+                    )
+        db.session.add(workshop)
+        db.session.commit()
+        global rooms
+        rooms = get_rooms()
+        return redirect(url_for('edit_program'))
+    return render_template('add_workshop.html', form=form)
+
+@app.route('/add_beseda', methods=['GET', 'POST'])
+@login_required
+def add_beseda():
+    if not current_user.admin:
+        return '403'
+    form = BesedaForm()
+    if form.validate_on_submit():
+        beseda = Beseda(name=form.name.data,
+                    time_from = form.time_from.data.strftime('%H:%M'),
+                    time_to = form.time_to.data.strftime('%H:%M'),
+                    beseda_type = form.beseda_type.data,
+                    day = form.day.data,
+                    room = form.room.data
+                    )
+        db.session.add(beseda)
+        db.session.commit()
+        global rooms
+        rooms = get_rooms()
+        return redirect(url_for('edit_program'))
+    return render_template('add_beseda.html', form=form)
+
+
 @app.route('/program/edit')
 @login_required
 def edit_program():
     if not current_user.admin:
         return '403'
-    return render_template('edit_program.html', films=Film.query.all())
+    return render_template('edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
 @app.route('/edit_film/<id>', methods=['GET', 'POST'])
 @login_required
@@ -150,6 +192,28 @@ def delete_film(id):
     if not id.isdigit(): return '500'
     id = int(id)
     Film.query.filter_by(id=id).delete()
+    db.session.commit()
+    return redirect(url_for('edit_program'))
+
+@app.route('/delete_workshop/<id>')
+@login_required
+def delete_workshop(id):
+    if not current_user.admin:
+        return '403'
+    if not id.isdigit(): return '500'
+    id = int(id)
+    Workshop.query.filter_by(id=id).delete()
+    db.session.commit()
+    return redirect(url_for('edit_program'))
+
+@app.route('/delete_beseda/<id>')
+@login_required
+def delete_beseda(id):
+    if not current_user.admin:
+        return '403'
+    if not id.isdigit(): return '500'
+    id = int(id)
+    Beseda.query.filter_by(id=id).delete()
     db.session.commit()
     return redirect(url_for('edit_program'))
 

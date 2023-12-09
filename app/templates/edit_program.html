@@ -69,11 +69,12 @@
                 <a href="/edit_beseda/{{ beseda.id }}">edit</a>
             </td>
             <td>
-                <a href="/delete_beseda/{{ beseda.id }}" onclick="return confirm('Smazat film?')">delete</a>
+                <a href="/delete_beseda/{{ beseda.id }}" onclick="return confirm('Smazat besedu?')">delete</a>
             </td>
         </tr>
         {% endfor %}
     </table>
+    <a href="{{ url_for('add_beseda') }}">Přidat novou besedu</a>
 </div>
 
 <div class="program-all-workshops">
@@ -99,11 +100,12 @@
                 <a href="/edit_workshop/{{ workshop.id }}">edit</a>
             </td>
             <td>
-                <a href="/delete_workshop/{{ workshop.id }}" onclick="return confirm('Smazat film?')">delete</a>
+                <a href="/delete_workshop/{{ workshop.id }}" onclick="return confirm('Smazat workshop?')">delete</a>
             </td>
         </tr>
         {% endfor %}
     </table>
+    <a href="{{ url_for('add_workshop') }}">Přidat nový workshop</a>
 </div>
 
 <script>
