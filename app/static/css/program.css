@@ -54,7 +54,41 @@
 .time-item {
     font-size: 20px;
     line-height: 1.5rem;
+    text-align: left;
 }
 
-/* 
- */
+@media screen and (max-width: 1300px) {
+    .time-item {
+        font-size: 19px;
+    }
+    .room {
+        font-size: 19px;
+    }
+    .program-item {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .time-item {
+        font-size: 18px;
+    }
+    .room {
+        font-size: 18px;
+    }
+    .program-item {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .time-item {
+        font-size: 17px;
+    }
+    .room {
+        font-size: 17px;
+    }
+    .program-item {
+        font-size: 17px;
+    }
+}

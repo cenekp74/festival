@@ -6,7 +6,7 @@ function timeToMinutes(time) {
 function getMinutesFrom8am() {
     var currentDate = new Date();
     var targetTime = new Date(currentDate);
-    targetTime.setHours(9, 0, 0, 0);
+    targetTime.setHours(8, 0, 0, 0);
     var timeDifference = currentDate - targetTime;
     var minutesPassed = Math.floor(timeDifference / (1000 * 60));
     return minutesPassed
@@ -40,6 +40,7 @@ for (var i = 0; i < items.length; i++) {
 function updateTimeVerticalLine() {
     const root = document.querySelector(":root");
     var minutes = getMinutesFrom8am()
+    console.log(minutes)
     if (minutes < 0 | minutes > 360) {
         root.style.setProperty("--vline-visibility", "hidden");
         return
@@ -48,5 +49,13 @@ function updateTimeVerticalLine() {
     root.style.setProperty("--vline-left", String(100-minutes/100)+"%");
 }
 
+const mediaQuery = window.matchMedia('(max-width: 410px)');
+if (mediaQuery.matches) {
+    var items = document.getElementsByClassName('time-item');
+    for (var i = 0; i < items.length; i++) {
+        items[i].innerHTML = items[i].innerHTML.split(':')[0]
+    }
+}
+
 updateTimeVerticalLine()
-console.log(getMinutesFrom8am())
+setInterval(updateTimeVerticalLine, 60*1000)
