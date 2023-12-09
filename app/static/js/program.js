@@ -3,6 +3,15 @@ function timeToMinutes(time) {
     return hours * 60 + minutes;
 }
 
+function getMinutesFrom8am() {
+    var currentDate = new Date();
+    var targetTime = new Date(currentDate);
+    targetTime.setHours(9, 0, 0, 0);
+    var timeDifference = currentDate - targetTime;
+    var minutesPassed = Math.floor(timeDifference / (1000 * 60));
+    return minutesPassed
+}
+
 // vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8 rano
 function calculateMinutesFromStart(startTime, endTime) {
     const timeRangeStart = timeToMinutes("08:00");
@@ -27,3 +36,17 @@ for (var i = 0; i < items.length; i++) {
     items[i].style.gridColumnStart = minutesFromStart.start;
     items[i].style.gridColumnEnd = minutesFromStart.end;
 }
+
+function updateTimeVerticalLine() {
+    const root = document.querySelector(":root");
+    var minutes = getMinutesFrom8am()
+    if (minutes < 0 | minutes > 360) {
+        root.style.setProperty("--vline-visibility", "hidden");
+        return
+    }
+    root.style.setProperty("--vline-visibility", "visible");
+    root.style.setProperty("--vline-left", String(100-minutes/100)+"%");
+}
+
+updateTimeVerticalLine()
+console.log(getMinutesFrom8am())
