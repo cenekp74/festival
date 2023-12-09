@@ -12,45 +12,45 @@
         <div class="room">{{ room }}</div>
         {% endfor %}
     </div>
-
-    <div class="program-container">
-        <div class="time-item" style="grid-column: 1/60">8:00</div>
-        <div class="time-item" style="grid-column: 60/120">9:00</div>
-        <div class="time-item" style="grid-column: 120/180">10:00</div>
-        <div class="time-item" style="grid-column: 180/240">11:00</div>
-        <div class="time-item" style="grid-column: 240/300">12:00</div>
-        <div class="time-item" style="grid-column: 300/360">13:00</div>
-        <div class="time-item" style="grid-column: 360/360">14:00</div>
-        {% for room in rooms %}
-            {% for film in program[room]["films"] %}
-                <div class="program-item" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}">
-                    <a href="/film/{{ film.id }}">
-                        <div>
-                            {{ film.name }}
-                        </div>
-                    </a>
-                </div>
+    <div class="program-container-wrapper">
+        <div class="program-container">
+            <div class="time-item" style="grid-column: 1/60">8:00</div>
+            <div class="time-item" style="grid-column: 60/120">9:00</div>
+            <div class="time-item" style="grid-column: 120/180">10:00</div>
+            <div class="time-item" style="grid-column: 180/240">11:00</div>
+            <div class="time-item" style="grid-column: 240/300">12:00</div>
+            <div class="time-item" style="grid-column: 300/360">13:00</div>
+            <div class="time-item" style="grid-column: 360/360">14:00</div>
+            {% for room in rooms %}
+                {% for film in program[room]["films"] %}
+                    <div class="program-item" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}">
+                        <a href="/film/{{ film.id }}">
+                            <div>
+                                {{ film.name }}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+                {% for beseda in program[room]["besedy"] %}
+                    <div class="program-item" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}">
+                        <a href="/beseda/{{ beseda.id }}">
+                            <div>
+                                {{ beseda.name }}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+                {% for workshop in program[room]["workshops"] %}
+                    <div class="program-item" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}">
+                        <a href="/workshop/{{ workshop.id }}">
+                            <div>
+                                {{ workshop.name }}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             {% endfor %}
-            {% for beseda in program[room]["besedy"] %}
-                <div class="program-item" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}">
-                    <a href="/beseda/{{ beseda.id }}">
-                        <div>
-                            {{ beseda.name }}
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-            {% for workshop in program[room]["workshops"] %}
-                <div class="program-item" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}">
-                    <a href="/workshop/{{ workshop.id }}">
-                        <div>
-                            {{ workshop.name }}
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        {% endfor %}
-        
+        </div>
     </div>
 </div>
 

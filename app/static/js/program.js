@@ -40,7 +40,7 @@ function updateTimeVerticalLine() {
     root.style.setProperty("--vline-left", String(100-minutes/100)+"%");
 }
 
-const mediaQuery = window.matchMedia('(max-width: 410px)');
+const mediaQuery = window.matchMedia('(max-width: 330px)');
 if (mediaQuery.matches) {
     var items = document.getElementsByClassName('time-item');
     for (var i = 0; i < items.length; i++) {
@@ -55,7 +55,7 @@ for (var i = 0; i < room_elements.length; i++) {
     var content = room_elements[i].innerHTML;
     rooms.push(content);
 }
-console.log(rooms)
+
 for (var i = 0; i < items.length; i++) {
     var start_time = items[i].getAttribute('start-time');
     var end_time = items[i].getAttribute('end-time');

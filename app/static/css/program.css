@@ -6,6 +6,7 @@
     position: relative;
     border: 1px solid var(--secondary-color);
     padding: 1px;
+    min-width: 530px;
 }
 
 :root {
@@ -40,8 +41,18 @@
 .program-item div {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5rem;        /* fallback */
+    max-height: 3rem;       /* fallback */
     text-indent: 3px;
+    word-wrap: break-word;
+}
+
+.program-container div a {
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 
@@ -50,9 +61,15 @@
     justify-content: left;
 }
 
+.program-container-wrapper {
+    overflow-x: scroll;
+}
+
 .rooms-container {
     margin-top: 3.5rem;
-    margin-right: 5px;
+    margin-right: 0;
+    padding-right: 3px;
+    padding-top: 3px;
 }
 
 .room {
@@ -67,29 +84,33 @@
     font-size: 20px;
     line-height: 1.5rem;
     text-align: left;
+    border-bottom: 1px solid var(--secondary-color);
 }
 
 @media screen and (max-width: 1300px) {
     .time-item {
-        font-size: 19px;
+        font-size: 18px;
     }
     .room {
-        font-size: 19px;
+        font-size: 18px;
     }
     .program-item {
-        font-size: 19px;
+        font-size: 18px;
     }
 }
 
 @media screen and (max-width: 450px) {
     .time-item {
-        font-size: 18px;
+        font-size: 17px;
     }
     .room {
-        font-size: 18px;
+        font-size: 17px;
     }
     .program-item {
-        font-size: 18px;
+        font-size: 16px;
+    }
+    .program-item div {
+        text-indent: 0;
     }
 }
 
@@ -101,6 +122,6 @@
         font-size: 17px;
     }
     .program-item {
-        font-size: 17px;
+        font-size: 15px;
     }
 }
