@@ -50,7 +50,7 @@
                 <td>{{ beseda.day }}</td>
                 <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>
                 <td>{{ beseda.room }}</td>
-                <td>{{"k filmu" if beseda.type == 'f' else "s hostem"}}</td>
+                <td>{{"k filmu" if beseda.beseda_type == 'f' else "s hostem"}}</td>
             </tr>
             {% endfor %}
         </table>

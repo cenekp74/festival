@@ -184,6 +184,47 @@ def edit_film(id):
         return redirect(url_for('edit_program'))
     return render_template('edit_film.html', film=film, form=form)
 
+@app.route('/edit_beseda/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_beseda(id):
+    if not current_user.admin:
+        return '403'
+    if not id.isdigit(): return '500'
+    id = int(id)
+    beseda = Beseda.query.get(id)
+    form = BesedaForm(name=beseda.name, beseda_type=beseda.beseda_type,
+                    time_from=datetime.datetime.strptime(beseda.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(beseda.time_to, '%H:%M').time(), day=beseda.day, room=beseda.room)
+    if form.validate_on_submit():
+        beseda.name = form.name.data
+        beseda.beseda_type = form.beseda_type.data
+        beseda.time_from = form.time_from.data.strftime('%H:%M')
+        beseda.time_to = form.time_to.data.strftime('%H:%M')
+        beseda.day = form.day.data
+        beseda.room = form.room.data
+        db.session.commit()
+        return redirect(url_for('edit_program'))
+    return render_template('edit_beseda.html', beseda=beseda, form=form)
+
+@app.route('/edit_workshop/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_workshop(id):
+    if not current_user.admin:
+        return '403'
+    if not id.isdigit(): return '500'
+    id = int(id)
+    workshop = Workshop.query.get(id)
+    form = WorkshopForm(name=workshop.name,
+                    time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(), day=workshop.day, room=workshop.room)
+    if form.validate_on_submit():
+        workshop.name = form.name.data
+        workshop.time_from = form.time_from.data.strftime('%H:%M')
+        workshop.time_to = form.time_to.data.strftime('%H:%M')
+        workshop.day = form.day.data
+        workshop.room = form.room.data
+        db.session.commit()
+        return redirect(url_for('edit_program'))
+    return render_template('edit_workshop.html', workshop=workshop, form=form)
+
 @app.route('/delete_film/<id>')
 @login_required
 def delete_film(id):

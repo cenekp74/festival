@@ -9,7 +9,7 @@
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend>Přidat nový workshop</legend>
+            <legend>Editovat besedu (id {{ beseda.id }})</legend>
             <div class="form-group">
                 {{ form.name.label(class="form-label") }}
                 {% if form.name.errors %}
@@ -21,6 +21,19 @@
                     </div>
                 {% else %}
                     {{ form.name(class="form-input") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.beseda_type.label(class="form-label") }}
+                {% if form.beseda_type.errors %}
+                    {{ form.beseda_type(class="form-input invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.beseda_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.beseda_type(class="form-input") }}
                 {% endif %}
             </div>
             <div class="form-group">

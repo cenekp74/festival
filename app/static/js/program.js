@@ -27,15 +27,7 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
-var items = document.getElementsByClassName('program-item');
-for (var i = 0; i < items.length; i++) {
-    var start_time = items[i].getAttribute('start-time');
-    var end_time = items[i].getAttribute('end-time');
-    var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
-    if (minutesFromStart.start == 0) {minutesFromStart.start = 1;}
-    items[i].style.gridColumnStart = minutesFromStart.start;
-    items[i].style.gridColumnEnd = minutesFromStart.end;
-}
+
 
 function updateTimeVerticalLine() {
     const root = document.querySelector(":root");
@@ -54,6 +46,25 @@ if (mediaQuery.matches) {
     for (var i = 0; i < items.length; i++) {
         items[i].innerHTML = items[i].innerHTML.split(':')[0]
     }
+}
+
+var items = document.getElementsByClassName('program-item');
+var room_elements = document.getElementsByClassName('room');
+var rooms = []
+for (var i = 0; i < room_elements.length; i++) {
+    var content = room_elements[i].innerHTML;
+    rooms.push(content);
+}
+console.log(rooms)
+for (var i = 0; i < items.length; i++) {
+    var start_time = items[i].getAttribute('start-time');
+    var end_time = items[i].getAttribute('end-time');
+    var room = items[i].getAttribute('room');
+    var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
+    if (minutesFromStart.start == 0) {minutesFromStart.start = 1;}
+    items[i].style.gridColumnStart = minutesFromStart.start;
+    items[i].style.gridColumnEnd = minutesFromStart.end;
+    items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
 }
 
 updateTimeVerticalLine()

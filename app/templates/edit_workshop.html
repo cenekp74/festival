@@ -9,7 +9,7 @@
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend>Přidat nový workshop</legend>
+            <legend>Editovat workshop (id {{ workshop.id }})</legend>
             <div class="form-group">
                 {{ form.name.label(class="form-label") }}
                 {% if form.name.errors %}
