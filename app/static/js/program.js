@@ -37,7 +37,7 @@ function updateTimeVerticalLine() {
         return
     }
     root.style.setProperty("--vline-visibility", "visible");
-    root.style.setProperty("--vline-left", String(100-minutes/100)+"%");
+    root.style.setProperty("--vline-left", String(minutes/360*100)+"%");
 }
 
 const mediaQuery = window.matchMedia('(max-width: 330px)');
