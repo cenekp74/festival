@@ -3,7 +3,7 @@ body {
     --bg-color: #161618;
     --secondary-color: #333;
     --active-page-color: #666565;
-    --link-color: #0162C3;
+    --link-color: #3684d3;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
@@ -14,6 +14,9 @@ body {
     box-sizing: border-box;
 }
 
+a {
+    color: var(--link-color)
+}
 a:visited {
     color: var(--link-color)
 }

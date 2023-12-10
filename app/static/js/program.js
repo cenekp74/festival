@@ -27,8 +27,6 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
-
-
 function updateTimeVerticalLine() {
     const root = document.querySelector(":root");
     var minutes = getMinutesFrom8am()
@@ -38,6 +36,28 @@ function updateTimeVerticalLine() {
     }
     root.style.setProperty("--vline-visibility", "visible");
     root.style.setProperty("--vline-left", String(minutes/360*100)+"%");
+}
+
+function showContextMenu(event, element) {
+    event.stopPropagation();
+    var item_id = element.getAttribute('item-id');
+    var contextMenu = document.getElementById('cm-'+item_id);
+    contextMenu.style.left = event.pageX + 'px';
+    contextMenu.style.top = event.pageY + 'px';
+    if (contextMenu.style.visibility == 'hidden') {
+        hideAllContextMenu();
+        contextMenu.style.visibility = 'visible';
+    } else {
+        contextMenu.style.visibility = 'hidden';
+    }
+}
+
+function hideAllContextMenu() {
+    var cms = document.getElementsByClassName('item-details');
+    for (var i=0; i < cms.length; i++) {
+        console.log(cms[i])
+        cms[i].style.visibility = 'hidden';
+    }
 }
 
 const mediaQuery = window.matchMedia('(max-width: 330px)');
