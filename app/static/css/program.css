@@ -21,8 +21,8 @@
     top: 0;
     bottom: 0;
     left: var(--vline-left);
-    width: 1px; /* Set the width of the line */
-    border-left: 1px dashed var(--text-color); /* Set the color of the line */
+    width: 1px;
+    border-left: 1px dashed var(--text-color);
     transform: translateX(-50%);
     visibility: var(--vline-visibility);
 }
