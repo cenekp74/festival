@@ -55,7 +55,6 @@ function showContextMenu(event, element) {
 function hideAllContextMenu() {
     var cms = document.getElementsByClassName('item-details');
     for (var i=0; i < cms.length; i++) {
-        console.log(cms[i])
         cms[i].style.visibility = 'hidden';
     }
 }

@@ -12,6 +12,9 @@
 :root {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
+    --film-color: #a13866;
+    --workshop-color: #ff7400;
+    --beseda-color: #4011c2;
 }
 
 .program-container::before {
@@ -51,6 +54,16 @@
     max-height: 3rem;       /* fallback */
     text-indent: 3px;
     word-wrap: break-word;
+}
+
+.film {
+    background-color: var(--film-color);
+}
+.workshop {
+    background-color: var(--workshop-color);
+}
+.beseda {
+    background-color: var(--beseda-color);
 }
 
 .program-wrapper {
