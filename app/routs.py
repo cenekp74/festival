@@ -181,6 +181,8 @@ def edit_film(id):
         film.day = form.day.data
         film.room = form.room.data
         db.session.commit()
+        global rooms
+        rooms = get_rooms()
         return redirect(url_for('edit_program'))
     return render_template('edit_film.html', film=film, form=form)
 
@@ -202,6 +204,8 @@ def edit_beseda(id):
         beseda.day = form.day.data
         beseda.room = form.room.data
         db.session.commit()
+        global rooms
+        rooms = get_rooms()
         return redirect(url_for('edit_program'))
     return render_template('edit_beseda.html', beseda=beseda, form=form)
 
@@ -222,6 +226,8 @@ def edit_workshop(id):
         workshop.day = form.day.data
         workshop.room = form.room.data
         db.session.commit()
+        global rooms
+        rooms = get_rooms()
         return redirect(url_for('edit_program'))
     return render_template('edit_workshop.html', workshop=workshop, form=form)
 
