@@ -36,6 +36,15 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
+    transition: all 1s;
+    font-size: 17px;
+    margin-right: 1px;
+}
+
+.program-item:hover {
+    border: 1px solid var(--bg-color);
+    min-width: max-content;
+    z-index: 5;
 }
 
 .program-item div {
@@ -59,10 +68,6 @@
 .program-wrapper {
     display: flex;
     justify-content: left;
-}
-
-.program-container-wrapper {
-    overflow-x: scroll;
 }
 
 .rooms-container {
@@ -89,23 +94,22 @@
 
 @media screen and (max-width: 1300px) {
     .time-item {
-        font-size: 18px;
+        font-size: 17px;
     }
     .room {
-        font-size: 18px;
+        font-size: 17px;
     }
     .program-item {
-        font-size: 18px;
+        font-size: 17px;
+    }
+}
+@media screen and (max-width: 750px) { /* same as .program-container min-width */
+    .program-container-wrapper {
+        overflow-x: scroll;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .time-item {
-        font-size: 17px;
-    }
-    .room {
-        font-size: 17px;
-    }
     .program-item {
         font-size: 16px;
     }
@@ -116,10 +120,10 @@
 
 @media screen and (max-width: 410px) {
     .time-item {
-        font-size: 17px;
+        font-size: 16px;
     }
     .room {
-        font-size: 17px;
+        font-size: 16px;
     }
     .program-item {
         font-size: 15px;

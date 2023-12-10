@@ -5,7 +5,4 @@ def get_rooms():
     rooms.update([r[0] for r in list(db.session.query(Film.room).distinct().all())])
     rooms.update([r[0] for r in list(db.session.query(Beseda.room).distinct().all())])
     rooms.update([r[0] for r in list(db.session.query(Workshop.room).distinct().all())])
-    print(db.session.query(Film.room).distinct().all())
-    print(db.session.query(Beseda.room).distinct().all())
-    print(db.session.query(Workshop.room).distinct().all())
     return list(rooms)
