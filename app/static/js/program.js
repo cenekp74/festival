@@ -47,8 +47,12 @@ function showContextMenu(event, element) {
     if (contextMenu.style.visibility == 'hidden') {
         hideAllContextMenu();
         contextMenu.style.visibility = 'visible';
+        contextMenu.style.width = 'fit-content';
+        contextMenu.style.height = 'auto';
     } else {
         contextMenu.style.visibility = 'hidden';
+        contextMenu.style.width = '0';
+        contextMenu.style.height = '0';
     }
 }
 
@@ -56,6 +60,8 @@ function hideAllContextMenu() {
     var cms = document.getElementsByClassName('item-details');
     for (var i=0; i < cms.length; i++) {
         cms[i].style.visibility = 'hidden';
+        cms[i].style.width = '0';
+        cms[i].style.height = '0';
     }
 }
 

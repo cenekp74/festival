@@ -240,6 +240,8 @@ def delete_film(id):
     id = int(id)
     Film.query.filter_by(id=id).delete()
     db.session.commit()
+    global rooms
+    rooms = get_rooms()
     return redirect(url_for('edit_program'))
 
 @app.route('/delete_workshop/<id>')
@@ -251,6 +253,8 @@ def delete_workshop(id):
     id = int(id)
     Workshop.query.filter_by(id=id).delete()
     db.session.commit()
+    global rooms
+    rooms = get_rooms()
     return redirect(url_for('edit_program'))
 
 @app.route('/delete_beseda/<id>')
@@ -262,6 +266,8 @@ def delete_beseda(id):
     id = int(id)
     Beseda.query.filter_by(id=id).delete()
     db.session.commit()
+    global rooms
+    rooms = get_rooms()
     return redirect(url_for('edit_program'))
 
 #endregion admin
