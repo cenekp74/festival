@@ -40,8 +40,12 @@ a:hover {
 }
 
 .content {
-    margin-left: 3vw;
-    margin-right: 3vw;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.content h1 {
+    text-align: center;
 }
 
 [type="button"]:not(:disabled),
@@ -213,12 +217,14 @@ footer {
     color: var(--text-color);
     text-align: center;
     padding: 5px;
+    padding-top: 1px;
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--bg-color);
 }
 
 .social-icons a {
