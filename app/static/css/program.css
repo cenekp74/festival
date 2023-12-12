@@ -44,6 +44,10 @@
     margin-right: 1px;
 }
 
+.program-item:hover {
+    cursor: pointer;
+}
+
 .program-item div {
     overflow: hidden;
     text-overflow: ellipsis;
