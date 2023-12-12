@@ -45,7 +45,7 @@
 }
 
 .program-item:hover {
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .program-item div {
