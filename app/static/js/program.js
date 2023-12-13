@@ -92,5 +92,12 @@ for (var i = 0; i < items.length; i++) {
     items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
 }
 
+//idk kdyz to dam vsechno do jednoho loopu tak to nefacha protoze se jakoze neupdatuje width a height property hned co zmenim styl
+for (var i = 0; i < items.length; i++) {
+    if (items[i].offsetHeight - items[i].offsetWidth > 15) {
+        items[i].classList += ' vertical';
+    }
+}
+
 updateTimeVerticalLine()
 setInterval(updateTimeVerticalLine, 60*1000)

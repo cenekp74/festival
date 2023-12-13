@@ -45,7 +45,7 @@
 }
 
 .program-item:hover {
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .program-item div {
@@ -58,6 +58,12 @@
     max-height: 3rem;       /* fallback */
     text-indent: 3px;
     word-wrap: break-word;
+}
+
+.vertical div {
+    writing-mode: vertical-rl;
+    -webkit-line-clamp: 1;
+    font-size: 80%;
 }
 
 .film {
@@ -134,7 +140,7 @@
         font-size: 17px;
     }
 }
-@media screen and (max-width: 750px) { /* same as .program-container min-width */
+@media screen and (max-width: 850px) { /* 100px more than .program-container min-width */
     .program-container-wrapper {
         overflow-x: scroll;
     }
