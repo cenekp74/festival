@@ -127,6 +127,11 @@
         min-width: max-content;
         z-index: 5;
     }
+    .program-item div:hover {
+        font-size: 100%;
+        -webkit-line-clamp: 2;
+        writing-mode: initial;
+    }
 }
 
 @media screen and (max-width: 1300px) {
