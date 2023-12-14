@@ -14,12 +14,15 @@
     </div>
     <div class="program-container-wrapper" onclick="hideAllContextMenu()" onscroll="hideAllContextMenu()">
         <div class="program-container">
-            <div class="time-item" style="grid-column: 1/60">8:00</div>
-            <div class="time-item" style="grid-column: 60/120">9:00</div>
-            <div class="time-item" style="grid-column: 120/180">10:00</div>
-            <div class="time-item" style="grid-column: 180/240">11:00</div>
-            <div class="time-item" style="grid-column: 240/300">12:00</div>
-            <div class="time-item" style="grid-column: 300/360">13:00</div>
+            <div class="times-wrapper">
+                <div class="time-item" style="grid-column: 1/60">8:00</div>
+                <div class="time-item" style="grid-column: 60/120">9:00</div>
+                <div class="time-item" style="grid-column: 120/180">10:00</div>
+                <div class="time-item" style="grid-column: 180/240">11:00</div>
+                <div class="time-item" style="grid-column: 240/300">12:00</div>
+                <div class="time-item" style="grid-column: 300/360">13:00</div>
+            </div>
+            
             {% for room in rooms %}
                 {% for film in program[room]["films"] %}
                     <div class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showContextMenu(event, this)">
