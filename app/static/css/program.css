@@ -7,6 +7,8 @@
     border: 1px solid var(--secondary-color);
     padding: 1px;
     min-width: 750px;
+    overflow-y: hidden;
+    padding-right: 0;
 }
 
 :root {
@@ -99,8 +101,19 @@
 .time-item {
     font-size: 20px;
     line-height: 1.5rem;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid var(--secondary-color);
+    position: relative;
+}
+.time-item::after {
+    align-self: self-end;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: -100vh;
+    border-right: 1px dotted var(--secondary-color);
+    z-index: -1;
 }
 
 .item-details {
