@@ -112,7 +112,7 @@
     border-bottom: 1px solid var(--secondary-color);
     position: relative;
 }
-.time-item:not(:last-child):after {
+.time-item:not(:last-child)::after {
     align-self: self-end;
     content: '';
     position: absolute;
