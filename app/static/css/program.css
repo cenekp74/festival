@@ -7,8 +7,11 @@
     border: 1px solid var(--secondary-color);
     padding: 1px;
     min-width: 750px;
-    overflow-y: hidden;
     padding-right: 0;
+}
+
+.program-container-wrapper {
+    overflow-y: hidden;
 }
 
 :root {
@@ -158,6 +161,7 @@
         font-size: 17px;
     }
 }
+
 @media screen and (max-width: 850px) { /* 100px more than .program-container min-width */
     .program-container-wrapper {
         overflow-x: scroll;
