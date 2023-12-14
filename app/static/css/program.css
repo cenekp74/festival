@@ -113,7 +113,6 @@
     position: relative;
 }
 .time-item:not(:last-child)::after {
-    align-self: self-end;
     content: '';
     position: absolute;
     top: 0;
