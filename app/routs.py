@@ -36,9 +36,9 @@ def program_all():
 
 @app.route('/program/day/<dayn>')
 def program_day(dayn):
-    if not dayn.isdigit(): return '500'
+    if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
-    if dayn not in [1,2,3]: return '404'
+    if dayn not in [1,2,3]: abort(404)
     global rooms
     if rooms is None:
         rooms = get_rooms()
@@ -52,7 +52,7 @@ def program_day(dayn):
 
 @app.route('/film/<id>')
 def film(id):
-    if not id.isdigit(): return '500'
+    if not id.isdigit(): abort(404)
     id = int(id)
     return render_template('film.html', film=Film.query.get(id))
 
@@ -97,7 +97,7 @@ def logout():
 @login_required
 def add_film():
     if not current_user.admin:
-        return '403'
+        abort(403)
     form = FilmForm()
     if form.validate_on_submit():
         film = Film(name=form.name.data,
@@ -119,7 +119,7 @@ def add_film():
 @login_required
 def add_workshop():
     if not current_user.admin:
-        return '403'
+        abort(403)
     form = WorkshopForm()
     if form.validate_on_submit():
         workshop = Workshop(name=form.name.data,
@@ -139,7 +139,7 @@ def add_workshop():
 @login_required
 def add_beseda():
     if not current_user.admin:
-        return '403'
+        abort(403)
     form = BesedaForm()
     if form.validate_on_submit():
         beseda = Beseda(name=form.name.data,
@@ -161,15 +161,15 @@ def add_beseda():
 @login_required
 def edit_program():
     if not current_user.admin:
-        return '403'
+        abort(403)
     return render_template('edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
 @app.route('/edit_film/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_film(id):
     if not current_user.admin:
-        return '403'
-    if not id.isdigit(): return '500'
+        abort(403)
+    if not id.isdigit(): abort(404)
     id = int(id)
     film = Film.query.get(id)
     form = FilmForm(name=film.name, 
@@ -192,8 +192,8 @@ def edit_film(id):
 @login_required
 def edit_beseda(id):
     if not current_user.admin:
-        return '403'
-    if not id.isdigit(): return '500'
+        abort(403)
+    if not id.isdigit(): abort(404)
     id = int(id)
     beseda = Beseda.query.get(id)
     form = BesedaForm(name=beseda.name, beseda_type=beseda.beseda_type,
@@ -215,8 +215,8 @@ def edit_beseda(id):
 @login_required
 def edit_workshop(id):
     if not current_user.admin:
-        return '403'
-    if not id.isdigit(): return '500'
+        abort(403)
+    if not id.isdigit(): abort(404)
     id = int(id)
     workshop = Workshop.query.get(id)
     form = WorkshopForm(name=workshop.name,
@@ -237,8 +237,8 @@ def edit_workshop(id):
 @login_required
 def delete_film(id):
     if not current_user.admin:
-        return '403'
-    if not id.isdigit(): return '500'
+        abort(403)
+    if not id.isdigit(): abort(404)
     id = int(id)
     Film.query.filter_by(id=id).delete()
     db.session.commit()
@@ -250,8 +250,8 @@ def delete_film(id):
 @login_required
 def delete_workshop(id):
     if not current_user.admin:
-        return '403'
-    if not id.isdigit(): return '500'
+        abort(403)
+    if not id.isdigit(): abort(404)
     id = int(id)
     Workshop.query.filter_by(id=id).delete()
     db.session.commit()
@@ -263,8 +263,8 @@ def delete_workshop(id):
 @login_required
 def delete_beseda(id):
     if not current_user.admin:
-        return '403'
-    if not id.isdigit(): return '500'
+        abort(403)
+    if not id.isdigit(): abort(404)
     id = int(id)
     Beseda.query.filter_by(id=id).delete()
     db.session.commit()
