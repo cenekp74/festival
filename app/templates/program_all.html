@@ -16,6 +16,7 @@
                 <th>Čas</th>
                 <th>Třída</th>
                 <th>Link</th>
+                <th>Jazyk</th>
             </tr>
             {% for film in films %}
             <tr>
@@ -28,6 +29,7 @@
                 <td>
                     <a href="{{ film.link }}">link</a>
                 </td>
+                <td>{{ film.language }}</td>
             </tr>
             {% endfor %}
         </table>

@@ -22,6 +22,7 @@ class Film(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     link = db.Column(db.String(100))
+    language = db.Column(db.String(10))
     time_from = db.Column(db.String(5))
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)

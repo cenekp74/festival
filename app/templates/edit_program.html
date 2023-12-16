@@ -17,6 +17,7 @@
             <th>Čas</th>
             <th>Třída</th>
             <th>Link</th>
+            <th>Jazyk</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -32,6 +33,7 @@
             <td>
                 <a href="{{ film.link }}">link</a>
             </td>
+            <td>{{ film.language }}</td>
             <td>
                 <a href="/edit_film/{{ film.id }}">edit</a>
             </td>

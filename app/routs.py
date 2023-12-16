@@ -105,7 +105,8 @@ def add_film():
                     time_from = form.time_from.data.strftime('%H:%M'),
                     time_to = form.time_to.data.strftime('%H:%M'),
                     day = form.day.data,
-                    room = form.room.data
+                    room = form.room.data,
+                    language = form.language.data,
                     )
         db.session.add(film)
         db.session.commit()
@@ -180,6 +181,7 @@ def edit_film(id):
         film.time_to = form.time_to.data.strftime('%H:%M')
         film.day = form.day.data
         film.room = form.room.data
+        film.language = form.language.data
         db.session.commit()
         global rooms
         rooms = get_rooms()

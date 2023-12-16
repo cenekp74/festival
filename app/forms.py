@@ -5,6 +5,8 @@ from wtforms.validators import DataRequired, NumberRange
 # from flask_login import current_user
 # from flask_wtf.file import FileField, FileAllowed
 
+VALID_LANGUAGE_VALUES = ['cz', 'en', 'cz tit']
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Heslo', validators=[DataRequired()])
@@ -18,6 +20,7 @@ class FilmForm(FlaskForm):
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Třída', validators=[DataRequired()])
+    language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
 
     # PRIDAT overeni jestli uz film neexistuje
