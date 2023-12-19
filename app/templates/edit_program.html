@@ -11,7 +11,7 @@
     <h2>Filmy</h2>
     <table>
         <tr>
-            <th>ID</th>
+            <th>id</th>
             <th>Film</th>
             <th>Den</th>
             <th>Čas</th>
@@ -50,7 +50,8 @@
     <h2>Besedy</h2>
     <table>
         <tr>
-            <th>Film</th>
+            <th>id</th>
+            <th>Beseda</th>
             <th>Den</th>
             <th>Čas</th>
             <th>Třída</th>
@@ -60,6 +61,7 @@
         </tr>
         {% for beseda in besedy %}
         <tr>
+            <td>{{ beseda.id }}</td>
             <td>
                 <a href="/beseda/{{ beseda.id }}">{{ beseda["name"] }}</a>
             </td>
@@ -83,7 +85,8 @@
     <h2>Workshopy</h2>
     <table>
         <tr>
-            <th>Film</th>
+            <th>id</th>
+            <th>Workshop</th>
             <th>Den</th>
             <th>Čas</th>
             <th>Třída</th>
@@ -92,6 +95,7 @@
         </tr>
         {% for workshop in workshops %}
         <tr>
+            <td>{{ workshop.id }}</td>
             <td>
                 <a href="/workshop/{{ workshop.id }}">{{ workshop["name"] }}</a>
             </td>

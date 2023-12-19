@@ -1,5 +1,5 @@
 body {
-    --text-color: #a9eac4;
+    --text-color: #e7eaf9;
     --bg-color: #090401;
     --secondary-color: #1b2720;
     --active-page-color: #666565;
@@ -34,7 +34,6 @@ a:visited {
     cursor: pointer;
 }
 
-/* Change link color on hover */
 a:hover {
     color: #005299;
 }
