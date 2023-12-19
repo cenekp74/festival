@@ -113,7 +113,7 @@ def add_film():
         global rooms
         rooms = get_rooms()
         return redirect(url_for('edit_program'))
-    return render_template('add_film.html', form=form)
+    return render_template('editing_program/add_film.html', form=form)
 
 @app.route('/add_workshop', methods=['GET', 'POST'])
 @login_required
@@ -133,7 +133,7 @@ def add_workshop():
         global rooms
         rooms = get_rooms()
         return redirect(url_for('edit_program'))
-    return render_template('add_workshop.html', form=form)
+    return render_template('editing_program/add_workshop.html', form=form)
 
 @app.route('/add_beseda', methods=['GET', 'POST'])
 @login_required
@@ -154,7 +154,7 @@ def add_beseda():
         global rooms
         rooms = get_rooms()
         return redirect(url_for('edit_program'))
-    return render_template('add_beseda.html', form=form)
+    return render_template('editing_program/add_beseda.html', form=form)
 
 @app.route('/add_host', methods=['GET', 'POST'])
 @login_required
@@ -169,7 +169,7 @@ def add_host():
         db.session.add(host)
         db.session.commit()
         return redirect(url_for('edit_program'))
-    return render_template('add_host.html', form=form)
+    return render_template('editing_program/add_host.html', form=form)
 
 
 @app.route('/program/edit')
@@ -177,7 +177,7 @@ def add_host():
 def edit_program():
     if not current_user.admin:
         abort(403)
-    return render_template('edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
+    return render_template('editing_program/edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
 @app.route('/edit_film/<id>', methods=['GET', 'POST'])
 @login_required
@@ -201,7 +201,7 @@ def edit_film(id):
         global rooms
         rooms = get_rooms()
         return redirect(url_for('edit_program'))
-    return render_template('edit_film.html', film=film, form=form)
+    return render_template('editing_program/edit_film.html', film=film, form=form)
 
 @app.route('/edit_beseda/<id>', methods=['GET', 'POST'])
 @login_required
@@ -224,7 +224,7 @@ def edit_beseda(id):
         global rooms
         rooms = get_rooms()
         return redirect(url_for('edit_program'))
-    return render_template('edit_beseda.html', beseda=beseda, form=form)
+    return render_template('editing_program/edit_beseda.html', beseda=beseda, form=form)
 
 @app.route('/edit_workshop/<id>', methods=['GET', 'POST'])
 @login_required
@@ -246,7 +246,7 @@ def edit_workshop(id):
         global rooms
         rooms = get_rooms()
         return redirect(url_for('edit_program'))
-    return render_template('edit_workshop.html', workshop=workshop, form=form)
+    return render_template('editing_program/edit_workshop.html', workshop=workshop, form=form)
 
 @app.route('/edit_host/<id>', methods=['GET', 'POST'])
 @login_required
@@ -263,7 +263,7 @@ def edit_host(id):
         host.description = form.description.data
         db.session.commit()
         return redirect(url_for('edit_program'))
-    return render_template('edit_host.html', host=host, form=form)
+    return render_template('editing_program/edit_host.html', host=host, form=form)
 
 @app.route('/delete_film/<id>')
 @login_required
@@ -276,7 +276,7 @@ def delete_film(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('edit_program'))
+    return redirect(url_for('editing_program/edit_program'))
 
 @app.route('/delete_workshop/<id>')
 @login_required
@@ -289,7 +289,7 @@ def delete_workshop(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('edit_program'))
+    return redirect(url_for('editing_program/edit_program'))
 
 @app.route('/delete_beseda/<id>')
 @login_required
@@ -302,7 +302,7 @@ def delete_beseda(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('edit_program'))
+    return redirect(url_for('editing_program/edit_program'))
 
 @app.route('/delete_host/<id>')
 @login_required
@@ -315,7 +315,7 @@ def delete_host(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('edit_program'))
+    return redirect(url_for('editing_program/edit_program'))
 
 #endregion admin
 
