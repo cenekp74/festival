@@ -3,8 +3,10 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.utils import get_rooms
+from app.utils import get_rooms, allowed_file
 import datetime
+import os
+from werkzeug.utils import secure_filename
 
 rooms = None
 
@@ -316,6 +318,24 @@ def delete_host(id):
     global rooms
     rooms = get_rooms()
     return redirect(url_for('editing_program/edit_program'))
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('upload_file'))
+    files = list(os.listdir('app/static/upload/'))
+
+    return render_template('upload.html', files=files)
 
 #endregion admin
 

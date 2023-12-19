@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<h1>Upload souborů</h1>
+<form method=post enctype=multipart/form-data>
+    <input class="btn" type=file name=file>
+    <input class="btn" type=submit value=Upload>
+</form>
+<br>
+<h3>Uploaded files: </h3>
+{% for filename in files %}
+<a href="/static/upload/{{ filename }}">{{ filename }}</a>
+{% endfor %}
+
+{% endblock %}
