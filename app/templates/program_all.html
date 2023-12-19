@@ -78,6 +78,23 @@
             {% endfor %}
         </table>
     </div>
+    <div class="program-all-hosts">
+        <h2>Hosté</h2>
+        <table>
+            <tr>
+                <th>Host</th>
+                <th>Popis</th>
+            </tr>
+            {% for host in hosts %}
+            <tr>
+                <td>
+                    <a href="/host/{{ host.id }}">{{ host["name"] }}</a>
+                </td>
+                <td>{{ host.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 
 <style>

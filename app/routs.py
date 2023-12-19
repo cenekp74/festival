@@ -1,6 +1,6 @@
 from app.db_classes import Host, User, Film, Beseda, Workshop
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
-from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm
+from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.utils import get_rooms
@@ -156,6 +156,21 @@ def add_beseda():
         return redirect(url_for('edit_program'))
     return render_template('add_beseda.html', form=form)
 
+@app.route('/add_host', methods=['GET', 'POST'])
+@login_required
+def add_host():
+    if not current_user.admin:
+        abort(403)
+    form = HostForm()
+    if form.validate_on_submit():
+        host = Host(name=form.name.data,
+                    description = form.description.data
+                    )
+        db.session.add(host)
+        db.session.commit()
+        return redirect(url_for('edit_program'))
+    return render_template('add_host.html', form=form)
+
 
 @app.route('/program/edit')
 @login_required
@@ -233,6 +248,23 @@ def edit_workshop(id):
         return redirect(url_for('edit_program'))
     return render_template('edit_workshop.html', workshop=workshop, form=form)
 
+@app.route('/edit_host/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_host(id):
+    if not current_user.admin:
+        abort(403)
+    if not id.isdigit(): abort(404)
+    id = int(id)
+    host = Host.query.get(id)
+    form = HostForm(name=host.name,
+                    description=host.description)
+    if form.validate_on_submit():
+        host.name = form.name.data
+        host.description = form.description.data
+        db.session.commit()
+        return redirect(url_for('edit_program'))
+    return render_template('edit_host.html', host=host, form=form)
+
 @app.route('/delete_film/<id>')
 @login_required
 def delete_film(id):
@@ -267,6 +299,19 @@ def delete_beseda(id):
     if not id.isdigit(): abort(404)
     id = int(id)
     Beseda.query.filter_by(id=id).delete()
+    db.session.commit()
+    global rooms
+    rooms = get_rooms()
+    return redirect(url_for('edit_program'))
+
+@app.route('/delete_host/<id>')
+@login_required
+def delete_host(id):
+    if not current_user.admin:
+        abort(403)
+    if not id.isdigit(): abort(404)
+    id = int(id)
+    Host.query.filter_by(id=id).delete()
     db.session.commit()
     global rooms
     rooms = get_rooms()

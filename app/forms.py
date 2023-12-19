@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField, TextAreaField
 from wtforms.validators import DataRequired, NumberRange
 # from app.db_classes import User
 # from flask_login import current_user
@@ -42,4 +42,9 @@ class BesedaForm(FlaskForm):
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Třída', validators=[DataRequired()])
+    submit = SubmitField('Potvrdit')
+
+class HostForm(FlaskForm):
+    name = StringField('Jméno hosta', validators=[DataRequired()])
+    description = TextAreaField('Popis')
     submit = SubmitField('Potvrdit')
