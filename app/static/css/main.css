@@ -239,6 +239,10 @@ footer {
     font-size: 20px;
 }
 
+.system-links {
+    font-size: 80%;
+}
+
 /* end footer */
 
 @media screen and (max-width: 1300px) {
