@@ -7,6 +7,7 @@ from app.utils import get_rooms, allowed_file
 import datetime
 import os
 from werkzeug.utils import secure_filename
+from PIL import Image
 
 rooms = None
 
@@ -181,6 +182,7 @@ def edit_program():
         abort(403)
     return render_template('editing_program/edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
+
 @app.route('/edit_film/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_film(id):
@@ -267,6 +269,7 @@ def edit_host(id):
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_host.html', host=host, form=form)
 
+
 @app.route('/delete_film/<id>')
 @login_required
 def delete_film(id):
@@ -320,7 +323,10 @@ def delete_host(id):
     return redirect(url_for('editing_program/edit_program'))
 
 @app.route('/upload', methods=['GET', 'POST'])
+@login_required
 def upload_file():
+    if not current_user.admin:
+        abort(403)
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No file part')
