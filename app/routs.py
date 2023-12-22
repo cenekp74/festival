@@ -57,7 +57,25 @@ def program_day(dayn):
 def film(id):
     if not id.isdigit(): abort(404)
     id = int(id)
-    return render_template('film.html', film=Film.query.get(id))
+    return render_template('program_items/film.html', film=Film.query.get(id))
+
+@app.route('/workshop/<id>')
+def workshop(id):
+    if not id.isdigit(): abort(404)
+    id = int(id)
+    return render_template('program_items/workshop.html', workshop=Workshop.query.get(id))
+
+@app.route('/beseda/<id>')
+def beseda(id):
+    if not id.isdigit(): abort(404)
+    id = int(id)
+    return render_template('program_items/beseda.html', beseda=Beseda.query.get(id))
+
+@app.route('/host/<id>')
+def host(id):
+    if not id.isdigit(): abort(404)
+    id = int(id)
+    return render_template('program_items/host.html', host=Host.query.get(id))
 
 @app.route('/hoste')
 def hoste():

@@ -36,6 +36,7 @@ class Workshop(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
+    description = db.Column(db.String(1000))
     picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
 
 class Beseda(db.Model):

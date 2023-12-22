@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/film.css') }}">
 {% endblock %}
 
 {% block body %}
-<h1 class="film-title">{{ film.name }}</h1>
-<div class="film-details">
+<h1 class="item-title">{{ film.name }}</h1>
+<div class="item-details">
     <p>Den: {{ film.day }}</p>
     <p>Čas: {{ film.time_from }} - {{ film.time_to }}</p>
     <p>Třída: {{ film.room }}</p>
