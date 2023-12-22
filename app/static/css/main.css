@@ -45,10 +45,6 @@ a:hover {
     padding-top: 50px;
 }
 
-.content h1 {
-    text-align: center;
-}
-
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled),

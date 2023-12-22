@@ -35,6 +35,7 @@ class WorkshopForm(FlaskForm):
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Třída', validators=[DataRequired()])
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
+    description = TextAreaField('Popis')
     submit = SubmitField('Potvrdit')
 
 class BesedaForm(FlaskForm):
