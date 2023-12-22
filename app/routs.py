@@ -125,11 +125,18 @@ def add_workshop():
         abort(403)
     form = WorkshopForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            picture = form.picture.data
+            picture_filename = secure_filename(picture.filename)
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+        else:
+            picture_filename = 'default.png'
         workshop = Workshop(name=form.name.data,
                     time_from = form.time_from.data.strftime('%H:%M'),
                     time_to = form.time_to.data.strftime('%H:%M'),
                     day = form.day.data,
-                    room = form.room.data
+                    room = form.room.data,
+                    picture_filename = picture_filename
                     )
         db.session.add(workshop)
         db.session.commit()
@@ -166,8 +173,15 @@ def add_host():
         abort(403)
     form = HostForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            picture = form.picture.data
+            picture_filename = secure_filename(picture.filename)
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+        else:
+            picture_filename = 'default.png'
         host = Host(name=form.name.data,
-                    description = form.description.data
+                    description = form.description.data,
+                    picture_filename = picture_filename
                     )
         db.session.add(host)
         db.session.commit()
@@ -241,6 +255,11 @@ def edit_workshop(id):
     form = WorkshopForm(name=workshop.name,
                     time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(), day=workshop.day, room=workshop.room)
     if form.validate_on_submit():
+        if form.picture.data:
+            picture = form.picture.data
+            picture_filename = secure_filename(picture.filename)
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            workshop.picture_filename = picture_filename
         workshop.name = form.name.data
         workshop.time_from = form.time_from.data.strftime('%H:%M')
         workshop.time_to = form.time_to.data.strftime('%H:%M')
@@ -263,6 +282,11 @@ def edit_host(id):
     form = HostForm(name=host.name,
                     description=host.description)
     if form.validate_on_submit():
+        if form.picture.data:
+            picture = form.picture.data
+            picture_filename = secure_filename(picture.filename)
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            host.picture_filename = picture_filename
         host.name = form.name.data
         host.description = form.description.data
         db.session.commit()
@@ -321,6 +345,7 @@ def delete_host(id):
     global rooms
     rooms = get_rooms()
     return redirect(url_for('editing_program/edit_program'))
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required

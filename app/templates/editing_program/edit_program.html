@@ -90,6 +90,7 @@
             <th>Den</th>
             <th>Čas</th>
             <th>Třída</th>
+            <th>Obrázek</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -102,6 +103,9 @@
             <td>{{ workshop.day }}</td>
             <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
             <td>{{ workshop.room }}</td>
+            <td>
+                <a href="/static/upload/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
+            </td>
             <td>
                 <a href="/edit_workshop/{{ workshop.id }}">edit</a>
             </td>
@@ -121,6 +125,7 @@
             <th>id</th>
             <th>Host</th>
             <th>Popis</th>
+            <th>Obrázek</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -131,6 +136,9 @@
                 <a href="/host/{{ host.id }}">{{ host["name"] }}</a>
             </td>
             <td>{{ host.description }}</td>
+            <td>
+                <a href="/static/upload/{{ host.picture_filename }}">{{ host.picture_filename }}</a>
+            </td>
             <td>
                 <a href="/edit_host/{{ host.id }}">edit</a>
             </td>

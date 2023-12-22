@@ -17,6 +17,7 @@ class Host(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(1000))
+    picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
 
 class Film(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,6 +36,7 @@ class Workshop(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
+    picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
 
 class Beseda(db.Model):
     id = db.Column(db.Integer, primary_key=True)
