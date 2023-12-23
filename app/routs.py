@@ -325,7 +325,7 @@ def delete_film(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('editing_program/edit_program'))
+    return redirect(url_for('edit_program'))
 
 @app.route('/delete_workshop/<id>')
 @login_required
@@ -338,7 +338,7 @@ def delete_workshop(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('editing_program/edit_program'))
+    return redirect(url_for('edit_program'))
 
 @app.route('/delete_beseda/<id>')
 @login_required
@@ -351,7 +351,7 @@ def delete_beseda(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('editing_program/edit_program'))
+    return redirect(url_for('edit_program'))
 
 @app.route('/delete_host/<id>')
 @login_required
@@ -364,7 +364,7 @@ def delete_host(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
-    return redirect(url_for('editing_program/edit_program'))
+    return redirect(url_for('edit_program'))
 
 
 @app.route('/upload', methods=['GET', 'POST'])
