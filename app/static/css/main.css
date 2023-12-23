@@ -40,6 +40,7 @@ a:hover {
 
 .content {
     width: fit-content;
+    max-width: 74vw;
     margin: 0 auto;
     margin-bottom: 60px;
     margin-left: auto;
@@ -50,6 +51,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 [type="button"]:not(:disabled),
@@ -57,6 +59,10 @@ a:hover {
 [type="submit"]:not(:disabled),
 button:not(:disabled) {
     cursor: pointer;
+}
+
+.item-details {
+    flex: 1;
 }
 
 /* topnav */
@@ -254,6 +260,9 @@ footer {
         padding-left: 30px;
         padding-right: 30px;
     }
+    .content {
+        max-width: 80vw;
+    }
 }
 
 @media screen and (max-width: 1150px) {
@@ -315,6 +324,9 @@ footer {
         z-index: 10;
         overflow: hidden;
     }
+    .content {
+        max-width: 85vw;
+    }
 }
 
 @media screen and (max-width: 530px) {
@@ -324,19 +336,15 @@ footer {
     .topnav a {
         font-size: 15px;
     }
+    .content {
+        max-width: 90vw;
+    }
 }
 @media screen and (max-width: 440px) {
     .topnav a.logo {
         text-transform: none;
     }
+    .content {
+        max-width: 95vw;
+    }
 }
-
-/* @media screen and (max-width: 410px) {
-    .topnav-links a {
-        display: none;
-    }
-
-    .topnav .icon {
-        padding-left: 0;
-    }
-} */

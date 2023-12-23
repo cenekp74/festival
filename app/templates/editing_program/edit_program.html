@@ -7,150 +7,152 @@
 
 {% block body %}
 <h1>Editování programu</h1>
-<div class="program-all-filmy">
-    <h2>Filmy</h2>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Film</th>
-            <th>Den</th>
-            <th>Čas</th>
-            <th>Třída</th>
-            <th>Link</th>
-            <th>Jazyk</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        {% for film in films %}
-        <tr>
-            <td>{{ film.id }}</td>
-            <td>
-                <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
-            </td>
-            <td>{{ film.day }}</td>
-            <td>{{ film.time_from }} - {{ film.time_to }}</td>
-            <td>{{ film.room }}</td>
-            <td>
-                <a href="{{ film.link }}">link</a>
-            </td>
-            <td>{{ film.language }}</td>
-            <td>
-                <a href="/edit_film/{{ film.id }}">edit</a>
-            </td>
-            <td>
-                <a href="/delete_film/{{ film.id }}" onclick="return confirm('Smazat film?')">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{{ url_for('add_film') }}">Přidat nový film</a>
-</div>
+<div class="program-all-container">
+    <div class="program-all-filmy">
+        <h2>Filmy</h2>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Film</th>
+                <th>Den</th>
+                <th>Čas</th>
+                <th>Třída</th>
+                <th>Link</th>
+                <th>Jazyk</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for film in films %}
+            <tr>
+                <td>{{ film.id }}</td>
+                <td>
+                    <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
+                </td>
+                <td>{{ film.day }}</td>
+                <td>{{ film.time_from }} - {{ film.time_to }}</td>
+                <td>{{ film.room }}</td>
+                <td>
+                    <a href="{{ film.link }}">link</a>
+                </td>
+                <td>{{ film.language }}</td>
+                <td>
+                    <a href="/edit_film/{{ film.id }}">edit</a>
+                </td>
+                <td>
+                    <a href="/delete_film/{{ film.id }}" onclick="return confirm('Smazat film?')">delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('add_film') }}">Přidat nový film</a>
+    </div>
 
-<div class="program-all-besedy">
-    <h2>Besedy</h2>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Beseda</th>
-            <th>Den</th>
-            <th>Čas</th>
-            <th>Třída</th>
-            <th>Typ</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        {% for beseda in besedy %}
-        <tr>
-            <td>{{ beseda.id }}</td>
-            <td>
-                <a href="/beseda/{{ beseda.id }}">{{ beseda["name"] }}</a>
-            </td>
-            <td>{{ beseda.day }}</td>
-            <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>
-            <td>{{ beseda.room }}</td>
-            <td>{{"k filmu" if beseda.beseda_type == 'f' else "s hostem"}}</td>
-            <td>
-                <a href="/edit_beseda/{{ beseda.id }}">edit</a>
-            </td>
-            <td>
-                <a href="/delete_beseda/{{ beseda.id }}" onclick="return confirm('Smazat besedu?')">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{{ url_for('add_beseda') }}">Přidat novou besedu</a>
-</div>
+    <div class="program-all-besedy">
+        <h2>Besedy</h2>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Beseda</th>
+                <th>Den</th>
+                <th>Čas</th>
+                <th>Třída</th>
+                <th>Typ</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for beseda in besedy %}
+            <tr>
+                <td>{{ beseda.id }}</td>
+                <td>
+                    <a href="/beseda/{{ beseda.id }}">{{ beseda["name"] }}</a>
+                </td>
+                <td>{{ beseda.day }}</td>
+                <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>
+                <td>{{ beseda.room }}</td>
+                <td>{{"k filmu" if beseda.beseda_type == 'f' else "s hostem"}}</td>
+                <td>
+                    <a href="/edit_beseda/{{ beseda.id }}">edit</a>
+                </td>
+                <td>
+                    <a href="/delete_beseda/{{ beseda.id }}" onclick="return confirm('Smazat besedu?')">delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('add_beseda') }}">Přidat novou besedu</a>
+    </div>
 
-<div class="program-all-workshops">
-    <h2>Workshopy</h2>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Workshop</th>
-            <th>Den</th>
-            <th>Čas</th>
-            <th>Třída</th>
-            <th>Popis</th>
-            <th>Obrázek</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        {% for workshop in workshops %}
-        <tr>
-            <td>{{ workshop.id }}</td>
-            <td>
-                <a href="/workshop/{{ workshop.id }}">{{ workshop["name"] }}</a>
-            </td>
-            <td>{{ workshop.day }}</td>
-            <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
-            <td>{{ workshop.room }}</td>
-            <td>{{ workshop.description }}</td>
-            <td>
-                <a href="/static/upload/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
-            </td>
-            <td>
-                <a href="/edit_workshop/{{ workshop.id }}">edit</a>
-            </td>
-            <td>
-                <a href="/delete_workshop/{{ workshop.id }}" onclick="return confirm('Smazat workshop?')">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{{ url_for('add_workshop') }}">Přidat nový workshop</a>
-</div>
+    <div class="program-all-workshops">
+        <h2>Workshopy</h2>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Workshop</th>
+                <th>Den</th>
+                <th>Čas</th>
+                <th>Třída</th>
+                <th>Popis</th>
+                <th>Obrázek</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for workshop in workshops %}
+            <tr>
+                <td>{{ workshop.id }}</td>
+                <td>
+                    <a href="/workshop/{{ workshop.id }}">{{ workshop["name"] }}</a>
+                </td>
+                <td>{{ workshop.day }}</td>
+                <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
+                <td>{{ workshop.room }}</td>
+                <td>{{ workshop.description }}</td>
+                <td>
+                    <a href="/static/upload/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
+                </td>
+                <td>
+                    <a href="/edit_workshop/{{ workshop.id }}">edit</a>
+                </td>
+                <td>
+                    <a href="/delete_workshop/{{ workshop.id }}" onclick="return confirm('Smazat workshop?')">delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('add_workshop') }}">Přidat nový workshop</a>
+    </div>
 
-<div class="program-all-hosts">
-    <h2>Hosté</h2>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Host</th>
-            <th>Popis</th>
-            <th>Obrázek</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        {% for host in hosts %}
-        <tr>
-            <td>{{ host.id }}</td>
-            <td>
-                <a href="/host/{{ host.id }}">{{ host["name"] }}</a>
-            </td>
-            <td>{{ host.description }}</td>
-            <td>
-                <a href="/static/upload/{{ host.picture_filename }}">{{ host.picture_filename }}</a>
-            </td>
-            <td>
-                <a href="/edit_host/{{ host.id }}">edit</a>
-            </td>
-            <td>
-                <a href="/delete_host/{{ host.id }}" onclick="return confirm('Smazat hosta?')">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{{ url_for('add_host') }}">Přidat nového hosta</a>
+    <div class="program-all-hosts">
+        <h2>Hosté</h2>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Host</th>
+                <th>Popis</th>
+                <th>Obrázek</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for host in hosts %}
+            <tr>
+                <td>{{ host.id }}</td>
+                <td>
+                    <a href="/host/{{ host.id }}">{{ host["name"] }}</a>
+                </td>
+                <td>{{ host.description }}</td>
+                <td>
+                    <a href="/static/upload/{{ host.picture_filename }}">{{ host.picture_filename }}</a>
+                </td>
+                <td>
+                    <a href="/edit_host/{{ host.id }}">edit</a>
+                </td>
+                <td>
+                    <a href="/delete_host/{{ host.id }}" onclick="return confirm('Smazat hosta?')">delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('add_host') }}">Přidat nového hosta</a>
+    </div>
 </div>
 
 <script>
