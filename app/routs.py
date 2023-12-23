@@ -155,6 +155,7 @@ def add_workshop():
                     day = form.day.data,
                     room = form.room.data,
                     picture_filename = picture_filename,
+                    author=form.author.data,
                     description = form.description.data
                     )
         db.session.add(workshop)
@@ -272,7 +273,7 @@ def edit_workshop(id):
     id = int(id)
     workshop = Workshop.query.get(id)
     form = WorkshopForm(name=workshop.name,
-                    time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(), day=workshop.day, room=workshop.room, description=workshop.description)
+                    time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(), day=workshop.day, room=workshop.room, author=workshop.author, description=workshop.description)
     if form.validate_on_submit():
         if form.picture.data:
             picture = form.picture.data
@@ -284,6 +285,7 @@ def edit_workshop(id):
         workshop.time_to = form.time_to.data.strftime('%H:%M')
         workshop.day = form.day.data
         workshop.room = form.room.data
+        workshop.author = form.author.data
         workshop.description = form.description.data
         db.session.commit()
         global rooms

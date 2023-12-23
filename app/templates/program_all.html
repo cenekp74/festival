@@ -65,6 +65,7 @@
                 <th>Den</th>
                 <th>Čas</th>
                 <th>Třída</th>
+                <th>Autor</th>
                 <th>Popis</th>
             </tr>
             {% for workshop in workshops %}
@@ -75,6 +76,7 @@
                 <td>{{ workshop.day }}</td>
                 <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
                 <td>{{ workshop.room }}</td>
+                <td>{{ workshop.author }}</td>
                 <td>{{ workshop.description }}</td>
             </tr>
             {% endfor %}
