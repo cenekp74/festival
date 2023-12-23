@@ -39,9 +39,11 @@ a:hover {
 }
 
 .content {
-    width: 90%;
+    width: fit-content;
     margin: 0 auto;
     margin-bottom: 60px;
+    margin-left: 1vw;
+    margin-right: 1vw;
     padding-top: 50px;
     display: flex;
     flex-direction: column;

@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/program.css') }}">
 {% endblock %}
 
 
 {% block body %}
 <h1>Program</h1>
-<nav>
+<nav class="program-nav">
     <a class="button-link" href="/program/all">Celý program</a>
     <a class="button-link" href="/program/day/1">Den 1</a>
     <a class="button-link" href="/program/day/2">Den 2</a>
