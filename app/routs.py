@@ -79,11 +79,11 @@ def host(id):
 
 @app.route('/hoste')
 def hoste():
-    return render_template('hoste.html')
+    return render_template('hoste.html', items=Host.query.all())
 
 @app.route('/workshopy')
 def workshopy():
-    return render_template('workshopy.html')
+    return render_template('workshopy.html', items=Workshop.query.all())
 
 @app.route('/historie')
 def historie():
