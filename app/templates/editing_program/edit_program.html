@@ -107,7 +107,7 @@
                 <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
                 <td>{{ workshop.room }}</td>
                 <td>{{ workshop.author }}</td>
-                <td>{{ workshop.description }}</td>
+                <td>{{ workshop.description|safe}}</td>
                 <td>
                     <a href="/static/upload/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
                 </td>
