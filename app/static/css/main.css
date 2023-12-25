@@ -40,7 +40,7 @@ a:hover {
 
 .content {
     width: min-content;
-    min-width: 74vw;
+    min-width: 70vw;
     margin: 0 auto;
     margin-bottom: 60px;
     margin-left: auto;
@@ -65,6 +65,7 @@ button:not(:disabled) {
 .grid-items-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    width: 95%;
     gap: 15px;
     position: relative;
 }
@@ -106,6 +107,10 @@ button:not(:disabled) {
 .grid-items-container .item .item-details h3 {
     margin: 0;
     font-size: 1.2rem;
+}
+
+.grid-items-container .item .item-description p {
+    margin: 5px;
 }
 
 /* #endregion program-items */
@@ -307,7 +312,7 @@ footer {
         padding-right: 30px;
     }
     .content {
-        min-width: 80vw;
+        min-width: 78vw;
     }
     .grid-items-container {
         grid-template-columns: repeat(4, 1fr);
@@ -395,6 +400,12 @@ footer {
     }
     .content {
         min-width: 90vw;
+    }
+    .grid-items-container .item .item-details h2 {
+        font-size: 1.5rem;
+    }
+    .grid-items-container .item .item-details h3 {
+        font-size: 1.05rem;
     }
 }
 

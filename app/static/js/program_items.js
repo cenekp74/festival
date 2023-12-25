@@ -6,5 +6,4 @@ function showDescription(item) {
 function hideDescription(event, item_description) {
     event.stopPropagation();
     item_description.classList.add('hidden');
-
 }
