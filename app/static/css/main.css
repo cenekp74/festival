@@ -109,8 +109,16 @@ button:not(:disabled) {
     font-size: 1.2rem;
 }
 
+
 .grid-items-container .item .item-description p {
     margin: 5px;
+}
+
+.grid-items-container .item .item-description nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: .35vh;
 }
 
 /* #endregion program-items */
