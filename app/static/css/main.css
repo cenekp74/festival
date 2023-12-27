@@ -6,6 +6,8 @@ body {
     --link-color: #edeaf3;
     --hover-link-color: #bca4ee;
     --button-color: #4f3b66;
+    --disabled-button-color: #222224;
+    --disabled-text-color: #3c4d42;
     --border-radius: 25px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -36,6 +38,16 @@ a:visited {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 600;
+}
+
+a.disabled, .button-link.disabled a {
+    pointer-events: none;
+    cursor: default;
+    color: var(--disabled-text-color);
+}
+
+.button-link.disabled {
+    background-color: var(--disabled-button-color);
 }
 
 a:hover {

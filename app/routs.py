@@ -51,7 +51,7 @@ def program_day(dayn):
         program[room]["films"] = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
         program[room]["besedy"] = sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from)
         program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
-    return render_template('program_day.html', program=program, rooms=rooms[dayn])
+    return render_template('program_day.html', program=program, rooms=rooms[dayn], day=dayn)
 
 @app.route('/film/<id>')
 def film(id):
