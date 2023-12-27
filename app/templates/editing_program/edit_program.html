@@ -130,6 +130,7 @@
                 <th>id</th>
                 <th>Host</th>
                 <th>Popis</th>
+                <th>Krátký popis</th>
                 <th>Obrázek</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -141,6 +142,7 @@
                     <a href="/host/{{ host.id }}">{{ host["name"] }}</a>
                 </td>
                 <td>{{ host.description }}</td>
+                <td>{{ host.short_description }}</td>
                 <td>
                     <a href="/static/upload/{{ host.picture_filename }}">{{ host.picture_filename }}</a>
                 </td>
