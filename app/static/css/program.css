@@ -70,6 +70,11 @@
     word-wrap: break-word;
 }
 
+.flashed {
+    border: 2px solid var(--text-color);
+    transition: border .2s ease;
+}
+
 .vertical div {
     writing-mode: vertical-rl;
     -webkit-line-clamp: 1;

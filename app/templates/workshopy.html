@@ -25,7 +25,7 @@
         <div class="item-description hidden" onclick="hideDescription(event, this)">
             <p>{{ item.description|safe }}</p>
             <nav>
-                <a class="button-link" href="{{url_for('program_day', dayn=item.day)}}">Program</a>
+                <a class="button-link" href="{{url_for('program_day', dayn=item.day)}}?w_{{item.id}}">Program</a>
             </nav>
         </div>
     </div>

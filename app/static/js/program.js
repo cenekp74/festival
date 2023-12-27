@@ -65,6 +65,12 @@ function hideAllContextMenu() {
     }
 }
 
+function flashItem(item) {
+    for (var t=200; t<5000; t +=200) {
+        setTimeout(() => {item.classList.toggle('flashed');}, t);
+    }
+}
+
 const mediaQuery = window.matchMedia('(max-width: 330px)');
 if (mediaQuery.matches) {
     var items = document.getElementsByClassName('time-item');
@@ -101,3 +107,9 @@ for (var i = 0; i < items.length; i++) {
 
 updateTimeVerticalLine()
 setInterval(updateTimeVerticalLine, 60*1000)
+
+if (document.URL.indexOf("?") != -1) {
+    var item_id = document.URL.split('?')[1];
+    var item = document.getElementById(item_id);
+    flashItem(item);
+}
