@@ -72,7 +72,6 @@ a:hover {
 }
 
 [type="button"]:not(:disabled),
-[type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled),
 button:not(:disabled) {
     cursor: pointer;
@@ -149,9 +148,18 @@ button:not(:disabled) {
     width: 100%;
     text-align: center;
 }
+
 .program-nav a {
     margin-top: 5px;
 }
+
+.program-day.program-nav {
+    position: fixed;
+    bottom: 55px;
+    background-color: var(--bg-color);
+    padding-bottom: 15px;
+}
+
 .program-all-container {
     display: flex;
     align-items: start;
