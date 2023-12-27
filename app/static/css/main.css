@@ -67,8 +67,9 @@ a:hover {
     padding-top: 50px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+    overflow-x: scroll;
+    align-items: center;
 }
 
 [type="button"]:not(:disabled),
@@ -151,6 +152,15 @@ button:not(:disabled) {
 }
 .program-nav a {
     margin-top: 5px;
+}
+.program-all-container {
+    display: flex;
+    align-items: start;
+    overflow-x: scroll;
+    justify-content: space-around;
+    flex-flow: column wrap;
+    gap: 10px;
+    max-width: 100vw;
 }
 /* #endregion program */
 
