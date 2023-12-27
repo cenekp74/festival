@@ -86,14 +86,12 @@ button:not(:disabled) {
     position: relative;
 }
 
-
-
 .grid-items-container .item {
     position: relative;
     width: 100%;
     grid-column-start: span 2;
     grid-row: span 1;
-    outline: 1px solid var(--text-color);
+    border: 1px solid var(--text-color);
     cursor: pointer;
 }
 
