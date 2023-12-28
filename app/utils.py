@@ -13,3 +13,14 @@ def get_rooms() -> dict:
 def allowed_file(filename, allowed_extensions=ALLOWED_EXTENSIONS):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
+def correct_uid(uid, h_allowed=True):
+    if '_' not in uid: return False
+    if len(uid.split('_')) != 2: return False
+    item_type, item_id = uid.split('_')
+    if not item_id.isdigit(): return False
+    if h_allowed:
+        if item_type not in ['w', 'b', 'f', 'h']: return False
+    else:
+        if item_type not in ['w', 'b', 'f']: return False
+    return True

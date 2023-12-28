@@ -3,7 +3,7 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.utils import get_rooms, allowed_file
+from app.utils import get_rooms, allowed_file, correct_uid
 import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -93,6 +93,76 @@ def historie():
 def tym():
     return render_template('tym.html')
 #endregion routs
+
+#region favorite
+@app.route('/favorite/add/<uid>')
+def add_favorite(uid):
+    if not correct_uid(uid, h_allowed=False): abort(500)
+    favorite_cookie = request.cookies.get("favorite")
+    if not favorite_cookie: favorite_cookie = ''
+    if uid in favorite_cookie:
+        return redirect(url_for('favorite'))
+    favorite_cookie += uid + ' '
+    resp = make_response(redirect(url_for('favorite')))
+    resp.set_cookie('favorite', favorite_cookie)
+    return resp
+
+@app.route('/favorite/clear')
+def clear_favorite():
+    resp = make_response(redirect(url_for('favorite')))
+    resp.set_cookie('favorite', '')
+    return resp
+
+@app.route('/favorite/remove/<uid>')
+def remove_favorite(uid):
+    if not correct_uid(uid, h_allowed=False): abort(500)
+    favorite_cookie = request.cookies.get("favorite")
+    if not favorite_cookie: favorite_cookie = ''
+    if uid not in favorite_cookie:
+        return redirect(url_for('favorite'))
+    favorite_cookie = favorite_cookie.replace(uid+' ', '')
+    favorite_cookie = favorite_cookie.replace(uid, '')
+    resp = make_response(redirect(url_for('favorite')))
+    resp.set_cookie('favorite', favorite_cookie)
+    return resp
+
+@app.route('/favorite/<dayn>')
+@app.route('/program/favorite/<dayn>')
+@app.route('/program/my/<dayn>')
+def favorite_day(dayn):
+    if not dayn.isdigit(): abort(404)
+    dayn = int(dayn)
+    if dayn not in [1,2,3]: abort(404)
+    favorite_cookie = request.cookies.get("favorite")
+    if not favorite_cookie: favorite_cookie = ''
+    films = []
+    besedy = []
+    workshops = []
+    for uid in favorite_cookie.split(' '):
+        if not correct_uid(uid, h_allowed=False): continue
+        item_type, item_id = uid.split('_')
+        if item_type == 'f': films.append(int(item_id))
+        elif item_type == 'b': besedy.append(int(item_id))
+        elif item_type == 'w': workshops.append(int(item_id))
+    global rooms
+    if rooms is None:
+        rooms = get_rooms()
+    rooms_ = rooms[dayn].copy()
+    program = {}
+    for room in rooms[dayn]:
+        program[room] = {}
+        program[room]["films"] = [item for item in sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from) if item.id in films]
+        program[room]["besedy"] = [item for item in sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from) if item.id in besedy]
+        program[room]["workshops"] = [item for item in sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from) if item.id in workshops]
+        if not program[room]["films"] and not program[room]["besedy"] and not program[room]["workshops"]:
+            rooms_.remove(room)
+    return render_template('favorite_day.html', program=program, rooms=rooms_, day=dayn)
+
+@app.route('/favorite')
+def favorite():
+    return render_template('favorite.html')
+
+#endregion favorite
 
 #region login
 @app.route('/login', methods=['GET', 'POST'])

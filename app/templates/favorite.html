@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<h1>Můj program</h1>
+<nav class="program-nav">
+    <a class="button-link" href="{{ url_for('favorite_day', dayn=1) }}">Den 1</a>
+    <a class="button-link" href="{{ url_for('favorite_day', dayn=2) }}">Den 2</a>
+    <a class="button-link" href="{{ url_for('favorite_day', dayn=3) }}">Den 3</a>
+    <a class="button-link" href="{{ url_for('program') }}">Zpět na program</a>
+    <a class="button-link" href="{{ url_for('clear_favorite') }}" onclick="return confirm('Opravdu chcete vymazat váš program?')">Vymazat</a>
+</nav>
+
+<script>
+    document.getElementById('program').classList.add('active');
+</script>
+{% endblock %}
