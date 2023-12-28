@@ -175,7 +175,7 @@ def add_beseda():
         beseda = Beseda(name=form.name.data,
                     time_from = form.time_from.data.strftime('%H:%M'),
                     time_to = form.time_to.data.strftime('%H:%M'),
-                    host_id = form.host.data.id,
+                    host_id = form.host.data.id if form.host.data else None,
                     day = form.day.data,
                     room = form.room.data
                     )
@@ -250,11 +250,13 @@ def edit_beseda(id):
     if not id.isdigit(): abort(404)
     id = int(id)
     beseda = Beseda.query.get(id)
-    form = BesedaForm(name=beseda.name, beseda_type=beseda.beseda_type,
+    form = BesedaForm(name=beseda.name, host=Host.query.get(beseda.host_id),
                     time_from=datetime.datetime.strptime(beseda.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(beseda.time_to, '%H:%M').time(), day=beseda.day, room=beseda.room)
     if form.validate_on_submit():
         beseda.name = form.name.data
-        beseda.beseda_type = form.beseda_type.data
+        if form.host.data:
+            beseda.host_id = form.host.data.id
+        else: beseda.host_id = None
         beseda.time_from = form.time_from.data.strftime('%H:%M')
         beseda.time_to = form.time_to.data.strftime('%H:%M')
         beseda.day = form.day.data

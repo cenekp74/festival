@@ -5,9 +5,45 @@
 
 
 {% block body %}
-<h1>Hoste</h1>
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates iste quas aliquid, libero, nulla veniam, reprehenderit exercitationem consectetur quod aliquam magni quia optio esse commodi dolorem at nostrum dolorum ipsam.</p>
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<h1>Hosté</h1>
+<div class="grid-items-container">
+    {% for item in items %}
+    <div id="w_{{item.id}}" class="item" onclick="showDescription(this)">
+        <img src="/static/upload/{{ item.picture_filename }}">
+        <div class="item-details">
+            <h2>{{ item.name }}</h2>
+            <h3>
+                <i>{{ item.author }}</i>
+                <br>
+                Den {{ item.day }}
+                <br>
+                {{ item.time_from }} - {{ item.time_to }}
+                <br>
+                {{ item.room }}
+            </h3>
+        </div>
+        <div class="item-description hidden" onclick="hideDescription(event, this)">
+            <p>{{ item.description|safe }}</p>
+            <nav>
+                <a class="button-link" href="{{url_for('program_day', dayn=item.day)}}?w_{{item.id}}">Program</a>
+            </nav>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="{{ url_for('static', filename='/js/program_items.js') }}"></script>
 <script>
+    document.getElementById('workshopy').classList.add('active');
+</script>
+{% endblock %}<script>
     document.getElementById('hoste').classList.add('active');
 </script>
 {% endblock %}
