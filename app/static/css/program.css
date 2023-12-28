@@ -150,6 +150,16 @@
     color: var(--text-color);
 }
 
+.item-details .favorite-star {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.in-favorite {
+    color: var(--favorite-color);
+}
+
 @media screen and (min-width: 1000px) {
     .program-item:hover {
         border: 1px solid var(--bg-color);

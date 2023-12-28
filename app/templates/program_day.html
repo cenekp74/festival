@@ -64,6 +64,9 @@
         <div>
             <a href="{{ item.link }}">link</a>
         </div>
+        <a href="{{ url_for('toggle_favorite', uid='f_'+item.id|string) }}">
+            <i id="star-f_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
+        </a>
     </div>
     {% endfor %}
 
@@ -76,6 +79,9 @@
         </a>
         <div>workshop</div>
         <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <a href="{{ url_for('toggle_favorite', uid='w_'+item.id|string) }}">
+            <i id="star-w_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
+        </a>
     </div>
     {% endfor %}
 
@@ -93,6 +99,9 @@
                 <div>host</div>
             </a>
         {% endif %}
+        <a href="{{ url_for('toggle_favorite', uid='b_'+item.id|string) }}">
+            <i id="star-b_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
+        </a>
     </div>
     {% endfor %}
 {% endfor %}
@@ -101,6 +110,7 @@
     <a id="nav-day-2" class="button-link" href="/program/day/2">Den 2</a>
     <a id="nav-day-3" class="button-link" href="/program/day/3">Den 3</a>
     <a class="button-link" href="/program/all">Celý program</a>
+    <a class="button-link" href="{{ url_for('favorite_day', dayn=day) }}">Můj program</a>
 </nav>
 <script src="{{ url_for('static', filename='/js/program.js') }}"></script>
 <script>

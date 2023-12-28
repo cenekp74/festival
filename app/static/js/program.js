@@ -71,6 +71,15 @@ function flashItem(item) {
     }
 }
 
+function getCookie(name) {
+    let cookie = {};
+    document.cookie.split(';').forEach(function(el) {
+      let split = el.split('=');
+      cookie[split[0].trim()] = split.slice(1).join("=");
+    })
+    return cookie[name];
+}
+
 const mediaQuery = window.matchMedia('(max-width: 330px)');
 if (mediaQuery.matches) {
     var items = document.getElementsByClassName('time-item');
@@ -112,4 +121,13 @@ if (document.URL.indexOf("?") != -1) {
     var item_id = document.URL.split('?')[1];
     var item = document.getElementById(item_id);
     flashItem(item);
+}
+
+var stars = document.getElementsByClassName('favorite-star');
+var favoriteCookie = getCookie('favorite').replace('"', '');
+var favoriteItems = favoriteCookie.split(' ');
+for (var i = 0; i < items.length; i++) {
+    if (favoriteItems.includes(stars[i].id.split('-')[1])) {
+        stars[i].classList.add('in-favorite');
+    }
 }

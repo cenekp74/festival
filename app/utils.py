@@ -1,4 +1,4 @@
-from .routs import db, Film, Beseda, Workshop
+from .routs import db, Film, Beseda, Workshop, Host
 from . import ALLOWED_EXTENSIONS
 
 def get_rooms() -> dict:
@@ -24,3 +24,15 @@ def correct_uid(uid, h_allowed=True):
     else:
         if item_type not in ['w', 'b', 'f']: return False
     return True
+
+def get_object_by_uid(uid):
+    item_type, item_id = uid.split('_')
+    item_id = int(item_id)
+    if item_type == 'f':
+        return Film.query.get(item_id)
+    if item_type == 'b':
+        return Beseda.query.get(item_id)
+    if item_type == 'w':
+        return Workshop.query.get(item_id)
+    if item_type == 'h':
+        return Host.query.get(item_id)

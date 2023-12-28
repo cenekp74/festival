@@ -1,9 +1,9 @@
 from app.db_classes import Host, User, Film, Beseda, Workshop
-from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
+from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort, session
 from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.utils import get_rooms, allowed_file, correct_uid
+from app.utils import get_rooms, allowed_file, correct_uid, get_object_by_uid
 import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -123,6 +123,20 @@ def remove_favorite(uid):
     favorite_cookie = favorite_cookie.replace(uid+' ', '')
     favorite_cookie = favorite_cookie.replace(uid, '')
     resp = make_response(redirect(url_for('favorite')))
+    resp.set_cookie('favorite', favorite_cookie)
+    return resp
+
+@app.route('/favorite/toggle/<uid>')
+def toggle_favorite(uid):
+    if not correct_uid(uid, h_allowed=False): abort(500)
+    favorite_cookie = request.cookies.get("favorite")
+    if not favorite_cookie: favorite_cookie = ''
+    if uid not in favorite_cookie:
+        favorite_cookie += uid + ' '
+    else:
+        favorite_cookie = favorite_cookie.replace(uid+' ', '')
+        favorite_cookie = favorite_cookie.replace(uid, '')
+    resp = make_response(redirect(url_for('favorite_day', dayn=get_object_by_uid(uid).day)))
     resp.set_cookie('favorite', favorite_cookie)
     return resp
 

@@ -9,6 +9,7 @@ body {
     --disabled-button-color: #222224;
     --disabled-text-color: #3c4d42;
     --border-radius: 25px;
+    --favorite-color: yellow;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
