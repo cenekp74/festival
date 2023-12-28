@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField, TextAreaField
+from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange
+from app.db_classes import Host
 # from app.db_classes import User
 # from flask_login import current_user
 # from flask_wtf.file import FileField, FileAllowed
@@ -41,7 +43,7 @@ class WorkshopForm(FlaskForm):
 
 class BesedaForm(FlaskForm):
     name = StringField('Název besedy', validators=[DataRequired()])
-    beseda_type = SelectField('Typ besedy', choices=[('f', 'k filmu'), ('h', 's hostem')], validators=[DataRequired()])
+    host = QuerySelectField('Host', query_factory=lambda: Host.query.all(), get_label=lambda host:host.name, allow_blank=True, blank_text='---')
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])

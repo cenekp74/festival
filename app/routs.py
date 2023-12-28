@@ -175,7 +175,7 @@ def add_beseda():
         beseda = Beseda(name=form.name.data,
                     time_from = form.time_from.data.strftime('%H:%M'),
                     time_to = form.time_to.data.strftime('%H:%M'),
-                    beseda_type = form.beseda_type.data,
+                    host_id = form.host.data.id,
                     day = form.day.data,
                     room = form.room.data
                     )

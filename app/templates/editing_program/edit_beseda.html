@@ -24,16 +24,16 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.beseda_type.label(class="form-label") }}
-                {% if form.beseda_type.errors %}
-                    {{ form.beseda_type(class="form-input invalid") }}
+                {{ form.host.label(class="form-label") }}
+                {% if form.host.errors %}
+                    {{ form.host(class="form-input invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.beseda_type.errors %}
+                        {% for error in form.host.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.beseda_type(class="form-input") }}
+                    {{ form.host(class="form-input") }}
                 {% endif %}
             </div>
             <div class="form-group">
