@@ -56,7 +56,7 @@
                 <th>Den</th>
                 <th>Čas</th>
                 <th>Třída</th>
-                <th>Typ</th>
+                <th>Host</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -69,7 +69,13 @@
                 <td>{{ beseda.day }}</td>
                 <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>
                 <td>{{ beseda.room }}</td>
-                <td>{{"k filmu" if beseda.beseda_type == 'f' else "s hostem"}}</td>
+                <td>
+                    {% for host in hosts %}
+                        {% if host.id == beseda.host_id %}
+                            <a href="{{ url_for('hoste')}}#h_{{host.id}}">{{ host.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="/edit_beseda/{{ beseda.id }}">edit</a>
                 </td>
