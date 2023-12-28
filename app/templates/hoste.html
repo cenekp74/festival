@@ -5,13 +5,6 @@
 
 
 {% block body %}
-{% extends 'base.html' %}
-
-{% block head %}
-{% endblock %}
-
-
-{% block body %}
 <h1>Hosté</h1>
 <div class="grid-items-container">
     {% for item in items %}
@@ -20,30 +13,32 @@
         <div class="item-details">
             <h2>{{ item.name }}</h2>
             <h3>
-                <i>{{ item.author }}</i>
+                <i>{{ item.short_description }}</i>
                 <br>
-                Den {{ item.day }}
-                <br>
-                {{ item.time_from }} - {{ item.time_to }}
-                <br>
-                {{ item.room }}
+                {% if item.besedy %}
+                    Den {{ item.besedy[0].day }}
+                    <br>
+                    {{ item.besedy[0].time_from }} - {{ item.besedy[0].time_to }}
+                    <br>
+                    {{ item.besedy[0].room }}
+                {% endif %}
             </h3>
         </div>
         <div class="item-description hidden" onclick="hideDescription(event, this)">
             <p>{{ item.description|safe }}</p>
-            <nav>
-                <a class="button-link" href="{{url_for('program_day', dayn=item.day)}}?w_{{item.id}}">Program</a>
-            </nav>
+            {% if item.besedy %}
+                <nav>
+                    <a class="button-link" href="{{url_for('program_day', dayn=item.besedy[0].day)}}?b_{{item.besedy[0].id}}">Program</a>
+                </nav>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
 </div>
 
 <script src="{{ url_for('static', filename='/js/program_items.js') }}"></script>
+
 <script>
-    document.getElementById('workshopy').classList.add('active');
-</script>
-{% endblock %}<script>
     document.getElementById('hoste').classList.add('active');
 </script>
 {% endblock %}

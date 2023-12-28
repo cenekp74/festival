@@ -94,7 +94,6 @@ def tym():
     return render_template('tym.html')
 #endregion routs
 
-
 #region login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
