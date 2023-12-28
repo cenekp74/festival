@@ -88,6 +88,11 @@
         </a>
         <div>beseda</div>
         <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        {% if item.host_id %}
+            <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
+                <div>host</div>
+            </a>
+        {% endif %}
     </div>
     {% endfor %}
 {% endfor %}
