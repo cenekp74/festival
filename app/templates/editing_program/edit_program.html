@@ -17,8 +17,9 @@
                 <th>Den</th>
                 <th>Čas</th>
                 <th>Třída</th>
-                <th>Link</th>
                 <th>Jazyk</th>
+                <th>Link</th>
+                <th>Program</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -31,10 +32,13 @@
                 <td>{{ film.day }}</td>
                 <td>{{ film.time_from }} - {{ film.time_to }}</td>
                 <td>{{ film.room }}</td>
+                <td>{{ film.language }}</td>
                 <td>
                     <a href="{{ film.link }}">link</a>
                 </td>
-                <td>{{ film.language }}</td>
+                <td>
+                    <a href="{{ url_for('program_day', dayn=film.day) }}?f_{{film.id}}">program</a>
+                </td>
                 <td>
                     <a href="/edit_film/{{ film.id }}">edit</a>
                 </td>
@@ -57,6 +61,7 @@
                 <th>Čas</th>
                 <th>Třída</th>
                 <th>Host</th>
+                <th>Program</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -75,6 +80,9 @@
                             <a href="{{ url_for('hoste')}}#h_{{host.id}}">{{ host.name }}</a>
                         {% endif %}
                     {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ url_for('program_day', dayn=beseda.day) }}?b_{{beseda.id}}">program</a>
                 </td>
                 <td>
                     <a href="/edit_beseda/{{ beseda.id }}">edit</a>
@@ -99,6 +107,7 @@
                 <th>Třída</th>
                 <th>Autor</th>
                 <th>Popis</th>
+                <th>Program</th>
                 <th>Obrázek</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -107,13 +116,16 @@
             <tr>
                 <td>{{ workshop.id }}</td>
                 <td>
-                    <a href="/workshop/{{ workshop.id }}">{{ workshop["name"] }}</a>
+                    <a href="{{url_for('workshopy')}}#w_{{workshop.id}}">{{ workshop.name }}</a>
                 </td>
                 <td>{{ workshop.day }}</td>
                 <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
                 <td>{{ workshop.room }}</td>
                 <td>{{ workshop.author }}</td>
                 <td>{{ workshop.description|safe}}</td>
+                <td>
+                    <a href="{{ url_for('program_day', dayn=workshop.day) }}?w_{{workshop.id}}">program</a>
+                </td>
                 <td>
                     <a href="/static/upload/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
                 </td>
@@ -145,7 +157,7 @@
             <tr>
                 <td>{{ host.id }}</td>
                 <td>
-                    <a href="/host/{{ host.id }}">{{ host["name"] }}</a>
+                    <a href="{{url_for('hoste')}}#h_{{host.id}}">{{ host.name }}</a>
                 </td>
                 <td>{{ host.description }}</td>
                 <td>{{ host.short_description }}</td>
