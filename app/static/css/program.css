@@ -119,9 +119,10 @@
 .time-item {
     font-size: 20px;
     line-height: 1.5rem;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid var(--secondary-color);
     position: relative;
+    padding-left: 2%;
 }
 .time-item:not(:last-child)::after {
     content: '';
