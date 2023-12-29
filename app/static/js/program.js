@@ -66,9 +66,11 @@ function hideAllContextMenu() {
 }
 
 function flashItem(item) {
-    for (var t=200; t<5000; t +=200) {
+    for (var t=0; t<8000; t +=300) {
         setTimeout(() => {item.classList.toggle('flashed');}, t);
     }
+    setTimeout(() => {item.classList.add('flashed');},600);
+    setTimeout(() => {item.classList.remove('flashed');},30000);
 }
 
 function getCookie(name) {

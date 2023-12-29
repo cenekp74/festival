@@ -25,6 +25,7 @@
     --film-color: #a13866;
     --workshop-color: #ff7400;
     --beseda-color: #4011c2;
+    --flash-border-color: #011f0c;
 }
 
 .program-container::before {
@@ -71,9 +72,8 @@
 }
 
 .flashed {
-    border: 1px solid var(--secondary-color);
-    box-shadow:  inset 0 0 0 400px rgba(0, 0, 0, 0.5);
-    transition: border .2s ease;
+    border: 3px dotted var(--flash-border-color);
+    transition: all 0.2s;
 }
 
 .vertical div {
