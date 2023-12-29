@@ -27,7 +27,7 @@ def correct_uid(uid, h_allowed=True):
 
 def get_object_by_uid(uid, correct=True):
     if not correct:
-        if not correct_uid(get_object_by_uid):
+        if not correct_uid(uid):
             raise Exception('Incorrect uid provided')
     item_type, item_id = uid.split('_')
     item_id = int(item_id)
