@@ -25,7 +25,10 @@ def correct_uid(uid, h_allowed=True):
         if item_type not in ['w', 'b', 'f']: return False
     return True
 
-def get_object_by_uid(uid):
+def get_object_by_uid(uid, correct=True):
+    if not correct:
+        if not correct_uid(get_object_by_uid):
+            raise Exception('Incorrect uid provided')
     item_type, item_id = uid.split('_')
     item_id = int(item_id)
     if item_type == 'f':
