@@ -27,6 +27,13 @@ a:visited {
     color: var(--link-color)
 }
 
+::-webkit-scrollbar {
+    background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);}
+
 .button-link {
     display: inline-block;
     padding: 10px 20px;
