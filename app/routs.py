@@ -103,7 +103,7 @@ def add_favorite(uid):
     if uid in favorite_cookie:
         return redirect(url_for('favorite'))
     favorite_cookie += uid + ' '
-    resp = make_response(redirect(url_for('favorite')))
+    resp = make_response('200')
     resp.set_cookie('favorite', favorite_cookie)
     return resp
 
@@ -122,7 +122,7 @@ def remove_favorite(uid):
         return redirect(url_for('favorite'))
     favorite_cookie = favorite_cookie.replace(uid+' ', '')
     favorite_cookie = favorite_cookie.replace(uid, '')
-    resp = make_response(redirect(url_for('favorite')))
+    resp = make_response('200')
     resp.set_cookie('favorite', favorite_cookie)
     return resp
 
@@ -136,7 +136,7 @@ def toggle_favorite(uid):
     else:
         favorite_cookie = favorite_cookie.replace(uid+' ', '')
         favorite_cookie = favorite_cookie.replace(uid, '')
-    resp = make_response(redirect(url_for('favorite_day', dayn=get_object_by_uid(uid).day)))
+    resp = make_response('200')
     resp.set_cookie('favorite', favorite_cookie)
     return resp
 

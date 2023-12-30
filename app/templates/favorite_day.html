@@ -69,7 +69,7 @@
         <div>
             <a href="{{ item.link }}">link</a>
         </div>
-        <a href="{{ url_for('toggle_favorite', uid='f_'+item.id|string) }}">
+        <a href="javascript:toggleFavorite('{{'f_'+item.id|string}}')">
             <i id="star-f_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
     </div>
@@ -84,7 +84,7 @@
         </a>
         <div>workshop</div>
         <div>{{ item.time_from }} - {{ item.time_to }}</div>
-        <a href="{{ url_for('toggle_favorite', uid='w_'+item.id|string) }}">
+        <a href="javascript:toggleFavorite('{{'w_'+item.id|string}}')">
             <i id="star-w_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
     </div>
@@ -104,7 +104,7 @@
                 <div>host</div>
             </a>
         {% endif %}
-        <a href="{{ url_for('toggle_favorite', uid='b_'+item.id|string) }}">
+        <a href="javascript:toggleFavorite('{{'b_'+item.id|string}}')">
             <i id="star-b_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
     </div>

@@ -82,6 +82,32 @@ function getCookie(name) {
     return cookie[name];
 }
 
+async function toggleFavorite(uid) {
+    console.log(uid);
+    const response = await fetch('/favorite/toggle/'+uid, {
+        method: 'get'
+    });
+    const setCookieHeader = response.headers.get('Set-Cookie');
+    if (setCookieHeader) {
+        document.cookie = setCookieHeader;
+    }
+    reloadStars();
+}
+
+function reloadStars() {
+    var stars = document.getElementsByClassName('favorite-star');
+    var favoriteCookie = getCookie('favorite').replace('"', '');
+    var favoriteItems = favoriteCookie.split(' ');
+    for (var i = 0; i < items.length; i++) {
+        if (favoriteItems.includes(stars[i].id.split('-')[1])) {
+            stars[i].classList.add('in-favorite');
+        }
+        else {
+            stars[i].classList.remove('in-favorite');
+        }
+    }
+}
+
 const mediaQuery = window.matchMedia('(max-width: 330px)');
 if (mediaQuery.matches) {
     var items = document.getElementsByClassName('time-item');
@@ -125,11 +151,4 @@ if (document.URL.indexOf("?") != -1) {
     flashItem(item);
 }
 
-var stars = document.getElementsByClassName('favorite-star');
-var favoriteCookie = getCookie('favorite').replace('"', '');
-var favoriteItems = favoriteCookie.split(' ');
-for (var i = 0; i < items.length; i++) {
-    if (favoriteItems.includes(stars[i].id.split('-')[1])) {
-        stars[i].classList.add('in-favorite');
-    }
-}
+reloadStars();
