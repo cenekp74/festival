@@ -16,6 +16,7 @@ table {
     border-collapse: collapse;
     border: 1px solid var(--text-color);
     margin-bottom: 5px;
+    border-radius: var(--border-radius);
 }
 
 td a {

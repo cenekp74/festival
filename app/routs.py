@@ -186,23 +186,24 @@ def search_query():
     
     results = []
     if q:
-        results.extend(Film.query.filter(Film.name.icontains(q)))
-        results.extend(Beseda.query.filter(Beseda.name.icontains(q)))
-        results.extend(Workshop.query.filter(Workshop.name.icontains(q)))
+        if len(q) > 1:
+            results.extend(Film.query.filter(Film.name.icontains(q)))
+            results.extend(Beseda.query.filter(Beseda.name.icontains(q)))
+            results.extend(Workshop.query.filter(Workshop.name.icontains(q)))
 
-        results.sort(key=lambda item:item.day)
-        results.sort(key=lambda item:item.time_from)
+            results.sort(key=lambda item:item.day)
+            results.sort(key=lambda item:item.time_from)
 
-        results.extend(Host.query.filter(Host.name.icontains(q)))
-        for item in results:
-            if isinstance(item, Film):
-                item.type = 'film'
-            elif isinstance(item, Beseda):
-                item.type = 'beseda'
-            elif isinstance(item, Workshop):
-                item.type = 'workshop'
-            elif isinstance(item, Host):
-                item.type = 'host'
+            results.extend(Host.query.filter(Host.name.icontains(q)))
+            for item in results:
+                if isinstance(item, Film):
+                    item.type = 'film'
+                elif isinstance(item, Beseda):
+                    item.type = 'beseda'
+                elif isinstance(item, Workshop):
+                    item.type = 'workshop'
+                elif isinstance(item, Host):
+                    item.type = 'host'
     return render_template('search_result.html', results=results)
 
 @app.route('/search')

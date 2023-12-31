@@ -8,19 +8,18 @@
 
 {% block body %}
 
-<input type="text" placeholder="Hledat" name="q" hx-get="{{ url_for('search_query') }}" hx-trigger="keyup changed delay:250ms" hx-target="#results">
+<input type="text" class="search-input" placeholder="Hledat" name="q" hx-get="{{ url_for('search_query') }}" hx-trigger="keyup changed delay:300ms" hx-target="#results">
 
-<div class="search-results">
-    <table>
+<table class="search-results">
+    <thead>
         <tr>
             <th></th>
             <th></th>
             <th>Den</th>
-            <th>Od</th>
-            <th>Do</th>
+            <th>Čas</th>
         </tr>
-        <tbody id="results"></tbody>
-    </table>
-</div>
+    </thead>
+    <tbody id="results"></tbody>
+</table>
 
 {% endblock %}

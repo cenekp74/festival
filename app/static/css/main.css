@@ -178,6 +178,24 @@ button:not(:disabled) {
 }
 /* #endregion program */
 
+/* #region search */
+
+.search-input {
+    border-radius: var(--border-radius);
+    width: 63%;
+    height: 2rem;
+    margin: 1rem;
+    padding: 5px;
+    min-width: 300px;
+}
+
+.search-results {
+    min-width: 300px;
+    width: 60%;
+}
+
+/* #endregion search */
+
 /* #region topnav*/
 .topnav {
     overflow: hidden;
@@ -380,6 +398,13 @@ footer {
     .grid-items-container {
         grid-template-columns: repeat(4, 1fr);
     }
+    .search-input {
+        width: 75%;
+    }
+    
+    .search-results {
+        width: 72%;
+    }
 }
 
 @media screen and (max-width: 1150px) {
@@ -451,6 +476,13 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         padding-left: 30px;
         padding-right: 30px;
+    }
+    .search-input {
+        width: 83%;
+    }
+    
+    .search-results {
+        width: 80%;
     }
 }
 
