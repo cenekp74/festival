@@ -83,7 +83,6 @@ function getCookie(name) {
 }
 
 async function toggleFavorite(uid) {
-    console.log(uid);
     const response = await fetch('/favorite/toggle/'+uid, {
         method: 'get'
     });

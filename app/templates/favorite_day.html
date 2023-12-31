@@ -121,5 +121,19 @@
     var day = "{{day}}";
     var day_nav = document.getElementById('nav-day-'+day);
     day_nav.classList.add('disabled');
+
+    // prepisuje stejnojmennou fci z program.js protoze je potreba na konci reloadnout aby se zmenil program
+    async function toggleFavorite(uid) {
+    const response = await fetch('/favorite/toggle/'+uid, {
+        method: 'get'
+    });
+    const setCookieHeader = response.headers.get('Set-Cookie');
+    if (setCookieHeader) {
+        document.cookie = setCookieHeader;
+    }
+    reloadStars();
+    window.location.reload();
+}
+
 </script>
 {% endblock %}
