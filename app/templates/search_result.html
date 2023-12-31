@@ -1,0 +1,15 @@
+{% for result in results %}
+    <tr>
+        <td>{{ result.name }}</td>
+        <td>{{ result.type }}</td>
+        {% if result.type != 'host' %}
+        <td>{{ result.day }}</td>
+        <td>{{ result.time_from }}</td>
+        <td>{{ result.time_to }}</td>
+        {% else %}
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        {% endif %}
+    </tr>
+{% endfor %}

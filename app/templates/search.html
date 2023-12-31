@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/tables.css') }}">
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+{% endblock %}
+
+
+{% block body %}
+
+<input type="text" placeholder="Hledat" name="q" hx-get="{{ url_for('search_query') }}" hx-trigger="keyup changed delay:250ms" hx-target="#results">
+
+<div class="search-results">
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Den</th>
+            <th>Od</th>
+            <th>Do</th>
+        </tr>
+        <tbody id="results"></tbody>
+    </table>
+</div>
+
+{% endblock %}
