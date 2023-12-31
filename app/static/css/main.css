@@ -271,6 +271,14 @@ button:not(:disabled) {
     float: left;
 }
 
+#search {
+    padding: 10px;
+    padding-left: 11px;
+    padding-right: 11px;
+    margin-top: 2px;
+    border-radius: 400px;
+}
+
 /* #endregion topnav*/
 
 /* #region forms */
@@ -386,7 +394,7 @@ footer {
 
 /* #endregion footer */
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1312px) {
     .topnav a {
         font-size: 16px;
         padding-left: 30px;
@@ -407,7 +415,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1162px) {
     .topnav a {
         font-size: 16px;
         padding-left: 25px;
@@ -415,7 +423,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1078px) {
+@media screen and (max-width: 1090px) {
     .topnav:not(.responsive) a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
