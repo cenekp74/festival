@@ -1,9 +1,37 @@
 {% for result in results %}
     <tr>
-        <td>{{ result.name }}</td>
+        {% if result.type == 'film' %}
+            <td>
+                <a href="{{ url_for('program_day', dayn=result.day) }}?f_{{ result.id }}">
+                    {{ result.name }}
+                </a>
+            </td>
+        {% elif result.type == 'beseda' %}
+            <td>
+                <a href="{{ url_for('program_day', dayn=result.day) }}?b_{{ result.id }}">
+                    {{ result.name }}
+                </a>
+            </td>
+        {% elif result.type == 'workshop' %}
+            <td>
+                <a href="{{ url_for('workshopy') }}#w_{{ result.id }}">
+                    {{ result.name }}
+                </a>
+            </td>
+        {% elif result.type == 'host' %}
+            <td>
+                <a href="{{ url_for('hoste') }}#h_{{ result.id }}">
+                    {{ result.name }}
+                </a>
+            </td>
+        {% endif %}
         <td>{{ result.type }}</td>
         {% if result.type != 'host' %}
-        <td>{{ result.day }}</td>
+        <td>
+            <a href="{{ url_for('program_day', dayn=result.day) }}?{{ result.type[0] }}_{{ result.id }}">
+                {{ result.day }}
+            </a>
+        </td>
         <td>{{ result.time_from }} - {{ result.time_to }}</td>
         {% else %}
         <td>---</td>
