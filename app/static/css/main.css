@@ -102,6 +102,7 @@ button:not(:disabled) {
     grid-row: span 1;
     border: 1px solid var(--text-color);
     cursor: pointer;
+    border-radius: var(--border-radius);
 }
 
 .grid-items-container .item-description {
@@ -122,6 +123,8 @@ button:not(:disabled) {
     aspect-ratio: 16/9;
     object-fit: cover;
     width: inherit;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
 
 .grid-items-container .item .item-details {
@@ -139,7 +142,11 @@ button:not(:disabled) {
 }
 
 .grid-items-container .item .item-description p {
-    margin: 5px;
+    margin: 7px;
+}
+
+.item-description {
+    border-radius: var(--border-radius);
 }
 
 .grid-items-container .item .item-description nav {
