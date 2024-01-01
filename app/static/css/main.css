@@ -3,13 +3,14 @@ body {
     --bg-color: #161618;
     --secondary-color: #1b2720;
     --active-page-color: #666565;
-    --link-color: #966beb;
+    --link-color: #a682ee;
     --hover-link-color: #bca4ee;
-    --button-color: #4f3b66;
+    --button-color: #34145a;
     --disabled-button-color: #222224;
     --disabled-text-color: #3c4d42;
     --border-radius: 25px;
-    --favorite-color: yellow;
+    --favorite-color: #ffff00;
+    --table-hover-color: rgba(120, 173, 182, 0.2);
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);

@@ -8,7 +8,7 @@ th {
 }
 
 tr:hover td {
-    background: var(--active-page-color);
+    background: var(--table-hover-color);
 }
 
 table {
