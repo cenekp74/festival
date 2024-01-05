@@ -12,7 +12,7 @@
     padding: 1px;
     min-width: 750px;
     padding-right: 0;
-    width: 85vw;
+    width: 65vw;
 }
 
 .program-container-wrapper {
@@ -29,7 +29,7 @@ body {
     --program-text-color: #121212;
 }
 
-.program-container::before {
+.program-container::before { /* time vline */
     content: '';
     margin-top: 1.5rem;
     position: absolute;
@@ -126,15 +126,6 @@ body {
     position: relative;
     padding-left: 2%;
 }
-.time-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: -100vh;
-    border-right: 1px dotted var(--secondary-color);
-    z-index: -1;
-}
 
 .item-details {
     background-color: var(--secondary-color);
@@ -177,21 +168,24 @@ body {
     }
 }
 
-@media screen and (min-width: 1090px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
+@media screen and (max-width: 1090px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
     .program-container {
-        width: 65vw;
+        width: 85vw;
     }
+    .time-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: -100vh;
+        border-right: 1px dotted var(--secondary-color);
+        z-index: -1;
+    }    
 }
 
-@media screen and (max-width: 1300px) {
-    .time-item {
-        font-size: 17px;
-    }
-    .room {
-        font-size: 17px;
-    }
-    .program-item {
-        font-size: 17px;
+@media screen and (max-width: 1312px) { /* stejny jako breakpoint v main.css */
+    .program-container {
+        width: 78vw;
     }
 }
 
@@ -202,22 +196,16 @@ body {
 }
 
 @media screen and (max-width: 450px) {
+    .time-item {
+        font-size: 17px;
+    }
+    .room {
+        font-size: 17px;
+    }
     .program-item {
         font-size: 16px;
     }
     .program-item div {
         text-indent: 0;
-    }
-}
-
-@media screen and (max-width: 410px) {
-    .time-item {
-        font-size: 16px;
-    }
-    .room {
-        font-size: 16px;
-    }
-    .program-item {
-        font-size: 15px;
     }
 }
