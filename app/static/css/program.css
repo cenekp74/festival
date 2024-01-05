@@ -22,10 +22,11 @@
 body {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
-    --film-color: #a13866;
+    --film-color: #d93b65;
     --workshop-color: #ff7400;
-    --beseda-color: #4011c2;
-    --flash-border-color: var(--text-color);
+    --beseda-color: #ffb730;
+    --flash-border-color: #d7e0c8;
+    --program-text-color: #121212;
 }
 
 .program-container::before {
@@ -53,6 +54,7 @@ body {
     transition: all 1s;
     font-size: 17px;
     margin-right: 1px;
+    color: var(--program-text-color);
 }
 
 .program-item:hover {
@@ -72,7 +74,7 @@ body {
 }
 
 .flashed {
-    outline: 2px solid #9eff01;
+    outline: 2px solid var(--flash-border-color);
     transition: all 0.2s;
 }
 
