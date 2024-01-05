@@ -72,7 +72,7 @@ body {
 }
 
 .flashed {
-    outline: 3px solid var(--flash-border-color);
+    outline: 2px solid var(--flash-border-color);
     transition: all 0.2s;
 }
 
