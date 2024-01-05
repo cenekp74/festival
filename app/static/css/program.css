@@ -19,13 +19,13 @@
     overflow-y: hidden; /* aby nebyly videt cary hodin */
 }
 
-:root {
+body {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
     --film-color: #a13866;
     --workshop-color: #ff7400;
     --beseda-color: #4011c2;
-    --flash-border-color: #011f0c;
+    --flash-border-color: var(--text-color);
 }
 
 .program-container::before {
@@ -72,7 +72,7 @@
 }
 
 .flashed {
-    border: 3px dotted var(--flash-border-color);
+    outline: 3px solid var(--flash-border-color);
     transition: all 0.2s;
 }
 
