@@ -177,6 +177,12 @@ body {
     }
 }
 
+@media screen and (min-width: 1090px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
+    .program-container {
+        width: 65vw;
+    }
+}
+
 @media screen and (max-width: 1300px) {
     .time-item {
         font-size: 17px;

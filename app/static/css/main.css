@@ -431,7 +431,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1090px) {
+@media screen and (max-width: 1090px) { /* stejny jako breakpoint v program.css */
     .topnav:not(.responsive) a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
