@@ -22,18 +22,13 @@ td a {
     display: block;
 }
 
-body {
-    --thead-border-radius: var(--border-radius); /* tohle je aby byl thead kulatej i vespod kdyz nejsou zadny data v tabulce */
-}
 
 th:is(:first-child) {
     border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--thead-border-radius);
 }
 
 th:is(:last-child) {
     border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--thead-border-radius);
 }
 
 tr:is(:last-child):hover {
