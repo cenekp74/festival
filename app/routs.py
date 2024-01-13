@@ -211,7 +211,7 @@ def search_query():
                     item.type = 'workshop'
                 elif isinstance(item, Host):
                     item.type = 'host'
-    return render_template('search_result.html', results=results)
+    return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
 def search():

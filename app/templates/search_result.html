@@ -47,4 +47,21 @@
         --thead-border-radius: 0px;
     }
 </style>
+<script>
+    sr = document.getElementsByClassName('search-results')[0];
+    sr.style.visibility = 'visible';
+    nor = document.getElementById('no-results');
+    nor.style.visibility = 'hidden';
+</script>
+{% else %}
+<script>
+    sr = document.getElementsByClassName('search-results')[0];
+    sr.style.visibility = 'hidden';
+
+    {% if q %}
+    nor = document.getElementById('no-results');
+    nor.style.visibility = 'visible';
+    {% endif %}
+</script>
+
 {% endif %}
