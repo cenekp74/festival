@@ -188,7 +188,11 @@ def search_query():
     if q:
         if len(q) > 1:
             results.extend(Film.query.filter(Film.name.icontains(q)))
+
             results.extend(Beseda.query.filter(Beseda.name.icontains(q)))
+
+            results.extend(Workshop.query.filter(Workshop.description.icontains(q)))
+            results.extend(Workshop.query.filter(Workshop.author.icontains(q)))
             results.extend(Workshop.query.filter(Workshop.name.icontains(q)))
 
             results.sort(key=lambda item:item.day)
@@ -196,11 +200,14 @@ def search_query():
 
             results.extend(Host.query.filter(Host.name.icontains(q)))
             for item in results:
+                item.name = item.name.replace(q, f'<mark>{q}</mark>')
                 if isinstance(item, Film):
                     item.type = 'film'
                 elif isinstance(item, Beseda):
                     item.type = 'beseda'
                 elif isinstance(item, Workshop):
+                    item.author = item.author.replace(q, f'<mark>{q}</mark>')
+                    item.description = item.description.replace(q, f'<mark>{q}</mark>')
                     item.type = 'workshop'
                 elif isinstance(item, Host):
                     item.type = 'host'

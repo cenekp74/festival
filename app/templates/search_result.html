@@ -3,25 +3,25 @@
         {% if result.type == 'film' %}
             <td>
                 <a href="{{ url_for('program_day', dayn=result.day) }}?f_{{ result.id }}">
-                    {{ result.name }}
+                    {{ result.name | safe }}
                 </a>
             </td>
         {% elif result.type == 'beseda' %}
             <td>
                 <a href="{{ url_for('program_day', dayn=result.day) }}?b_{{ result.id }}">
-                    {{ result.name }}
+                    {{ result.name | safe }}
                 </a>
             </td>
         {% elif result.type == 'workshop' %}
             <td>
                 <a href="{{ url_for('workshopy') }}#w_{{ result.id }}">
-                    {{ result.name }}
+                    {{ result.name | safe }}
                 </a>
             </td>
         {% elif result.type == 'host' %}
             <td>
                 <a href="{{ url_for('hoste') }}#h_{{ result.id }}">
-                    {{ result.name }}
+                    {{ result.name | safe }}
                 </a>
             </td>
         {% endif %}
