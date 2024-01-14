@@ -155,6 +155,10 @@ body {
     color: var(--favorite-color);
 }
 
+.content {
+    margin-bottom: 120px;
+}
+
 @media screen and (min-width: 1000px) {
     .program-item:hover {
         border: 1px solid var(--bg-color);
@@ -199,6 +203,12 @@ body {
     }
 }
 
+@media screen and (max-width: 550px) { /* pri jaky width collapsuje dolni nav na dny */
+    .content {
+        margin-bottom: 155px;
+    }
+} 
+
 @media screen and (max-width: 450px) {
     .time-item {
         font-size: 17px;
@@ -211,5 +221,8 @@ body {
     }
     .program-item div {
         text-indent: 0;
+    }
+    .content {
+        margin-bottom: 150px;
     }
 }
