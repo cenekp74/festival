@@ -144,7 +144,7 @@ button:not(:disabled) {
     width: 100vw;
     height: 100vh;
     object-fit: contain;
-    background: #fff;
+    background: var(--bg-color);
 }
 .album-link {
     font-size: 110%;
@@ -471,7 +471,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1090px) { /* stejny jako breakpoint v program.css */
+@media screen and (max-width: 1530px) { /* stejny jako breakpoint v program.css */
     .topnav:not(.responsive) a:not(.logo):not(.active):not(.icon) {
         display: none;
     }

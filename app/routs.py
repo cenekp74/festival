@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 import json
 import random
+import shutil
 
 rooms = None
 
@@ -559,7 +560,7 @@ def new_album():
     album_name = request.form.get('album_name')
     id = str(random.randint(0, 9999)).zfill(4)
     if id in list(albums_dict.keys()):
-        return new_album(album_name)
+        return new_album()
     try:
         os.mkdir(f'app/static/fotogalerie/{id}')
         albums_dict[id] = album_name
@@ -577,6 +578,7 @@ def delete_album(album_id):
     if album_id not in list(albums_dict.keys()):
         abort(404)
     del albums_dict[album_id]
+    shutil.rmtree(f'app/static/fotogalerie/{album_id}')
     json.dump(albums_dict, open('app/static/fotogalerie/albums.json', 'w'))
     flash('Album smazáno')
     return redirect(url_for('fotogalerie'))
