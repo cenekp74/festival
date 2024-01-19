@@ -92,6 +92,69 @@ button:not(:disabled) {
     cursor: pointer;
 }
 
+.alert {
+    position: relative;
+    margin-top: 1rem;
+    max-width: 40rem;
+    padding: .5rem;
+    margin-bottom: .5rem;
+    background-color: var(--secondary-color);
+    height: 2rem;
+    border-radius: var(--border-radius);
+}
+
+.btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid transparent;
+    border-color: var(--text-color);
+    border-radius: .25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+/* #region galerie */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 640px) {
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.gallery img.full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background: #fff;
+}
+.album-link {
+    font-size: 110%;
+    border: 1px solid var(--link-color);
+    padding: .5rem;
+    border-radius: var(--border-radius);
+}
+
+/* #region galerie */
+
 /* #region program-items */
 .grid-items-container {
     display: grid;
@@ -337,17 +400,6 @@ legend {
     min-height: 1rem;
 }
 
-.btn {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid transparent;
-    border-color: var(--text-color);
-    border-radius: .25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-
-}
-
 .border-top {
     border-top: 1px solid;
 }
@@ -357,24 +409,6 @@ legend {
     margin-top: .25rem;
     font-size: .875em;
     color: #dc3545;
-}
-
-.alert {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 40rem;
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    border-radius: .25rem;
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
 }
 /* #endregion forms */
 

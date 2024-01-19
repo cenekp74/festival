@@ -530,10 +530,10 @@ def fotogalerie():
 @app.route('/fotogalerie/<album_id>')
 def album(album_id):
     if album_id not in list(albums_dict.keys()):
-        return "Album does not exist"
+        abort(404)
     files = list(os.listdir(f'app/static/fotogalerie/{album_id}/'))
     images = [f"/static/fotogalerie/{album_id}/{file}" for file in files]
-    return render_template('album.html', images = images, name = albums_dict[album_id], id=album_id)
+    return render_template('album.html', images=images, name=albums_dict[album_id], id=album_id)
 
 @app.route('/fotogalerie/<album_id>', methods=['POST'])
 @login_required
@@ -542,13 +542,14 @@ def add_photos(album_id):
         abort(403)
     try:
         if album_id not in list(albums_dict.keys()):
-            return "Upload failed: album does not exist"
+            return abort(404)
         uploaded_files = request.files.getlist("file[]")
         for file in uploaded_files:
             file.save(f'app/static/fotogalerie/{album_id}/{secure_filename(file.filename)}')
     except Exception as e:
-        return f"Upload failed: {e}"
-    return "Upload succesfull"
+        return f"Upload selhal: {e}"
+    flash('Upload úspěšný')
+    return redirect(url_for('fotogalerie'))
 
 @app.route('/fotogalerie/new_album', methods=['POST'])
 @login_required
@@ -563,20 +564,22 @@ def new_album():
         os.mkdir(f'app/static/fotogalerie/{id}')
         albums_dict[id] = album_name
         json.dump(albums_dict, open('app/static/fotogalerie/albums.json', 'w'))
-        return "New album created succesfuly"
+        flash('Nové album úspěšně vytvořeno')
+        return redirect(url_for('fotogalerie'))
     except Exception as e:
-        return f"Creating new album failed: {e}"
+        return f"Vytváření nového alba selhalo: {e}"
         
-@app.route('/fotogalerie/delete_album/<album_id>', methods=['POST'])
+@app.route('/fotogalerie/delete_album/<album_id>')
 @login_required
 def delete_album(album_id):
     if not current_user.admin:
         abort(403)
     if album_id not in list(albums_dict.keys()):
-        return "Album does not exist"
+        abort(404)
     del albums_dict[album_id]
     json.dump(albums_dict, open('app/static/fotogalerie/albums.json', 'w'))
-    return "Album delted"
+    flash('Album smazáno')
+    return redirect(url_for('fotogalerie'))
 #endregion fotogalerie
 
 #endregion admin

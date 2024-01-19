@@ -4,21 +4,23 @@
 {% endblock%}
 
 {% block body %}
+<h1>Alba:</h1>
+<div class="albums">
+    {% for item in albums %}
+    <a class="album-link" href="/fotogalerie/{{ item[0] }}">{{ item[1] }}</a>
+    {% endfor %}
+</div>
+
+{% if current_user.admin %}
 <br>
-<h1>Fotogalerie</h1>
-<h2>Alba:</h2>
-{% for item in albums %}
-    <a href="/fotogalerie/{{ item[0] }}">{{ item[1] }}</a>
-{% endfor %}
-{% if current_user.is_authenticated %}
 <br>
-<br>
-<form method="POST" enctype="multipart/form-data" action="/fotogalerie/new_album">
-    <input type="text" name="album_name">
-    <input type="submit" value="Nové album">
+<form style="margin-top: 2rem;" method="POST" enctype="multipart/form-data" action="/fotogalerie/new_album">
+    <input type="text" name="album_name" placeholder="Název nového alba">
+    <input class="btn" type="submit" value="Vytvořit nové album">
 </form>
 {% endif %}
 <script>
     document.getElementById('fotogalerie').classList.add('active');
 </script>
+
 {% endblock%}
