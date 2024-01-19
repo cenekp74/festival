@@ -123,12 +123,6 @@ button:not(:disabled) {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 640px) {
-    .gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
 .gallery img {
     width: 100%;
     height: 200px;
@@ -153,6 +147,20 @@ button:not(:disabled) {
     border-radius: var(--border-radius);
 }
 
+@media screen and (max-width: 800px) {
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .gallery {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .gallery img {
+        height: 400px;
+    }
+}
 /* #region galerie */
 
 /* #region program-items */
