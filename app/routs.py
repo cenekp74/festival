@@ -550,7 +550,7 @@ def add_photos(album_id):
     except Exception as e:
         return f"Upload selhal: {e}"
     flash('Upload úspěšný')
-    return redirect(url_for('fotogalerie'))
+    return redirect(f'{album_id}')
 
 @app.route('/fotogalerie/new_album', methods=['POST'])
 @login_required
@@ -582,6 +582,16 @@ def delete_album(album_id):
     json.dump(albums_dict, open('app/static/fotogalerie/albums.json', 'w'))
     flash('Album smazáno')
     return redirect(url_for('fotogalerie'))
+
+@app.route('/fotogalerie/<album_id>/delete_photo/<photo_name>')
+@login_required
+def delete_photo(album_id, photo_name):
+    if not current_user.admin:
+        abort(403)
+    if album_id not in list(albums_dict.keys()):
+        abort(404)
+    os.remove(f'app/static/fotogalerie/{album_id}/{photo_name}')
+    return redirect(f'/fotogalerie/{album_id}')
 #endregion fotogalerie
 
 #endregion admin
