@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock%}
+
+{% block body %}
+<h1>{{ name }}</h1>
+<div class="gallery">
+    {% for img in images: %}
+    <img src="{{img}}">
+    {% endfor %}
+</div>
+
+{% if current_user.is_authenticated %}
+<form method="POST" enctype="multipart/form-data" action="/fotogalerie/{{ id }}">
+    <input type="file" name="file[]" multiple="">
+    <input type="submit" value="Add">
+</form>
+<button onclick="delete_album()">Delete album</button>
+{% endif %}
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        // (A) GET ALL IMAGES
+        var all = document.querySelectorAll(".gallery img");
+
+        // (B) CLICK ON IMAGE TO TOGGLE FULLSCREEN
+        if (all.length > 0) {
+            for (let img of all) {
+                img.onclick = () => img.classList.toggle("full");
+            }
+        }
+    });
+    function delete_album() {
+        fetch('/fotogalerie/delete_album/{{ id }}', {
+            method: 'POST'
+        })
+        setTimeout(function() {
+            window.location.href = "/fotogalerie";
+        }, (500));
+    }
+</script>
+
+<style>
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-gap: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 640px) {
+        .gallery {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .gallery img.full {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+        background: #fff;
+    }
+</style>
+
+{% endblock%}
