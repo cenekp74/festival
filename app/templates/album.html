@@ -10,16 +10,18 @@
     {% for img in images: %}
     <div class="gallery-item">
         <img src="{{img}}">
+        {% if current_user.admin %}
         <a href="{{ url_for('delete_photo', album_id=id, photo_name=img.split('/')[-1]) }}">
             <i class="fa fa-trash"></i>
         </a>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
 
-{% if current_user.is_authenticated %}
+{% if current_user.admin %}
 <form style="margin-top: 2rem;" method="POST" enctype="multipart/form-data" action="/fotogalerie/{{ id }}">
-    <input type="file" name="file[]" multiple="">
+    <input type="file" name="file[]" multiple="" required>
     <input type="submit" value="Přidat">
 </form>
 <a style="margin-top: .5rem;" class="btn" href="{{ url_for('delete_album', album_id=id) }}" onclick="return confirm('Smazat album?')">Smazat album</a>
