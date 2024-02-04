@@ -19,7 +19,7 @@
     overflow-y: hidden; /* aby nebyly videt cary hodin */
 }
 
-body {
+:root {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
     --film-color: #d93b65;

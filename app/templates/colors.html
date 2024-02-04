@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<h1>Testovani barev</h1>
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates iste quas aliquid, libero, nulla veniam, reprehenderit exercitationem consectetur quod aliquam magni quia optio esse commodi dolorem at nostrum dolorum ipsam.</p>
+
+<div style="align-self: baseline;">
+    <div class="color-selector">
+        <input type="color" id="bg-color">
+        <label for="bg-color">Pozadí</label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="secondary-color">
+        <label for="secondary-color">Sekundární barva</label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="text-color">
+        <label for="text-color">Barva textu</label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="active-page-color">
+        <label for="active-page-color">Barva aktivní stránky</label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="link-color">
+        <label for="link-color"><a href="#">Barva odkazu</a></label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="hover-link-color">
+        <label for="hover-link-color"><a href="#">Hover barva odkazu (na počítači)</a></label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="button-color">
+        <label for="button-color"><a class="button-link" href="#">Barva tlačítka</a></label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="disabled-button-color">
+        <label for="disabled-button-color"><a class="button-link disabled" href="#">Barva neaktivního tlačítka</a></label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+    <div class="color-selector">
+        <input type="color" id="disabled-text-color">
+        <label for="disabled-text-color" class="disabled">Barva neaktivního textu</label>
+        <br>
+        <b></b>
+        <br><br>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById('uvod').classList.add('active');
+</script>
+
+<script>
+
+let root = document.querySelector(':root')
+
+function updateColorLabels() {
+    document.querySelectorAll('.color-selector').forEach((ele) => {
+        value = ele.querySelector('input').value
+        ele.querySelector('b').innerHTML = value
+    })
+}
+
+function updateInputs() {
+    rs = getComputedStyle(root)
+
+    document.querySelectorAll('input[type=color]').forEach((ele) => {
+        ele.value = rs.getPropertyValue('--' + ele.id)
+    })
+}
+
+function updateColor(event) {
+    root.style.setProperty('--' + event.target.id, event.target.value);
+    updateColorLabels()
+} 
+
+updateInputs()
+updateColorLabels()
+
+document.querySelectorAll('input[type=color]').forEach((ele) => {
+    ele.addEventListener("input", updateColor, false);
+})
+
+</script>
+{% endblock %}

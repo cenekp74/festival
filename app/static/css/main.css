@@ -1,4 +1,4 @@
-body {
+:root {
     --text-color: #e7eaf9;
     --bg-color: #161618;
     --secondary-color: #1b2720;
@@ -12,6 +12,9 @@ body {
     --favorite-color: #ffff00;
     --table-hover-color: rgba(120, 173, 182, 0.2);
     --search-highlight-color: #fceb04ad;
+}
+
+body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
@@ -59,6 +62,10 @@ a.disabled, .button-link.disabled a {
 
 .button-link.disabled {
     background-color: var(--disabled-button-color);
+}
+
+.disabled {
+    color: var(--disabled-text-color);
 }
 
 a:hover {
