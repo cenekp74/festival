@@ -5,115 +5,20 @@
 
 
 {% block body %}
+{% from "formutils.html" import render_field %}
 <div class="container container-form">
     <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend>Editovat workshop (id {{ workshop.id }})</legend>
-            <div class="form-group">
-                {{ form.name.label(class="form-label") }}
-                {% if form.name.errors %}
-                    {{ form.name(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.name.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.name(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.time_from.label(class="form-label") }}
-                {% if form.time_from.errors %}
-                    {{ form.time_from(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.time_from.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.time_from(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.time_to.label(class="form-label") }}
-                {% if form.time_to.errors %}
-                    {{ form.time_to(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.time_to.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.time_to(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.day.label(class="form-label") }}
-                {% if form.day.errors %}
-                    {{ form.day(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.day.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.day(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.room.label(class="form-label") }}
-                {% if form.room.errors %}
-                    {{ form.room(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.room.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.room(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.author.label(class="form-label") }}
-                {% if form.author.errors %}
-                    {{ form.author(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.author.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.author(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.description.label(class="form-label") }}
-                {% if form.description.errors %}
-                    {{ form.description(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.description.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.description(class="form-input") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.picture.label(class="form-label") }}
-                {% if form.picture.errors %}
-                    {{ form.picture(class="form-input invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.picture.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.picture(class="form-input") }}
-                {% endif %}
-            </div>
+            {{ render_field(form.name) }}
+            {{ render_field(form.time_from) }}
+            {{ render_field(form.time_to) }}
+            {{ render_field(form.day) }}
+            {{ render_field(form.room) }}
+            {{ render_field(form.author) }}
+            {{ render_field(form.description) }}
+            {{ render_field(form.picture) }}
         </fieldset>
         <div class="form-group">
             {{ form.submit(class="btn") }}
