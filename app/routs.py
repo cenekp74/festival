@@ -239,6 +239,7 @@ def add_film():
                     day = form.day.data,
                     room = form.room.data,
                     language = form.language.data,
+                    filename = form.filename.data
                     )
         db.session.add(film)
         db.session.commit()
@@ -347,6 +348,7 @@ def edit_film(id):
         film.day = form.day.data
         film.room = form.room.data
         film.language = form.language.data
+        film.filename = form.filename.data
         db.session.commit()
         global rooms
         rooms = get_rooms()

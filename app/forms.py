@@ -24,6 +24,7 @@ class FilmForm(FlaskForm):
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Třída', validators=[DataRequired()])
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
+    filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     submit = SubmitField('Potvrdit')
 
     # PRIDAT overeni jestli uz film neexistuje
