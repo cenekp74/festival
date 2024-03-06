@@ -15,3 +15,11 @@ def query_all_program_items():
     result += [item.serialize for item in Beseda.query.all()]
     result += [item.serialize for item in Workshop.query.all()]
     return jsonify(result)
+
+@api_blueprint.route('/query/program_items/day=<day>')
+def query_program_items_by_day(day):
+    result = []
+    result += [item.serialize for item in Film.query.filter_by(day=day)]
+    result += [item.serialize for item in Beseda.query.filter_by(day=day)]
+    result += [item.serialize for item in Workshop.query.filter_by(day=day)]
+    return jsonify(result)
