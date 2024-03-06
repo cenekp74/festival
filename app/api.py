@@ -8,6 +8,13 @@ api_blueprint = Blueprint('api', __name__)
 def query_film_all():
     return jsonify([item.serialize for item in Film.query.all()])
 
+@api_blueprint.route('/query/film/day')
+def query_film_by_dat_all():
+    result = []
+    for day in [1, 2, 3]:
+        result.append([item.serialize for item in Film.query.filter_by(day=day)])
+    return jsonify(result)
+
 @api_blueprint.route('/query/program_items/all')
 def query_all_program_items():
     result = []
@@ -22,4 +29,14 @@ def query_program_items_by_day(day):
     result += [item.serialize for item in Film.query.filter_by(day=day)]
     result += [item.serialize for item in Beseda.query.filter_by(day=day)]
     result += [item.serialize for item in Workshop.query.filter_by(day=day)]
+    return jsonify(result)
+
+@api_blueprint.route('/query/program_items/day')
+def query_program_items_by_day_all():
+    result = []
+    for day in [1, 2, 3]:
+        result.append([])
+        result[day-1] += [item.serialize for item in Film.query.filter_by(day=day)]
+        result[day-1] += [item.serialize for item in Beseda.query.filter_by(day=day)]
+        result[day-1] += [item.serialize for item in Workshop.query.filter_by(day=day)]
     return jsonify(result)
