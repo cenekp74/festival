@@ -1,8 +1,13 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.db_classes import Host, User, Film, Beseda, Workshop
 from app import db
 
 api_blueprint = Blueprint('api', __name__)
+
+@api_blueprint.route('/query/film')
+def query_film():
+    args = request.args.to_dict()
+    return jsonify([item.serialize for item in Film.query.filter_by(**args)])
 
 @api_blueprint.route('/query/film/all')
 def query_film_all():
