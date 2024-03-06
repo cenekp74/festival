@@ -435,7 +435,7 @@ select {
     margin-bottom: 1rem;
 }
 
-input.form-control {
+input.form-control, input.form-input {
     width: 100%;
     background-color: var(--form-field-color);
     color: var(--text-color);
