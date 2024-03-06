@@ -87,11 +87,9 @@
 
     {% for item in program[room]["besedy"] %}
     <div id="cm-b_{{item.id}}" class="item-details beseda-details" style="visibility: hidden;">
-        <a href="#">
-            <div>
-                {{ item.name }}
-            </div>
-        </a>
+        <div style="text-decoration: underline;">
+            {{ item.name }}
+        </div>
         <div>beseda</div>
         <div>{{ item.time_from }} - {{ item.time_to }}</div>
         {% if item.host_id %}
