@@ -32,6 +32,22 @@ class Film(db.Model):
     room = db.Column(db.String(10))
     filename = db.Column(db.String(50))
 
+    @property
+    def serialize(self):
+       return {
+           "id": self.id,
+           "item_type": "film",
+           "uid": 'f_' + str(self.id),
+           "name": self.name,
+           "link": self.link,
+           "language": self.language,
+           "time_from": self.time_from,
+           "time_to": self.time_to,
+           "day": self.day,
+           "room": self.room,
+           "filename": self.filename
+       }
+
 class Workshop(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -43,6 +59,22 @@ class Workshop(db.Model):
     description = db.Column(db.String(1000))
     picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
 
+    @property
+    def serialize(self):
+       return {
+           "id": self.id,
+           "item_type": "workshop",
+           "uid": 'w_' + str(self.id),
+           "name": self.name,
+           "time_from": self.time_from,
+           "time_to": self.time_to,
+           "day": self.day,
+           "room": self.room,
+           "author": self.author,
+           "description": self.description,
+           "picture_filename": self.picture_filename
+       }
+
 class Beseda(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -51,3 +83,19 @@ class Beseda(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
+
+    @property
+    def serialize(self):
+       host = Host.query.get(self.host_id)
+       return {
+           "id": self.id,
+           "item_type": "beseda",
+           "uid": 'b_' + str(self.id),
+           "name": self.name,
+           "time_from": self.time_from,
+           "time_to": self.time_to,
+           "day": self.day,
+           "room": self.room,
+           "host_id": self.host_id,
+           "host": host.name
+       }
