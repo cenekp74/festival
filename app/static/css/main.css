@@ -12,6 +12,8 @@
     --favorite-color: #ffff00;
     --table-hover-color: rgba(120, 173, 182, 0.2);
     --search-highlight-color: #fceb04ad;
+    --form-color: #1e1e22;
+    --form-field-color: #37363e;
 }
 
 body {
@@ -168,7 +170,7 @@ button:not(:disabled) {
         height: 400px;
     }
 }
-/* #region galerie */
+/* #endregion galerie */
 
 /* #region program-items */
 .grid-items-container {
@@ -375,10 +377,13 @@ button:not(:disabled) {
 
 /* #region forms */
 .container-form {
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
+    width: 70%;
+    min-width: 320px;
+    max-width: 500px;
+    margin-top: 3rem;
+    background-color: var(--form-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
 }
 
 fieldset {
@@ -392,31 +397,64 @@ legend {
     float: left;
     width: 100%;
     padding: 0;
-    margin-bottom: .5rem;
+    margin-bottom: 1.2rem;
     font-size: calc(1.275rem + .3vw);
     line-height: inherit;
 }
 
-.form-group {
+label {
+    font-size: 110%;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    background-color: var(--form-field-color);
+    border: 1px var(--bg-color) solid;
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+}
+
+select {
+    background-color: var(--form-field-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--disabled-text-color);
+}
+
+.form-group:not(:last-child) {
     margin-bottom: 1rem;
 }
 
-.form-input {
+input.form-input {
     width: 100%;
+    background-color: var(--form-field-color);
+    color: var(--text-color);
+    border: none;
+    height: 2rem;
+    border-radius: calc(var(--border-radius) - 15px);
+    text-indent: 5px;
+    font-size: 100%;
+    margin-top: 0.2rem;
 }
 
-.form-input.invalid {
+input.invalid {
     border-color: #dc3545;
     padding-right: calc(1.5em + .75rem);
 }
 
-.form-check {
-    display: block;
-    min-height: 1rem;
+.form-check-input {
+    margin-left: 0;
 }
 
-.border-top {
-    border-top: 1px solid;
+.form-check label {
+    font-size: 90%;
+}
+
+.form-submit {
+    margin-top: 2rem;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 .invalid-feedback {
