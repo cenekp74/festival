@@ -30,6 +30,7 @@ class Film(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
+    filename = db.Column(db.String(50))
 
 class Workshop(db.Model):
     id = db.Column(db.Integer, primary_key=True)
