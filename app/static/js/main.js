@@ -51,3 +51,7 @@ function animateHeight(start, target, element) {
     }
     requestAnimationFrame(step);
 }
+
+function setParentDisplayNone(element) {
+    element.parentNode.style.display = 'none';
+}

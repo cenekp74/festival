@@ -245,6 +245,7 @@ def add_film():
         db.session.commit()
         global rooms
         rooms = get_rooms()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_film.html', form=form)
 
@@ -274,6 +275,7 @@ def add_workshop():
         db.session.commit()
         global rooms
         rooms = get_rooms()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_workshop.html', form=form)
 
@@ -295,6 +297,7 @@ def add_beseda():
         db.session.commit()
         global rooms
         rooms = get_rooms()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_beseda.html', form=form)
 
@@ -318,6 +321,7 @@ def add_host():
                     )
         db.session.add(host)
         db.session.commit()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_host.html', form=form)
 
@@ -352,6 +356,7 @@ def edit_film(id):
         db.session.commit()
         global rooms
         rooms = get_rooms()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_film.html', film=film, form=form)
 
@@ -377,6 +382,7 @@ def edit_beseda(id):
         db.session.commit()
         global rooms
         rooms = get_rooms()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_beseda.html', beseda=beseda, form=form)
 
@@ -406,6 +412,7 @@ def edit_workshop(id):
         db.session.commit()
         global rooms
         rooms = get_rooms()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_workshop.html', workshop=workshop, form=form)
 
@@ -429,6 +436,7 @@ def edit_host(id):
         host.description = form.description.data
         host.short_description = form.short_description.data
         db.session.commit()
+        flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_host.html', host=host, form=form)
 
@@ -444,6 +452,7 @@ def delete_film(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
+    flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
 @app.route('/delete_workshop/<id>')
@@ -457,6 +466,7 @@ def delete_workshop(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
+    flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
 @app.route('/delete_beseda/<id>')
@@ -470,6 +480,7 @@ def delete_beseda(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
+    flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
 @app.route('/delete_host/<id>')
@@ -483,6 +494,7 @@ def delete_host(id):
     db.session.commit()
     global rooms
     rooms = get_rooms()
+    flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
 

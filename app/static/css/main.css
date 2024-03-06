@@ -102,14 +102,23 @@ button:not(:disabled) {
 }
 
 .alert {
-    position: relative;
-    margin-top: 1rem;
-    max-width: 40rem;
-    padding: .5rem;
-    margin-bottom: .5rem;
     background-color: var(--secondary-color);
-    height: 2rem;
     border-radius: var(--border-radius);
+    line-height: 2rem;
+    min-width: 50%;
+    text-align: center;
+    margin-top: .3rem;
+    font-style: italic;
+    text-indent: 3px;
+}
+
+.alert i {
+    float: right;
+    line-height: 2rem;
+    margin-right: 5px;
+    cursor: pointer;
+    padding-right: 2px;
+    padding-left: 3px;
 }
 
 .btn {
