@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.db_classes import Host, User, Film, Beseda, Workshop
 from app import db
+from utils import get_rooms
 
 api_blueprint = Blueprint('api', __name__)
 
@@ -34,3 +35,7 @@ def query_program_items_by_day_all():
         result[day-1] += [item.serialize for item in Beseda.query.filter_by(day=day)]
         result[day-1] += [item.serialize for item in Workshop.query.filter_by(day=day)]
     return jsonify(result)
+
+@api_blueprint.route('/get_rooms')
+def rooms():
+    return get_rooms()
