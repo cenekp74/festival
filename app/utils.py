@@ -1,6 +1,7 @@
-from .routs import db, Film, Beseda, Workshop, Host
-from . import ALLOWED_EXTENSIONS
+from app.db_classes import Film, Beseda, Workshop, Host
+from . import ALLOWED_EXTENSIONS, db
 
+# vrati dict s mistnostma pro kazdy den
 def get_rooms() -> dict:
     rooms = dict()
     for day in [1, 2, 3]:
@@ -9,6 +10,13 @@ def get_rooms() -> dict:
         rooms[day].update([r[0] for r in list(db.session.query(Beseda.room).filter(Beseda.day == day).distinct().all())])
         rooms[day].update([r[0] for r in list(db.session.query(Workshop.room).filter(Workshop.day == day).distinct().all())])
     return rooms
+
+def get_all_rooms() -> list:
+    rooms = set()
+    rooms.update([r[0] for r in list(db.session.query(Film.room).distinct().all())])
+    rooms.update([r[0] for r in list(db.session.query(Beseda.room).distinct().all())])
+    rooms.update([r[0] for r in list(db.session.query(Workshop.room).distinct().all())])
+    return list(rooms)
 
 def allowed_file(filename, allowed_extensions=ALLOWED_EXTENSIONS):
     return '.' in filename and \

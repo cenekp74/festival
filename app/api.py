@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.db_classes import Host, User, Film, Beseda, Workshop
 from app import db
-from utils import get_rooms
+from app.utils import get_all_rooms
 
 api_blueprint = Blueprint('api', __name__)
 
@@ -38,4 +38,4 @@ def query_program_items_by_day_all():
 
 @api_blueprint.route('/get_rooms')
 def rooms():
-    return get_rooms()
+    return jsonify(get_all_rooms())
