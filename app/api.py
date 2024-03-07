@@ -8,7 +8,7 @@ api_blueprint = Blueprint('api', __name__)
 @api_blueprint.route('/query/film')
 def query_film():
     args = request.args.to_dict()
-    return jsonify([item.serialize for item in Film.query.filter_by()])
+    return jsonify([item.serialize for item in Film.query.filter_by(**args)])
 
 @api_blueprint.route('/query/film/day')
 def query_film_by_day():
