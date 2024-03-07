@@ -39,3 +39,7 @@ def query_program_items_by_day_all():
 @api_blueprint.route('/get_rooms')
 def rooms():
     return jsonify(get_all_rooms())
+
+@api_blueprint.route('/get_rooms_for_films') #jenom mistnosti s filmama
+def film_rooms():
+    return jsonify(get_all_rooms(films_only=True))

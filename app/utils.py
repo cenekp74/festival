@@ -11,9 +11,10 @@ def get_rooms() -> dict:
         rooms[day].update([r[0] for r in list(db.session.query(Workshop.room).filter(Workshop.day == day).distinct().all())])
     return rooms
 
-def get_all_rooms() -> list:
+def get_all_rooms(films_only=False) -> list:
     rooms = set()
     rooms.update([r[0] for r in list(db.session.query(Film.room).distinct().all())])
+    if films_only: return list(rooms)
     rooms.update([r[0] for r in list(db.session.query(Beseda.room).distinct().all())])
     rooms.update([r[0] for r in list(db.session.query(Workshop.room).distinct().all())])
     return list(rooms)
