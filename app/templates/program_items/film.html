@@ -1,16 +1,34 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/tables.css') }}">
 {% endblock %}
 
 {% block body %}
-<h1 class="item-title">{{ film.name }}</h1>
-<div class="item-details">
-    <p>Den: {{ film.day }}</p>
-    <p>Čas: {{ film.time_from }} - {{ film.time_to }}</p>
-    <p>Třída: {{ film.room }}</p>
-    <p>{{ film.language }}</p>
-    <a href="{{ film.link }}">Link</a>
+<div class="item">
+    <h1 class="item-title">{{ film.name }}</h1>
+    <table>
+        <tr>
+            <td><b>Den: </b></td>
+            <td>{{ film.day }}</td>
+        </tr>
+        <tr>
+            <td><b>Čas: </b></td>
+            <td>{{ film.time_from }} - {{ film.time_to }}</td>
+        </tr>
+        <tr>
+            <td><b>Místnost: </b></td>
+            <td>{{ film.room }}</td>
+        </tr>
+        <tr>
+            <td><b>Jazyk: </b></td>
+            <td>{{ film.language }}</td>
+        </tr>
+        <tr>
+            <td><b>Odkaz: </b></td>
+            <td><a href="{{ film.link }}">odkaz</a></td>
+        </tr>
+    </table>
 </div>
 
 <script>

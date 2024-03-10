@@ -18,11 +18,11 @@ class LoginForm(FlaskForm):
 
 class FilmForm(FlaskForm):
     name = StringField('Název filmu', validators=[DataRequired()])
-    link = StringField('Link', validators=[DataRequired()])
+    link = StringField('Odkaz', validators=[DataRequired()])
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
-    room = StringField('Třída', validators=[DataRequired()])
+    room = StringField('Místnost', validators=[DataRequired()])
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     submit = SubmitField('Potvrdit')
@@ -36,7 +36,7 @@ class WorkshopForm(FlaskForm):
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
-    room = StringField('Třída', validators=[DataRequired()])
+    room = StringField('Místnost', validators=[DataRequired()])
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
     author = StringField('Autor', validators=[DataRequired()])
     description = TextAreaField('Popis')
@@ -48,7 +48,7 @@ class BesedaForm(FlaskForm):
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
-    room = StringField('Třída', validators=[DataRequired()])
+    room = StringField('Místnost', validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
 
 class HostForm(FlaskForm):

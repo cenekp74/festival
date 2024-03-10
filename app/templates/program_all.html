@@ -14,9 +14,9 @@
                 <th>Film</th>
                 <th>Den</th>
                 <th>Čas</th>
-                <th>Třída</th>
+                <th>Místnost</th>
                 <th>Jazyk</th>
-                <th>Link</th>
+                <th>Odkaz</th>
                 <th>Program</th>
             </tr>
             {% for film in films %}
@@ -29,7 +29,7 @@
                 <td>{{ film.room }}</td>
                 <td>{{ film.language }}</td>
                 <td>
-                    <a href="{{ film.link }}">link</a>
+                    <a href="{{ film.link }}">odkaz</a>
                 </td>
                 <td>
                     <a href="{{ url_for('program_day', dayn=film.day) }}?f_{{film.id}}">program</a>
@@ -45,7 +45,7 @@
                 <th>Beseda</th>
                 <th>Den</th>
                 <th>Čas</th>
-                <th>Třída</th>
+                <th>Místnost</th>
                 <th>Host</th>
                 <th>Program</th>
             </tr>
@@ -78,7 +78,7 @@
                 <th>Workshop</th>
                 <th>Den</th>
                 <th>Čas</th>
-                <th>Třída</th>
+                <th>Místnost</th>
                 <th>Autor</th>
                 <th>Popis</th>
                 <th>Program</th>
