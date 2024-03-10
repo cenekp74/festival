@@ -11,6 +11,7 @@ function topnav_drop() {
         topnav.className += " responsive";
         disableanim = false;
         animateHeight(0, topnav_links.scrollHeight, topnav_links);
+        sleep(320).then(() => {topnav_links.style.height = "auto";});
     } else {
         var icon = document.getElementById("icon");
         icon.className = "fa fa-bars"
@@ -60,8 +61,19 @@ function stopEventPropagation(event) {
     event.stopPropagation()
 }
 
+function toggleProgramDropdown() {
+    element = document.getElementsByClassName('program-dropdown-content')[0];
+    element.classList.toggle('dropped');
+}
+
+function hideProgramDropdown() {
+    element = document.getElementsByClassName('program-dropdown-content')[0];
+    element.classList.remove('dropped');
+}
+
 document.addEventListener('click', () => {
     hide_topnav()
+    hideProgramDropdown()
 })
 
 document.addEventListener('scroll', () => {

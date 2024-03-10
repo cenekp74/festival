@@ -6,10 +6,6 @@
 
 {% block body %}
 <h1 style="text-align: center;">Můj program</h1>
-<div class="program-nav">
-    <a class="button-link" href="{{ url_for('program_day', dayn=day) }}">Celý program</a>
-    <a class="button-link" href="{{ url_for('clear_favorite') }}" onclick="return confirm('Opravdu chcete vymazat váš program?')">Vymazat</a>
-</div>
 
 <div class="program-wrapper">
     <div class="rooms-container">
@@ -114,6 +110,7 @@
     <a id="nav-day-1" class="button-link" href="{{ url_for('favorite_day', dayn=1) }}">Den 1</a>
     <a id="nav-day-2" class="button-link" href="{{ url_for('favorite_day', dayn=2) }}">Den 2</a>
     <a id="nav-day-3" class="button-link" href="{{ url_for('favorite_day', dayn=3) }}">Den 3</a>
+    <a class="button-link" href="{{ url_for('clear_favorite') }}" onclick="return confirm('Opravdu chcete vymazat váš program?')">Vymazat</a>
 </nav>
 <script src="{{ url_for('static', filename='/js/program.js') }}"></script>
 <script>

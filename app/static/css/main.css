@@ -301,7 +301,6 @@ button:not(:disabled) {
 
 /* #region topnav*/
 .topnav {
-    overflow: hidden;
     background-color: var(--secondary-color);
     align-items: center;
     display: flex;
@@ -312,7 +311,6 @@ button:not(:disabled) {
 }
 
 .topnav a {
-    float: left;
     display: block;
     color: var(--text-color);
     text-align: center;
@@ -344,6 +342,10 @@ button:not(:disabled) {
     height: 75%;
     border-right: 2px solid var(--text-color);
     transform: translateY(-50%);
+}
+
+.topnav:not(.responsive) .topnav-links {
+    display: flex;
 }
 
 .topnav-links a:hover {
@@ -380,6 +382,35 @@ button:not(:disabled) {
     padding-right: 11px;
     margin-top: 2px;
     border-radius: 400px;
+}
+
+.program-dropdown {
+    position: relative;
+    display: inline;
+}
+
+.program-dropdown-content {
+    display: none;
+    z-index: 2;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+}
+
+.responsive .program-dropdown-content.dropped {
+    display: block;
+}
+
+.topnav:not(.responsive) .program-dropdown-content.dropped  {
+    position: absolute;
+    top: 50px;
+    display: block;
+    width: max-content;
+    right: 0;
+}
+
+.program-dropdown-content.dropped a {
+    margin-right: 0;
+    width: 100%;
 }
 
 /* #endregion topnav*/

@@ -17,7 +17,16 @@
         <a href="/" class="logo">Jeden svět na ohradní</a>
         <div id="topnav-links" class="topnav-left topnav-links">
             <a id="uvod" href="{{url_for('uvod')}}">Úvod</a>
-            <a id="program" href="{{url_for('program')}}">Program</a>
+            <div id="program" class="program-dropdown">
+                <a style="cursor: pointer;" onclick="toggleProgramDropdown()">Program <i class="fa fa-caret-down"></i></a>
+                <div class="program-dropdown-content">
+                    <a href="{{ url_for('program_day', dayn='1') }}">Den 1</a>
+                    <a href="{{ url_for('program_day', dayn='2') }}">Den 2</a>
+                    <a href="{{ url_for('program_day', dayn='3') }}">Den 3</a>
+                    <a href="{{ url_for('favorite') }}">Můj program</a>
+                    <a href="{{ url_for('program_all') }}">Celý program</a>
+                </div>
+            </div>
             <a id="hoste" href="{{url_for('hoste')}}">Hosté</a>
             <a id="workshopy" href="{{url_for('workshopy')}}">Workshopy</a>
             <a id="historie" href="{{url_for('historie')}}">Historie</a>
