@@ -55,3 +55,15 @@ function animateHeight(start, target, element) {
 function setParentDisplayNone(element) {
     element.parentNode.style.display = 'none';
 }
+
+function stopEventPropagation(event) {
+    event.stopPropagation()
+}
+
+document.addEventListener('click', () => {
+    hide_topnav()
+})
+
+document.addEventListener('scroll', () => {
+    hide_topnav()
+})

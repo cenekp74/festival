@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="topnav" id="topnav">
+    <div class="topnav" id="topnav" onclick="stopEventPropagation(event)">
         <a href="/" class="logo">Jeden svět na ohradní</a>
         <div id="topnav-links" class="topnav-left topnav-links">
             <a id="uvod" href="{{url_for('uvod')}}">Úvod</a>
@@ -31,7 +31,7 @@
             <i id="icon" class="fa fa-bars"></i>
         </a>
     </div>
-    <div class="content" onclick="hide_topnav()">
+    <div class="content">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}

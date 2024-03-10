@@ -151,3 +151,7 @@ if (document.URL.indexOf("?") != -1) {
 }
 
 reloadStars();
+
+document.addEventListener('click', () => {
+    hideAllContextMenu()
+})
