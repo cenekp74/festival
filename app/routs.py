@@ -398,6 +398,7 @@ def edit_workshop(id):
                     time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(), day=workshop.day, room=workshop.room, author=workshop.author, description=workshop.description)
     if form.validate_on_submit():
         if form.picture.data:
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
             picture = form.picture.data
             picture_filename = secure_filename(picture.filename)
             picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
@@ -428,6 +429,7 @@ def edit_host(id):
                     description=host.description, short_description=host.short_description)
     if form.validate_on_submit():
         if form.picture.data:
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], host.picture_filename))
             picture = form.picture.data
             picture_filename = secure_filename(picture.filename)
             picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
@@ -462,6 +464,10 @@ def delete_workshop(id):
         abort(403)
     if not id.isdigit(): abort(404)
     id = int(id)
+    workshop = Workshop.query.filter_by(id=id).first()
+    try:
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
+    except: pass
     Workshop.query.filter_by(id=id).delete()
     db.session.commit()
     global rooms
@@ -490,6 +496,10 @@ def delete_host(id):
         abort(403)
     if not id.isdigit(): abort(404)
     id = int(id)
+    host = Host.query.filter_by(id=id).first()
+    try:
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], host.picture_filename))
+    except: pass
     Host.query.filter_by(id=id).delete()
     db.session.commit()
     global rooms
