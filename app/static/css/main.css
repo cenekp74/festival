@@ -566,7 +566,7 @@ footer {
 }
 
 @media screen and (max-width: 1530px) { /* stejny jako breakpoint v program.css */
-    .topnav:not(.responsive) a:not(.logo):not(.active):not(.icon) {
+    .topnav:not(.responsive) .topnav-links > a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
     
