@@ -14,6 +14,7 @@
     --search-highlight-color: #fceb04ad;
     --form-color: #1e1e22;
     --form-field-color: #37363e;
+    --dropdown-color: #202e26fd;
 }
 
 body {
@@ -394,6 +395,7 @@ button:not(:disabled) {
     z-index: 2;
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
+    background-color: var(--dropdown-color);
 }
 
 .responsive .program-dropdown-content.dropped {
@@ -404,7 +406,6 @@ button:not(:disabled) {
     position: absolute;
     top: 50px;
     display: block;
-    width: max-content;
     right: 0;
 }
 
