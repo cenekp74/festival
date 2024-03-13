@@ -76,8 +76,8 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
     }
 }
 
-let time_from_inputs = document.querySelectorAll('.time-from-input')
-time_from_inputs.forEach(inputEle => {
+let timeFromInputs = document.querySelectorAll('.time-from-input')
+timeFromInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {
         uid = e.target.closest('.details').id.split('-')[1]
         let programItem = document.getElementById(uid) 
@@ -86,8 +86,8 @@ time_from_inputs.forEach(inputEle => {
     })
 })
 
-let time_to_inputs = document.querySelectorAll('.time-to-input')
-time_to_inputs.forEach(inputEle => {
+let timeToInputs = document.querySelectorAll('.time-to-input')
+timeToInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {
         uid = e.target.closest('.details').id.split('-')[1]
         let programItem = document.getElementById(uid) 
