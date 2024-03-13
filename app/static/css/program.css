@@ -71,6 +71,7 @@
     max-height: 3rem;       /* fallback */
     text-indent: 3px;
     word-wrap: break-word;
+    margin-right: 3px;
 }
 
 .flashed {
