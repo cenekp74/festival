@@ -3,7 +3,7 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.utils import get_rooms, allowed_file, correct_uid, get_object_by_uid, update_rooms
+from app.utils import allowed_file, correct_uid, update_rooms, write_albums
 import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -11,9 +11,6 @@ from PIL import Image
 import json
 import random
 import shutil
-
-
-albums_dict = json.load(open('app/static/fotogalerie/albums.json', 'r'))
 
 #region routs
 @app.route('/')
@@ -520,15 +517,15 @@ def colors():
 #region fotogalerie
 @app.route('/fotogalerie')
 def fotogalerie():
-    return render_template('fotogalerie.html', albums=list(albums_dict.items()))
+    return render_template('fotogalerie.html', albums=list(app.albums_dict.items()))
 
 @app.route('/fotogalerie/<album_id>')
 def album(album_id):
-    if album_id not in list(albums_dict.keys()):
+    if album_id not in list(app.albums_dict.keys()):
         abort(404)
     files = list(os.listdir(f'app/static/fotogalerie/{album_id}/'))
     images = [f"/static/fotogalerie/{album_id}/{file}" for file in files]
-    return render_template('album.html', images=images, name=albums_dict[album_id], id=album_id)
+    return render_template('album.html', images=images, name=app.albums_dict[album_id], id=album_id)
 
 @app.route('/fotogalerie/<album_id>', methods=['POST'])
 @login_required
@@ -536,7 +533,7 @@ def add_photos(album_id):
     if not current_user.admin:
         abort(403)
     try:
-        if album_id not in list(albums_dict.keys()):
+        if album_id not in list(app.albums_dict.keys()):
             return abort(404)
         uploaded_files = request.files.getlist("file[]")
         for file in uploaded_files:
@@ -553,12 +550,12 @@ def new_album():
         abort(403)
     album_name = request.form.get('album_name')
     id = str(random.randint(0, 9999)).zfill(4)
-    if id in list(albums_dict.keys()):
+    if id in list(app.albums_dict.keys()):
         return new_album()
     try:
         os.mkdir(f'app/static/fotogalerie/{id}')
-        albums_dict[id] = album_name
-        json.dump(albums_dict, open('app/static/fotogalerie/albums.json', 'w'))
+        app.albums_dict[id] = album_name
+        write_albums()
         flash('Nové album úspěšně vytvořeno')
         return redirect(url_for('fotogalerie'))
     except Exception as e:
@@ -569,11 +566,11 @@ def new_album():
 def delete_album(album_id):
     if not current_user.admin:
         abort(403)
-    if album_id not in list(albums_dict.keys()):
+    if album_id not in list(app.albums_dict.keys()):
         abort(404)
-    del albums_dict[album_id]
+    del app.albums_dict[album_id]
     shutil.rmtree(f'app/static/fotogalerie/{album_id}')
-    json.dump(albums_dict, open('app/static/fotogalerie/albums.json', 'w'))
+    write_albums()
     flash('Album smazáno')
     return redirect(url_for('fotogalerie'))
 
@@ -582,7 +579,7 @@ def delete_album(album_id):
 def delete_photo(album_id, photo_name):
     if not current_user.admin:
         abort(403)
-    if album_id not in list(albums_dict.keys()):
+    if album_id not in list(app.albums_dict.keys()):
         abort(404)
     os.remove(f'app/static/fotogalerie/{album_id}/{photo_name}')
     return redirect(f'/fotogalerie/{album_id}')

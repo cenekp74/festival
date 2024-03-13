@@ -1,5 +1,6 @@
 from app.db_classes import Film, Beseda, Workshop, Host
 from . import ALLOWED_EXTENSIONS, db, app
+import json
 
 # vrati dict s mistnostma pro kazdy den
 def get_rooms() -> dict:
@@ -52,3 +53,9 @@ def get_object_by_uid(uid, correct=True):
         return Workshop.query.get(item_id)
     if item_type == 'h':
         return Host.query.get(item_id)
+    
+def load_albums():
+    app.albums_dict = json.load(open('app/static/fotogalerie/albums.json', 'r'))
+
+def write_albums():
+    json.dump(app.albums_dict, open(app.config['ALBUMS_JSON'], 'w'))
