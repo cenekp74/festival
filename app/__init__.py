@@ -31,4 +31,7 @@ app.register_blueprint(api_blueprint, url_prefix='/api')
 from .fotogalerie import fotogalerie as fotogalerie_blueprint
 app.register_blueprint(fotogalerie_blueprint, url_prefix='/fotogalerie')
 
+from .edit_program import edit_program as edit_program_blueprint
+app.register_blueprint(edit_program_blueprint)
+
 from app import routs
