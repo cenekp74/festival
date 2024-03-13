@@ -3,21 +3,21 @@ from app.db_classes import Host, User, Film, Beseda, Workshop
 from app import db
 from app.utils import get_all_rooms
 
-api_blueprint = Blueprint('api', __name__)
+api = Blueprint('api', __name__)
 
-@api_blueprint.route('/query/film')
+@api.route('/query/film')
 def query_film():
     args = request.args.to_dict()
     return jsonify([item.serialize for item in Film.query.filter_by(**args)])
 
-@api_blueprint.route('/query/film/day')
+@api.route('/query/film/day')
 def query_film_by_day():
     result = []
     for day in [1, 2, 3]:
         result.append([item.serialize for item in Film.query.filter_by(day=day)])
     return jsonify(result)
 
-@api_blueprint.route('/query/program_items')
+@api.route('/query/program_items')
 def query_program_items():
     args = request.args.to_dict()
     result = []
@@ -26,7 +26,7 @@ def query_program_items():
     result += [item.serialize for item in Workshop.query.filter_by(**args)]
     return jsonify(result)
 
-@api_blueprint.route('/query/program_items/day')
+@api.route('/query/program_items/day')
 def query_program_items_by_day_all():
     result = []
     for day in [1, 2, 3]:
@@ -36,10 +36,10 @@ def query_program_items_by_day_all():
         result[day-1] += [item.serialize for item in Workshop.query.filter_by(day=day)]
     return jsonify(result)
 
-@api_blueprint.route('/get_rooms')
+@api.route('/get_rooms')
 def rooms():
     return jsonify(get_all_rooms())
 
-@api_blueprint.route('/get_rooms_for_films') #jenom mistnosti s filmama
+@api.route('/get_rooms_for_films') #jenom mistnosti s filmama
 def film_rooms():
     return jsonify(get_all_rooms(films_only=True))

@@ -19,6 +19,6 @@ bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
-from .api import api_blueprint
+from .api import api as api_blueprint
 app.register_blueprint(api_blueprint, url_prefix='/api')
 from app import routs
