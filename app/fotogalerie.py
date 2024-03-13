@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, abort, redirect, url_for, flash
-from flask_login import current_user, login_required
-from app import db, app
+from flask_login import login_required
+from app import app
 from app.utils import write_albums
 import random
 import shutil

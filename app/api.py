@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.db_classes import Host, User, Film, Beseda, Workshop
-from app import db
+from app.db_classes import Film, Beseda, Workshop
 from app.utils import get_all_rooms
 
 api = Blueprint('api', __name__)
