@@ -55,7 +55,7 @@
     <div class="interactive-item-details">
         {% for room in rooms %}
             {% for item in program[room]["films"] %}
-            <div id="details-f_{{item.id}}" style="display: none;">
+            <div class="details" id="details-f_{{item.id}}" style="display: none;">
                 <a href="/film/{{ item.id }}">
                     <div>
                         {{ item.name }}
@@ -74,7 +74,7 @@
             {% endfor %}
 
             {% for item in program[room]["workshops"] %}
-            <div id="details-w_{{item.id}}" style="display: none;">
+            <div class="details" id="details-w_{{item.id}}" style="display: none;">
                 <a href="/workshopy#{{ item.id }}">
                     <div>
                         {{ item.name }}
@@ -89,7 +89,7 @@
             {% endfor %}
 
             {% for item in program[room]["besedy"] %}
-            <div id="details-b_{{item.id}}" style="display: none;">
+            <div class="details" id="details-b_{{item.id}}" style="display: none;">
                 <div style="text-decoration: underline;">
                     {{ item.name }}
                 </div>

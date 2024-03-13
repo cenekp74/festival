@@ -55,23 +55,46 @@ function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v ite
     })
 }
 
-var items = document.getElementsByClassName('program-item');
-var room_elements = document.getElementsByClassName('room');
-var rooms = []
-for (var i = 0; i < room_elements.length; i++) {
-    var content = room_elements[i].innerHTML;
-    rooms.push(content);
+function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsech itemu na zaklade jejich start-time a end-time atributu */
+    var items = document.getElementsByClassName('program-item');
+    var room_elements = document.getElementsByClassName('room');
+    var rooms = []
+    for (var i = 0; i < room_elements.length; i++) {
+        var content = room_elements[i].innerHTML;
+        rooms.push(content);
+    }
+
+    for (var i = 0; i < items.length; i++) {
+        var start_time = items[i].getAttribute('start-time');
+        var end_time = items[i].getAttribute('end-time');
+        var room = items[i].getAttribute('room');
+        var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
+        if (minutesFromStart.start == 0) {minutesFromStart.start = 1;}
+        items[i].style.gridColumnStart = minutesFromStart.start;
+        items[i].style.gridColumnEnd = minutesFromStart.end;
+        items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
+    }
 }
 
-for (var i = 0; i < items.length; i++) {
-    var start_time = items[i].getAttribute('start-time');
-    var end_time = items[i].getAttribute('end-time');
-    var room = items[i].getAttribute('room');
-    var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
-    if (minutesFromStart.start == 0) {minutesFromStart.start = 1;}
-    items[i].style.gridColumnStart = minutesFromStart.start;
-    items[i].style.gridColumnEnd = minutesFromStart.end;
-    items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
-}
+let time_from_inputs = document.querySelectorAll('.time-from-input')
+time_from_inputs.forEach(inputEle => {
+    inputEle.addEventListener('input', (e) => {
+        uid = e.target.closest('.details').id.split('-')[1]
+        let programItem = document.getElementById(uid) 
+        programItem.setAttribute('start-time', e.target.value)
+        updateAllItemsPosition()
+    })
+})
 
+let time_to_inputs = document.querySelectorAll('.time-to-input')
+time_to_inputs.forEach(inputEle => {
+    inputEle.addEventListener('input', (e) => {
+        uid = e.target.closest('.details').id.split('-')[1]
+        let programItem = document.getElementById(uid) 
+        programItem.setAttribute('end-time', e.target.value)
+        updateAllItemsPosition()
+    })
+})
+
+updateAllItemsPosition()
 updateAllTimeInputs()
