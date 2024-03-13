@@ -3,7 +3,7 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.utils import get_rooms, allowed_file, correct_uid, get_object_by_uid
+from app.utils import get_rooms, allowed_file, correct_uid, get_object_by_uid, update_rooms
 import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -12,7 +12,6 @@ import json
 import random
 import shutil
 
-rooms = None
 
 albums_dict = json.load(open('app/static/fotogalerie/albums.json', 'r'))
 
@@ -47,16 +46,13 @@ def program_day(dayn):
     if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
     if dayn not in [1,2,3]: abort(404)
-    global rooms
-    if rooms is None:
-        rooms = get_rooms()
     program = {}
-    for room in rooms[dayn]:
+    for room in app.rooms[dayn]:
         program[room] = {}
         program[room]["films"] = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
         program[room]["besedy"] = sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from)
         program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
-    return render_template('program_day.html', program=program, rooms=rooms[dayn], day=dayn)
+    return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn)
 
 @app.route('/film/<id>')
 def film(id):
@@ -145,12 +141,9 @@ def favorite_day(dayn):
         if item_type == 'f': films.append(int(item_id))
         elif item_type == 'b': besedy.append(int(item_id))
         elif item_type == 'w': workshops.append(int(item_id))
-    global rooms
-    if rooms is None:
-        rooms = get_rooms()
-    rooms_ = rooms[dayn].copy()
+    rooms_ = app.rooms[dayn].copy()
     program = {}
-    for room in rooms[dayn]:
+    for room in app.rooms[dayn]:
         program[room] = {}
         program[room]["films"] = [item for item in sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from) if item.id in films]
         program[room]["besedy"] = [item for item in sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from) if item.id in besedy]
@@ -243,8 +236,7 @@ def add_film():
                     )
         db.session.add(film)
         db.session.commit()
-        global rooms
-        rooms = get_rooms()
+        update_rooms()
         flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_film.html', form=form)
@@ -273,8 +265,7 @@ def add_workshop():
                     )
         db.session.add(workshop)
         db.session.commit()
-        global rooms
-        rooms = get_rooms()
+        update_rooms()
         flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_workshop.html', form=form)
@@ -295,8 +286,7 @@ def add_beseda():
                     )
         db.session.add(beseda)
         db.session.commit()
-        global rooms
-        rooms = get_rooms()
+        update_rooms()
         flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/add_beseda.html', form=form)
@@ -354,8 +344,7 @@ def edit_film(id):
         film.language = form.language.data
         film.filename = form.filename.data
         db.session.commit()
-        global rooms
-        rooms = get_rooms()
+        update_rooms()
         flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_film.html', film=film, form=form)
@@ -380,8 +369,7 @@ def edit_beseda(id):
         beseda.day = form.day.data
         beseda.room = form.room.data
         db.session.commit()
-        global rooms
-        rooms = get_rooms()
+        update_rooms()
         flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_beseda.html', beseda=beseda, form=form)
@@ -411,8 +399,7 @@ def edit_workshop(id):
         workshop.author = form.author.data
         workshop.description = form.description.data
         db.session.commit()
-        global rooms
-        rooms = get_rooms()
+        update_rooms()
         flash('Změny uloženy')
         return redirect(url_for('edit_program'))
     return render_template('editing_program/edit_workshop.html', workshop=workshop, form=form)
@@ -452,8 +439,7 @@ def delete_film(id):
     id = int(id)
     Film.query.filter_by(id=id).delete()
     db.session.commit()
-    global rooms
-    rooms = get_rooms()
+    update_rooms()
     flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
@@ -470,8 +456,7 @@ def delete_workshop(id):
     except: pass
     Workshop.query.filter_by(id=id).delete()
     db.session.commit()
-    global rooms
-    rooms = get_rooms()
+    update_rooms()
     flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
@@ -484,8 +469,7 @@ def delete_beseda(id):
     id = int(id)
     Beseda.query.filter_by(id=id).delete()
     db.session.commit()
-    global rooms
-    rooms = get_rooms()
+    update_rooms()
     flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
@@ -502,8 +486,7 @@ def delete_host(id):
     except: pass
     Host.query.filter_by(id=id).delete()
     db.session.commit()
-    global rooms
-    rooms = get_rooms()
+    update_rooms()
     flash('Změny uloženy')
     return redirect(url_for('edit_program'))
 
