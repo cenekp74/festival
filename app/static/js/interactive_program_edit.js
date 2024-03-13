@@ -45,6 +45,15 @@ function showItemDetails(element) {
     itemDetails.style.display = 'block'
 }
 
+function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v item detailech podle properties jednotlivych itemu v programu */
+    let programItems = document.querySelectorAll('.program-item')
+    programItems.forEach(item => {
+        let item_id = item.getAttribute('item-id');
+        let itemDetails = document.getElementById('details-'+item_id);
+        itemDetails.querySelector('.time-from-input').value = item.getAttribute('start-time')
+        itemDetails.querySelector('.time-to-input').value = item.getAttribute('end-time')
+    })
+}
 
 var items = document.getElementsByClassName('program-item');
 var room_elements = document.getElementsByClassName('room');
@@ -64,3 +73,5 @@ for (var i = 0; i < items.length; i++) {
     items[i].style.gridColumnEnd = minutesFromStart.end;
     items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
 }
+
+updateAllTimeInputs()
