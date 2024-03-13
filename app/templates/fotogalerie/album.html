@@ -11,7 +11,7 @@
     <div class="gallery-item">
         <img src="{{img}}">
         {% if current_user.admin %}
-        <a href="{{ url_for('delete_photo', album_id=id, photo_name=img.split('/')[-1]) }}">
+        <a href="{{ url_for('fotogalerie.delete_photo', album_id=id, photo_name=img.split('/')[-1]) }}">
             <i class="fa fa-trash"></i>
         </a>
         {% endif %}
@@ -24,7 +24,7 @@
     <input type="file" name="file[]" multiple="" required>
     <input type="submit" value="Přidat">
 </form>
-<a style="margin-top: .5rem;" class="btn" href="{{ url_for('delete_album', album_id=id) }}" onclick="return confirm('Smazat album?')">Smazat album</a>
+<a style="margin-top: .5rem;" class="btn" href="{{ url_for('fotogalerie.delete_album', album_id=id) }}" onclick="return confirm('Smazat album?')">Smazat album</a>
 {% endif %}
 
 <script>
