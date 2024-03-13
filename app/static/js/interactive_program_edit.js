@@ -36,6 +36,16 @@ function getCookie(name) {
     return cookie[name];
 }
 
+function showItemDetails(element) {
+    var item_id = element.getAttribute('item-id');
+    var itemDetails = document.getElementById('details-'+item_id);
+    document.querySelectorAll('.interactive-item-details > div').forEach(ele => {
+        ele.style.display = 'none'
+    })
+    itemDetails.style.display = 'block'
+}
+
+
 var items = document.getElementsByClassName('program-item');
 var room_elements = document.getElementsByClassName('room');
 var rooms = []

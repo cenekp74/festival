@@ -28,21 +28,21 @@
                 
                 {% for room in rooms %}
                     {% for film in program[room]["films"] %}
-                        <div id="f_{{film.id}}" class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showContextMenu(event, this)">
+                        <div id="f_{{film.id}}" class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showItemDetails(this)">
                             <div>
                                 {{ film.name }}
                             </div>
                         </div>
                     {% endfor %}
                     {% for beseda in program[room]["besedy"] %}
-                        <div id="b_{{beseda.id}}" class="program-item beseda" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}" item-id="b_{{beseda.id}}" onclick="showContextMenu(event, this)">
+                        <div id="b_{{beseda.id}}" class="program-item beseda" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}" item-id="b_{{beseda.id}}" onclick="showItemDetails(this)">
                             <div>
                                 {{ beseda.name }}
                             </div>
                         </div>
                     {% endfor %}
                     {% for workshop in program[room]["workshops"] %}
-                        <div id="w_{{workshop.id}}" class="program-item workshop" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}" item-id="w_{{workshop.id}}" onclick="showContextMenu(event, this)">
+                        <div id="w_{{workshop.id}}" class="program-item workshop" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}" item-id="w_{{workshop.id}}" onclick="showItemDetails(this)">
                             <div>
                                 {{ workshop.name }}
                             </div>
@@ -52,7 +52,52 @@
             </div>
         </div>
     </div>
-    <div class="interactive-item-details">egfsgsfd</div>
+    <div class="interactive-item-details">
+        {% for room in rooms %}
+            {% for item in program[room]["films"] %}
+            <div id="details-f_{{item.id}}" style="display: none;">
+                <a href="/film/{{ item.id }}">
+                    <div>
+                        {{ item.name }}
+                    </div>
+                </a>
+                <div>film</div>
+                <div class="item-time">{{ item.time_from }} - {{ item.time_to }}</div>
+                <div>{{ item.language }}</div>
+                <div>
+                    <a href="{{ item.link }}">odkaz</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for item in program[room]["workshops"] %}
+            <div id="details-w_{{item.id}}" style="display: none;">
+                <a href="/workshopy#{{ item.id }}">
+                    <div>
+                        {{ item.name }}
+                    </div>
+                </a>
+                <div>workshop</div>
+                <div class="item-time">{{ item.time_from }} - {{ item.time_to }}</div>
+            </div>
+            {% endfor %}
+
+            {% for item in program[room]["besedy"] %}
+            <div id="details-b_{{item.id}}" style="display: none;">
+                <div style="text-decoration: underline;">
+                    {{ item.name }}
+                </div>
+                <div>beseda</div>
+                <div class="item-time">{{ item.time_from }} - {{ item.time_to }}</div>
+                {% if item.host_id %}
+                    <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
+                        <div>host</div>
+                    </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 <nav class="program-day program-nav">
