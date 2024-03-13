@@ -101,7 +101,7 @@
 }
 
 .rooms-container {
-    margin-top: 3.5rem;
+    margin-top: 3.5rem; /* o 1.5rem vic nez margin-top u program-containeru */
     margin-right: 0;
     padding-right: 3px;
     padding-top: 3px;

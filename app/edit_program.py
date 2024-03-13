@@ -17,6 +17,21 @@ edit_program = Blueprint('edit_program', __name__)
 def index():
     return render_template('editing_program/edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
+@edit_program.route('/program/edit/interactive/<dayn>')
+@login_required
+@admin_required
+def interactive(dayn):
+    if not dayn.isdigit(): abort(404)
+    dayn = int(dayn)
+    if dayn not in [1,2,3]: abort(404)
+    program = {}
+    for room in app.rooms[dayn]:
+        program[room] = {}
+        program[room]["films"] = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
+        program[room]["besedy"] = sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from)
+        program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
+    return render_template('editing_program/edit_interactive.html', program=program, rooms=app.rooms[dayn], day=dayn)
+
 @edit_program.route('/add_film', methods=['GET', 'POST'])
 @login_required
 @admin_required

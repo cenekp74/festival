@@ -1,0 +1,29 @@
+.content {
+    width: 100vw;
+}
+
+.program-container {
+    border: 1px solid var(--text-color);
+    border-radius: 2px;
+    margin-top: 0;
+}
+
+.rooms-container {
+    margin-top: 1.5rem;
+}
+
+.program-item {
+    border-radius: 2px;
+}
+
+.program-editor {
+    display: flex;
+    gap: 1rem;
+}
+
+.interactive-item-details { /* musi mit divnej nazev protoze trida item-details uz existuje v program.css */
+    border: 1px solid var(--text-color);
+    border-radius: 2px;
+    padding: .5rem;
+    min-width: 300px;
+}
