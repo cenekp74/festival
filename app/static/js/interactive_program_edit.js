@@ -98,3 +98,45 @@ timeToInputs.forEach(inputEle => {
 
 updateAllItemsPosition()
 updateAllTimeInputs()
+
+document.addEventListener('DOMContentLoaded', function() {
+    var grid = document.querySelector('.program-container');
+    var gridWidth = grid.offsetWidth;
+    var columnWidth = gridWidth / 360;
+    var rowHeight = 53;
+  
+    var items = document.querySelectorAll('.program-item');
+    items.forEach(function(item) {
+        item.addEventListener('mousedown', function(event) {
+            row = parseInt(item.style.gridRowStart)-1
+            column = parseInt(item.style.gridColumn.split('/')[0])
+
+            var offsetX = event.clientX;
+            var offsetY = row*53 /* 30 je vyska radku s casem + gap */
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+    
+            function onMouseMove(event) {
+                console.log("MouseX: ", event.clientX)
+                console.log("Offset: ", grid.getBoundingClientRect().left + offsetX)
+                console.log("Left", event.clientX - grid.getBoundingClientRect().left - offsetX)
+                var left = event.clientX - offsetX;
+                var top = event.clientY - grid.getBoundingClientRect().top - offsetY;
+        
+                console.log(left)
+
+                left = Math.round(left / columnWidth) * columnWidth;
+                top = Math.round(top / rowHeight) * rowHeight;
+        
+                item.style.left = left + 'px';
+                item.style.top = top + 'px';
+            }
+    
+            function onMouseUp() {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            }
+        });
+    });
+});
