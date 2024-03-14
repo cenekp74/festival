@@ -43,6 +43,8 @@ function showItemDetails(element) {
         ele.style.display = 'none'
     })
     itemDetails.style.display = 'block'
+    document.querySelectorAll('.program-item').forEach(item => {item.classList.remove('selected')})
+    element.classList.add('selected')
 }
 
 function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v item detailech podle properties jednotlivych itemu v programu */

@@ -22,6 +22,11 @@
     cursor: move;
 }
 
+.program-item.selected {
+    border: 1px solid var(--text-color);
+    z-index: 10;
+}
+
 .program-editor {
     display: flex;
     gap: 1rem;
