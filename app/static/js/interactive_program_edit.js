@@ -130,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
     
             function onMouseUp() {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+                if (!(item.style.left && item.style.top)) {return}
                 let column_start = parseInt(item.style.gridColumn.split('/')[0])
                 let column_end = parseInt(item.style.gridColumn.split('/')[1])
                 column_start += Math.round(parseInt(item.style.left)/columnWidth)
@@ -141,12 +144,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let row_start = parseInt(item.style.gridRowStart)
                 row_start += Math.round((parseInt(item.style.top)-30)/53+1)
-                if (!(row_start<0)) {
+                nRows = document.querySelectorAll('.room').length
+                if (!(row_start<0 || row_start>nRows+1)) {
                     item.style.gridRowStart = String(row_start)
                 }
                 item.style.top = 0
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
             }
         });
     });

@@ -18,6 +18,10 @@
     transition: none;
 }
 
+.program-item:hover {
+    cursor: move;
+}
+
 .program-editor {
     display: flex;
     gap: 1rem;
