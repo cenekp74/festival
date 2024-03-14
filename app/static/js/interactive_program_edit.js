@@ -27,6 +27,21 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
+// vypocita z minut od 1 do 360 cas od 8:00 do 14:00
+function convertMinutesToTime(minutes) {
+    if (minutes == 0) return "08:00"
+    if (minutes < 1 || minutes > 360) {
+        return;
+    }
+    let hours = Math.floor(minutes / 60);
+    let mins = minutes % 60;
+    hours += 8;
+    let formattedHours = hours < 10 ? "0" + hours : hours;
+    let formattedMins = mins < 10 ? "0" + mins : mins;
+    let timeString = formattedHours + ":" + formattedMins;
+    return timeString;
+}
+
 function getCookie(name) {
     let cookie = {};
     document.cookie.split(';').forEach(function(el) {
@@ -76,6 +91,20 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
         items[i].style.gridColumnEnd = minutesFromStart.end+1;
         items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
     }
+}
+
+function updatteAllItemTimesAndRooms() { // funkce na updatovani start-time, end-time a room attributu u vsech itemu na zaklade jejich grid stylingu (grid-column a grid-row-start)
+    let programItems = document.querySelectorAll('.program-item')
+    programItems.forEach(item => {
+        if (item.style.visibility == 'hidden') {return};
+        let column_start = parseInt(item.style.gridColumn.split('/')[0])
+        let column_end = parseInt(item.style.gridColumn.split('/')[1])
+        item.setAttribute('start-time', convertMinutesToTime(column_start-1))
+        item.setAttribute('end-time', convertMinutesToTime(column_end-1))
+        let row_start = parseInt(item.style.gridRowStart)
+        let room = document.querySelectorAll('.room')[row_start-2].innerHTML
+        item.setAttribute('room', room)
+    })
 }
 
 let timeFromInputs = document.querySelectorAll('.time-from-input')
@@ -136,9 +165,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!(item.style.left && item.style.top)) {return}
                 let column_start = parseInt(item.style.gridColumn.split('/')[0])
                 let column_end = parseInt(item.style.gridColumn.split('/')[1])
+
                 column_start += Math.round(parseInt(item.style.left)/columnWidth)
                 column_end += Math.round(parseInt(item.style.left)/columnWidth)
-                if (!(column_start<0 || column_end<0 || column_end > 360)) {
+                if (!(column_start<0 || column_end<1 || column_end > 361)) {
                     item.style.gridColumn = String(column_start) + '/' + String(column_end)
                 }
                 item.style.left = 0
@@ -150,6 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.style.gridRowStart = String(row_start)
                 }
                 item.style.top = 0
+                updatteAllItemTimesAndRooms()
+                updateAllTimeInputs()
             }
         });
     });
