@@ -27,6 +27,7 @@
                 </div>
                 
                 {% for room in rooms %}
+                    <div class="program-item" room="{{room}}" start-time="8:00" end-time="8:00" style="visibility: hidden;"></div>
                     {% for film in program[room]["films"] %}
                         <div id="f_{{film.id}}" class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showItemDetails(this)">
                             <div>

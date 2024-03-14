@@ -48,6 +48,7 @@ function showItemDetails(element) {
 function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v item detailech podle properties jednotlivych itemu v programu */
     let programItems = document.querySelectorAll('.program-item')
     programItems.forEach(item => {
+        if (item.style.visibility == 'hidden') {return};
         let item_id = item.getAttribute('item-id');
         let itemDetails = document.getElementById('details-'+item_id);
         itemDetails.querySelector('.time-from-input').value = item.getAttribute('start-time')
@@ -118,14 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.addEventListener('mouseup', onMouseUp);
     
             function onMouseMove(event) {
-                console.log("MouseX: ", event.clientX)
-                console.log("Offset: ", grid.getBoundingClientRect().left + offsetX)
-                console.log("Left", event.clientX - grid.getBoundingClientRect().left - offsetX)
                 var left = event.clientX - offsetX;
                 var top = event.clientY - grid.getBoundingClientRect().top - offsetY;
         
-                console.log(left)
-
                 left = Math.round(left / columnWidth) * columnWidth;
                 top = Math.round(top / rowHeight) * rowHeight;
         
@@ -134,8 +130,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
     
             function onMouseUp() {
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup', onMouseUp);
+                let column_start = parseInt(item.style.gridColumn.split('/')[0])
+                let column_end = parseInt(item.style.gridColumn.split('/')[1])
+                column_start += Math.round(parseInt(item.style.left)/columnWidth)
+                column_end += Math.round(parseInt(item.style.left)/columnWidth)
+                if (!(column_start<0 || column_end<0 || column_end > 360)) {
+                    item.style.gridColumn = String(column_start) + '/' + String(column_end)
+                }
+                item.style.left = 0
+
+                let row_start = parseInt(item.style.gridRowStart)
+                row_start += Math.round((parseInt(item.style.top)-30)/53+1)
+                if (!(row_start<0)) {
+                    item.style.gridRowStart = String(row_start)
+                }
+                item.style.top = 0
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
             }
         });
     });
