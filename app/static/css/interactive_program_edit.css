@@ -16,6 +16,7 @@
     border-radius: 2px;
     position: relative;
     transition: none;
+    border: 1px dashed #ffffff;
 }
 
 .program-item:hover {
@@ -23,7 +24,7 @@
 }
 
 .program-item.selected {
-    border: 1px solid var(--text-color);
+    border: 2px solid var(--text-color);
     z-index: 10;
 }
 
