@@ -63,14 +63,15 @@
                     </div>
                 </a>
                 <div>film</div>
-                <div class="item-time">
-                    <input class="time-from-input" type="time"> - 
-                    <input class="time-to-input" type="time">
-                </div>
                 <div>{{ item.language }}</div>
                 <div>
                     <a href="{{ item.link }}">odkaz</a>
                 </div>
+                <div class="item-time">
+                    <input class="time-from-input" type="time"> - 
+                    <input class="time-to-input" type="time">
+                </div>
+                <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
             </div>
             {% endfor %}
 
@@ -86,6 +87,7 @@
                     <input class="time-from-input" type="time"> - 
                     <input class="time-to-input" type="time">
                 </div>
+                <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
             </div>
             {% endfor %}
 
@@ -95,15 +97,16 @@
                     {{ item.name }}
                 </div>
                 <div>beseda</div>
-                <div class="item-time">
-                    <input class="time-from-input" type="time"> - 
-                    <input class="time-to-input" type="time">
-                </div>
                 {% if item.host_id %}
                     <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
                         <div>host</div>
                     </a>
                 {% endif %}
+                <div class="item-time">
+                    <input class="time-from-input" type="time"> - 
+                    <input class="time-to-input" type="time">
+                </div>
+                <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
             </div>
             {% endfor %}
         {% endfor %}

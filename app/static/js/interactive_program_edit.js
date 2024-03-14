@@ -107,6 +107,16 @@ function updatteAllItemTimesAndRooms() { // funkce na updatovani start-time, end
     })
 }
 
+function updateAllItemDetailsRooms() { // funkce na updatovani mistnosti v item details na zaklade atributu room u itemu
+    let programItems = document.querySelectorAll('.program-item')
+    programItems.forEach(item => {
+        if (item.style.visibility == 'hidden') {return};
+        let item_id = item.getAttribute('item-id');
+        let itemDetails = document.getElementById('details-'+item_id);
+        itemDetails.querySelector('.item-details-room').innerHTML = item.getAttribute('room')
+    })
+}
+
 let timeFromInputs = document.querySelectorAll('.time-from-input')
 timeFromInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {
@@ -182,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.style.top = 0
                 updatteAllItemTimesAndRooms()
                 updateAllTimeInputs()
+                updateAllItemDetailsRooms()
             }
         });
     });
