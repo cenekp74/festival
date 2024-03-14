@@ -86,6 +86,9 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
         var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
         items[i].style.gridColumnStart = minutesFromStart.start+1;
         items[i].style.gridColumnEnd = minutesFromStart.end+1;
+        if (items[i].style.gridColumnEnd > 361) {
+            items[i].style.borderRight = '4px solid black'
+        }
         items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
     }
 }
@@ -179,6 +182,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.style.gridColumn = String(column_start) + '/' + String(column_end)
                 }
                 item.style.left = 0
+                if (item.style.gridColumnEnd > 361) {
+                    item.style.borderRight = '4px solid black'
+                }
 
                 let row_start = parseInt(item.style.gridRowStart)
                 row_start += Math.round((parseInt(item.style.top)-30)/53+1)
