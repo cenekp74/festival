@@ -30,9 +30,6 @@ function calculateMinutesFromStart(startTime, endTime) {
 // vypocita z minut od 1 do 360 cas od 8:00 do 14:00
 function convertMinutesToTime(minutes) {
     if (minutes == 0) return "08:00"
-    if (minutes < 1 || minutes > 360) {
-        return;
-    }
     let hours = Math.floor(minutes / 60);
     let mins = minutes % 60;
     hours += 8;
@@ -178,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 column_start += Math.round(parseInt(item.style.left)/columnWidth)
                 column_end += Math.round(parseInt(item.style.left)/columnWidth)
-                if (!(column_start<0 || column_end<1 || column_end > 361)) {
+                if (!(column_start<0 || column_end<1)) {
                     item.style.gridColumn = String(column_start) + '/' + String(column_end)
                 }
                 item.style.left = 0
