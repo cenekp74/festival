@@ -9,9 +9,8 @@
     row-gap: 5px;
     position: relative;
     border: 1px solid var(--bg-color);
-    padding: 1px;
+    padding: 2px;
     min-width: 750px;
-    padding-right: 0;
     width: 66vw;
 }
 
@@ -53,7 +52,6 @@
     flex-direction: column;
     transition: all 1s;
     font-size: 17px;
-    margin-right: 1px;
     color: var(--program-text-color);
 }
 
