@@ -72,9 +72,8 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
         var end_time = items[i].getAttribute('end-time');
         var room = items[i].getAttribute('room');
         var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
-        if (minutesFromStart.start == 0) {minutesFromStart.start = 1;}
-        items[i].style.gridColumnStart = minutesFromStart.start;
-        items[i].style.gridColumnEnd = minutesFromStart.end;
+        items[i].style.gridColumnStart = minutesFromStart.start+1;
+        items[i].style.gridColumnEnd = minutesFromStart.end+1;
         items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
     }
 }
