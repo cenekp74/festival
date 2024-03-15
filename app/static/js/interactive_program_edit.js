@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let row_start = parseInt(item.style.gridRowStart)
                 row_start += Math.round((parseInt(item.style.top)-30)/53+1)
                 nRows = document.querySelectorAll('.room').length
-                if (!(row_start<0 || row_start>nRows+1)) {
+                if (!(row_start<2 || row_start>nRows+1)) {
                     item.style.gridRowStart = String(row_start)
                 }
                 item.style.top = 0
