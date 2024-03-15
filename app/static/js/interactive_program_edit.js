@@ -141,6 +141,7 @@ async function saveProgram() {
     else {
         alert('Ukládání dat selhalo', category='error')
     }
+    modifiedItemUids = []
 }
 
 function updateAllItemLengths() { // funkce na updatovani doby trvani v item details na zaklade hodnot time inputu
