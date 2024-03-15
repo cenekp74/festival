@@ -117,6 +117,32 @@ function updateAllItemDetailsRooms() { // funkce na updatovani mistnosti v item 
     })
 }
 
+async function saveProgram() {
+    if (!confirm('Opravdu chcete uložit program?')) {return}
+    toSend = {}
+    modifiedItemUids.forEach(uid => {
+        item = document.getElementById(uid)
+        if (!item) {return}
+        time_from = item.getAttribute('start-time')
+        time_to = item.getAttribute('end-time')
+        room = item.getAttribute('room')
+        toSend[uid] = {"time_from":time_from, "time_to":time_to, "room":room}
+    })
+    resp = await fetch("/api/update_from_json", {
+        method: "POST",
+        body: JSON.stringify(toSend),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+    if (resp.ok) {
+        showFlashAlert('Data úspěšně uložena', category='success')
+    }
+    else {
+        alert('Ukládání dat selhalo', category='error')
+    }
+}
+
 let timeFromInputs = document.querySelectorAll('.time-from-input')
 timeFromInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {

@@ -10,7 +10,7 @@ api = Blueprint('api', __name__)
 @api.route('/update_from_json', methods=['POST'])
 @login_required
 @admin_required
-def update_from_json(): # updatuje program z json ve formatu {"uid":{"start_time":time, "end_time":time, "room":room}} (funkce pro interaktivni editovani programu)
+def update_from_json(): # updatuje program z json ve formatu {"uid":{"time_from":time, "time_to":time, "room":room}} (funkce pro interaktivni editovani programu)
     content = request.json
     for uid, item_details in content.items():
         if not correct_uid(uid, h_allowed=False): abort(400)
@@ -20,8 +20,8 @@ def update_from_json(): # updatuje program z json ve formatu {"uid":{"start_time
             case 'f': item = Film.query.get(item_id)
             case 'b': item = Beseda.query.get(item_id)
             case 'w': item = Workshop.query.get(item_id)
-        item.time_from = item_details['start_time']
-        item.time_to = item_details['end_time']
+        item.time_from = item_details['time_from']
+        item.time_to = item_details['time_to']
         item.room = item_details['room']
         db.session.commit()
         update_rooms()

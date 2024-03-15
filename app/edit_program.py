@@ -51,7 +51,7 @@ def add_film():
         db.session.commit()
         update_rooms()
         flash('Změny uloženy')
-        return redirect(url_for('edit_program'))
+        return redirect(url_for('edit_program.index'))
     return render_template('editing_program/add_film.html', form=form)
 
 @edit_program.route('/add_workshop', methods=['GET', 'POST'])
@@ -79,7 +79,7 @@ def add_workshop():
         db.session.commit()
         update_rooms()
         flash('Změny uloženy')
-        return redirect(url_for('edit_program'))
+        return redirect(url_for('edit_program.index'))
     return render_template('editing_program/add_workshop.html', form=form)
 
 @edit_program.route('/add_beseda', methods=['GET', 'POST'])

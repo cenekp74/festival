@@ -1,5 +1,6 @@
 .content {
     width: 100vw;
+    display: flex;
 }
 
 .program-container {
@@ -32,6 +33,8 @@
 .program-editor {
     display: flex;
     gap: 1rem;
+    position: relative;
+    width: max-content;
 }
 
 .interactive-item-details { /* musi mit divnej nazev protoze trida item-details uz existuje v program.css */
@@ -43,4 +46,12 @@
 
 .interactive-item-details div {
     line-height: 1.5rem;
+}
+
+.save-program-button {
+    width: 4rem;
+    height: 3rem;
+    position: absolute;
+    right: 0;
+    bottom: -4rem;
 }

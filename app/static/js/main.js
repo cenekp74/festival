@@ -71,6 +71,21 @@ function hideProgramDropdown() {
     element.classList.remove('dropped');
 }
 
+function createElementFromHTML(htmlString) {
+    let div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
+    return div.firstChild;
+}
+
+function showFlashAlert(message, category='') {
+    let eleString = `<div class="alert alert-${category}">
+            ${message} <i onclick="setParentDisplayNone(this)" class="fa fa-xmark"></i>
+        </div>`
+    let ele = createElementFromHTML(eleString)
+    let content = document.getElementsByClassName('content')[0]
+    content.insertBefore(ele, content.firstChild)
+}
+
 document.addEventListener('click', () => {
     hide_topnav()
     hideProgramDropdown()
