@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.style.left = 0
                 if (item.style.gridColumnEnd > 361) {
                     item.style.borderRight = '4px solid black'
-                }
+                } else {item.style.borderRight = ''}
 
                 let row_start = parseInt(item.style.gridRowStart)
                 row_start += Math.round((parseInt(item.style.top)-30)/53+1)
