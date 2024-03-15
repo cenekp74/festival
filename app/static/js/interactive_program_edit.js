@@ -143,12 +143,34 @@ async function saveProgram() {
     }
 }
 
+function msToTimeString(ms) {
+    const date = new Date(ms);
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
+
+function getTimeDifferenceInMs(time1, time2) { // input jsou stringy ve formatu "%H:%M"
+    let time1Obj = new Date("01/01/2007 " + time1).getTime()
+    let time2Obj = new Date("01/01/2007 " + time2).getTime()
+    return time2Obj - time1Obj
+}
+
 let timeFromInputs = document.querySelectorAll('.time-from-input')
 timeFromInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {
         uid = e.target.closest('.details').id.split('-')[1]
-        let programItem = document.getElementById(uid) 
-        programItem.setAttribute('start-time', e.target.value)
+        let programItem = document.getElementById(uid)
+        newTime = e.target.value
+
+        prevTime = programItem.getAttribute('start-time')     
+        diff = getTimeDifferenceInMs(newTime, prevTime)
+        let timeEnd = programItem.getAttribute('end-time')
+        let timeEndObj = new Date("01/01/2007 " + timeEnd).getTime()
+        let newEndTime = msToTimeString(timeEndObj - diff)
+        
+        programItem.setAttribute('end-time', newEndTime)
+        programItem.setAttribute('start-time', newTime)
         updateAllItemsPosition()
     })
 })
