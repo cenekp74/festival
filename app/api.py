@@ -1,8 +1,31 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, abort
 from app.db_classes import Film, Beseda, Workshop
-from app.utils import get_all_rooms
+from app.utils import get_all_rooms, correct_uid, update_rooms
+from flask_login import login_required
+from .decorators import admin_required
+from . import db
 
 api = Blueprint('api', __name__)
+
+@api.route('/update_from_json', methods=['POST'])
+@login_required
+@admin_required
+def update_from_json(): # updatuje program z json ve formatu {"uid":{"start_time":time, "end_time":time, "room":room}} (funkce pro interaktivni editovani programu)
+    content = request.json
+    for uid, item_details in content.items():
+        if not correct_uid(uid, h_allowed=False): abort(400)
+        item_type, item_id = uid.split('_')
+        item_id = int(item_id)
+        match item_type:
+            case 'f': item = Film.query.get(item_id)
+            case 'b': item = Beseda.query.get(item_id)
+            case 'w': item = Workshop.query.get(item_id)
+        item.time_from = item_details['start_time']
+        item.time_to = item_details['end_time']
+        item.room = item_details['room']
+        db.session.commit()
+        update_rooms()
+    return '200'
 
 @api.route('/query/film')
 def query_film():
