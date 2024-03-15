@@ -29,21 +29,21 @@
                 {% for room in rooms %}
                     <div class="program-item" room="{{room}}" start-time="8:00" end-time="8:00" style="visibility: hidden;"></div>
                     {% for film in program[room]["films"] %}
-                        <div id="f_{{film.id}}" class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showItemDetails(this)">
+                        <div id="f_{{film.id}}" class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onmousedown="showItemDetails(this)">
                             <div>
                                 {{ film.name }}
                             </div>
                         </div>
                     {% endfor %}
                     {% for beseda in program[room]["besedy"] %}
-                        <div id="b_{{beseda.id}}" class="program-item beseda" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}" item-id="b_{{beseda.id}}" onclick="showItemDetails(this)">
+                        <div id="b_{{beseda.id}}" class="program-item beseda" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}" item-id="b_{{beseda.id}}" onmousedown="showItemDetails(this)">
                             <div>
                                 {{ beseda.name }}
                             </div>
                         </div>
                     {% endfor %}
                     {% for workshop in program[room]["workshops"] %}
-                        <div id="w_{{workshop.id}}" class="program-item workshop" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}" item-id="w_{{workshop.id}}" onclick="showItemDetails(this)">
+                        <div id="w_{{workshop.id}}" class="program-item workshop" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}" item-id="w_{{workshop.id}}" onmousedown="showItemDetails(this)">
                             <div>
                                 {{ workshop.name }}
                             </div>
