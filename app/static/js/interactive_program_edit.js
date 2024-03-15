@@ -59,7 +59,7 @@ function showItemDetails(element) {
     element.classList.add('selected')
 }
 
-function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v item detailech podle properties jednotlivych itemu v programu */
+function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v item detailech podle attributu jednotlivych itemu v programu */
     let programItems = document.querySelectorAll('.program-item')
     programItems.forEach(item => {
         if (item.style.visibility == 'hidden') {return};
@@ -171,6 +171,7 @@ timeFromInputs.forEach(inputEle => {
         
         programItem.setAttribute('end-time', newEndTime)
         programItem.setAttribute('start-time', newTime)
+        updateAllTimeInputs()
         updateAllItemsPosition()
     })
 })
