@@ -143,6 +143,20 @@ async function saveProgram() {
     }
 }
 
+function updateAllItemLengths() { // funkce na updatovani doby trvani v item details na zaklade hodnot time inputu
+    itemDetailsEles = document.querySelectorAll('.details')
+    itemDetailsEles.forEach(ele => {
+        let timeFromInput = ele.querySelector('.time-from-input')
+        let timeToInput = ele.querySelector('.time-to-input')
+        let lengthEle = ele.querySelector('.item-length')
+        let timeFrom = timeFromInput.value
+        let timeTo = timeToInput.value
+        let differenceMs = getTimeDifferenceInMs(timeFrom, timeTo)
+        let timeDifference = msToTimeString(differenceMs)
+        lengthEle.innerHTML = timeDifference
+    })
+}
+
 function msToTimeString(ms) {
     const date = new Date(ms);
     const hours = String(date.getHours()).padStart(2, '0');
@@ -183,11 +197,13 @@ timeToInputs.forEach(inputEle => {
         let programItem = document.getElementById(uid) 
         programItem.setAttribute('end-time', e.target.value)
         updateAllItemsPosition()
+        updateAllItemLengths()
     })
 })
 
 updateAllItemsPosition()
 updateAllTimeInputs()
+updateAllItemLengths()
 
 let modifiedItemUids = [];
 

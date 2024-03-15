@@ -23,6 +23,7 @@
 
 .program-item:hover {
     cursor: move;
+    min-width: unset;
 }
 
 .program-item.selected {
