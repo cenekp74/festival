@@ -140,6 +140,8 @@ timeToInputs.forEach(inputEle => {
 updateAllItemsPosition()
 updateAllTimeInputs()
 
+let modifiedItemUids = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     var grid = document.querySelector('.program-container');
     var gridWidth = grid.offsetWidth;
@@ -196,6 +198,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 updatteAllItemTimesAndRooms()
                 updateAllTimeInputs()
                 updateAllItemDetailsRooms()
+                if (!(modifiedItemUids.includes(item.id))) {
+                    modifiedItemUids.push(item.id)
+                }
             }
         });
     });
