@@ -88,7 +88,7 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
         items[i].style.gridColumnEnd = minutesFromStart.end+1;
         if (items[i].style.gridColumnEnd > 361) {
             items[i].style.borderRight = '4px solid black'
-        }
+        } else {items[i].style.borderRight = ''}
         items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
     }
 }
@@ -188,6 +188,7 @@ timeFromInputs.forEach(inputEle => {
         programItem.setAttribute('start-time', newTime)
         updateAllTimeInputs()
         updateAllItemsPosition()
+        modifiedItemUids.push(programItem.id)
     })
 })
 
@@ -199,6 +200,7 @@ timeToInputs.forEach(inputEle => {
         programItem.setAttribute('end-time', e.target.value)
         updateAllItemsPosition()
         updateAllItemLengths()
+        modifiedItemUids.push(programItem.id)
     })
 })
 
