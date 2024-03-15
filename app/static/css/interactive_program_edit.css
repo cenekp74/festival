@@ -55,3 +55,17 @@
     right: 0;
     bottom: -4rem;
 }
+
+.new-items {
+    width: 4rem;
+    height: 3rem;
+    position: absolute;
+    left: 2rem;
+    bottom: -4rem;
+    width: max-content;
+}
+
+.new-items div {
+    margin-bottom: .2rem;
+    font-size: large;
+}

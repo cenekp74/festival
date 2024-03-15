@@ -72,6 +72,7 @@
                     <input class="time-to-input" type="time">
                 </div>
                 <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
+                <a target=”_blank” href="/edit_film/{{ item.id }}">edit</a>
             </div>
             {% endfor %}
 
@@ -88,6 +89,7 @@
                     <input class="time-to-input" type="time">
                 </div>
                 <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
+                <a target=”_blank” href="/edit_workshop/{{ item.id }}">edit</a>
             </div>
             {% endfor %}
 
@@ -107,9 +109,16 @@
                     <input class="time-to-input" type="time">
                 </div>
                 <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
+                <a target=”_blank” href="/edit_beseda/{{ item.id }}">edit</a>
             </div>
             {% endfor %}
         {% endfor %}
+    </div>
+    <div class="new-items">
+        <div><a target=”_blank” href="{{ url_for('edit_program.add_film') }}">Přidat nový film</a></div>
+        <div><a target=”_blank” href="{{ url_for('edit_program.add_beseda') }}">Přidat novou besedu</a></div>
+        <div><a target=”_blank” href="{{ url_for('edit_program.add_workshop') }}">Přidat nový workshop</a></div>
+        
     </div>
     <button class="btn save-program-button" onclick="saveProgram()">Uložit</button>
 </div>
