@@ -17,6 +17,8 @@
                 <th>Místnost</th>
                 <th>Jazyk</th>
                 <th>Odkaz</th>
+                <th>Pouze pro vyšší gympl</th>
+                <th>Doporučeno</th>
                 <th>Program</th>
             </tr>
             {% for film in films %}
@@ -31,6 +33,8 @@
                 <td>
                     <a href="{{ film.link }}">odkaz</a>
                 </td>
+                <td>{{ 'ano' if film.vg else 'ne' }}</td>
+                <td>{{ 'ano' if film.recommended else '' }}</td>
                 <td>
                     <a href="{{ url_for('program_day', dayn=film.day) }}?f_{{film.id}}">program</a>
                 </td>
@@ -47,6 +51,8 @@
                 <th>Čas</th>
                 <th>Místnost</th>
                 <th>Host</th>
+                <th>Pouze pro vyšší gympl</th>
+                <th>Doporučeno</th>
                 <th>Program</th>
             </tr>
             {% for beseda in besedy %}
@@ -64,6 +70,8 @@
                         {% endif %}
                     {% endfor %}
                 </td>
+                <td>{{ 'ano' if beseda.vg else 'ne' }}</td>
+                <td>{{ 'ano' if beseda.recommended else '' }}</td>
                 <td>
                     <a href="{{ url_for('program_day', dayn=beseda.day) }}?b_{{beseda.id}}">program</a>
                 </td>
@@ -81,6 +89,8 @@
                 <th>Místnost</th>
                 <th>Autor</th>
                 <th>Popis</th>
+                <th>Pouze pro vyšší gympl</th>
+                <th>Doporučeno</th>
                 <th>Program</th>
             </tr>
             {% for workshop in workshops %}
@@ -93,6 +103,8 @@
                 <td>{{ workshop.room }}</td>
                 <td>{{ workshop.author }}</td>
                 <td>{{ workshop.description|safe}}</td>
+                <td>{{ 'ano' if workshop.vg else 'ne' }}</td>
+                <td>{{ 'ano' if workshop.recommended else '' }}</td>
                 <td>
                     <a href="{{ url_for('program_day', dayn=workshop.day) }}?w_{{workshop.id}}">program</a>
                 </td>
