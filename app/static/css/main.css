@@ -479,6 +479,11 @@ input.form-control, input.form-input {
     margin-top: 0.2rem;
 }
 
+input[type='checkbox'].form-control {
+    width: unset;
+    height: 1.2rem;
+}
+
 input.invalid {
     border-color: #dc3545;
     padding-right: calc(1.5em + .75rem);
