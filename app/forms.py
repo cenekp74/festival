@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, SelectField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, SelectField, TextAreaField, BooleanField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange
 from app.db_classes import Host
@@ -25,6 +25,8 @@ class FilmForm(FlaskForm):
     room = StringField('Místnost', validators=[DataRequired()])
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
+    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
+    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
 
     # PRIDAT overeni jestli uz film neexistuje
@@ -40,6 +42,8 @@ class WorkshopForm(FlaskForm):
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
     author = StringField('Autor', validators=[DataRequired()])
     description = TextAreaField('Popis')
+    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
+    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
 
 class BesedaForm(FlaskForm):
@@ -49,6 +53,8 @@ class BesedaForm(FlaskForm):
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Místnost', validators=[DataRequired()])
+    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
+    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
 
 class HostForm(FlaskForm):
@@ -56,4 +62,6 @@ class HostForm(FlaskForm):
     description = TextAreaField('Popis')
     short_description = StringField('Krátký popis')
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
+    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
+    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
