@@ -160,6 +160,15 @@
     right: 5px;
 }
 
+.item-details .vg-text {
+    font-size: .8rem;
+    line-height: .8rem;
+    max-width: 10rem;
+    margin-right: 20px;
+    margin-top: .3rem;
+    font-style: italic;
+}
+
 .in-favorite {
     color: var(--favorite-color);
 }

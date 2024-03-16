@@ -64,6 +64,9 @@
         <div>
             <a href="{{ item.link }}">odkaz</a>
         </div>
+        {% if item.vg %}
+        <div class="vg-text">Film je určen pouze pro <br> studenty vyššího gymnázia</div>
+        {% endif %}
         <a href="javascript:toggleFavorite('{{'f_'+item.id|string}}')">
             <i id="star-f_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
@@ -79,6 +82,9 @@
         </a>
         <div>workshop</div>
         <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        {% if item.vg %}
+        <div class="vg-text">Workshop je určen pouze pro <br> studenty vyššího gymnázia</div>
+        {% endif %}
         <a href="javascript:toggleFavorite('{{'w_'+item.id|string}}')">
             <i id="star-w_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
@@ -96,6 +102,9 @@
             <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
                 <div>host</div>
             </a>
+        {% endif %}
+        {% if item.vg %}
+        <div class="vg-text">Beseda je určena pouze pro studenty vyššího gymnázia</div>
         {% endif %}
         <a href="javascript:toggleFavorite('{{'b_'+item.id|string}}')">
             <i id="star-b_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
