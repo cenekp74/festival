@@ -25,8 +25,8 @@ class FilmForm(FlaskForm):
     room = StringField('Místnost', validators=[DataRequired()])
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
-    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
-    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
+    vg = BooleanField('Jen pro vyšší gymnázium')
+    recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
     # PRIDAT overeni jestli uz film neexistuje
@@ -42,8 +42,8 @@ class WorkshopForm(FlaskForm):
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
     author = StringField('Autor', validators=[DataRequired()])
     description = TextAreaField('Popis')
-    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
-    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
+    vg = BooleanField('Jen pro vyšší gymnázium')
+    recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
 class BesedaForm(FlaskForm):
@@ -53,8 +53,8 @@ class BesedaForm(FlaskForm):
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = StringField('Místnost', validators=[DataRequired()])
-    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
-    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
+    vg = BooleanField('Jen pro vyšší gymnázium')
+    recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
 class HostForm(FlaskForm):

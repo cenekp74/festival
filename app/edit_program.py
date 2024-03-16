@@ -45,7 +45,9 @@ def add_film():
                     day = form.day.data,
                     room = form.room.data,
                     language = form.language.data,
-                    filename = form.filename.data
+                    filename = form.filename.data,
+                    vg = form.vg.data,
+                    recommended = form.recommended.data
                     )
         db.session.add(film)
         db.session.commit()
@@ -73,7 +75,9 @@ def add_workshop():
                     room = form.room.data,
                     picture_filename = picture_filename,
                     author=form.author.data,
-                    description = form.description.data
+                    description = form.description.data,
+                    vg = form.vg.data,
+                    recommended = form.recommended.data
                     )
         db.session.add(workshop)
         db.session.commit()
@@ -93,7 +97,9 @@ def add_beseda():
                     time_to = form.time_to.data.strftime('%H:%M'),
                     host_id = form.host.data.id if form.host.data else None,
                     day = form.day.data,
-                    room = form.room.data
+                    room = form.room.data,
+                    vg = form.vg.data,
+                    recommended = form.recommended.data
                     )
         db.session.add(beseda)
         db.session.commit()
@@ -133,7 +139,8 @@ def edit_film(id):
     id = int(id)
     film = Film.query.get(id)
     form = FilmForm(name=film.name, 
-                    link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(), day=film.day, room=film.room)
+                    link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(),
+                    day=film.day, room=film.room, vg=film.vg, recommended=film.recommended)
     if form.validate_on_submit():
         film.name = form.name.data
         film.link = form.link.data
@@ -143,6 +150,8 @@ def edit_film(id):
         film.room = form.room.data
         film.language = form.language.data
         film.filename = form.filename.data
+        film.vg = form.vg.data
+        film.recommended = form.recommended.data
         db.session.commit()
         update_rooms()
         flash('Změny uloženy')
@@ -157,7 +166,8 @@ def edit_beseda(id):
     id = int(id)
     beseda = Beseda.query.get(id)
     form = BesedaForm(name=beseda.name, host=Host.query.get(beseda.host_id),
-                    time_from=datetime.datetime.strptime(beseda.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(beseda.time_to, '%H:%M').time(), day=beseda.day, room=beseda.room)
+                    time_from=datetime.datetime.strptime(beseda.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(beseda.time_to, '%H:%M').time(),
+                    day=beseda.day, room=beseda.room, vg=beseda.vg, recommended=beseda.recommended)
     if form.validate_on_submit():
         beseda.name = form.name.data
         if form.host.data:
@@ -167,6 +177,8 @@ def edit_beseda(id):
         beseda.time_to = form.time_to.data.strftime('%H:%M')
         beseda.day = form.day.data
         beseda.room = form.room.data
+        beseda.vg = form.vg.data
+        beseda.recommended = form.recommended.data
         db.session.commit()
         update_rooms()
         flash('Změny uloženy')
@@ -181,7 +193,8 @@ def edit_workshop(id):
     id = int(id)
     workshop = Workshop.query.get(id)
     form = WorkshopForm(name=workshop.name,
-                    time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(), day=workshop.day, room=workshop.room, author=workshop.author, description=workshop.description)
+                    time_from=datetime.datetime.strptime(workshop.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(workshop.time_to, '%H:%M').time(),
+                    day=workshop.day, room=workshop.room, author=workshop.author, description=workshop.description, vg=workshop.vg, recommended=workshop.recommended)
     if form.validate_on_submit():
         if form.picture.data:
             os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
@@ -196,6 +209,8 @@ def edit_workshop(id):
         workshop.room = form.room.data
         workshop.author = form.author.data
         workshop.description = form.description.data
+        workshop.vg = form.vg.data
+        workshop.recommended = form.recommended.data
         db.session.commit()
         update_rooms()
         flash('Změny uloženy')
