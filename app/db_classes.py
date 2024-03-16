@@ -31,6 +31,8 @@ class Film(db.Model):
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
     filename = db.Column(db.String(50))
+    vg = db.Column(db.Integer, default=0, nullable=False) # je jen pro vyssi gymnazium?
+    recommended = db.Column(db.Integer, default=0, nullable=False) # je doporuceny?
 
     @property
     def serialize(self):
@@ -58,6 +60,8 @@ class Workshop(db.Model):
     author = db.Column(db.String(50))
     description = db.Column(db.String(1000))
     picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
+    vg = db.Column(db.Integer, default=0, nullable=False) # je jen pro vyssi gymnazium?
+    recommended = db.Column(db.Integer, default=0, nullable=False) # je doporuceny?
 
     @property
     def serialize(self):
@@ -83,6 +87,8 @@ class Beseda(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
+    vg = db.Column(db.Integer, default=0, nullable=False) # je jen pro vyssi gymnazium?
+    recommended = db.Column(db.Integer, default=0, nullable=False) # je doporuceny?
 
     @property
     def serialize(self):
