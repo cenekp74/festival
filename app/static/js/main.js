@@ -94,3 +94,9 @@ document.addEventListener('click', () => {
 document.addEventListener('scroll', () => {
     hide_topnav()
 })
+
+const logoMediaQuery = window.matchMedia('(max-width: 380px)');
+if (logoMediaQuery.matches) {
+    let logo = document.querySelector('.logo')
+    logo.innerHTML = 'JSNO'
+}
