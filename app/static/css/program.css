@@ -49,10 +49,12 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    flex-direction: column;
+    align-items: center;
+    justify-items: center;
     transition: all 1s;
     font-size: 20px;
     color: var(--program-text-color);
+    position: relative;
 }
 
 .program-item:hover {
@@ -70,9 +72,14 @@
     text-indent: 3px;
     word-wrap: break-word;
     margin-right: 3px;
+    max-width: 70%;
 }
 
-
+.program-item.vg {
+    background-image: url(/static/img/vg.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
 
 .flashed {
     outline: 2px solid var(--flash-border-color);
