@@ -42,8 +42,23 @@ function showContextMenu(event, element) {
     event.stopPropagation();
     var item_id = element.getAttribute('item-id');
     var contextMenu = document.getElementById('cm-'+item_id);
-    contextMenu.style.left = event.pageX + 'px';
     contextMenu.style.top = event.pageY + 'px';
+
+    // tohle je aby se cm zobrazovalo nalevo od kliknuti pokud je moc blizko pravy strane (190px, coz je max-width context menu definovana v program.css)
+    let distanceLeft = event.clientX;
+    let distanceRight = window.innerWidth - event.clientX;
+    if (distanceRight < 190) {
+        contextMenu.style.left = ''
+        contextMenu.style.borderTopRightRadius = '0'
+        contextMenu.style.borderTopLeftRadius = ''
+        contextMenu.style.right = distanceRight + 'px'
+    } else {
+        contextMenu.style.right = ''
+        contextMenu.style.borderTopLeftRadius = '0'
+        contextMenu.style.borderTopRightRadius = ''
+        contextMenu.style.left = distanceLeft + 'px';
+    }
+
     if (contextMenu.style.visibility == 'hidden') {
         hideAllContextMenu();
         contextMenu.style.visibility = 'visible';

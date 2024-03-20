@@ -157,6 +157,7 @@
     line-height: 1.5rem;
     position: fixed;
     z-index: 5;
+    max-width: 190px;
 }
 
 .item-details a div {
