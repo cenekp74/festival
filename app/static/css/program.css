@@ -45,13 +45,13 @@
     background-color: var(--secondary-color);
     border-radius: 12px;
     text-align: center;
-    height: 3rem;
+    height: 4rem;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
     transition: all 1s;
-    font-size: 17px;
+    font-size: 20px;
     color: var(--program-text-color);
 }
 
@@ -71,6 +71,8 @@
     word-wrap: break-word;
     margin-right: 3px;
 }
+
+
 
 .flashed {
     outline: 2px solid var(--flash-border-color);
@@ -106,8 +108,8 @@
 }
 
 .room {
-    height: 3rem;
-    line-height: 3rem;
+    height: 4rem;
+    line-height: 4rem;
     text-align: center;
     margin-top: 5px;
     font-size: 20px;
@@ -197,6 +199,9 @@
     }
     .time-item {
         border-bottom: 1px solid var(--secondary-color);
+    }
+    .program-item {
+        font-size: 18px;
     }
 }
 

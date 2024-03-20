@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var grid = document.querySelector('.program-container');
     var gridWidth = grid.offsetWidth;
     var columnWidth = gridWidth / 360;
-    var rowHeight = 53;
+    var rowHeight = 69; // vyska jednoho radku v px + 5px
   
     var items = document.querySelectorAll('.program-item');
     items.forEach(function(item) {
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
             column = parseInt(item.style.gridColumn.split('/')[0])
 
             var offsetX = event.clientX;
-            var offsetY = row*53 /* 30 je vyska radku s casem + gap */
+            var offsetY = row*rowHeight
 
             document.addEventListener('mousemove', onMouseMove);
             document.addEventListener('mouseup', onMouseUp);
