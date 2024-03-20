@@ -574,6 +574,10 @@ footer {
     .topnav:not(.responsive) .topnav-links > a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
+
+    .topnav:not(.responsive) .topnav-links .program-dropdown:not(.active) {
+        display: none;
+    }
     
     .topnav a {
         padding-left: 20px;
