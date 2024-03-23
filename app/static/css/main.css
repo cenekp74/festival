@@ -4,6 +4,7 @@
     --active-page-color: #0d2435;
     --secondary-color: #172025;
     --topnav-color: var(--bg-color);
+    --responsive-topnav-color: #1a323f;
     --link-color: var(--text-color);
     --hover-link-color: #bca4ee;
     --button-color: #0d2435;
@@ -24,6 +25,7 @@
     --active-page-color: #c0dbf0;
     --secondary-color: #7ba4c4;
     --topnav-color: var(--bg-color);
+    --responsive-topnav-color: #8ac1eb;
     --link-color: var(--text-color);
     --hover-link-color: #43395a;
     --button-color: #68aee4;
@@ -426,7 +428,7 @@ input:checked + .slider:before {
     display: flex;
 }
 
-.topnav-links a:hover {
+.topnav:not(.responsive) .topnav-links a:hover {
     background-color: var(--secondary-color);
     transition: .3s ease;
 }
@@ -461,7 +463,7 @@ input:checked + .slider:before {
     border-radius: 400px;
 }
 
-.program-dropdown {
+.topnav:not(.responsive) .program-dropdown {
     position: relative;
     display: inline;
     margin-right: .2vw; /* stejny jako margin u .topnav a */
@@ -657,7 +659,13 @@ footer {
     }
 }
 
-@media screen and (max-width: 1530px) { /* stejny jako breakpoint v program.css */
+@media screen and (max-width: 1540px) {
+    .topnav-links a {
+        text-transform: none;
+    }
+}
+
+@media screen and (max-width: 1400px) { /* stejny jako breakpoint v program.css */
     .topnav:not(.responsive) .topnav-links > a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
@@ -707,11 +715,16 @@ footer {
         align-self: baseline;
         position: fixed;
         right: 0;
-        background-color: var(--secondary-color);
+        background-color: var(--responsive-topnav-color);
         border-radius: 20px;
         z-index: 10;
         overflow: hidden;
     }
+
+    .topnav.responsive .program-dropdown-content {
+        background-color: var(--responsive-topnav-color);
+    }
+
     .content {
         min-width: 85vw;
     }
