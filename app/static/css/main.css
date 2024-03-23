@@ -390,6 +390,11 @@ button:not(:disabled) {
 .program-dropdown {
     position: relative;
     display: inline;
+    margin-right: .2vw; /* stejny jako margin u .topnav a */
+}
+
+.program-dropdown > a { /* tohle je aby byl margin u dropdown divu a ne u linku vevnitr */
+    margin-right: 0;
 }
 
 .program-dropdown.active {
