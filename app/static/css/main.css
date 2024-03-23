@@ -614,6 +614,7 @@ footer {
     align-items: center;
     background-color: var(--bg-color);
     max-height: 56px;
+    border-top: 1px solid var(--secondary-color);
 }
 
 .social-icons a {
