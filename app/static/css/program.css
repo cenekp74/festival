@@ -5,7 +5,6 @@
 .program-container {
     display: grid;
     grid-template-columns: repeat(360, 1fr);
-    margin-top: 2rem;
     row-gap: 5px;
     position: relative;
     border: 1px solid var(--bg-color);
@@ -108,7 +107,7 @@
 }
 
 .rooms-container {
-    margin-top: 3.5rem; /* o 1.5rem vic nez margin-top u program-containeru */
+    margin-top: 1.5rem; /* o 1.5rem vic nez margin-top u program-containeru */
     margin-right: 0;
     padding-right: 3px;
     padding-top: 3px;
@@ -187,6 +186,13 @@
     margin-bottom: 120px;
 }
 
+.day-heading {
+    text-align: center;
+    margin: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 800px) {
     .program-item:hover {
         border: 1px solid var(--bg-color);
@@ -200,7 +206,7 @@
     }
 }
 
-@media screen and (max-width: 1530px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
+@media screen and (max-width: 1400px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
     .program-container {
         width: 85vw;
         border: 1px solid var(--secondary-color);
@@ -228,6 +234,10 @@
 @media screen and (max-width: 550px) { /* pri jaky width collapsuje dolni nav na dny */
     .content {
         margin-bottom: 155px;
+    }
+    .day-heading {
+        font-size: 1.5rem;
+        margin-bottom: .6rem;
     }
 } 
 
