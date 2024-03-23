@@ -18,6 +18,26 @@
     --dropdown-color: var(--topnav-color);
 }
 
+:root.light {
+    --text-color: #0d1316;
+    --bg-color: #eaf0f6;
+    --active-page-color: #c0dbf0;
+    --secondary-color: #7ba4c4;
+    --topnav-color: var(--bg-color);
+    --link-color: var(--text-color);
+    --hover-link-color: #43395a;
+    --button-color: #68aee4;
+    --disabled-button-color: #788b99;
+    --disabled-text-color: #273035;
+    --border-radius: 25px;
+    --favorite-color: #ffff00;
+    --table-hover-color: rgba(120, 173, 182, 0.2);
+    --search-highlight-color: #fceb04ad;
+    --form-color: #8cbfe9;
+    --form-field-color: #689bc5;
+    --dropdown-color: var(--topnav-color);
+}
+
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
