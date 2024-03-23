@@ -86,6 +86,60 @@ function showFlashAlert(message, category='') {
     content.insertBefore(ele, content.firstChild)
 }
 
+function getCookie(name) {
+    let cookie = {};
+    document.cookie.split(';').forEach(function(el) {
+      let split = el.split('=');
+      cookie[split[0].trim()] = split.slice(1).join("=");
+    })
+    return cookie[name];
+}
+
+const setTheme = theme => document.documentElement.className = theme;
+
+function setThemeFromCookie() {
+    theme = getCookie('theme')
+    console.log(theme)
+    if (!theme) {
+        setTheme('dark')
+        setThemeCookie('dark')
+    }
+    setTheme(theme)
+}
+
+function setThemeCookie(theme) {
+    const existingThemeCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('theme='));
+    if (existingThemeCookie) {
+        console.log('test')
+        document.cookie = document.cookie.replace(/theme=([^;]+)/, `theme=${theme};path=/`);
+    } else {
+        const cookieString = `theme=${theme};path=/`;
+        document.cookie = document.cookie ? `${document.cookie}; ${cookieString}` : cookieString;
+    }
+}
+
+function changeTheme() {
+    checkboxEle = document.querySelector('.theme-checkbox')
+    if (checkboxEle.checked) {
+        theme = 'dark'
+    }
+    else {
+        theme = 'light'
+    }
+    setThemeCookie(theme)
+    setThemeFromCookie()
+}
+
+if (document.querySelector('.theme-checkbox')) {
+    if (getCookie('theme') == 'light') {
+        document.querySelector('.theme-checkbox').checked = false;
+    } else {
+        document.querySelector('.theme-checkbox').checked = true;
+    }
+}
+
+setThemeFromCookie()
+
 document.addEventListener('click', () => {
     hide_topnav()
     hideProgramDropdown()
