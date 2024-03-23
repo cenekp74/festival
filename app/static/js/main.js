@@ -110,11 +110,12 @@ function setThemeFromCookie() {
 function setThemeCookie(theme) {
     const existingThemeCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('theme='));
     if (existingThemeCookie) {
-        console.log('test')
-        document.cookie = document.cookie.replace(/theme=([^;]+)/, `theme=${theme};path=/`);
+        console.log('setThemeCookie', theme)
+        document.cookie = `theme=${theme};path=/`;
+        console.log(document.cookie)
     } else {
         const cookieString = `theme=${theme};path=/`;
-        document.cookie = document.cookie ? `${document.cookie}; ${cookieString}` : cookieString;
+        document.cookie = cookieString;
     }
 }
 
