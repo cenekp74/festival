@@ -20,10 +20,10 @@
 :root {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
-    --film-color: #d93b65;
-    --workshop-color: #ff7400;
-    --beseda-color: #ffb730;
-    --flash-border-color: #d7e0c8;
+    --film-color: #d93b65ee;
+    --workshop-color: #ff7300ee;
+    --beseda-color: #ffb730ee;
+    --flash-border-color: var(--text-color);
     --program-text-color: #121212;
 }
 
