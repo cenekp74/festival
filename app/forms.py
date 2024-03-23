@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeF
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange
 from app.db_classes import Host
+from app import app
 # from app.db_classes import User
 # from flask_login import current_user
 # from flask_wtf.file import FileField, FileAllowed
@@ -22,7 +23,7 @@ class FilmForm(FlaskForm):
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
-    room = StringField('Místnost', validators=[DataRequired()])
+    room = SelectField('Místnost', choices=app.config['VALID_ROOMS'], validators=[DataRequired()])
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     vg = BooleanField('Jen pro vyšší gymnázium')
@@ -38,7 +39,7 @@ class WorkshopForm(FlaskForm):
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
-    room = StringField('Místnost', validators=[DataRequired()])
+    room = SelectField('Místnost', choices=app.config['VALID_ROOMS'], validators=[DataRequired()])
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
     author = StringField('Autor', validators=[DataRequired()])
     description = TextAreaField('Popis')
@@ -52,7 +53,7 @@ class BesedaForm(FlaskForm):
     time_from = TimeField('Od', validators=[DataRequired()])
     time_to = TimeField('Do', validators=[DataRequired()])
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
-    room = StringField('Místnost', validators=[DataRequired()])
+    room = SelectField('Místnost', choices=app.config['VALID_ROOMS'], validators=[DataRequired()])
     vg = BooleanField('Jen pro vyšší gymnázium')
     recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')

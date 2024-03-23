@@ -10,6 +10,7 @@ app.config['SECRET_KEY'] = '5e72ba27fc6a863eed13c27e6750bd25ab0be9ff55ac0e34823d
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 app.config['ALBUMS_JSON'] = 'app/static/fotogalerie/albums.json'
+app.config['VALID_ROOMS'] = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', '1.A', '2.A', '3.A', '2.B', '3.B', 'IVT1', 'IVT2', 'MU', 'Bi', 'Fy', 'Ch', 'Chl']
 
 UPLOAD_FOLDER = 'app/static/upload'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
