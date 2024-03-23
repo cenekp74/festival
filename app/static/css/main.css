@@ -2,7 +2,7 @@
     --text-color: #e7eaf9;
     --bg-color: #090f14;
     --active-page-color: #0d2435;
-    --secondary-color: #11171b;
+    --secondary-color: #172025;
     --topnav-color: var(--bg-color);
     --link-color: var(--text-color);
     --hover-link-color: #bca4ee;
@@ -352,9 +352,8 @@ button:not(:disabled) {
 }
 
 .topnav-links a:hover {
-    background-color: var(--text-color);
-    transition: 1s ease;
-    color: var(--bg-color);
+    background-color: var(--secondary-color);
+    transition: .3s ease;
 }
 
 .topnav-links a {
