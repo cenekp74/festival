@@ -64,7 +64,9 @@ a:visited {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-color);}
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+}
 
 .button-link {
     display: inline-block;
