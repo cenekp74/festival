@@ -345,7 +345,7 @@ input:checked + .slider:before {
 
 .program-day.program-nav {
     position: fixed;
-    bottom: 55px;
+    bottom: 2.5rem;
     left: 0;
     background-color: var(--bg-color);
     padding-bottom: 15px;
