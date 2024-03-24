@@ -7,8 +7,9 @@
 
 
 {% block body %}
-
-<input type="text" class="search-input" placeholder="Hledat" name="q" hx-get="{{ url_for('search_query') }}" hx-trigger="load, keyup changed delay:300ms" hx-target="#results">
+<div class="search-bar">
+    <input type="text" class="search-input" placeholder="Hledat" name="q" hx-get="{{ url_for('search_query') }}" hx-trigger="load, keyup changed delay:300ms" hx-target="#results">
+</div>
 
 <span id="no-results" style="visibility: hidden;">Žádné výsledky</span>
 
