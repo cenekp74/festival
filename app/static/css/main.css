@@ -22,7 +22,7 @@
 :root.light {
     --text-color: #0d1316;
     --bg-color: #eaf0f6;
-    --active-page-color: #c0dbf0;
+    --active-page-color: #b4d6f0;
     --secondary-color: #7ba4c4;
     --topnav-color: var(--bg-color);
     --responsive-topnav-color: #8ac1eb;

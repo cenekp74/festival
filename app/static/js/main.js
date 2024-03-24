@@ -120,6 +120,9 @@ function setThemeCookie(theme) {
 }
 
 function changeTheme() {
+    var styleSheet = document.createElement("style")
+    styleSheet.innerText = '* {transition: all 1s}'
+    document.head.appendChild(styleSheet)
     checkboxEle = document.querySelector('.theme-checkbox')
     if (checkboxEle.checked) {
         theme = 'dark'
@@ -129,6 +132,7 @@ function changeTheme() {
     }
     setThemeCookie(theme)
     setThemeFromCookie()
+    sleep(500).then(() => {document.head.removeChild(styleSheet)})
 }
 
 if (document.querySelector('.theme-checkbox')) {
