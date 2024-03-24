@@ -158,4 +158,6 @@ const logoMediaQuery = window.matchMedia('(max-width: 380px)');
 if (logoMediaQuery.matches) {
     let logo = document.querySelector('.logo')
     logo.innerHTML = 'JSNO'
+    let themeText = document.querySelector('.theme-switch b')
+    themeText.innerHTML = ''
 }
