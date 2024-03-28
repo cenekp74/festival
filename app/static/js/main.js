@@ -99,7 +99,6 @@ const setTheme = theme => document.documentElement.className = theme;
 
 function setThemeFromCookie() {
     theme = getCookie('theme')
-    console.log(theme)
     if (!theme) {
         setTheme('dark')
         setThemeCookie('dark')
@@ -110,9 +109,7 @@ function setThemeFromCookie() {
 function setThemeCookie(theme) {
     const existingThemeCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('theme='));
     if (existingThemeCookie) {
-        console.log('setThemeCookie', theme)
         document.cookie = `theme=${theme};path=/`;
-        console.log(document.cookie)
     } else {
         const cookieString = `theme=${theme};path=/`;
         document.cookie = cookieString;
