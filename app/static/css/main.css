@@ -796,10 +796,10 @@ footer {
         text-transform: none;
     }
     .content {
-        min-width: 95vw;
+        min-width: 100vw;
     }
     .grid-items-container {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 0;
+        padding-right: 1vw;
     }
 }
