@@ -18,15 +18,16 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db = SQLAlchemy(app)
-with app.app_context():
-    db.create_all()
-    from .utils import update_rooms, load_albums
-    update_rooms()
-    load_albums()
-
 bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
+
+from .utils import update_rooms, load_albums
+try:
+    update_rooms()
+except Exception as e:
+    print(f'Failed to load rooms from db: {e}')
+load_albums()
 
 from .api import api as api_blueprint
 app.register_blueprint(api_blueprint, url_prefix='/api')
