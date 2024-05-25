@@ -22,9 +22,10 @@ bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
-from .utils import update_rooms, load_albums
-update_rooms()
-load_albums()
+with app.app_context():
+    from .utils import update_rooms, load_albums
+    update_rooms()
+    load_albums()
 
 from .api import api as api_blueprint
 app.register_blueprint(api_blueprint, url_prefix='/api')
