@@ -39,6 +39,7 @@ def program_day(dayn):
     if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
     if dayn not in [1,2,3]: abort(404)
+    update_rooms() # tohle je tu proto, protoze kdyz server bezi s vic workerama tak se updatne vzdycky jenom u jednoho app.rooms a jsou s tim pak problemy. neni to idealni reseni, ale nevim jak jinak to udelat. stejne je to v interaktivnim editovani a ve favorites
     program = {}
     for room in app.rooms[dayn]:
         program[room] = {}
@@ -123,6 +124,7 @@ def favorite_day(dayn):
     if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
     if dayn not in [1,2,3]: abort(404)
+    update_rooms() # tohle je tu proto, protoze kdyz server bezi s vic workerama tak se updatne vzdycky jenom u jednoho app.rooms a jsou s tim pak problemy
     favorite_cookie = request.cookies.get("favorite")
     if not favorite_cookie: favorite_cookie = ''
     films = []

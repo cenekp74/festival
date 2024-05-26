@@ -21,6 +21,7 @@ def index():
 @login_required
 @admin_required
 def interactive(dayn):
+    update_rooms() # tohle je tu proto, protoze kdyz server bezi s vic workerama tak se updatne vzdycky jenom u jednoho app.rooms a jsou s tim pak problemy
     if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
     if dayn not in [1,2,3]: abort(404)
