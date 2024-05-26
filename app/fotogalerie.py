@@ -29,7 +29,7 @@ def add_photos(album_id):
     try:
         if album_id not in list(app.albums_dict.keys()):
             return abort(404)
-        uploaded_files = request.files.getlist("file[]")
+        uploaded_files = request.files.getlist("file")
         for file in uploaded_files:
             file.save(f'app/static/fotogalerie/{album_id}/{secure_filename(file.filename)}')
     except Exception as e:

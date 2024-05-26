@@ -2,6 +2,8 @@
 
 {% block head %}
 <script src="{{ url_for('static', filename='js/spotlight.bundle.js') }}"></script>
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 {% endblock%}
 
 {% block body %}
@@ -20,9 +22,10 @@
 </div>
 
 {% if current_user.admin %}
-<form style="margin-top: 2rem;" method="POST" enctype="multipart/form-data" action="/fotogalerie/{{ id }}">
-    <input type="file" name="file[]" multiple="" required>
-    <input type="submit" value="Přidat">
+<form style="margin-top: 2rem;" action="/fotogalerie/{{ id }}"
+      class="dropzone"
+      id="dropzone">
+      <div class="dz-message">Zde nahrajte soubory</div>
 </form>
 <a style="margin-top: .5rem;" class="btn" href="{{ url_for('fotogalerie.delete_album', album_id=id) }}" onclick="return confirm('Smazat album?')">Smazat album</a>
 {% endif %}

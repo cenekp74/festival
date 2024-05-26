@@ -238,6 +238,13 @@ input:checked + .slider:before {
     border-radius: var(--border-radius);
 }
 
+#dropzone {
+    border-radius: var(--border-radius);
+    outline: 3px dashed var(--link-color);
+    font-size: 1.8rem;
+    background-color: var(--secondary-color);
+}
+
 @media screen and (max-width: 800px) {
     .gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
