@@ -50,7 +50,6 @@
     align-content: center;
     align-items: center;
     justify-items: center;
-    transition: all 1s;
     font-size: 20px;
     color: var(--program-text-color);
     position: relative;
