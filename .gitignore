@@ -2,5 +2,5 @@
 venv
 app/__pycache__/
 instance/
-app/static/upload
-app/static/fotogalerie
+app/static/upload/
+app/static/fotogalerie/

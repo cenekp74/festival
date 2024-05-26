@@ -231,16 +231,6 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-.gallery img.full {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    width: 100vw;
-    height: 100vh;
-    object-fit: contain;
-    background: var(--bg-color);
-}
 .album-link {
     font-size: 110%;
     border: 1px solid var(--link-color);
