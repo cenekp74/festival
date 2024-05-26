@@ -28,7 +28,7 @@ def index():
 def album(album_id):
     if album_id not in list(app.albums_dict.keys()):
         abort(404)
-    files = list(os.listdir(f'app/static/fotogalerie/{album_id}/'))
+    files = [f for f in os.listdir(f'app/static/fotogalerie/{album_id}/') if not f.startswith('thumb')]
     images = [(f"/static/fotogalerie/{album_id}/{file}", f"/static/fotogalerie/{album_id}/thumb-{file}") for file in files] # [(imgae, thumbnail)]
     return render_template('fotogalerie/album.html', images=images, name=app.albums_dict[album_id], id=album_id)
 
