@@ -8,6 +8,16 @@ from werkzeug.utils import secure_filename
 from .decorators import admin_required
 import os
 
+IMAGE_THUMBNAIL_WIDTH = 500
+
+from PIL import Image
+def resize_image(input_path, output_path, new_width):
+    with Image.open(input_path) as img:
+        width, height = img.size
+        new_height = int((new_width / width) * height)
+        resized_img = img.resize((new_width, new_height), Image.LANCZOS)
+        resized_img.save(output_path)
+
 fotogalerie = Blueprint('fotogalerie', __name__)
 
 @fotogalerie.route('/')
@@ -19,7 +29,7 @@ def album(album_id):
     if album_id not in list(app.albums_dict.keys()):
         abort(404)
     files = list(os.listdir(f'app/static/fotogalerie/{album_id}/'))
-    images = [f"/static/fotogalerie/{album_id}/{file}" for file in files]
+    images = [(f"/static/fotogalerie/{album_id}/{file}", f"/static/fotogalerie/{album_id}/thumb-{file}") for file in files] # [(imgae, thumbnail)]
     return render_template('fotogalerie/album.html', images=images, name=app.albums_dict[album_id], id=album_id)
 
 @fotogalerie.route('/<album_id>', methods=['POST'])
@@ -31,7 +41,9 @@ def add_photos(album_id):
             return abort(404)
         uploaded_files = request.files.getlist("file")
         for file in uploaded_files:
-            file.save(f'app/static/fotogalerie/{album_id}/{secure_filename(file.filename)}')
+            fn = secure_filename(file.filename)
+            file.save(f'app/static/fotogalerie/{album_id}/{fn}')
+            resize_image(f'app/static/fotogalerie/{album_id}/{fn}', f'app/static/fotogalerie/{album_id}/thumb-{fn}', IMAGE_THUMBNAIL_WIDTH)
     except Exception as e:
         return f"Upload selhal: {e}"
     flash('Upload úspěšný')

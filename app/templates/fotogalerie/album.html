@@ -11,9 +11,11 @@
 <div class="spotlight-group gallery">
     {% for img in images: %}
     <div class="gallery-item">
-        <img class="spotlight" src="{{img}}">
+        <a class="spotlight" href="{{ img[0] }}">
+            <img src="{{ img[1] }}">
+        </a>
         {% if current_user.admin %}
-        <a href="{{ url_for('fotogalerie.delete_photo', album_id=id, photo_name=img.split('/')[-1]) }}">
+        <a href="{{ url_for('fotogalerie.delete_photo', album_id=id, photo_name=img[0].split('/')[-1]) }}">
             <i class="fa fa-trash"></i>
         </a>
         {% endif %}
