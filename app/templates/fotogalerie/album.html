@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<script src="{{ url_for('static', filename='js/spotlight.bundle.js') }}"></script>
 {% endblock%}
 
 {% block body %}
 <h1>{{ name }}</h1>
-<div class="gallery">
+<div class="spotlight-group gallery">
     {% for img in images: %}
     <div class="gallery-item">
-        <img src="{{img}}">
+        <img class="spotlight" src="{{img}}">
         {% if current_user.admin %}
         <a href="{{ url_for('fotogalerie.delete_photo', album_id=id, photo_name=img.split('/')[-1]) }}">
             <i class="fa fa-trash"></i>
