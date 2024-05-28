@@ -204,7 +204,7 @@
         min-width: max-content;
         z-index: 5;
     }
-    .program-item div:hover {
+    .program-item:hover div {
         font-size: 100%;
         -webkit-line-clamp: 2;
         writing-mode: initial;
