@@ -152,12 +152,19 @@ for (var i = 0; i < items.length; i++) {
     items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
 }
 
-//idk kdyz to dam vsechno do jednoho loopu tak to nefacha protoze se jakoze neupdatuje width a height property hned co zmenim styl
-for (var i = 0; i < items.length; i++) {
-    if (items[i].offsetHeight - items[i].offsetWidth > 15) {
-        items[i].classList += ' vertical';
+function checkForSmallProgramItems() { // funkce ktera zkontroluje jestli nejaky program itemy nejsou moc maly, pokud jo tak je zobrazi vertikalne
+    let items = document.getElementsByClassName('program-item');
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].offsetHeight - items[i].offsetWidth > 15) {
+            items[i].classList.add('vertical');
+        }
+        else {
+            items[i].classList.remove('vertical')
+        }
     }
 }
+window.addEventListener('resize', checkForSmallProgramItems);
+checkForSmallProgramItems()
 
 updateTimeVerticalLine()
 setInterval(updateTimeVerticalLine, 60*1000)
@@ -177,3 +184,4 @@ function resizeProgramContainer() {
     programContainer.style.gridTemplateColumns = `repeat(360, ${colSize}px)`
 }
 window.addEventListener('resize', resizeProgramContainer);
+resizeProgramContainer()
