@@ -109,6 +109,7 @@ async function toggleFavorite(uid) {
 }
 
 function reloadStars() {
+    if (!(getCookie('favorite'))) {return} // pokud favorite cookie jeste neexistuje, return
     var stars = document.getElementsByClassName('favorite-star');
     var favoriteCookie = getCookie('favorite').replace('"', '');
     var favoriteItems = favoriteCookie.split(' ');
