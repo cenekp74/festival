@@ -169,3 +169,11 @@ if (document.URL.indexOf("?") != -1) {
 }
 
 reloadStars();
+
+// tohle je tu kvuli tomu, ze grid-template-columns u program-containeru nejde nastavit ve fr, jinak se potom pri zmene velikosti jednoho program itemu (on hover) meni velikost jednoho sloupecku a cely se to posouva (jenom v chromu teda (nemam rad chrom))
+function resizeProgramContainer() {
+    programContainer = document.getElementsByClassName('program-container')[0]
+    colSize = programContainer.offsetWidth / 360
+    programContainer.style.gridTemplateColumns = `repeat(360, ${colSize}px)`
+}
+window.addEventListener('resize', resizeProgramContainer);
