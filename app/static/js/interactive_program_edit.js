@@ -159,10 +159,14 @@ function updateAllItemLengths() { // funkce na updatovani doby trvani v item det
 }
 
 function msToTimeString(ms) {
-    const date = new Date(ms);
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${hours}:${minutes}`;
+    let totalSeconds = Math.floor(ms / 1000);
+    let totalMinutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+    let hours = Math.floor(totalMinutes / 60);
+    let minutes = totalMinutes % 60;
+    let formattedHours = String(hours).padStart(2, '0');
+    let formattedMinutes = String(minutes).padStart(2, '0');
+    return `${formattedHours}:${formattedMinutes}`;
 }
 
 function getTimeDifferenceInMs(time1, time2) { // input jsou stringy ve formatu "%H:%M"
