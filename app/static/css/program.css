@@ -4,13 +4,13 @@
 
 .program-container {
     display: grid;
-    grid-template-columns: repeat(360, 1fr);
+    grid-template-columns: repeat(390, 1fr);
     row-gap: 5px;
     position: relative;
     border: 1px solid var(--bg-color);
     padding: 2px;
-    min-width: 750px;
-    width: 66vw;
+    min-width: 800px;
+    width: 76vw;
 }
 
 .program-container-wrapper {
@@ -213,7 +213,7 @@
 
 @media screen and (max-width: 1400px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
     .program-container {
-        width: 85vw;
+        width: 88vw;
         border: 1px solid var(--secondary-color);
     }
     .time-item {
@@ -226,11 +226,11 @@
 
 @media screen and (max-width: 1312px) { /* stejny jako breakpoint v main.css */
     .program-container {
-        width: 78vw;
+        width: 95vw;
     }
 }
 
-@media screen and (max-width: 850px) { /* 100px more than .program-container min-width */
+@media screen and (max-width: 900px) { /* 100px more than .program-container min-width */
     .program-container-wrapper {
         overflow-x: scroll;
     }
@@ -252,9 +252,6 @@
     }
     .room {
         font-size: 17px;
-    }
-    .program-item {
-        font-size: 16px;
     }
     .program-item div {
         text-indent: 0;

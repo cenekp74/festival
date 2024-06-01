@@ -3,18 +3,18 @@ function timeToMinutes(time) {
     return hours * 60 + minutes;
 }
 
-function getMinutesFrom8am() {
+function getMinutesFrom830am() {
     var currentDate = new Date();
     var targetTime = new Date(currentDate);
-    targetTime.setHours(8, 0, 0, 0);
+    targetTime.setHours(8, 30, 0, 0);
     var timeDifference = currentDate - targetTime;
     var minutesPassed = Math.floor(timeDifference / (1000 * 60));
     return minutesPassed
 }
 
-// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8 rano
+// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8:30 rano
 function calculateMinutesFromStart(startTime, endTime) {
-    const timeRangeStart = timeToMinutes("08:00");
+    const timeRangeStart = timeToMinutes("08:30");
     const startMinutes = timeToMinutes(startTime);
     const endMinutes = timeToMinutes(endTime);
 
@@ -29,13 +29,13 @@ function calculateMinutesFromStart(startTime, endTime) {
 
 function updateTimeVerticalLine() {
     const root = document.querySelector(":root");
-    var minutes = getMinutesFrom8am()
-    if (minutes < 0 | minutes > 360) {
+    var minutes = getMinutesFrom830am()
+    if (minutes < 0 | minutes > 390) {
         root.style.setProperty("--vline-visibility", "hidden");
         return
     }
     root.style.setProperty("--vline-visibility", "visible");
-    root.style.setProperty("--vline-left", String(minutes/360*100)+"%");
+    root.style.setProperty("--vline-left", String(minutes/390*100)+"%");
 }
 
 function showContextMenu(event, element) {
@@ -181,8 +181,8 @@ reloadStars();
 // tohle je tu kvuli tomu, ze grid-template-columns u program-containeru nejde nastavit ve fr, jinak se potom pri zmene velikosti jednoho program itemu (on hover) meni velikost jednoho sloupecku a cely se to posouva (jenom v chromu teda (nemam rad chrom))
 function resizeProgramContainer() {
     programContainer = document.getElementsByClassName('program-container')[0]
-    colSize = programContainer.offsetWidth / 360
-    programContainer.style.gridTemplateColumns = `repeat(360, ${colSize}px)`
+    colSize = programContainer.offsetWidth / 390
+    programContainer.style.gridTemplateColumns = `repeat(390, ${colSize}px)`
 }
 window.addEventListener('resize', resizeProgramContainer);
 resizeProgramContainer()

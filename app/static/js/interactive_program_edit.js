@@ -3,18 +3,18 @@ function timeToMinutes(time) {
     return hours * 60 + minutes;
 }
 
-function getMinutesFrom8am() {
+function getMinutesFrom830am() {
     var currentDate = new Date();
     var targetTime = new Date(currentDate);
-    targetTime.setHours(8, 0, 0, 0);
+    targetTime.setHours(8, 30, 0, 0);
     var timeDifference = currentDate - targetTime;
     var minutesPassed = Math.floor(timeDifference / (1000 * 60));
     return minutesPassed
 }
 
-// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8 rano
+// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8:30 rano
 function calculateMinutesFromStart(startTime, endTime) {
-    const timeRangeStart = timeToMinutes("08:00");
+    const timeRangeStart = timeToMinutes("08:30");
     const startMinutes = timeToMinutes(startTime);
     const endMinutes = timeToMinutes(endTime);
 
@@ -27,12 +27,17 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
-// vypocita z minut od 1 do 360 cas od 8:00 do 14:00
+// vypocita z minut od 1 do 390 cas od 8:30 do 15:00
 function convertMinutesToTime(minutes) {
-    if (minutes == 0) return "08:00"
+    if (minutes == 0) return "08:30"
     let hours = Math.floor(minutes / 60);
     let mins = minutes % 60;
     hours += 8;
+    mins += 30;
+    if (mins >= 60) {
+        mins = mins - 60;
+        hours += 1;
+    }
     let formattedHours = hours < 10 ? "0" + hours : hours;
     let formattedMins = mins < 10 ? "0" + mins : mins;
     let timeString = formattedHours + ":" + formattedMins;
@@ -86,7 +91,7 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
         var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
         items[i].style.gridColumnStart = minutesFromStart.start+1;
         items[i].style.gridColumnEnd = minutesFromStart.end+1;
-        if (items[i].style.gridColumnEnd > 361) {
+        if (items[i].style.gridColumnEnd > 391) {
             items[i].style.borderRight = '4px solid black'
         } else {items[i].style.borderRight = ''}
         items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
@@ -217,7 +222,7 @@ let modifiedItemUids = [];
 document.addEventListener('DOMContentLoaded', function() {
     var grid = document.querySelector('.program-container');
     var gridWidth = grid.offsetWidth;
-    var columnWidth = gridWidth / 360;
+    var columnWidth = gridWidth / 390;
     var rowHeight = 69; // vyska jednoho radku v px + 5px
   
     var items = document.querySelectorAll('.program-item');
@@ -256,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.style.gridColumn = String(column_start) + '/' + String(column_end)
                 }
                 item.style.left = 0
-                if (item.style.gridColumnEnd > 361) {
+                if (item.style.gridColumnEnd > 391) {
                     item.style.borderRight = '4px solid black'
                 } else {item.style.borderRight = ''}
 
