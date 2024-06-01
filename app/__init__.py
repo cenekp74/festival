@@ -23,7 +23,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
 from .utils import update_rooms, load_albums
-try:
+try: # tohle je v try: except, protoze kdyz se spousti stranka poprvy (a neni vytvorena databaze), tak to failne
     update_rooms()
 except Exception as e:
     print(f'Failed to load rooms from db: {e}')
