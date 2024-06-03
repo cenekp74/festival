@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/program.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/program.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -124,7 +124,7 @@
     <a class="button-link" href="/program/all">Celý program</a>
     <a class="button-link" href="{{ url_for('favorite_day', dayn=day) }}">Můj program</a>
 </nav>
-<script src="{{ url_for('static', filename='/js/program.js') }}"></script>
+<script src="{{ url_for('static', filename='js/program.js') }}"></script>
 <script>
     document.getElementById('program').classList.add('active');
     var day = "{{day}}";
