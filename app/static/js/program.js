@@ -119,10 +119,10 @@ function showFavoriteAlert(uid) { // velice oskliva funkce na zobrazeni alertu k
     </div>` // fuj
     let favoriteAlertEle = createElementFromHTML(favoriteAlertHTMLString)
     if (isFavorite) {
-        favoriteAlertEle.querySelector('span').innerText = `${itemName} přidán do oblíbených - `
+        favoriteAlertEle.querySelector('span').innerText = `Přídáno do oblíbených: ${itemName} - `
         favoriteAlertEle.classList.add('alert-success')
     } else {
-        favoriteAlertEle.querySelector('span').innerText = `${itemName} odebrán z oblíbených - `
+        favoriteAlertEle.querySelector('span').innerText = `Odebráno z oblíbených: ${itemName} - `
         favoriteAlertEle.classList.add('alert-danger')
     }
     favoriteAlertEle.querySelector('a').setAttribute('onclick', `toggleFavorite("${uid}")`)
