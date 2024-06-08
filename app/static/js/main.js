@@ -77,6 +77,13 @@ function createElementFromHTML(htmlString) {
     return div.firstChild;
 }
 
+function deleteAllFlashAlerts() {
+    const elements = document.querySelectorAll(".alert");
+    elements.forEach(element => {
+        element.remove();
+    });
+}
+
 function showFlashAlert(message, category='') {
     let eleString = `<div class="alert alert-${category}">
             ${message} <i onclick="setParentDisplayNone(this)" class="fa fa-xmark"></i>

@@ -106,6 +106,35 @@ async function toggleFavorite(uid) {
         document.cookie = setCookieHeader;
     }
     reloadStars();
+    showFavoriteAlert(uid)
+}
+
+function showFavoriteAlert(uid) { // velice oskliva funkce na zobrazeni alertu kdyz user pridana/odebere z oblibenych
+    deleteAllFlashAlerts()
+    let itemEle = document.getElementById(uid)
+    let itemName = itemEle.querySelector('div').innerText
+    let isFavorite = document.getElementById(`star-${uid}`).classList.contains("in-favorite")
+    let favoriteAlertHTMLString = `<div class="alert alert-favorite">
+    <span></span><a href="#">Vrátit</a><i onclick="setParentDisplayNone(this)" class="fa fa-xmark"></i>
+    </div>` // fuj
+    let favoriteAlertEle = createElementFromHTML(favoriteAlertHTMLString)
+    if (isFavorite) {
+        favoriteAlertEle.querySelector('span').innerText = `${itemName} přidán do oblíbených - `
+        favoriteAlertEle.classList.add('alert-success')
+    } else {
+        favoriteAlertEle.querySelector('span').innerText = `${itemName} odebrán z oblíbených - `
+        favoriteAlertEle.classList.add('alert-danger')
+    }
+    favoriteAlertEle.querySelector('a').setAttribute('onclick', `toggleFavorite("${uid}")`)
+    setTimeout(function() { // pred pridanim alertu je malej delay, aby to vypadalo lip kdyz kliknu na Vratit
+        document.querySelector('.content').insertBefore(favoriteAlertEle, document.querySelector('.program-nav')) // alert pridam pred program-nav (takze za program)
+    }, 50)
+    setTimeout(function() { // tahle monstrozita je tu aby po chvili alert zmizel a aby mizel postupne
+        favoriteAlertEle.style.opacity = '0'
+        setTimeout(function() {
+            favoriteAlertEle.style.display = 'none'
+        }, 2000)
+    }, 3500)
 }
 
 function reloadStars() {

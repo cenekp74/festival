@@ -18,6 +18,8 @@
     --form-field-color: #37363e;
     --dropdown-color: var(--topnav-color);
     --search-bar-hover-color: var(--active-page-color);
+    --alert-success-color: lightgreen;
+    --alert-danger-color: #f57373;
 }
 
 :root.light {
@@ -40,6 +42,8 @@
     --form-field-color: #689bc5;
     --dropdown-color: var(--topnav-color);
     --search-bar-hover-color: var(--active-page-color);
+    --alert-success-color: darkgreen;
+    --alert-danger-color: #771616;
 }
 
 body {
@@ -140,6 +144,14 @@ button:not(:disabled) {
     text-indent: 3px;
 }
 
+.alert-success {
+    color: var(--alert-success-color);
+}
+
+.alert-danger {
+    color: var(--alert-danger-color);
+}
+
 .alert i {
     float: right;
     line-height: 2rem;
@@ -147,6 +159,7 @@ button:not(:disabled) {
     cursor: pointer;
     padding-right: 2px;
     padding-left: 3px;
+    color: var(--text-color);
 }
 
 .btn {

@@ -119,18 +119,25 @@
     var day_nav = document.getElementById('nav-day-'+day);
     day_nav.classList.add('disabled');
 
-    // prepisuje stejnojmennou fci z program.js protoze je potreba na konci reloadnout aby se zmenil program
+    // prepisuje stejnojmennou fci z program.js
     async function toggleFavorite(uid) {
-    const response = await fetch('/favorite/toggle/'+uid, {
-        method: 'get'
-    });
-    const setCookieHeader = response.headers.get('Set-Cookie');
-    if (setCookieHeader) {
-        document.cookie = setCookieHeader;
+        const response = await fetch('/favorite/toggle/'+uid, {
+            method: 'get'
+        });
+        const setCookieHeader = response.headers.get('Set-Cookie');
+        if (setCookieHeader) {
+            document.cookie = setCookieHeader;
+        }
+        reloadStars();
+        showFavoriteAlert(uid);
+        let item = document.getElementById(uid)
+        let isFavorite = document.getElementById(`star-${uid}`).classList.contains("in-favorite")
+        if (isFavorite) {
+            window.location.reload()
+        } else {
+            item.style.visibility = 'hidden'
+        }
     }
-    reloadStars();
-    window.location.reload();
-}
 
 </script>
 {% endblock %}
