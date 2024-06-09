@@ -2,3 +2,4 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 
 # Poznámky
 - server ukládá do variable app.room všechny místnosti, ve kterých se něco děje (podle jednotlivých dní). to je důležitý pro zobrazování programu. tahle variable se ale musí updatovat před každým requestem, protože když běží wsgi na víc workerech tak ta promenna se nesyncuje a tim padem když se něco updatne v programu tak je to potom out of sync
+- muj program se interne jmenuje "favorite", protoze jsem debil a ted se mi to uz nechce predelavat. mozna se i nekde na strance jmenuje "oblibene", ale je to proste muj program
