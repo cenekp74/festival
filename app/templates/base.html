@@ -64,6 +64,9 @@
                 <span class="slider round"></span>
             </label>
         </div>
+        {% if current_user.is_authenticated %}
+        <p>User: {{ current_user.username }}</p>
+        {% endif %}
         {% if current_user.admin %}
         <div class="system-links">
             <a href="{{ url_for('edit_program.index') }}">Editovat program</a>

@@ -4,6 +4,7 @@ from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.utils import allowed_file, correct_uid, update_rooms
+from app.decorators import admin_required
 import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -215,6 +216,7 @@ def logout():
 #region admin
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required
+@admin_required
 def upload_file():
     if not current_user.admin:
         abort(403)
