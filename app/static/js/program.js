@@ -80,14 +80,6 @@ function hideAllContextMenu() {
     }
 }
 
-function flashItem(item) {
-    for (var t=0; t<8000; t +=300) {
-        setTimeout(() => {item.classList.toggle('flashed');}, t);
-    }
-    setTimeout(() => {item.classList.add('flashed');},600);
-    setTimeout(() => {item.classList.remove('flashed');},30000);
-}
-
 function getCookie(name) {
     let cookie = {};
     document.cookie.split(';').forEach(function(el) {
@@ -202,7 +194,7 @@ setInterval(updateTimeVerticalLine, 60*1000)
 if (document.URL.indexOf("?") != -1) {
     var item_id = document.URL.split('?')[1];
     var item = document.getElementById(item_id);
-    flashItem(item);
+    item.classList.add('flashed')
 }
 
 reloadStars();
