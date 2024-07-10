@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, abort, redirect, url_for, flash
 from flask_login import login_required
 from app import app
-from app.utils import write_albums
+from app.utils import write_albums, load_albums
 import random
 import shutil
 from werkzeug.utils import secure_filename
@@ -22,6 +22,7 @@ fotogalerie = Blueprint('fotogalerie', __name__)
 
 @fotogalerie.route('/')
 def index():
+    load_albums() # stejny problem jako s rooms_dict - pokud server bezi na vice workeru, albums_dict se updatuje vzdycky jenom v jednom a pak vznikaj problemy, proto je potreba cist vzdy ze souboru ikdyz je to postizeny
     return render_template('fotogalerie/fotogalerie.html', albums=list(app.albums_dict.items()))
 
 @fotogalerie.route('/<album_id>')
