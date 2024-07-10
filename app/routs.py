@@ -4,7 +4,7 @@ from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.utils import allowed_file, correct_uid, update_rooms
-from app.decorators import admin_required
+from app.decorators import admin_required, wip_disabled
 import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -28,14 +28,17 @@ def uvod():
     return render_template('uvod.html')
 
 @app.route('/program')
+@wip_disabled
 def program():
     return render_template('program.html')
 
 @app.route('/program/all')
+@wip_disabled
 def program_all():
     return render_template('program_all.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
 
 @app.route('/program/day/<dayn>')
+@wip_disabled
 def program_day(dayn):
     if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
@@ -50,16 +53,19 @@ def program_day(dayn):
     return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn)
 
 @app.route('/film/<id>')
+@wip_disabled
 def film(id):
     if not id.isdigit(): abort(404)
     id = int(id)
     return render_template('program_items/film.html', film=Film.query.get(id))
 
 @app.route('/hoste')
+@wip_disabled
 def hoste():
     return render_template('hoste.html', items=Host.query.all())
 
 @app.route('/workshopy')
+@wip_disabled
 def workshopy():
     return render_template('workshopy.html', items=Workshop.query.all())
 
@@ -70,6 +76,10 @@ def historie():
 @app.route('/tym')
 def tym():
     return render_template('tym.html')
+
+@app.route('/wip')
+def wip():
+    return render_template('wip.html')
 #endregion routs
 
 #region favorite
@@ -121,6 +131,7 @@ def toggle_favorite(uid):
 @app.route('/favorite/<dayn>')
 @app.route('/program/favorite/<dayn>')
 @app.route('/program/my/<dayn>')
+@wip_disabled
 def favorite_day(dayn):
     if not dayn.isdigit(): abort(404)
     dayn = int(dayn)
@@ -149,6 +160,7 @@ def favorite_day(dayn):
     return render_template('favorite_day.html', program=program, rooms=rooms_, day=dayn)
 
 @app.route('/favorite')
+@wip_disabled
 def favorite():
     return render_template('favorite.html')
 
@@ -190,6 +202,7 @@ def search_query():
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
+@wip_disabled
 def search():
     return render_template('search.html')
 

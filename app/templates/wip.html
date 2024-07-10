@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<h1>:(</h1>
+<p>Tuhle stránku pro vás zatím chystáme... Již brzy bude k dispozici! <small>Tým JSNO</small></p>
+<div>
+    <a href="{{ url_for('uvod') }}" class="button-link">Úvod</a>
+    <a href="{{ url_for('historie') }}" class="button-link">Historie</a>
+    <a href="{{ url_for('tym') }}" class="button-link">Tým</a>
+</div>
+
+{% endblock %}

@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 app.config['ALBUMS_JSON'] = 'app/static/fotogalerie/albums.json'
 app.config['VALID_ROOMS'] = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', '1.A', '2.A', '3.A', '2.B', '3.B', 'IVT1', 'IVT2', 'MU', 'Bi', 'Fy', 'Ch', 'Chl']
+app.config['WIP_MODE'] = True # work in progress mode - pokud neni user prihlasen tak odkaze z programu, hostu a workshopu na /wip
 
 UPLOAD_FOLDER = 'app/static/upload'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
