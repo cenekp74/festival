@@ -4,3 +4,4 @@ app/__pycache__/
 instance/
 app/static/upload/
 app/static/fotogalerie/
+migrations/__pycache__/
