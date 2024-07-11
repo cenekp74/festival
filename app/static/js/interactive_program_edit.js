@@ -1,3 +1,5 @@
+// HODNE FUNKCI JE STEJNEJCH JAKO V PROGRAM.JS - KOMENTARE K NIM JSOU TAM
+
 function timeToMinutes(time) {
     const [hours, minutes] = time.split(':').map(Number);
     return hours * 60 + minutes;
@@ -27,7 +29,7 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
-// vypocita z minut od 1 do 390 cas od 8:30 do 15:00
+/** vypocita z minut od 1 do 390 cas od 8:30 do 15:00 */
 function convertMinutesToTime(minutes) {
     if (minutes == 0) return "08:30"
     let hours = Math.floor(minutes / 60);
@@ -64,7 +66,8 @@ function showItemDetails(element) {
     element.classList.add('selected')
 }
 
-function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v item detailech podle attributu jednotlivych itemu v programu */
+/** funkce na updatovani vsech inputu casu v item detailech podle attributu jednotlivych itemu v programu */
+function updateAllTimeInputs() {
     let programItems = document.querySelectorAll('.program-item')
     programItems.forEach(item => {
         if (item.style.visibility == 'hidden') {return};
@@ -75,7 +78,8 @@ function updateAllTimeInputs() { /* funkce na updatovani vsech inputu casu v ite
     })
 }
 
-function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsech itemu na zaklade jejich start-time a end-time atributu */
+/** funkce na updatovani polohy v grid u vsech itemu na zaklade jejich start-time a end-time atributu */
+function updateAllItemsPosition() {
     var items = document.getElementsByClassName('program-item');
     var room_elements = document.getElementsByClassName('room');
     var rooms = []
@@ -98,7 +102,8 @@ function updateAllItemsPosition() { /* funkce na updatovani polohy v grid u vsec
     }
 }
 
-function updatteAllItemTimesAndRooms() { // funkce na updatovani start-time, end-time a room attributu u vsech itemu na zaklade jejich grid stylingu (grid-column a grid-row-start)
+/** funkce na updatovani start-time, end-time a room attributu u vsech itemu na zaklade jejich grid stylingu (grid-column a grid-row-start) */
+function updatteAllItemTimesAndRooms() {
     let programItems = document.querySelectorAll('.program-item')
     programItems.forEach(item => {
         if (item.style.visibility == 'hidden') {return};
@@ -112,7 +117,8 @@ function updatteAllItemTimesAndRooms() { // funkce na updatovani start-time, end
     })
 }
 
-function updateAllItemDetailsRooms() { // funkce na updatovani mistnosti v item details na zaklade atributu room u itemu
+/** funkce na updatovani mistnosti v item details na zaklade atributu room u itemu */
+function updateAllItemDetailsRooms() {
     let programItems = document.querySelectorAll('.program-item')
     programItems.forEach(item => {
         if (item.style.visibility == 'hidden') {return};
@@ -149,7 +155,9 @@ async function saveProgram() {
     modifiedItemUids = []
 }
 
-function updateAllItemLengths() { // funkce na updatovani doby trvani v item details na zaklade hodnot time inputu
+/** funkce na updatovani doby trvani v item details na zaklade hodnot time inputu */
+
+function updateAllItemLengths() {
     itemDetailsEles = document.querySelectorAll('.details')
     itemDetailsEles.forEach(ele => {
         let timeFromInput = ele.querySelector('.time-from-input')

@@ -2,6 +2,7 @@ var disableanim = false
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 function topnav_drop() {
     var topnav = document.getElementById("topnav");
     var topnav_links = document.getElementById("topnav-links");
@@ -21,6 +22,7 @@ function topnav_drop() {
         sleep(320).then(() => {disableanim=false;});
     }
 }
+
 function hide_topnav() {
     var topnav = document.getElementById("topnav");
     var topnav_links = document.getElementById("topnav-links");
@@ -31,6 +33,12 @@ function hide_topnav() {
     topnav.className = "topnav";
     sleep(320).then(() => {disableanim=false;});
 }
+
+/** meni vysku elementu od start do target
+ * - trva 300ms
+ * - na konci nastavi element.height na auto
+ * - pouziva se na animovani topnavu
+ */
 function animateHeight(start, target, element) {
     var duration = 300;
     var startTime = null;
@@ -53,6 +61,7 @@ function animateHeight(start, target, element) {
     requestAnimationFrame(step);
 }
 
+/** vyuziva se pri skryvani flash alertu po kliknuti na krizek */
 function setParentDisplayNone(element) {
     element.parentNode.style.display = 'none';
 }
@@ -71,6 +80,7 @@ function hideProgramDropdown() {
     element.classList.remove('dropped');
 }
 
+/** vytvori HTML element ze stringu - pouziva fce showFlashAlert */
 function createElementFromHTML(htmlString) {
     let div = document.createElement('div');
     div.innerHTML = htmlString.trim();
@@ -84,6 +94,7 @@ function deleteAllFlashAlerts() {
     });
 }
 
+/** prida na stranku flash alert s obsahem message a tridou alert-$category */
 function showFlashAlert(message, category='') {
     let eleString = `<div class="alert alert-${category}">
             ${message} <i onclick="setParentDisplayNone(this)" class="fa fa-xmark"></i>
@@ -123,9 +134,10 @@ function setThemeCookie(theme) {
     }
 }
 
+/** zmeni theme podle stavu checkboxu - zavola fci setThemeCookie a pak setThemeFromCookie */
 function changeTheme() {
     var styleSheet = document.createElement("style")
-    styleSheet.innerText = '* {transition: all 1s}'
+    styleSheet.innerText = '* {transition: all 1s}' // aby byl prechod mezi themama plynulej
     document.head.appendChild(styleSheet)
     checkboxEle = document.querySelector('.theme-checkbox')
     if (checkboxEle.checked) {
@@ -139,6 +151,7 @@ function changeTheme() {
     sleep(500).then(() => {document.head.removeChild(styleSheet)})
 }
 
+// posune theme checkbox do spravny polohy podle cookiesky
 if (document.querySelector('.theme-checkbox')) {
     if (getCookie('theme') == 'light') {
         document.querySelector('.theme-checkbox').checked = false;
@@ -158,6 +171,7 @@ document.addEventListener('scroll', () => {
     hide_topnav()
 })
 
+// pokud je obrazovka mensi nez 380px, zmenim napis "Jeden svet na ohradni" na "JSNO"
 const logoMediaQuery = window.matchMedia('(max-width: 380px)');
 if (logoMediaQuery.matches) {
     let logo = document.querySelector('.logo')

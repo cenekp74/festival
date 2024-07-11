@@ -1,8 +1,10 @@
+/** z casu ve formatu HH:MM vypocita kolik to je minut */
 function timeToMinutes(time) {
     const [hours, minutes] = time.split(':').map(Number);
     return hours * 60 + minutes;
 }
 
+/** vrati pocet minut, ktery ubehnul od 8:30 rano */
 function getMinutesFrom830am() {
     var currentDate = new Date();
     var targetTime = new Date(currentDate);
@@ -12,7 +14,7 @@ function getMinutesFrom830am() {
     return minutesPassed
 }
 
-// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8:30 rano
+/** vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8:30 rano */
 function calculateMinutesFromStart(startTime, endTime) {
     const timeRangeStart = timeToMinutes("08:30");
     const startMinutes = timeToMinutes(startTime);
@@ -27,6 +29,7 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
+/** fce na aktualizovani carecky ukazujici cas podle aktualniho casu */
 function updateTimeVerticalLine() {
     const root = document.querySelector(":root");
     var minutes = getMinutesFrom830am()
@@ -38,6 +41,7 @@ function updateTimeVerticalLine() {
     root.style.setProperty("--vline-left", String(minutes/390*100)+"%");
 }
 
+/** ukaze context menu k danymu program itemu */
 function showContextMenu(event, element) {
     event.stopPropagation();
     var item_id = element.getAttribute('item-id');
@@ -89,6 +93,7 @@ function getCookie(name) {
     return cookie[name];
 }
 
+/** prida item s danym uid do oblibenych (posle request na server a podle odpovedi nastavi cookiesku) */
 async function toggleFavorite(uid) {
     const response = await fetch('/favorite/toggle/'+uid, {
         method: 'get'
@@ -101,7 +106,8 @@ async function toggleFavorite(uid) {
     showFavoriteAlert(uid)
 }
 
-function showFavoriteAlert(uid) { // velice oskliva funkce na zobrazeni alertu kdyz user pridana/odebere z oblibenych
+/** velice oskliva funkce na zobrazeni alertu kdyz user pridana/odebere z oblibenych */
+function showFavoriteAlert(uid) {
     deleteAllFlashAlerts()
     let itemEle = document.getElementById(uid)
     let itemName = itemEle.querySelector('div').innerText
@@ -129,6 +135,7 @@ function showFavoriteAlert(uid) { // velice oskliva funkce na zobrazeni alertu k
     }, 3500)
 }
 
+/** zmeni barvu hvezdicek podle favorite cookiesky */
 function reloadStars() {
     if (!(getCookie('favorite'))) {return} // pokud favorite cookie jeste neexistuje, return
     var stars = document.getElementsByClassName('favorite-star');
@@ -173,8 +180,8 @@ for (var i = 0; i < items.length; i++) {
     items[i].style.gridColumnEnd = minutesFromStart.end+1;
     items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
 }
-
-function checkForSmallProgramItems() { // funkce ktera zkontroluje jestli nejaky program itemy nejsou moc maly, pokud jo tak je zobrazi vertikalne
+/** funkce ktera zkontroluje jestli nejaky program itemy nejsou moc maly, pokud jo tak je zobrazi vertikalne (prida class .vertical) */
+function checkForSmallProgramItems() {
     let items = document.getElementsByClassName('program-item');
     for (var i = 0; i < items.length; i++) {
         if (items[i].offsetHeight - items[i].offsetWidth > 15) {
@@ -199,7 +206,10 @@ if (document.URL.indexOf("?") != -1) {
 
 reloadStars();
 
-// tohle je tu kvuli tomu, ze grid-template-columns u program-containeru nejde nastavit ve fr, jinak se potom pri zmene velikosti jednoho program itemu (on hover) meni velikost jednoho sloupecku a cely se to posouva (jenom v chromu teda (nemam rad chrom))
+/** tahle fce se pousti na zacatku a po kazdy zmene velikosti okna kvuli tomu, 
+ * ze grid-template-columns u program-containeru nejde nastavit ve fr, 
+ * jinak se potom pri zmene velikosti jednoho program itemu (on hover) meni velikost jednoho sloupecku a cely se to posouva 
+ * (jenom v chromu teda (nemam rad chrom)) */
 function resizeProgramContainer() {
     programContainer = document.getElementsByClassName('program-container')[0]
     colSize = programContainer.offsetWidth / 390
