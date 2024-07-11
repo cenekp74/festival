@@ -23,7 +23,7 @@ def update_rooms():
 def get_all_rooms(films_only=False) -> list:
     """
     vrati vsechny mistnosti, kde se behem festivalu neco deje
-    argument films_only: pokud je True, vrati jenom mistnosti, kde se pousti nejaky film
+    - argument films_only: pokud je True, vrati jenom mistnosti, kde se pousti nejaky film
     """
     rooms = set()
     rooms.update([r[0] for r in list(db.session.query(Film.room).distinct().all())])
@@ -50,8 +50,7 @@ def correct_uid(uid, h_allowed=True):
 def get_object_by_uid(uid, correct=True):
     """
     returns Film, Beseda, Workshop or Host object depending on input
-    
-    example: f_5 returns Film object with id 5
+    - example: f_5 returns Film object with id 5
     """
     if not correct:
         if not correct_uid(uid):

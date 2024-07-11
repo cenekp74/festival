@@ -13,7 +13,7 @@ api = Blueprint('api', __name__)
 def update_from_json():
     """
     updatuje program z json ve formatu {"uid":{"time_from":time, "time_to":time, "room":room}} 
-    slouzi pro interaktivni editovani programu, jindy by se pouzivat nemelo
+    - slouzi pro interaktivni editovani programu, jindy by se pouzivat nemelo
     """
     content = request.json
     for uid, item_details in content.items():
@@ -70,6 +70,6 @@ def rooms():
 def film_rooms():
     """
     vrati vsechny mistnosti, kde se nekdy pousti filmy
-    vyuziva se v apf
+    - vyuziva se v apf
     """
     return jsonify(get_all_rooms(films_only=True))
