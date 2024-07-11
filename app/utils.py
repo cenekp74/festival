@@ -2,8 +2,12 @@ from app.db_classes import Film, Beseda, Workshop, Host
 from . import ALLOWED_EXTENSIONS, db, app
 import json
 
-# vrati dict s mistnostma pro kazdy den
 def get_rooms() -> dict:
+    """
+    vrati dict s mistnostma pro kazdy den
+    format: {den: [mistnost1, mistnost2, ...], den2: [...], ...}
+    pouziva se pri zobrazovani programu (je potreba vedet, v jakych mistnostech se ten den neco deje - to nemusi byt kazdy den stejny)
+    """
     with app.app_context():
         rooms = dict()
         for day in [1, 2, 3]:
@@ -17,6 +21,10 @@ def update_rooms():
     app.rooms = get_rooms()
 
 def get_all_rooms(films_only=False) -> list:
+    """
+    vrati vsechny mistnosti, kde se behem festivalu neco deje
+    argument films_only: pokud je True, vrati jenom mistnosti, kde se pousti nejaky film
+    """
     rooms = set()
     rooms.update([r[0] for r in list(db.session.query(Film.room).distinct().all())])
     if films_only: return list(rooms)
@@ -40,6 +48,11 @@ def correct_uid(uid, h_allowed=True):
     return True
 
 def get_object_by_uid(uid, correct=True):
+    """
+    returns Film, Beseda, Workshop or Host object depending on input
+    
+    example: f_5 returns Film object with id 5
+    """
     if not correct:
         if not correct_uid(uid):
             raise Exception('Incorrect uid provided')

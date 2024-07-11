@@ -5,7 +5,6 @@ from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.utils import allowed_file, correct_uid, update_rooms
 from app.decorators import admin_required, wip_disabled
-import datetime
 import os
 from werkzeug.utils import secure_filename
 
@@ -163,11 +162,9 @@ def favorite_day(dayn):
 @wip_disabled
 def favorite():
     return render_template('favorite.html')
-
 #endregion favorite
 
 #region search
-
 @app.route('/search/query')
 def search_query():
     q = request.args.get('q')
@@ -205,7 +202,6 @@ def search_query():
 @wip_disabled
 def search():
     return render_template('search.html')
-
 #endregion search
 
 #region login
@@ -253,6 +249,4 @@ def upload_file():
 @login_required
 def colors():
     return render_template('colors.html')
-
 #endregion admin
-

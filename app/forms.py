@@ -30,10 +30,6 @@ class FilmForm(FlaskForm):
     recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
-    # PRIDAT overeni jestli uz film neexistuje
-    # def validate_name(self, name):
-    #     if name 
-
 class WorkshopForm(FlaskForm):
     name = StringField('Název workshopu', validators=[DataRequired()])
     time_from = TimeField('Od', validators=[DataRequired()])

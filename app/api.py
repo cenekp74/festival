@@ -10,7 +10,11 @@ api = Blueprint('api', __name__)
 @api.route('/update_from_json', methods=['POST'])
 @login_required
 @admin_required
-def update_from_json(): # updatuje program z json ve formatu {"uid":{"time_from":time, "time_to":time, "room":room}} (funkce pro interaktivni editovani programu)
+def update_from_json():
+    """
+    updatuje program z json ve formatu {"uid":{"time_from":time, "time_to":time, "room":room}} 
+    slouzi pro interaktivni editovani programu, jindy by se pouzivat nemelo
+    """
     content = request.json
     for uid, item_details in content.items():
         if not correct_uid(uid, h_allowed=False): abort(400)
@@ -62,6 +66,10 @@ def query_program_items_by_day_all():
 def rooms():
     return jsonify(get_all_rooms())
 
-@api.route('/get_rooms_for_films') #jenom mistnosti s filmama
+@api.route('/get_rooms_for_films')
 def film_rooms():
+    """
+    vrati vsechny mistnosti, kde se nekdy pousti filmy
+    vyuziva se v apf
+    """
     return jsonify(get_all_rooms(films_only=True))
