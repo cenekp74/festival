@@ -198,7 +198,10 @@ def edit_workshop(id):
                     day=workshop.day, room=workshop.room, author=workshop.author, description=workshop.description, vg=workshop.vg, recommended=workshop.recommended)
     if form.validate_on_submit():
         if form.picture.data:
-            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
+            except Exception as e:
+                flash(f'Unable to delete old image: {e}')
             picture = form.picture.data
             picture_filename = secure_filename(picture.filename)
             picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
