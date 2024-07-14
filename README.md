@@ -8,6 +8,7 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 - vsechny routs v api.py maji dany url prefix /api (definovane v `__init__.py`)
 - komentare a nazvy veci jsou tak napul cesky a napul anglicky, nektery veci se proste lip pisou v anglictine nez to krkolome prekladat
 - kdyz naclonuju repo z githubu a chci to spustit, musim nejdriv spustit create_db.py a vytvorit dir static/upload, static/fotogalerie a soubor static/fotogalerie/albums.json (do nej staci dat prazdny dict {})
+- obrazky k hostum a workshopum se ukladaji do stejny slozky jako soubory z upload
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
 Nastavuje se v `__init__.py`. V `decorators.py` je definovany dekorator wip_disabled. Ten je u vsech fci v routs.py, ktery maji byt zakazany v wip modu.
