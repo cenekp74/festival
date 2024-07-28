@@ -4,7 +4,7 @@ th, td {
 }
 
 th {
-    background: var(--secondary-color);
+    background: var(--table-hover-color);
 }
 
 tr:hover td {
