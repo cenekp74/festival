@@ -12,3 +12,5 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
 Nastavuje se v `__init__.py`. V `decorators.py` je definovany dekorator wip_disabled. Ten je u vsech fci v routs.py, ktery maji byt zakazany v wip modu.
+### Kavarna a cajovna (shop)
+Blueprint shop (`shop.py`) obsahuje fce k systemu kavarny a cajovny. Vsechno se uklada do stejny db jako program atd. V budoucnu by se sem mohl pridat i merch nebo jiny veci na prodej. 
