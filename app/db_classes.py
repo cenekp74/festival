@@ -105,3 +105,18 @@ class Beseda(db.Model):
            "host_id": self.host_id,
            "host": host.name
        }
+    
+class ShopItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    item_type = db.Column(db.String(15), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+
+    @property
+    def serialize(self):
+       return {
+           "id": self.id,
+           "name": self.name,
+           "item_type": self.item_type,
+           "price": self.price
+       }

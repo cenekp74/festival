@@ -5,9 +5,6 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange
 from app.db_classes import Host
 from app import app
-# from app.db_classes import User
-# from flask_login import current_user
-# from flask_wtf.file import FileField, FileAllowed
 
 VALID_LANGUAGE_VALUES = ['cz', 'en', 'cz tit']
 
@@ -61,4 +58,10 @@ class HostForm(FlaskForm):
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
     vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
     recommended = BooleanField('Doporučeno', validators=[DataRequired()])
+    submit = SubmitField('Potvrdit')
+
+class ShopForm(FlaskForm):
+    name = StringField('Název položky', validators=[DataRequired()])
+    item_type = SelectField('Typ', choices=[('kavarna', 'Kavárna'), ('cajovna', 'Čajovna')])
+    price = IntegerField('Cena', validators=[DataRequired(), NumberRange(min=1, max=9999)])
     submit = SubmitField('Potvrdit')

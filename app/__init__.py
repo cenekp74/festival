@@ -40,4 +40,7 @@ app.register_blueprint(fotogalerie_blueprint, url_prefix='/fotogalerie')
 from .edit_program import edit_program as edit_program_blueprint
 app.register_blueprint(edit_program_blueprint)
 
+from .shop import shop as shop_blueprint
+app.register_blueprint(shop_blueprint)
+
 from app import routs
