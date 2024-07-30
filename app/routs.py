@@ -34,7 +34,26 @@ def program():
 @app.route('/program/all')
 @wip_disabled
 def program_all():
-    return render_template('program_all.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
+    films = Film.query.all()
+    besedy = Beseda.query.all()
+    workshops = Workshop.query.all()
+    hosts = Host.query.all()
+    sort = request.args.get("sort")
+    if sort:
+        if sort == "day" or sort== "time":
+            films.sort(key=lambda x: (x.day, x.time_from))
+            besedy.sort(key=lambda x: (x.day, x.time_from))
+            workshops.sort(key=lambda x: (x.day, x.time_from))
+        elif sort == "room":
+            films.sort(key=lambda x: x.room)
+            besedy.sort(key=lambda x: x.room)
+            workshops.sort(key=lambda x: x.room)
+        elif sort == "name":
+            films.sort(key=lambda x: x.name.lower())
+            besedy.sort(key=lambda x: x.name.lower())
+            workshops.sort(key=lambda x: x.name.lower())
+            hosts.sort(key=lambda x: x.name.lower())
+    return render_template('program_all.html', films=films, besedy=besedy, workshops=workshops, hosts=hosts)
 
 @app.route('/program/day/<dayn>')
 @wip_disabled

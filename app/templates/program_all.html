@@ -12,10 +12,10 @@
         <h2>Filmy</h2>
         <table>
             <tr>
-                <th>Film</th>
-                <th>Den</th>
-                <th>Čas</th>
-                <th>Místnost</th>
+                <th class="sort sort-name">Film</th>
+                <th class="sort sort-day">Den</th>
+                <th class="sort sort-time">Čas</th>
+                <th class="sort sort-room">Místnost</th>
                 <th>Jazyk</th>
                 <th>Odkaz</th>
                 <th>Pouze pro vyšší gympl</th>
@@ -47,10 +47,10 @@
         <h2>Besedy</h2>
         <table>
             <tr>
-                <th>Beseda</th>
-                <th>Den</th>
-                <th>Čas</th>
-                <th>Místnost</th>
+                <th class="sort sort-name">Beseda</th>
+                <th class="sort sort-day">Den</th>
+                <th class="sort sort-time">Čas</th>
+                <th class="sort sort-room">Místnost</th>
                 <th>Host</th>
                 <th>Pouze pro vyšší gympl</th>
                 <th>Doporučeno</th>
@@ -84,10 +84,10 @@
         <h2>Workshopy</h2>
         <table>
             <tr>
-                <th>Workshop</th>
-                <th>Den</th>
-                <th>Čas</th>
-                <th>Místnost</th>
+                <th class="sort sort-name">Workshop</th>
+                <th class="sort sort-day">Den</th>
+                <th class="sort sort-time">Čas</th>
+                <th class="sort sort-room">Místnost</th>
                 <th>Autor</th>
                 <th>Popis</th>
                 <th>Pouze pro vyšší gympl</th>
@@ -117,7 +117,7 @@
         <h2>Hosté</h2>
         <table>
             <tr>
-                <th>Host</th>
+                <th class="sort sort-name">Host</th>
                 <th>Popis</th>
             </tr>
             {% for host in hosts %}
@@ -132,7 +132,31 @@
     </div>
 </div>
 
+<style>
+    .sort {
+        cursor: pointer;
+        transition: background-color .2s;
+    }
+    .sort:hover {
+        background-color: var(--secondary-color);
+    }
+</style>
 <script>
     document.getElementById('program').classList.add('active');
+</script>
+<script>
+    function processSortClick(event) {
+        element = event.target
+        sort_type = ""
+        if (element.className.includes("sort-day")) { sort_type = "day" }
+        if (element.className.includes("sort-time")) { sort_type = "time" }
+        if (element.className.includes("sort-room")) { sort_type = "room" }
+        if (element.className.includes("sort-name")) { sort_type = "name" }
+        window.location = `${window.location}`.split("?")[0] + `?sort=${sort_type}`
+    }
+
+    document.querySelectorAll(".sort").forEach(element => {
+        element.addEventListener("click", processSortClick)
+    })
 </script>
 {% endblock %}

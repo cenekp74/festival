@@ -8,6 +8,7 @@ from app.forms import FilmForm, BesedaForm, WorkshopForm, HostForm
 from app.db_classes import Film, Host, Beseda, Workshop
 from .utils import update_rooms
 import datetime
+from flask import request
 
 edit_program = Blueprint('edit_program', __name__)
 
@@ -15,7 +16,26 @@ edit_program = Blueprint('edit_program', __name__)
 @login_required
 @admin_required
 def index():
-    return render_template('editing_program/edit_program.html', films=Film.query.all(), besedy=Beseda.query.all(), workshops=Workshop.query.all(), hosts=Host.query.all())
+    films = Film.query.all()
+    besedy = Beseda.query.all()
+    workshops = Workshop.query.all()
+    hosts = Host.query.all()
+    sort = request.args.get("sort")
+    if sort:
+        if sort == "day" or sort== "time":
+            films.sort(key=lambda x: (x.day, x.time_from))
+            besedy.sort(key=lambda x: (x.day, x.time_from))
+            workshops.sort(key=lambda x: (x.day, x.time_from))
+        elif sort == "room":
+            films.sort(key=lambda x: x.room)
+            besedy.sort(key=lambda x: x.room)
+            workshops.sort(key=lambda x: x.room)
+        elif sort == "name":
+            films.sort(key=lambda x: x.name.lower())
+            besedy.sort(key=lambda x: x.name.lower())
+            workshops.sort(key=lambda x: x.name.lower())
+            hosts.sort(key=lambda x: x.name.lower())
+    return render_template('editing_program/edit_program.html', films=films, besedy=besedy, workshops=workshops, hosts=hosts)
 
 @edit_program.route('/program/edit/interactive/<dayn>')
 @login_required

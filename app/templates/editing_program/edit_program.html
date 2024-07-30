@@ -14,10 +14,10 @@
         <table>
             <tr>
                 <th>id</th>
-                <th>Film</th>
-                <th>Den</th>
-                <th>Čas</th>
-                <th>Místnost</th>
+                <th class="sort sort-name">Film</th>
+                <th class="sort sort-day">Den</th>
+                <th class="sort sort-time">Čas</th>
+                <th class="sort sort-room">Místnost</th>
                 <th>Jazyk</th>
                 <th>Filename</th>
                 <th>Odkaz</th>
@@ -63,10 +63,10 @@
         <table>
             <tr>
                 <th>id</th>
-                <th>Beseda</th>
-                <th>Den</th>
-                <th>Čas</th>
-                <th>Místnost</th>
+                <th class="sort sort-name">Beseda</th>
+                <th class="sort sort-day">Den</th>
+                <th class="sort sort-time">Čas</th>
+                <th class="sort sort-room">Místnost</th>
                 <th>Host</th>
                 <th>Pro vyšší gympl</th>
                 <th>Doporučeno</th>
@@ -112,10 +112,10 @@
         <table>
             <tr>
                 <th>id</th>
-                <th>Workshop</th>
-                <th>Den</th>
-                <th>Čas</th>
-                <th>Místnost</th>
+                <th class="sort sort-name">Workshop</th>
+                <th class="sort sort-day">Den</th>
+                <th class="sort sort-time">Čas</th>
+                <th class="sort sort-room">Místnost</th>
                 <th>Autor</th>
                 <th>Popis</th>
                 <th>Pro vyšší gympl</th>
@@ -161,7 +161,7 @@
         <table>
             <tr>
                 <th>id</th>
-                <th>Host</th>
+                <th class="sort sort-name">Host</th>
                 <th>Popis</th>
                 <th>Krátký popis</th>
                 <th>Obrázek</th>
@@ -192,7 +192,31 @@
     </div>
 </div>
 
+<style>
+    .sort {
+        cursor: pointer;
+        transition: background-color .2s;
+    }
+    .sort:hover {
+        background-color: var(--secondary-color);
+    }
+</style>
 <script>
     document.getElementById('program').classList.add('active');
+</script>
+<script>
+    function processSortClick(event) {
+        element = event.target
+        sort_type = ""
+        if (element.className.includes("sort-day")) { sort_type = "day" }
+        if (element.className.includes("sort-time")) { sort_type = "time" }
+        if (element.className.includes("sort-room")) { sort_type = "room" }
+        if (element.className.includes("sort-name")) { sort_type = "name" }
+        window.location = `${window.location}`.split("?")[0] + `?sort=${sort_type}`
+    }
+
+    document.querySelectorAll(".sort").forEach(element => {
+        element.addEventListener("click", processSortClick)
+    })
 </script>
 {% endblock %}
