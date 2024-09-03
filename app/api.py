@@ -3,7 +3,7 @@ from app.db_classes import Film, Beseda, Workshop
 from app.utils import get_all_rooms, correct_uid, update_rooms
 from flask_login import login_required
 from .decorators import admin_required
-from . import db
+from . import db, app
 
 api = Blueprint('api', __name__)
 
@@ -50,6 +50,24 @@ def query_program_items():
     result += [item.serialize for item in Film.query.filter_by(**args)]
     result += [item.serialize for item in Beseda.query.filter_by(**args)]
     result += [item.serialize for item in Workshop.query.filter_by(**args)]
+    return jsonify(result)
+
+@api.route('/query/program_items/floor/<floor>')
+def query_program_items_by_floor(floor):
+    """
+    fce na query program itemu podle patra a dalsich specifikovanych ? argumentu
+    pouziva se v systemu obrazovek
+    """
+    if not floor.isdigit(): abort(400)
+    floor = int(floor)
+    if not floor in [0, 1, 2, 3, 4]: abort(400)
+    rooms = app.config["ROOMS_BY_FLOOR"][floor]
+    args = request.args.to_dict()
+    result = []
+    result += [item.serialize for item in Film.query.filter_by(**args)]
+    result += [item.serialize for item in Beseda.query.filter_by(**args)]
+    result += [item.serialize for item in Workshop.query.filter_by(**args)]
+    result = [item for item in result if item["room"] in rooms]
     return jsonify(result)
 
 @api.route('/query/program_items/day')

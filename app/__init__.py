@@ -11,7 +11,15 @@ app.config.from_pyfile('../instance/config.py')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 app.config['ALBUMS_JSON'] = 'app/static/fotogalerie/albums.json'
-app.config['VALID_ROOMS'] = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', '1.A', '2.A', '3.A', '2.B', '3.B', 'IVT1', 'IVT2', 'MU', 'Bi', 'Fy', 'Ch', 'Chl']
+app.config['ROOMS'] = ["3.A", "I", "III", "VIII", "Hv", "MU", "V", "VI", "2.A", "1.A", "1.B", "4.A", "VII", "II", "4.B", "Ch", "IV", "Bi", "Fy", "Vv", "Jz", "IVT1", "IVT2"]
+app.config['ROOMS_BY_FLOOR'] = {
+    0: ["3.A", "I", "III", "VIII", "Hv", "MU"],
+    1: ["V", "VI", "2.A", "1.A", "1.B"],
+    2: ["4.A", "VII", "II", "4.B", "Ch"],
+    3: ["IV", "Bi", "Fy"],
+    4: ["Vv", "Jz", "IVT1", "IVT2"]
+}
+
 app.config['WIP_MODE'] = True # work in progress mode - pokud neni user prihlasen tak odkaze z programu, hostu a workshopu na /wip
 
 UPLOAD_FOLDER = 'app/static/upload'
