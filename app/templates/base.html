@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit="no">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-006.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-007.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta property="og:image" content="/favicon.ico"> <!-- tohle je pro OpenGraph -->
     <meta name="description" content="Filmový festival na Gymnáziu Elišky Krásnohorské pod záštitou jsns">
@@ -58,11 +58,12 @@
     <footer>
         <p>&copy; 2024 JSNO</p>
         <div class="theme-switch">
-            <b>Motiv (světlý/tmavý)</b>
+            <i class="fa fa-moon"></i>
             <label class="switch" onclick="changeTheme()">
                 <input type="checkbox" class="theme-checkbox">
                 <span class="slider round"></span>
             </label>
+            <i class="fa fa-sun"></i>
         </div>
         {% if current_user.is_authenticated %}
         <p>User: {{ current_user.username }}</p>

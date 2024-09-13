@@ -657,7 +657,6 @@ footer {
     color: var(--text-color);
     text-align: center;
     padding: 5px;
-    padding-top: 1px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -667,6 +666,14 @@ footer {
     background-color: var(--bg-color);
     max-height: 3rem;
     border-top: 1px solid var(--secondary-color);
+}
+
+footer .theme-switch i {
+    font-size: 1.4rem;
+}
+
+footer .theme-switch {
+    line-height: 1.4rem;
 }
 
 .social-icons a {
