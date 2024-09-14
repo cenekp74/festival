@@ -797,6 +797,8 @@ footer .theme-switch {
         border-radius: 25px;
         z-index: 10;
         overflow: hidden;
+        overflow-y: auto;
+        max-height: 90vh;
     }
 
     .topnav.responsive .program-dropdown-content {
