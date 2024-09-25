@@ -58,12 +58,12 @@
     <footer>
         <p>&copy; 2024 JSNO</p>
         <div class="theme-switch">
-            <i class="fa fa-moon"></i>
+            <i class="fa fa-sun"></i>
             <label class="switch" onclick="changeTheme()">
                 <input type="checkbox" class="theme-checkbox">
                 <span class="slider round"></span>
             </label>
-            <i class="fa fa-sun"></i>
+            <i class="fa fa-moon"></i>
         </div>
         {% if current_user.is_authenticated %}
         <p>User: {{ current_user.username }}</p>
