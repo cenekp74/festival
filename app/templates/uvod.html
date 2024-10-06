@@ -6,20 +6,61 @@
 
 
 {% block body %}
-<h1>Úvod</h1>
-<h3 style="text-align: center;">Letošní ročník festivalu pro vás chystáme s tématem KONFLIKT.</h3>
+<h1> </h1>
 
-<p style="text-align: center;">
-    Na festivalu se letos podíváme na různé konfliktní situace, které se odehrávají napříč všemi sférami našich životů. 
-    Pokusíme se vám blíže nastínit podstatu konfliktů a různé způsoby jejich řešení. 
-    Budeme se věnovat mezilidským konfliktům, konfliktům člověka se sebou samým i mezinárodním konfliktům.
-</p>
+<img id="logo-text-modra" class="logo-text" src="{{ url_for('static', filename='img/logo_text_svetle_modra.png') }}">
+<img id="logo-text-cervena" class="logo-text" src="{{ url_for('static', filename='img/logo_text_svetle_cervena.png') }}">
+
+<div id="uvod-text">
+    <p>
+        Na festivalu JSNO se letos podíváme na různé <b>konfliktní situace</b>, které se odehrávají napříč všemi sférami našich životů. Pokusíme se je Vám přiblížit a nastínit jejich možné řešení.
+    </p>
+    <p>
+        V průběhu tří dnů (16.-18.12.2024) se budete moci podívat na množství <b>filmů</b>, navštívit <b>besedy</b> a <b>workshopy</b>. K občerstvení, ale i k utřídění myšlenek bude jako vždy připravena <b>kavárna</b> společně s <b>čajovnou</b>. 
+    </p>
+    <p>
+        Filmový festival bude letos nově začínat od <b>8:30</b>.
+    </p>
+    <p>
+        Právě probíhají přípravy festivalu. Pokud byste nám s čímkoliv chtěli pomoci nebo měli nějaké dotazy, napište nám na instragram <a href="https://www.instagram.com/ffgekom/" target="_blank">@ffgekom</a> nebo na email <a href="mailto:petr@jsnsgekom.cz">petr@jsnsgekom.cz</a>.
+    </p>
+    <p>
+        Váš <a href="/tym" style="text-decoration: none">tým FF</a>
+    </p>
+</div>
 
 <small style="position: absolute; bottom: 3.5rem;">Stránky jsou ve vývoji. Případné nápady na vylepšení prosím posílejte na email
-    potuznikcenek@gmail.com nebo na discord cenekp. <br><small><a href="https://github.com/cenekp74/festival"
+    admin@jsnsgekom.cz nebo na discord cenekp. <br><small><a href="https://github.com/cenekp74/festival"
             target="_blank">zdrojový kód</a></small></small>
 
 <script>
     document.getElementById('uvod').classList.add('active');
 </script>
+
+<style>
+    #uvod-text {
+        text-align: justify;
+        max-width: 1080px;
+        font-size: 17px;
+        margin-top: 1rem;
+    }
+
+    .logo-text {
+        width: 97vw;
+        max-width: 847px;
+        display: none;
+    }
+
+    :root.light #logo-text-cervena {
+        display: block;
+    }
+
+    :root.dark #logo-text-modra {
+        display: block;
+    }
+
+    .content {
+        padding-right: 1vw; /* tohle je kvuli tomu, ze je nastaveny v main.css u contentu padding left 1vw, ale globalne vpravo nechci mit padding kvuli programu, proto ho nastavuju jenom tu (mozna by bylo lepsi nastavit padding right i globalne a u programu to odendat idk) */
+    }
+</style>
 {% endblock %}

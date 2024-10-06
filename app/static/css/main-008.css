@@ -58,6 +58,10 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+p {
+    font-family: Roboto
+}
+
 a {
     color: var(--link-color)
 }
