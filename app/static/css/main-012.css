@@ -4,6 +4,7 @@
     --active-page-color: #4b0000;
     --secondary-color: #690000;
     --topnav-color: #2b0000;
+    --division-line-color: #440a00; /* barva cary mezi topnavem a contentem a footerem a contentem */
     --responsive-topnav-color: #100000;
     --link-color: var(--text-color);
     --hover-link-color: #ffc095;
@@ -28,6 +29,7 @@
     --active-page-color: #55a5cabb;
     --secondary-color: #00b7ce;
     --topnav-color: var(--bg-color);
+    --division-line-color: var(--secondary-color);
     --responsive-topnav-color: #cadcee;
     --link-color: var(--text-color);
     --hover-link-color: #003541;
@@ -59,7 +61,7 @@ body {
 }
 
 p {
-    font-family: Roboto
+    font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -433,7 +435,7 @@ input:checked + .slider:before {
 /* #region topnav*/
 .topnav {
     background-color: var(--topnav-color);
-    outline: 1px solid var(--secondary-color);
+    outline: 1px solid var(--division-line-color);
     align-items: center;
     display: flex;
     min-height: 60px;
@@ -453,6 +455,12 @@ input:checked + .slider:before {
     text-transform: uppercase;
     padding-left: 40px;
     padding-right: 40px;
+}
+
+.topnav #search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .topnav a.logo {
@@ -669,7 +677,8 @@ footer {
     align-items: center;
     background-color: var(--bg-color);
     max-height: 3rem;
-    border-top: 1px solid var(--secondary-color);
+    border-top: 1px solid var(--division-line-color);
+    z-index: 10;
 }
 
 footer .theme-switch i {
@@ -726,8 +735,8 @@ footer .theme-switch {
     .grid-items-container {
         grid-template-columns: repeat(4, 1fr);
     }
-    .search-input {
-        width: 75%;
+    .search-bar {
+        width: 75vw;
     }
     
     .search-results {
@@ -830,8 +839,8 @@ footer .theme-switch {
         padding-left: 30px;
         padding-right: 30px;
     }
-    .search-input {
-        width: 83%;
+    .search-bar {
+        width: 83vw;
     }
     
     .search-results {
@@ -859,7 +868,7 @@ footer .theme-switch {
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 460px) {
     .topnav a.logo {
         text-transform: none;
     }

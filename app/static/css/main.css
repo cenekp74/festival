@@ -457,6 +457,12 @@ input:checked + .slider:before {
     padding-right: 40px;
 }
 
+.topnav #search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .topnav a.logo {
     font-size: 23px;
     font-weight: bold;
@@ -729,8 +735,8 @@ footer .theme-switch {
     .grid-items-container {
         grid-template-columns: repeat(4, 1fr);
     }
-    .search-input {
-        width: 75%;
+    .search-bar {
+        width: 75vw;
     }
     
     .search-results {
@@ -833,8 +839,8 @@ footer .theme-switch {
         padding-left: 30px;
         padding-right: 30px;
     }
-    .search-input {
-        width: 83%;
+    .search-bar {
+        width: 83vw;
     }
     
     .search-results {
