@@ -12,7 +12,7 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 - v lokalnich funkcich se casto pouziva variable name id - vim, ze je to spatne podle PEP protoze existuje builtin fce id, ale jsem linej to vsude menit a mam pocit ze v local scopu to moc neva
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
-Lze obejit tim, ze do url pridam ?forcedisplay (kvuli testovani s ostatnima abych nemusel delat loginy)
+Lze obejit tim, ze do url pridam ?force-display (kvuli testovani s ostatnima abych nemusel delat loginy)
 Nastavuje se v `__init__.py`. V `decorators.py` je definovany dekorator wip_disabled. Ten je u vsech fci v routs.py, ktery maji byt zakazany v wip modu.
 ### Kavarna a cajovna (shop)
 Blueprint shop (`shop.py`) obsahuje fce k systemu kavarny a cajovny. Vsechno se uklada do stejny db jako program atd. V budoucnu by se sem mohl pridat i merch nebo jiny veci na prodej. 

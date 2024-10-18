@@ -17,7 +17,7 @@
     overflow-y: hidden; /* aby nebyly videt cary hodin */
 }
 
-:root {
+:root, :root.dark {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
     --film-color: #d93b65ee;
@@ -25,6 +25,11 @@
     --beseda-color: #ffb730ee;
     --flash-border-color: var(--text-color);
     --program-text-color: #121212;
+    --time-vlines-color: #801b0e; /* barva carecek co jsou u kazdy hodiny */
+}
+
+:root.light {
+    --time-vlines-color: var(--secondary-color);
 }
 
 .program-container::before { /* time vline */
@@ -148,7 +153,8 @@
     top: 0;
     right: -2px;
     bottom: -100vh;
-    border-right: 1px dashed var(--secondary-color);
+    top: 1.5rem;
+    border-right: 1px dashed var(--time-vlines-color);
     z-index: -1;
 }
 
