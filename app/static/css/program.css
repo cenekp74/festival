@@ -53,6 +53,9 @@
     font-size: 20px;
     color: var(--program-text-color);
     position: relative;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .program-item:hover {
@@ -215,7 +218,7 @@
     }
 }
 
-@media screen and (max-width: 1400px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
+@media screen and (max-width: 1455px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
     .program-container {
         width: 88vw;
         border: 1px solid var(--secondary-color);
