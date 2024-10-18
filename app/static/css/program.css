@@ -168,8 +168,8 @@
     width: fit-content;
     border-radius: 12px;
     line-height: 1.5rem;
-    position: fixed;
-    z-index: 5;
+    position: absolute;
+    z-index: 2;
     max-width: 190px;
 }
 
