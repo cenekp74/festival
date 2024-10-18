@@ -50,7 +50,7 @@ function showContextMenu(event, element) {
 
     // tohle je aby se cm zobrazovalo nalevo od kliknuti pokud je moc blizko pravy strane (190px, coz je max-width context menu definovana v program.css)
     let distanceLeft = event.clientX;
-    let distanceRight = window.innerWidth - event.pageX;
+    let distanceRight = window.innerWidth - event.clientX;
     if (distanceRight < 190) {
         contextMenu.style.left = ''
         contextMenu.style.borderTopRightRadius = '0'
@@ -61,6 +61,22 @@ function showContextMenu(event, element) {
         contextMenu.style.borderTopLeftRadius = '0'
         contextMenu.style.borderTopRightRadius = ''
         contextMenu.style.left = distanceLeft + 'px';
+    }
+    contextMenu.style.borderBottomLeftRadius = ''
+    contextMenu.style.borderBottomRightRadius = ''
+
+    // a tohle to samy akorat nahoru kdyz je to moc dole
+    let distanceTop = event.clientY;
+    let distanceBottom = window.innerHeight - event.clientY;
+    console.log(distanceBottom)
+    if (distanceBottom < 200) {
+        contextMenu.style.top = ''
+        contextMenu.style.bottom = distanceBottom + 'px';
+        [contextMenu.style.borderTopLeftRadius, contextMenu.style.borderBottomLeftRadius] = [contextMenu.style.borderBottomLeftRadius, contextMenu.style.borderTopLeftRadius];
+        [contextMenu.style.borderTopRightRadius, contextMenu.style.borderBottomRightRadius] = [contextMenu.style.borderBottomRightRadius, contextMenu.style.borderTopRightRadius];
+    } else {
+        contextMenu.style.bottom = ''
+        contextMenu.style.top = distanceTop + 'px';
     }
 
     if (contextMenu.style.visibility == 'hidden') {
@@ -217,3 +233,5 @@ function resizeProgramContainer() {
 }
 window.addEventListener('resize', resizeProgramContainer);
 resizeProgramContainer()
+
+window.addEventListener('scroll', hideAllContextMenu)
