@@ -51,7 +51,7 @@ function showContextMenu(event, element) {
     // tohle je aby se cm zobrazovalo nalevo od kliknuti pokud je moc blizko pravy strane (190px, coz je max-width context menu definovana v program.css)
     let distanceLeft = event.clientX;
     let distanceRight = window.innerWidth - event.clientX;
-    if (distanceRight < 190) {
+    if (distanceRight < 210) { // 210 je max width cm definovana v program.css
         contextMenu.style.left = ''
         contextMenu.style.borderTopRightRadius = '0'
         contextMenu.style.borderTopLeftRadius = ''
@@ -68,7 +68,6 @@ function showContextMenu(event, element) {
     // a tohle to samy akorat nahoru kdyz je to moc dole
     let distanceTop = event.clientY;
     let distanceBottom = window.innerHeight - event.clientY;
-    console.log(distanceBottom)
     if (distanceBottom < 200) {
         contextMenu.style.top = ''
         contextMenu.style.bottom = distanceBottom + 'px';
@@ -211,6 +210,10 @@ function checkForSmallProgramItems() {
 window.addEventListener('resize', checkForSmallProgramItems);
 checkForSmallProgramItems()
 
+document.querySelectorAll(".item-details").forEach(ele => {
+    ele.addEventListener("click", (e => {e.stopPropagation()})) // aby kdyz kliknu na cm (napr. pridam do oblibenych) tak okynko nezmizelo
+})
+    
 updateTimeVerticalLine()
 setInterval(updateTimeVerticalLine, 60*1000)
 

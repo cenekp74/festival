@@ -58,12 +58,11 @@
     {% for item in program[room]["films"] %}
     <div id="cm-f_{{item.id}}" class="item-details film-details" style="visibility: hidden;">
         <a href="/film/{{ item.id }}">
-            <div>
+            <div class="cm-item-name">
                 {{ item.name }}
             </div>
         </a>
-        <div>film</div>
-        <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         <div>{{ item.language }}</div>
         <div>
             <a href="{{ item.link }}">odkaz</a>
@@ -80,12 +79,12 @@
     {% for item in program[room]["workshops"] %}
     <div id="cm-w_{{item.id}}" class="item-details workshop-details" style="visibility: hidden;">
         <a href="/workshopy#{{ item.id }}">
-            <div>
+            <div class="cm-item-name">
                 {{ item.name }}
             </div>
         </a>
         <div>workshop</div>
-        <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         {% if item.vg %}
         <div class="vg-text">Workshop je určen pouze pro <br> studenty vyššího gymnázia</div>
         {% endif %}
@@ -97,11 +96,11 @@
 
     {% for item in program[room]["besedy"] %}
     <div id="cm-b_{{item.id}}" class="item-details beseda-details" style="visibility: hidden;">
-        <div style="text-decoration: underline;">
+        <div style="text-decoration: underline;" class="cm-item-name">
             {{ item.name }}
         </div>
         <div>beseda</div>
-        <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         {% if item.host_id %}
             <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
                 <div>host</div>

@@ -167,10 +167,24 @@
     width: 0;
     width: fit-content;
     border-radius: 12px;
-    line-height: 1.5rem;
+    line-height: 1.3rem;
     position: fixed;
     z-index: 5;
-    max-width: 190px;
+    max-width: 210px;
+    font-size: 17px;
+}
+
+.item-details .cm-item-name {
+    font-size: 20px;
+}
+
+.item-details a:has(> .cm-item-name ) {
+    text-decoration: none
+}
+
+.item-details .cm-item-time {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .item-details a div {
@@ -181,6 +195,12 @@
     position: absolute;
     bottom: 5px;
     right: 5px;
+    font-size: 20px;
+}
+
+.item-details .favorite-star:hover{
+    color: var(--favorite-color);
+    transition: color .4s;
 }
 
 .item-details .vg-text {
