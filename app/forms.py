@@ -56,8 +56,6 @@ class HostForm(FlaskForm):
     description = TextAreaField('Popis')
     short_description = StringField('Krátký popis')
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
-    vg = BooleanField('Jen pro vyšší gymnázium', validators=[DataRequired()])
-    recommended = BooleanField('Doporučeno', validators=[DataRequired()])
     submit = SubmitField('Potvrdit')
 
 class ShopForm(FlaskForm):
