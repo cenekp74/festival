@@ -53,20 +53,23 @@
     </div>
 </div>
 
+<!-- vytvoreni context menu elementu (to co se zobrazi po kliknuti) -->
 {% for room in rooms %}
     {% for item in program[room]["films"] %}
     <div id="cm-f_{{item.id}}" class="item-details film-details" style="visibility: hidden;">
         <a href="/film/{{ item.id }}">
-            <div>
+            <div class="cm-item-name">
                 {{ item.name }}
             </div>
         </a>
-        <div>film</div>
-        <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         <div>{{ item.language }}</div>
         <div>
             <a href="{{ item.link }}">odkaz</a>
         </div>
+        {% if item.vg %}
+        <div class="vg-text">Film je určen pouze pro <br> studenty vyššího gymnázia</div>
+        {% endif %}
         <a href="javascript:toggleFavorite('{{'f_'+item.id|string}}')">
             <i id="star-f_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
@@ -76,12 +79,15 @@
     {% for item in program[room]["workshops"] %}
     <div id="cm-w_{{item.id}}" class="item-details workshop-details" style="visibility: hidden;">
         <a href="/workshopy#{{ item.id }}">
-            <div>
+            <div class="cm-item-name">
                 {{ item.name }}
             </div>
         </a>
         <div>workshop</div>
-        <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
+        {% if item.vg %}
+        <div class="vg-text">Workshop je určen pouze pro <br> studenty vyššího gymnázia</div>
+        {% endif %}
         <a href="javascript:toggleFavorite('{{'w_'+item.id|string}}')">
             <i id="star-w_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
         </a>
@@ -90,17 +96,18 @@
 
     {% for item in program[room]["besedy"] %}
     <div id="cm-b_{{item.id}}" class="item-details beseda-details" style="visibility: hidden;">
-        <a href="/beseda/{{ item.id }}">
-            <div>
-                {{ item.name }}
-            </div>
-        </a>
+        <div style="text-decoration: underline;" class="cm-item-name">
+            {{ item.name }}
+        </div>
         <div>beseda</div>
-        <div>{{ item.time_from }} - {{ item.time_to }}</div>
+        <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         {% if item.host_id %}
             <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
                 <div>host</div>
             </a>
+        {% endif %}
+        {% if item.vg %}
+        <div class="vg-text">Beseda je určena pouze pro studenty vyššího gymnázia</div>
         {% endif %}
         <a href="javascript:toggleFavorite('{{'b_'+item.id|string}}')">
             <i id="star-b_{{item.id}}" class="fa fa-star favorite-star" aria-hidden="true"></i>
@@ -108,6 +115,7 @@
     </div>
     {% endfor %}
 {% endfor %}
+
 <nav class="program-day program-nav">
     <a class="button-link" href="{{ url_for('clear_favorite') }}" onclick="return confirm('Opravdu chcete vymazat váš program?')">Vymazat</a>
     <a id="nav-day-1" class="button-link" href="{{ url_for('favorite_day', dayn=1) }}">Den 1</a>

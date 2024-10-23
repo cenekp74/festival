@@ -10,6 +10,8 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 - kdyz naclonuju repo z githubu a chci to spustit, musim nejdriv spustit create_db.py a vytvorit dir static/upload, static/fotogalerie a soubor static/fotogalerie/albums.json (do nej staci dat prazdny dict {})
 - obrazky k hostum a workshopum se ukladaji do stejny slozky jako soubory z upload
 - v lokalnich funkcich se casto pouziva variable name id - vim, ze je to spatne podle PEP protoze existuje builtin fce id, ale jsem linej to vsude menit a mam pocit ze v local scopu to moc neva
+- context-menu (cm) = item-details, omylem jsem to nekde nazval jinak a nechce se mi to menit
+- program_day a favorite_day jsou hodne podobny. cast s vytvarenim context menu je uplne stejna. program se lisi v malych detailech
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
 Lze obejit tim, ze do url pridam ?force-display (kvuli testovani s ostatnima abych nemusel delat loginy)
