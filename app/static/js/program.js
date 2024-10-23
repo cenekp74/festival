@@ -153,17 +153,28 @@ function showFavoriteAlert(uid) {
 /** zmeni barvu hvezdicek podle favorite cookiesky */
 function reloadStars() {
     if (!(getCookie('favorite'))) {return} // pokud favorite cookie jeste neexistuje, return
-    var stars = document.getElementsByClassName('favorite-star');
+    var stars = document.querySelectorAll(".favorite-star");
     var favoriteCookie = getCookie('favorite').replace('"', '');
     var favoriteItems = favoriteCookie.split(' ');
-    for (var i = 0; i < items.length; i++) {
-        if (favoriteItems.includes(stars[i].id.split('-')[1])) {
-            stars[i].classList.add('in-favorite');
+    stars.forEach(starEle => {
+        if (favoriteItems.includes(starEle.id.split('-')[1])) {
+            starEle.classList.add('in-favorite');
         }
         else {
-            stars[i].classList.remove('in-favorite');
+            starEle.classList.remove('in-favorite');
         }
-    }
+    })
+
+    var program_item_stars = document.querySelectorAll(".program-item-star")
+    program_item_stars.forEach(starEle => {
+        if (favoriteItems.includes(starEle.id.split('-')[1])) {
+            starEle.classList.add('in-favorite');
+        }
+        else {
+            starEle.classList.remove('in-favorite');
+        }
+    })
+    
 }
 
 document.addEventListener('click', () => {

@@ -22,7 +22,7 @@
     --vline-visibility: hidden;
     --film-color: #d93b65ee;
     --workshop-color: #ff7300ee;
-    --beseda-color: #ffb730ee;
+    --beseda-color: #fcff30c7;
     --flash-border-color: var(--text-color);
     --program-text-color: #121212;
     --time-vlines-color: #801b0e; /* barva carecek co jsou u kazdy hodiny */
@@ -197,6 +197,19 @@
     bottom: 5px;
     right: 5px;
     font-size: 20px;
+}
+
+.program-item-star { /* hvezdicka u kazdyho program itemu (viditelna jenom kdyz je v oblibenych) */
+    position: absolute;
+    bottom: 4px;
+    right: 3px;
+    font-size: 17px;
+    display: none;
+    color: var(--favorite-color);
+}
+
+.program-item-star.in-favorite {
+    display: block;
 }
 
 .item-details .vg-text {

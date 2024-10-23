@@ -32,6 +32,7 @@
                         <div>
                             {{ film.name }}
                         </div>
+                        <i id="program_item_star-f_{{film.id}}" class="program-item-star fa fa-star"></i>
                     </div>
                 {% endfor %}
                 {% for beseda in program[room]["besedy"] %}
@@ -39,6 +40,7 @@
                         <div>
                             {{ beseda.name }}
                         </div>
+                        <i id="program_item_star-b_{{beseda.id}}" class="program-item-star fa fa-star"></i>
                     </div>
                 {% endfor %}
                 {% for workshop in program[room]["workshops"] %}
@@ -46,6 +48,7 @@
                         <div>
                             {{ workshop.name }}
                         </div>
+                        <i id="program_item_star-w_{{workshop.id}}" class="program-item-star fa fa-star"></i>
                     </div>
                 {% endfor %}
             {% endfor %}
