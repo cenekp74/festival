@@ -199,11 +199,6 @@
     font-size: 20px;
 }
 
-.item-details .favorite-star:hover{
-    color: var(--favorite-color);
-    transition: color .4s;
-}
-
 .item-details .vg-text {
     font-size: .8rem;
     line-height: .8rem;
@@ -242,6 +237,10 @@
         font-size: 100%;
         -webkit-line-clamp: 2;
         writing-mode: initial;
+    }
+    .item-details .favorite-star:hover {
+        color: var(--favorite-color);
+        transition: color .4s;
     }
 }
 
