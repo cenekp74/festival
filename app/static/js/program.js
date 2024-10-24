@@ -121,7 +121,7 @@ async function toggleFavorite(uid) {
     showFavoriteAlert(uid)
 }
 
-/** velice oskliva funkce na zobrazeni alertu kdyz user pridana/odebere z oblibenych */
+/** velice oskliva funkce na zobrazeni alertu kdyz user pridana/odebere z oblibenych, zavisi na tom jestli ma hvezdicka pro dany item class in-favorite */
 function showFavoriteAlert(uid) {
     deleteAllFlashAlerts()
     let itemEle = document.getElementById(uid)
@@ -152,8 +152,18 @@ function showFavoriteAlert(uid) {
 
 /** zmeni barvu hvezdicek podle favorite cookiesky */
 function reloadStars() {
-    if (!(getCookie('favorite'))) {return} // pokud favorite cookie jeste neexistuje, return
     var stars = document.querySelectorAll(".favorite-star");
+    var program_item_stars = document.querySelectorAll(".program-item-star")
+
+    if (!(getCookie('favorite'))) { // pokud favorite cookie neexistuje nebo je nulova (napr. pokud byl v oblibenych 1 item a odendam ho), tak odendej hvezdicky od vseho a return
+        stars.forEach(starEle => {
+            starEle.classList.remove('in-favorite');
+        })
+    
+        program_item_stars.forEach(starEle => {
+            starEle.classList.remove('in-favorite');
+        })
+    }
     var favoriteCookie = getCookie('favorite').replace('"', '');
     var favoriteItems = favoriteCookie.split(' ');
     stars.forEach(starEle => {
@@ -165,7 +175,6 @@ function reloadStars() {
         }
     })
 
-    var program_item_stars = document.querySelectorAll(".program-item-star")
     program_item_stars.forEach(starEle => {
         if (favoriteItems.includes(starEle.id.split('-')[1])) {
             starEle.classList.add('in-favorite');
@@ -174,7 +183,6 @@ function reloadStars() {
             starEle.classList.remove('in-favorite');
         }
     })
-    
 }
 
 document.addEventListener('click', () => {

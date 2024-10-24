@@ -251,10 +251,6 @@
         -webkit-line-clamp: 2;
         writing-mode: initial;
     }
-    .item-details .favorite-star:hover {
-        color: var(--favorite-color);
-        transition: color .4s;
-    }
 }
 
 @media screen and (max-width: 1455px) { /* stejny jako breakpoint na zmenu topnavu v main.css */
