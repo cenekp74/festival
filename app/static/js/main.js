@@ -168,10 +168,6 @@ document.addEventListener('click', () => {
     hideProgramDropdown()
 })
 
-document.addEventListener('scroll', () => {
-    hide_topnav()
-})
-
 // pokud je obrazovka mensi nez 412px, zmenim napis "Jeden svet na ohradni" na "JSNO"
 const logoMediaQuery = window.matchMedia('(max-width: 412px)');
 if (logoMediaQuery.matches) {
