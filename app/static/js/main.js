@@ -13,7 +13,7 @@ function topnav_drop() {
         disableanim = false;
         topnav_links.style.overflowY = "hidden" // tohle je protoze jinak se v chromu ukazuje scrollbar pri rozbalovani
         animateHeight(0, topnav_links.scrollHeight, topnav_links);
-        sleep(320).then(() => {topnav_links.style.height = "auto"; topnav_links.style.overflowY = "auto";});
+        sleep(320).then(() => {topnav_links.style.height = "auto"; topnav_links.style.overflowY = "";});
     } else {
         var icon = document.getElementById("icon");
         icon.className = "fa fa-bars"
