@@ -84,7 +84,7 @@ a:visited {
     border-radius: 4px;
 }
 
-html.dark body::-webkit-scrollbar:hover { /* z nejakyho duvodu kdyz pouziju :root misto html tak to chrom nechape */
+::-webkit-scrollbar:hover {
     background-color: #171717;
 }
 
