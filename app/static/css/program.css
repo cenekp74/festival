@@ -225,10 +225,6 @@
     color: var(--favorite-color);
 }
 
-.content {
-    margin-bottom: 120px;
-}
-
 .day-heading {
     text-align: center;
     margin: 1rem;
@@ -238,6 +234,22 @@
 
 .alert-favorite {
     transition: opacity 2s ease-in;
+}
+
+.program-nav {
+    width: 100%;
+    text-align: center;
+}
+
+.program-nav a {
+    margin-top: 5px;
+}
+
+.program-day.program-nav {
+    position:static;
+    margin-top: .25rem;
+    background-color: var(--bg-color);
+    padding-bottom: 15px;
 }
 
 @media screen and (min-width: 800px) {
@@ -279,9 +291,6 @@
 }
 
 @media screen and (max-width: 550px) { /* pri jaky width collapsuje dolni nav na dny */
-    .content {
-        margin-bottom: 155px;
-    }
     .day-heading {
         font-size: 1.5rem;
         margin-bottom: .6rem;
@@ -297,8 +306,5 @@
     }
     .program-item div {
         text-indent: 0;
-    }
-    .content {
-        margin-bottom: 150px;
     }
 }
