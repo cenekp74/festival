@@ -814,7 +814,7 @@ footer .theme-switch {
         z-index: 10;
         overflow: hidden;
         overflow-y: auto;
-        max-height: 90svh;
+        max-height: calc(95svh - 90px);
     }
 
     .topnav.responsive .program-dropdown-content {
