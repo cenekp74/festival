@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     admin = db.Column(db.Integer, nullable=False, default=0)
+    perm_program_edit = db.Column(db.Integer, nullable=False, default=0)
+    perm_shop = db.Column(db.Integer, nullable=False, default=0)
 
 class Host(db.Model):
     id = db.Column(db.Integer, primary_key=True)

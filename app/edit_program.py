@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, abort, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app import app, db
 from werkzeug.utils import secure_filename
-from .decorators import admin_required
+from .decorators import perm_program_edit_required
 import os
 from app.forms import FilmForm, BesedaForm, WorkshopForm, HostForm
 from app.db_classes import Film, Host, Beseda, Workshop
@@ -14,7 +14,7 @@ edit_program = Blueprint('edit_program', __name__)
 
 @edit_program.route('/program/edit')
 @login_required
-@admin_required
+@perm_program_edit_required
 def index():
     films = Film.query.all()
     besedy = Beseda.query.all()
@@ -39,7 +39,7 @@ def index():
 
 @edit_program.route('/program/edit/interactive/<dayn>')
 @login_required
-@admin_required
+@perm_program_edit_required
 def interactive(dayn):
     update_rooms() # tohle je tu proto, protoze kdyz server bezi s vic workerama tak se updatne vzdycky jenom u jednoho app.rooms a jsou s tim pak problemy
     if not dayn.isdigit(): abort(404)
@@ -55,7 +55,7 @@ def interactive(dayn):
 
 @edit_program.route('/add_film', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def add_film():
     form = FilmForm()
     if form.validate_on_submit():
@@ -79,7 +79,7 @@ def add_film():
 
 @edit_program.route('/add_workshop', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def add_workshop():
     form = WorkshopForm()
     if form.validate_on_submit():
@@ -109,7 +109,7 @@ def add_workshop():
 
 @edit_program.route('/add_beseda', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def add_beseda():
     form = BesedaForm()
     if form.validate_on_submit():
@@ -131,7 +131,7 @@ def add_beseda():
 
 @edit_program.route('/add_host', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def add_host():
     form = HostForm()
     if form.validate_on_submit():
@@ -154,7 +154,7 @@ def add_host():
 
 @edit_program.route('/edit_film/<id>', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def edit_film(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -181,7 +181,7 @@ def edit_film(id):
 
 @edit_program.route('/edit_beseda/<id>', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def edit_beseda(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -208,7 +208,7 @@ def edit_beseda(id):
 
 @edit_program.route('/edit_workshop/<id>', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def edit_workshop(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -243,7 +243,7 @@ def edit_workshop(id):
 
 @edit_program.route('/edit_host/<id>', methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def edit_host(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -271,7 +271,7 @@ def edit_host(id):
 
 @edit_program.route('/delete_film/<id>')
 @login_required
-@admin_required
+@perm_program_edit_required
 def delete_film(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -283,7 +283,7 @@ def delete_film(id):
 
 @edit_program.route('/delete_workshop/<id>')
 @login_required
-@admin_required
+@perm_program_edit_required
 def delete_workshop(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -299,7 +299,7 @@ def delete_workshop(id):
 
 @edit_program.route('/delete_beseda/<id>')
 @login_required
-@admin_required
+@perm_program_edit_required
 def delete_beseda(id):
     if not id.isdigit(): abort(404)
     id = int(id)
@@ -311,7 +311,7 @@ def delete_beseda(id):
 
 @edit_program.route('/delete_host/<id>')
 @login_required
-@admin_required
+@perm_program_edit_required
 def delete_host(id):
     if not id.isdigit(): abort(404)
     id = int(id)

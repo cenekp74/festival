@@ -18,3 +18,9 @@ Lze obejit tim, ze do url pridam ?force-display (kvuli testovani s ostatnima aby
 Nastavuje se v `__init__.py`. V `decorators.py` je definovany dekorator wip_disabled. Ten je u vsech fci v routs.py, ktery maji byt zakazany v wip modu.
 ### Kavarna a cajovna (shop)
 Blueprint shop (`shop.py`) obsahuje fce k systemu kavarny a cajovny. Vsechno se uklada do stejny db jako program atd. V budoucnu by se sem mohl pridat i merch nebo jiny veci na prodej. 
+### Permissions
+Na serveru je jednoduchy system prihlaseni a opravneni. User muze mit 3 typy opravneni:
+1. admin - muze vsechno
+2. perm_shop - muze editovat kavarnu/cajovnu
+3. perm_program_edit - muze editovat program
+Pro kazdy typ opravneni je v `decorators.py` definovany dekorator, ktery danou route chrani. Vsechny 3 dekoratory pocitaji s tim, ze je current user prihlaseny (takze napr. k funkci, ke ktere ma mit pristup jenom admin musim dat po rade dekoratory @login_required a @admin_required)

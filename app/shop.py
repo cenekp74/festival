@@ -11,14 +11,14 @@ from app.utils import write_albums, load_albums
 import random
 import shutil
 from werkzeug.utils import secure_filename
-from .decorators import admin_required, wip_disabled
+from .decorators import perm_shop_required, wip_disabled
 import os
 
 shop = Blueprint('shop', __name__)
 
 @shop.route("/add_shop_item", methods=['GET', 'POST'])
 @login_required
-@admin_required
+@perm_shop_required
 def add_item():
     form = ShopForm()
     if form.validate_on_submit():
@@ -34,7 +34,7 @@ def add_item():
 
 @shop.route('/delete_shop_item/<id>')
 @login_required
-@admin_required
+@perm_shop_required
 def delete_item(id):
     if not id.isdigit(): abort(404)
     id = int(id)
