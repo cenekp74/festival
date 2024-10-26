@@ -70,3 +70,9 @@
     margin-bottom: .2rem;
     font-size: large;
 }
+
+.alert {
+    position: absolute;
+    right: .1rem;
+    bottom: calc(50px + .1rem);
+}
