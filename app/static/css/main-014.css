@@ -184,10 +184,10 @@ button:not(:disabled) {
 .alert i {
     float: right;
     line-height: 2rem;
-    margin-right: 5px;
+    margin-right: 6px;
     cursor: pointer;
-    padding-right: 2px;
-    padding-left: 3px;
+    padding-right: 4px;
+    padding-left: 4px;
     color: var(--text-color);
 }
 
