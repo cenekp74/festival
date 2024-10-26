@@ -8,6 +8,9 @@
 {% block body %}
 <div class="day-heading">Můj program - Den {{ day }}</div>
 
+{% if not rooms|length > 0 %}
+    <p style="text-align: center;font-size: 1.3rem;">Zatím ve svém programu nic nemáš. Přidej sem své oblíbené filmy kliknutím na hvězdičku, která se objeví po kliknutí na film.</p>
+{% else %}
 <div class="program-wrapper">
     <div class="rooms-container">
         {% for room in rooms %}
@@ -115,6 +118,7 @@
     </div>
     {% endfor %}
 {% endfor %}
+{% endif %} <!-- end if statementu uplne nahore kterej checkuje jestli je neco v programu -->
 
 <nav class="program-day program-nav">
     <a class="button-link" href="{{ url_for('clear_favorite') }}" onclick="return confirm('Opravdu chcete vymazat váš program?')">Vymazat</a>
