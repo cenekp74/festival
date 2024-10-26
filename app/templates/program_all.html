@@ -89,7 +89,6 @@
                 <th class="sort sort-time">Čas</th>
                 <th class="sort sort-room">Místnost</th>
                 <th>Autor</th>
-                <th>Popis</th>
                 <th>Pouze pro vyšší gympl</th>
                 <th>Doporučeno</th>
                 <th>Program</th>
@@ -103,7 +102,6 @@
                 <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
                 <td>{{ workshop.room }}</td>
                 <td>{{ workshop.author }}</td>
-                <td>{{ workshop.description|safe}}</td>
                 <td>{{ 'ano' if workshop.vg else 'ne' }}</td>
                 <td>{{ 'ano' if workshop.recommended else '' }}</td>
                 <td>
@@ -117,15 +115,13 @@
         <h2>Hosté</h2>
         <table>
             <tr>
-                <th class="sort sort-name">Host</th>
-                <th>Popis</th>
+                <th>Host</th>
             </tr>
             {% for host in hosts %}
             <tr>
                 <td>
                     <a href="{{url_for('hoste')}}#h_{{host.id}}">{{ host.name }}</a>
                 </td>
-                <td>{{ host.description }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -139,6 +135,24 @@
     }
     .sort:hover {
         background-color: var(--secondary-color);
+    }
+    th:is(:first-child), td:is(:first-child) {
+        min-width: 100px;
+    }
+
+    th:is(:nth-child(3)), th:is(:nth-child(3)) {
+        min-width: 115px;
+    }
+
+    @media screen and (max-width: 900px) {
+        /* na malych obrazovkach nezobrazuju jestli je pro vyssi gympl nebo doporuceny */
+        div:not(.program-all-hosts) > table td:is(:nth-last-child(2)), div:not(.program-all-hosts) > table th:is(:nth-last-child(2)),
+        div:not(.program-all-hosts) > table td:is(:nth-last-child(3)), div:not(.program-all-hosts) > table th:is(:nth-last-child(3)) {
+            display: none;
+        }
+        div.program-all-filmy td:is(:nth-last-child(4)), div.program-all-filmy th:is(:nth-last-child(4)) {
+            display: none;
+        }
     }
 </style>
 <script>

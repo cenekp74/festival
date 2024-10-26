@@ -1,10 +1,11 @@
 th, td {
-    padding: 12px;
+    padding: 12px 10px 12px 10px;
     text-align: left;
 }
 
 th {
     background: var(--table-hover-color);
+    text-align: center;
 }
 
 tr:hover td {
@@ -41,4 +42,17 @@ tr:is(:last-child) td:is(:first-child) {
 
 tr:is(:last-child) td:is(:last-child) {
     border-bottom-right-radius: calc(var(--border-radius) - 4px);
+}
+
+@media screen and (max-width: 900px) {
+    th, td {
+        padding: 12px 5px 12px 5px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    th, td {
+        padding: 10px 3px 10px 3px;
+    }
 }
