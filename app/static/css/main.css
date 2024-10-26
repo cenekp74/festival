@@ -166,7 +166,7 @@ button:not(:disabled) {
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
     line-height: 2rem;
-    min-width: 50%;
+    min-width: 30%;
     text-align: center;
     margin-top: .3rem;
     font-style: italic;
