@@ -2,14 +2,14 @@ from flask import Blueprint, jsonify, request, abort
 from app.db_classes import Film, Beseda, Workshop
 from app.utils import get_all_rooms, correct_uid, update_rooms
 from flask_login import login_required
-from .decorators import admin_required
+from .decorators import admin_required, perm_program_edit_required
 from . import db, app
 
 api = Blueprint('api', __name__)
 
 @api.route('/update_from_json', methods=['POST'])
 @login_required
-@admin_required
+@perm_program_edit_required
 def update_from_json():
     """
     updatuje program z json ve formatu {"uid":{"time_from":time, "time_to":time, "room":room}} 
