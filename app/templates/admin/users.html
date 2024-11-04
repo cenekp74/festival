@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>JSNO - admin - USERS</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<h1>User edit</h1>
+<div>
+    <table>
+        <tr>
+            <th>user</th>
+            <th>admin</th>
+            <th>perm shop</th>
+            <th>perm program edit</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.admin }}</td>
+            <td>{{ user.perm_shop }}</td>
+            <td>{{ user.perm_program_edit }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('add_user') }}">add user</a>
+</div>
+
+{% endblock %}

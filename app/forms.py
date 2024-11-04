@@ -14,6 +14,14 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Pamatuj si mě')
     submit = SubmitField('Přihlásit')
 
+class UserForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Heslo', validators=[DataRequired()])
+    admin = BooleanField('admin')
+    perm_shop = BooleanField('perm_shop')
+    perm_program_edit = BooleanField('perm_program_edit')
+    submit = SubmitField('Potvrdit')
+
 class FilmForm(FlaskForm):
     name = StringField('Název filmu', validators=[DataRequired()])
     link = StringField('Odkaz', validators=[DataRequired()])

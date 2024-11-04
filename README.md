@@ -25,3 +25,5 @@ Na serveru je jednoduchy system prihlaseni a opravneni. User muze mit 3 typy opr
 2. perm_shop - muze editovat kavarnu/cajovnu
 3. perm_program_edit - muze editovat program
 Pro kazdy typ opravneni je v `decorators.py` definovany dekorator, ktery danou route chrani. Vsechny 3 dekoratory pocitaji s tim, ze je current user prihlaseny (takze napr. k funkci, ke ktere ma mit pristup jenom admin musim dat po rade dekoratory @login_required a @admin_required)
+
+Usery lze editovat po admin prihlaseni na /admin/users (definovano v `routs.py`)

@@ -1,6 +1,6 @@
 from app.db_classes import Host, User, Film, Beseda, Workshop
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort
-from app.forms import LoginForm, FilmForm, WorkshopForm, BesedaForm, HostForm
+from app.forms import LoginForm, WorkshopForm, UserForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.utils import allowed_file, correct_uid, update_rooms
@@ -269,4 +269,29 @@ def upload_file():
 @login_required
 def colors():
     return render_template('colors.html')
+
+@app.route('/admin/users')
+@login_required
+@admin_required
+def users():
+    return render_template('admin/users.html', users=User.query.all())
+
+@app.route('/admin/add_user', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_user():
+    form = UserForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data,
+                    password=bcrypt.generate_password_hash(form.password.data),
+                    admin="1" if form.admin.data else "0",
+                    perm_shop="1" if form.perm_shop.data else "0",
+                    perm_program_edit="1" if form.perm_program_edit.data else "0"
+                    )
+        db.session.add(user)
+        db.session.commit()
+        flash('Změny uloženy')
+        return redirect(url_for('users'))
+    return render_template('admin/add_user.html', form=form)
+
 #endregion admin
