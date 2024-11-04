@@ -12,6 +12,7 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 - v lokalnich funkcich se casto pouziva variable name id - vim, ze je to spatne podle PEP protoze existuje builtin fce id, ale jsem linej to vsude menit a mam pocit ze v local scopu to moc neva
 - context-menu (cm) = item-details, omylem jsem to nekde nazval jinak a nechce se mi to menit
 - program_day a favorite_day jsou hodne podobny. cast s vytvarenim context menu je uplne stejna. program se lisi v malych detailech
+- v program_day se po prihlaseni jakehokoliv usera ukaze moznost lokalne menit barvy program itemu
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
 Lze obejit tim, ze do url pridam ?force-display (kvuli testovani s ostatnima abych nemusel delat loginy)
