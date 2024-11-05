@@ -16,11 +16,17 @@ class LoginForm(FlaskForm):
 
 class UserForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Heslo', validators=[DataRequired()])
+    password = PasswordField('Heslo')
     admin = BooleanField('admin')
     perm_shop = BooleanField('perm_shop')
     perm_program_edit = BooleanField('perm_program_edit')
     submit = SubmitField('Potvrdit')
+
+    def __init__(self, require_password=True, *args, **kwargs): # tohle je kvuli tomu, ze pri editovani usera nechci aby byl password field required
+        super(UserForm, self).__init__(*args, **kwargs)
+        
+        if require_password:
+            self.password.validators.append(DataRequired())
 
 class FilmForm(FlaskForm):
     name = StringField('Název filmu', validators=[DataRequired()])

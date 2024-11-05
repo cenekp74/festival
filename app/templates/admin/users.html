@@ -15,6 +15,7 @@
             <th>admin</th>
             <th>perm shop</th>
             <th>perm program edit</th>
+            <th>edit</th>
         </tr>
         {% for user in users %}
         <tr>
@@ -22,6 +23,7 @@
             <td>{{ user.admin }}</td>
             <td>{{ user.perm_shop }}</td>
             <td>{{ user.perm_program_edit }}</td>
+            <td><a href="{{ url_for('edit_user', id=user.id) }}">edit</a></td>
         </tr>
         {% endfor %}
     </table>

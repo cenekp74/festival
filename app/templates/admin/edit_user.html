@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+{% from "formutils.html" import render_field %}
+<div class="container container-form">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend>Edit user id: {{ user.id }}</legend>
+            {{ render_field(form.username) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.admin) }}
+            {{ render_field(form.perm_shop) }}
+            {{ render_field(form.perm_program_edit) }}
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn") }}
+        </div>
+    </form>
+</div>
+
+{% endblock %}
