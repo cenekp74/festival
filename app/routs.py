@@ -315,4 +315,15 @@ def edit_user(id):
         return redirect(url_for('users'))
     return render_template('admin/edit_user.html', user=user, form=form)
 
+@app.route('/admin/delete_user/<id>')
+@login_required
+@admin_required
+def delete_user(id):
+    if not id.isdigit(): abort(404)
+    id = int(id)
+    User.query.filter_by(id=id).delete()
+    db.session.commit()
+    flash('Změny uloženy')
+    return redirect(url_for('users'))
+
 #endregion admin
