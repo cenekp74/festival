@@ -20,8 +20,8 @@
 :root, :root.dark {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
-    --film-color: #d93b65ee;
-    --workshop-color: #ff7300ee;
+    --film-color: #8f0e5dee;
+    --workshop-color: #d7da05ee;
     --beseda-color: #fcff30c7;
     --flash-border-color: var(--text-color);
     --program-text-color: #121212;

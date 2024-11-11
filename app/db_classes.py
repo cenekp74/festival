@@ -95,6 +95,9 @@ class Beseda(db.Model):
     @property
     def serialize(self):
        host = Host.query.get(self.host_id)
+       host_name = None
+       if host:
+           host_name = host.name
        return {
            "id": self.id,
            "item_type": "beseda",
@@ -105,7 +108,7 @@ class Beseda(db.Model):
            "day": self.day,
            "room": self.room,
            "host_id": self.host_id,
-           "host": host.name
+           "host": host_name
        }
     
 class ShopItem(db.Model):
