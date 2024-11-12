@@ -341,7 +341,7 @@ input:checked + .slider:before {
 }
 
 .grid-items-container .item img {
-    aspect-ratio: 16/9;
+    aspect-ratio: 3/2;
     object-fit: cover;
     width: inherit;
     border-top-left-radius: var(--border-radius);
