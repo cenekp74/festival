@@ -8,7 +8,8 @@
 {% block body %}
 
 {% if current_user.is_authenticated %} <!-- pokud je user authenticated, ukaz moznost zmeneni barvy filmu besed a workshopu -->
-<div style="position: absolute;top: 70px;">
+<input type="checkbox" onchange="toggleColorBoxes()">
+<div style="position: absolute;top: 70px;" id="color-boxes">
     <input id="color-film-input" name="color-film">
     <label for="color-film">fimy</label>
     <br>
@@ -35,6 +36,10 @@
         let newColor = event.target.value;
         document.querySelector(":root").style.setProperty("--workshop-color", newColor)
     })
+
+    function toggleColorBoxes() {
+        document.getElementById("color-boxes").classList.toggle("hidden")
+    }
 </script>
 {% endif %}
 
