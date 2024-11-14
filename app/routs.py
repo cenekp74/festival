@@ -26,11 +26,6 @@ def send_favicon():
 def uvod():
     return render_template('uvod.html')
 
-@app.route('/program')
-@wip_disabled
-def program():
-    return render_template('program.html')
-
 @app.route('/program/all')
 @wip_disabled
 def program_all():
