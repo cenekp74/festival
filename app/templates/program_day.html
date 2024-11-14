@@ -96,11 +96,9 @@
 {% for room in rooms %}
     {% for item in program[room]["films"] %}
     <div id="cm-f_{{item.id}}" class="item-details film-details" style="visibility: hidden;">
-        <a href="/film/{{ item.id }}">
-            <div class="cm-item-name">
-                {{ item.name }}
-            </div>
-        </a>
+        <div class="cm-item-name">
+            {{ item.name }}
+        </div>
         <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         {% if item.short_description %}
         <div><i>{{ item.short_description }}</i></div>

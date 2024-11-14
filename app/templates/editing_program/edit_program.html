@@ -32,7 +32,7 @@
             <tr>
                 <td>{{ film.id }}</td>
                 <td>
-                    <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
+                    {{ film.name }}
                 </td>
                 <td>{{ film.day }}</td>
                 <td>{{ film.time_from }} - {{ film.time_to }}</td>
@@ -80,7 +80,7 @@
             <tr>
                 <td>{{ beseda.id }}</td>
                 <td>
-                    {{ beseda["name"] }}
+                    {{ beseda.name }}
                 </td>
                 <td>{{ beseda.day }}</td>
                 <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>

@@ -65,13 +65,6 @@ def program_day(dayn):
         program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
     return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn)
 
-@app.route('/film/<id>')
-@wip_disabled
-def film(id):
-    if not id.isdigit(): abort(404)
-    id = int(id)
-    return render_template('program_items/film.html', film=Film.query.get(id))
-
 @app.route('/hoste')
 @wip_disabled
 def hoste():

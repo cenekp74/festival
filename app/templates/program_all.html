@@ -25,7 +25,7 @@
             {% for film in films %}
             <tr>
                 <td>
-                    <a href="/film/{{ film.id }}">{{ film["name"] }}</a>
+                    {{ film.name }}
                 </td>
                 <td>{{ film.day }}</td>
                 <td>{{ film.time_from }} - {{ film.time_to }}</td>
@@ -59,7 +59,7 @@
             {% for beseda in besedy %}
             <tr>
                 <td>
-                    {{ beseda["name"] }}
+                    {{ beseda.name }}
                 </td>
                 <td>{{ beseda.day }}</td>
                 <td>{{ beseda.time_from }} - {{ beseda.time_to }}</td>

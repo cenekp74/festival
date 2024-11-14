@@ -58,11 +58,9 @@
         {% for room in rooms %}
             {% for item in program[room]["films"] %}
             <div class="details" id="details-f_{{item.id}}" style="display: none;">
-                <a href="/film/{{ item.id }}">
-                    <div>
-                        {{ item.name }}
-                    </div>
-                </a>
+                <div>
+                    {{ item.name }}
+                </div>
                 <div>film</div>
                 <div>{{ item.language }}</div>
                 <div>
