@@ -176,7 +176,9 @@
 }
 
 .item-details .cm-item-name {
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: .1rem;
 }
 
 .item-details a:has(> .cm-item-name ) {
