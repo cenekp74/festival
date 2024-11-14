@@ -18,6 +18,11 @@
             {{ render_field(form.day) }}
             {{ render_field(form.room) }}
             {{ render_field(form.language) }}
+            {{ render_field(form.short_description) }}
+            <datalist id="short-description-suggestions">
+                <option value="Dokumentární">
+                <option value="Komerční">
+            </datalist>
             {{ render_field(form.filename) }}
             {{ render_field(form.vg) }}
             {{ render_field(form.recommended) }}

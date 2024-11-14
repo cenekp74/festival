@@ -102,6 +102,9 @@
             </div>
         </a>
         <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
+        {% if item.short_description %}
+        <div><i>{{ item.short_description }}</i></div>
+        {% endif %}
         <div>{{ item.language }}</div>
         <div>
             <a href="{{ item.link }}">odkaz</a>

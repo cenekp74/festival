@@ -66,6 +66,7 @@ def add_film():
                     day = form.day.data,
                     room = form.room.data,
                     language = form.language.data,
+                    short_description = form.short_description.data,
                     filename = form.filename.data,
                     vg = form.vg.data,
                     recommended = form.recommended.data
@@ -161,7 +162,7 @@ def edit_film(id):
     film = Film.query.get(id)
     form = FilmForm(name=film.name, 
                     link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(),
-                    day=film.day, room=film.room, filename=film.filename, vg=film.vg, recommended=film.recommended)
+                    day=film.day, room=film.room, language=film.language, short_description=film.short_description, filename=film.filename, vg=film.vg, recommended=film.recommended)
     if form.validate_on_submit():
         film.name = form.name.data
         film.link = form.link.data
@@ -170,6 +171,7 @@ def edit_film(id):
         film.day = form.day.data
         film.room = form.room.data
         film.language = form.language.data
+        film.short_description = form.short_description.data
         film.filename = form.filename.data
         film.vg = form.vg.data
         film.recommended = form.recommended.data

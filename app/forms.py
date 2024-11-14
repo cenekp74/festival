@@ -36,6 +36,7 @@ class FilmForm(FlaskForm):
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = SelectField('Místnost', choices=app.config['ROOMS'], validators=[DataRequired()])
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
+    short_description = StringField('Krátký popis', render_kw={"list": "short-description-suggestions"})
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     vg = BooleanField('Jen pro vyšší gymnázium')
     recommended = BooleanField('Doporučeno')
