@@ -163,6 +163,7 @@ function reloadStars() {
         program_item_stars.forEach(starEle => {
             starEle.classList.remove('in-favorite');
         })
+        return
     }
     var favoriteCookie = getCookie('favorite').replace('"', '');
     var favoriteItems = favoriteCookie.split(' ');
@@ -188,6 +189,18 @@ function reloadStars() {
 document.addEventListener('click', () => {
     hideAllContextMenu()
 })
+
+/** tahle fce se pousti na zacatku a po kazdy zmene velikosti okna kvuli tomu, 
+ * ze grid-template-columns u program-containeru nejde nastavit ve fr, 
+ * jinak se potom pri zmene velikosti jednoho program itemu (on hover) meni velikost jednoho sloupecku a cely se to posouva 
+ * (jenom v chromu teda (nemam rad chrom)) */
+function resizeProgramContainer() {
+    programContainer = document.getElementsByClassName('program-container')[0]
+    colSize = programContainer.offsetWidth / 390
+    programContainer.style.gridTemplateColumns = `repeat(390, ${colSize}px)`
+}
+window.addEventListener('resize', resizeProgramContainer);
+resizeProgramContainer()
 
 const mediaQuery = window.matchMedia('(max-width: 330px)');
 if (mediaQuery.matches) {
@@ -243,17 +256,5 @@ if (document.URL.indexOf("?") != -1) {
 }
 
 reloadStars();
-
-/** tahle fce se pousti na zacatku a po kazdy zmene velikosti okna kvuli tomu, 
- * ze grid-template-columns u program-containeru nejde nastavit ve fr, 
- * jinak se potom pri zmene velikosti jednoho program itemu (on hover) meni velikost jednoho sloupecku a cely se to posouva 
- * (jenom v chromu teda (nemam rad chrom)) */
-function resizeProgramContainer() {
-    programContainer = document.getElementsByClassName('program-container')[0]
-    colSize = programContainer.offsetWidth / 390
-    programContainer.style.gridTemplateColumns = `repeat(390, ${colSize}px)`
-}
-window.addEventListener('resize', resizeProgramContainer);
-resizeProgramContainer()
 
 window.addEventListener('scroll', hideAllContextMenu)
