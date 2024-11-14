@@ -52,3 +52,4 @@ from .shop import shop as shop_blueprint
 app.register_blueprint(shop_blueprint)
 
 from app import routs
+from app import errors

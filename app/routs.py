@@ -7,7 +7,6 @@ from app.utils import allowed_file, correct_uid, update_rooms
 from app.decorators import admin_required, wip_disabled
 import os
 from werkzeug.utils import secure_filename
-import time
 
 #region routs
 @app.route('/')
