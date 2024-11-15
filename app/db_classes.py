@@ -44,14 +44,14 @@ class Film(db.Model):
            "item_type": "film",
            "uid": 'f_' + str(self.id),
            "name": self.name,
-           "link": self.link,
-           "language": self.language,
-           "short_description": self.short_description,
+           "link": self.link if self.link else "",
+           "language": self.language if self.language else "",
+           "short_description": self.short_description if self.short_description else "",
            "time_from": self.time_from,
            "time_to": self.time_to,
            "day": self.day,
            "room": self.room,
-           "filename": self.filename
+           "filename": self.filename if self.filename else ""
        }
 
 class Workshop(db.Model):
