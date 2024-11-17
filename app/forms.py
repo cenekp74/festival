@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, NumberRange
 from app.db_classes import Host
 from app import app
 
-VALID_LANGUAGE_VALUES = ['cz', 'en', 'en + cz tit', 'de + cz tit', 'cz + en tit', 'de + en tit', 'fr + cz tit']
+VALID_LANGUAGE_VALUES = ['cz', 'en', 'en + cz tit', 'en + sk tit', 'sk + cz tit','de + cz tit', 'cz + en tit', 'de + en tit', 'fr + cz tit']
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
