@@ -719,7 +719,7 @@ footer .theme-switch {
 
 .history-year-box p {
     max-width: min(95vw, 1000px);
-    text-align: justify;
+    text-align: left;
 }
 
 .history-year-box {
