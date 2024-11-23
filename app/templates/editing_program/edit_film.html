@@ -7,7 +7,7 @@
 {% block body %}
 {% from "formutils.html" import render_field %}
 <div class="container container-form">
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend>Editovat film (id {{ film.id }})</legend>
