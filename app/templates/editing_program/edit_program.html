@@ -21,6 +21,7 @@
                 <th>Jazyk</th>
                 <th>Krátký popis</th>
                 <th>Filename</th>
+                <th>Obrázek</th>
                 <th>Odkaz</th>
                 <th>Pro vyšší gympl</th>
                 <th>Doporučeno</th>
@@ -40,6 +41,9 @@
                 <td>{{ film.language }}</td>
                 <td>{{ film.short_description }}</td>
                 <td>{{ film.filename }}</td>
+                <td>
+                    <a href="/static/upload/{{ film.picture_filename }}">{{ film.picture_filename }}</a>
+                </td>
                 <td>
                     <a href="{{ film.link }}">odkaz</a>
                 </td>

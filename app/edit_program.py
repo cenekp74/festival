@@ -59,13 +59,21 @@ def interactive(dayn):
 def add_film():
     form = FilmForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            picture = form.picture.data
+            picture_filename = secure_filename(picture.filename)
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+        else:
+            picture_filename = 'default.png'
         film = Film(name=form.name.data,
                     link=form.link.data,
                     time_from = form.time_from.data.strftime('%H:%M'),
                     time_to = form.time_to.data.strftime('%H:%M'),
                     day = form.day.data,
                     room = form.room.data,
+                    picture_filename = picture_filename,
                     language = form.language.data,
+                    description = form.description.data,
                     short_description = form.short_description.data,
                     filename = form.filename.data,
                     vg = form.vg.data,
@@ -164,13 +172,24 @@ def edit_film(id):
                     link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(),
                     day=film.day, room=film.room, language=film.language, short_description=film.short_description, filename=film.filename, vg=film.vg, recommended=film.recommended)
     if form.validate_on_submit():
+        if form.picture.data:
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], film.picture_filename))
+            except Exception as e:
+                flash(f'Unable to delete old image: {e}')
+            picture = form.picture.data
+            picture_filename = secure_filename(picture.filename)
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            film.picture_filename = picture_filename
         film.name = form.name.data
         film.link = form.link.data
         film.time_from = form.time_from.data.strftime('%H:%M')
         film.time_to = form.time_to.data.strftime('%H:%M')
         film.day = form.day.data
         film.room = form.room.data
+        film.picture_filename = form.picture.data
         film.language = form.language.data
+        film.description = form.description.data
         film.short_description = form.short_description.data
         film.filename = form.filename.data
         film.vg = form.vg.data

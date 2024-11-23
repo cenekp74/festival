@@ -68,7 +68,7 @@ function showContextMenu(event, element) {
     // a tohle to samy akorat nahoru kdyz je to moc dole
     let distanceTop = event.clientY;
     let distanceBottom = window.innerHeight - event.clientY;
-    if (distanceBottom < 200) {
+    if (distanceBottom < 300) {
         contextMenu.style.top = ''
         contextMenu.style.bottom = distanceBottom + 'px';
         [contextMenu.style.borderTopLeftRadius, contextMenu.style.borderBottomLeftRadius] = [contextMenu.style.borderBottomLeftRadius, contextMenu.style.borderTopLeftRadius];

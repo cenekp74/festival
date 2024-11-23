@@ -29,6 +29,8 @@ class Film(db.Model):
     link = db.Column(db.String(100))
     language = db.Column(db.String(10))
     short_description = db.Column(db.String(100))
+    description = db.Column(db.String(1800))
+    picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
     time_from = db.Column(db.String(5))
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
