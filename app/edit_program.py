@@ -170,7 +170,7 @@ def edit_film(id):
     film = Film.query.get(id)
     form = FilmForm(name=film.name, 
                     link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(),
-                    day=film.day, room=film.room, language=film.language, short_description=film.short_description, filename=film.filename, vg=film.vg, recommended=film.recommended)
+                    day=film.day, room=film.room, language=film.language, description=film.description, short_description=film.short_description, filename=film.filename, vg=film.vg, recommended=film.recommended)
     if form.validate_on_submit():
         if form.picture.data:
             try:
