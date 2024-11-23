@@ -33,7 +33,9 @@
             <tr>
                 <td>{{ film.id }}</td>
                 <td>
-                    {{ film.name }}
+                    <a href="{{ url_for('filmy') }}#f_{{item.id}}">
+                        {{ film.name }}
+                    </a>
                 </td>
                 <td>{{ film.day }}</td>
                 <td>{{ film.time_from }} - {{ film.time_to }}</td>
