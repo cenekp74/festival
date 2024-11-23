@@ -56,11 +56,11 @@
     </div>
 </div>
 
-<!-- vytvoreni context menu elementu (to co se zobrazi po kliknuti) -->
+<!-- vytvoreni context menu elementu (to co se zobrazi po kliknuti) - UPLNE IDENTICKEJ KOD JAKO V program_day.html -->
 {% for room in rooms %}
     {% for item in program[room]["films"] %}
     <div id="cm-f_{{item.id}}" class="item-details film-details" style="visibility: hidden;">
-        <a href="/filmy#f_{{ item.id }}">
+        <a href="{{ url_for('filmy') }}#f_{{item.id}}">
             <div class="cm-item-name">
                 {{ item.name }}
             </div>
@@ -84,7 +84,7 @@
 
     {% for item in program[room]["workshops"] %}
     <div id="cm-w_{{item.id}}" class="item-details workshop-details" style="visibility: hidden;">
-        <a href="/workshopy#w_{{ item.id }}">
+        <a href="{{ url_for('workshopy') }}#w_{{ item.id }}">
             <div class="cm-item-name">
                 {{ item.name }}
             </div>
@@ -102,7 +102,7 @@
 
     {% for item in program[room]["besedy"] %}
     <div id="cm-b_{{item.id}}" class="item-details beseda-details" style="visibility: hidden;">
-        <div style="text-decoration: underline;" class="cm-item-name">
+        <div class="cm-item-name">
             {{ item.name }}
         </div>
         <div>beseda</div>
