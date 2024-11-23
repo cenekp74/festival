@@ -6,7 +6,7 @@ from .decorators import perm_program_edit_required
 import os
 from app.forms import FilmForm, BesedaForm, WorkshopForm, HostForm
 from app.db_classes import Film, Host, Beseda, Workshop
-from .utils import update_rooms
+from .utils import update_rooms, random_hex_token
 import datetime
 from flask import request
 
@@ -61,8 +61,9 @@ def add_film():
     if form.validate_on_submit():
         if form.picture.data:
             picture = form.picture.data
-            picture_filename = secure_filename(picture.filename)
-            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            extension = picture.filename.split(".")[-1]
+            picture_filename = random_hex_token() + "." + extension
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", picture_filename))
         else:
             picture_filename = 'default.png'
         film = Film(name=form.name.data,
@@ -94,8 +95,9 @@ def add_workshop():
     if form.validate_on_submit():
         if form.picture.data:
             picture = form.picture.data
-            picture_filename = secure_filename(picture.filename)
-            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            extension = picture.filename.split(".")[-1]
+            picture_filename = random_hex_token() + "." + extension
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", picture_filename))
         else:
             picture_filename = 'default.png'
         workshop = Workshop(name=form.name.data,
@@ -146,8 +148,9 @@ def add_host():
     if form.validate_on_submit():
         if form.picture.data:
             picture = form.picture.data
-            picture_filename = secure_filename(picture.filename)
-            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            extension = picture.filename.split(".")[-1]
+            picture_filename = random_hex_token() + "." + extension
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", picture_filename))
         else:
             picture_filename = 'default.png'
         host = Host(name=form.name.data,
@@ -175,12 +178,13 @@ def edit_film(id):
         if form.picture.data:
             try:
                 if not film.picture_filename == "default.png":
-                    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], film.picture_filename))
+                    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", film.picture_filename))
             except Exception as e:
                 flash(f'Unable to delete old image: {e}')
             picture = form.picture.data
-            picture_filename = secure_filename(picture.filename)
-            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            extension = picture.filename.split(".")[-1]
+            picture_filename = random_hex_token() + "." + extension
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", picture_filename))
             film.picture_filename = picture_filename
         film.name = form.name.data
         film.link = form.link.data
@@ -240,12 +244,14 @@ def edit_workshop(id):
     if form.validate_on_submit():
         if form.picture.data:
             try:
-                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
+                if not workshop.picture_filename == "default.png":
+                    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", workshop.picture_filename))
             except Exception as e:
                 flash(f'Unable to delete old image: {e}')
             picture = form.picture.data
-            picture_filename = secure_filename(picture.filename)
-            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            extension = picture.filename.split(".")[-1]
+            picture_filename = random_hex_token() + "." + extension
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", picture_filename))
             workshop.picture_filename = picture_filename
         workshop.name = form.name.data
         workshop.time_from = form.time_from.data.strftime('%H:%M')
@@ -274,12 +280,14 @@ def edit_host(id):
     if form.validate_on_submit():
         if form.picture.data:
             try:
-                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], host.picture_filename))
+                if not host.picture_filename == "default.png":
+                    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", host.picture_filename))
             except Exception as e:
                 flash(f'Unable to delete old image: {e}')
             picture = form.picture.data
-            picture_filename = secure_filename(picture.filename)
-            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
+            extension = picture.filename.split(".")[-1]
+            picture_filename = random_hex_token() + "." + extension
+            picture.save(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", picture_filename))
             host.picture_filename = picture_filename
         host.name = form.name.data
         host.description = form.description.data
@@ -296,6 +304,11 @@ def edit_host(id):
 def delete_film(id):
     if not id.isdigit(): abort(404)
     id = int(id)
+    film = Film.query.filter_by(id=id).first()
+    try:
+        if not film.picture_filename == "default.png":
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", film.picture_filename))
+    except: pass
     Film.query.filter_by(id=id).delete()
     db.session.commit()
     update_rooms()
@@ -310,7 +323,8 @@ def delete_workshop(id):
     id = int(id)
     workshop = Workshop.query.filter_by(id=id).first()
     try:
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], workshop.picture_filename))
+        if not workshop.picture_filename == "default.png":
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", workshop.picture_filename))
     except: pass
     Workshop.query.filter_by(id=id).delete()
     db.session.commit()
@@ -338,7 +352,8 @@ def delete_host(id):
     id = int(id)
     host = Host.query.filter_by(id=id).first()
     try:
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], host.picture_filename))
+        if not host.picture_filename == "default.png":
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], "program_items", host.picture_filename))
     except: pass
     Host.query.filter_by(id=id).delete()
     db.session.commit()

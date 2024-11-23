@@ -44,7 +44,7 @@
                 <td>{{ film.short_description }}</td>
                 <td>{{ film.filename }}</td>
                 <td>
-                    <a href="/static/upload/{{ film.picture_filename }}">{{ film.picture_filename }}</a>
+                    <a href="/static/upload/program_items/{{ film.picture_filename }}">{{ film.picture_filename }}</a>
                 </td>
                 <td>
                     <a href="{{ film.link }}">odkaz</a>
@@ -150,7 +150,7 @@
                     <a href="{{ url_for('program_day', dayn=workshop.day) }}?w_{{workshop.id}}">program</a>
                 </td>
                 <td>
-                    <a href="/static/upload/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
+                    <a href="/static/upload/program_items/{{ workshop.picture_filename }}">{{ workshop.picture_filename }}</a>
                 </td>
                 <td>
                     <a href="/edit_workshop/{{ workshop.id }}">edit</a>
@@ -185,7 +185,7 @@
                 <td>{{ host.description }}</td>
                 <td>{{ host.short_description }}</td>
                 <td>
-                    <a href="/static/upload/{{ host.picture_filename }}">{{ host.picture_filename }}</a>
+                    <a href="/static/upload/program_items/{{ host.picture_filename }}">{{ host.picture_filename }}</a>
                 </td>
                 <td>
                     <a href="/edit_host/{{ host.id }}">edit</a>

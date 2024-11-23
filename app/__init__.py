@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
+import os
 
 app = Flask(__name__)
 app.secret_key = 'dev'
@@ -53,3 +54,6 @@ app.register_blueprint(shop_blueprint)
 
 from app import routs
 from app import errors
+
+if not "program_items" in os.listdir(app.config["UPLOAD_FOLDER"]):
+    os.mkdir(os.path.join(app.config["UPLOAD_FOLDER"], "program_items"))

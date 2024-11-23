@@ -1,6 +1,7 @@
 from app.db_classes import Film, Beseda, Workshop, Host
 from . import ALLOWED_EXTENSIONS, db, app
 import json
+import random
 
 def get_rooms() -> dict:
     """
@@ -71,3 +72,6 @@ def load_albums():
 
 def write_albums():
     json.dump(app.albums_dict, open(app.config['ALBUMS_JSON'], 'w'))
+
+def random_hex_token(length=16):
+    return ''.join(random.choice('0123456789ABCDEF') for i in range(length))
