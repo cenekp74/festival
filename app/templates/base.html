@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit="no">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-016.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta property="og:image" content="/favicon.ico"> <!-- tohle je pro OpenGraph -->
     <meta name="description" content="Filmový festival na Gymnáziu Elišky Krásnohorské pod záštitou jsns">
@@ -32,6 +32,7 @@
                     <a href="{{ url_for('program_all') }}">Celý program</a>
                 </div>
             </div>
+            <a id="filmy" href="{{url_for('filmy')}}">Filmy</a>
             <a id="hoste" href="{{url_for('hoste')}}">Hosté</a>
             <a id="workshopy" href="{{url_for('workshopy')}}">Workshopy</a>
             <a id="historie" href="{{url_for('historie')}}">Historie</a>

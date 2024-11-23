@@ -358,7 +358,7 @@ input:checked + .slider:before {
 
 .grid-items-container .item .item-details h2 {
     font-size: 1.65rem;
-    margin: 0;
+    margin: .5rem;
 }
 
 .grid-items-container .item .item-details h3 {
@@ -456,8 +456,8 @@ input:checked + .slider:before {
     text-decoration: none;
     font-size: 19px;
     text-transform: uppercase;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .topnav #search {
@@ -469,10 +469,9 @@ input:checked + .slider:before {
 .topnav a.logo {
     font-size: 23px;
     font-weight: bold;
-    padding: 11px 20px 10px 0;
-    padding-right: 1.4vw;
-    margin-left: 1vw;
-    margin-right: 1.4vw;
+    padding: 11px 20px 10px 20px;
+    min-width: fit-content;
+    margin-right: 20px;
     position: relative;
 }
 
@@ -526,8 +525,8 @@ input:checked + .slider:before {
 
 #search {
     padding: 10px;
-    padding-left: 11px;
-    padding-right: 11px;
+    padding-left: 7px;
+    padding-right: 7px;
     margin-top: 2px;
     border-radius: 400px;
 }
@@ -826,8 +825,7 @@ footer .theme-switch {
     }
 
     .topnav a.logo {
-        padding: 11px 20px 8px 3px;
-        padding-right: 10px;
+        padding: 11px 10px 8px 10px;
         margin-right: 10px;
     }
 

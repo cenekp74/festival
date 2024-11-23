@@ -166,11 +166,12 @@ button:not(:disabled) {
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
     line-height: 2rem;
-    min-width: 50%;
+    min-width: 30%;
     text-align: center;
     margin-top: .3rem;
     font-style: italic;
     text-indent: 3px;
+    transition: opacity 2s ease-in;
 }
 
 .alert-success {
@@ -184,10 +185,10 @@ button:not(:disabled) {
 .alert i {
     float: right;
     line-height: 2rem;
-    margin-right: 5px;
+    margin-right: 6px;
     cursor: pointer;
-    padding-right: 2px;
-    padding-left: 3px;
+    padding-right: 4px;
+    padding-left: 4px;
     color: var(--text-color);
 }
 
@@ -340,7 +341,7 @@ input:checked + .slider:before {
 }
 
 .grid-items-container .item img {
-    aspect-ratio: 16/9;
+    aspect-ratio: 3/2;
     object-fit: cover;
     width: inherit;
     border-top-left-radius: var(--border-radius);
@@ -357,7 +358,7 @@ input:checked + .slider:before {
 
 .grid-items-container .item .item-details h2 {
     font-size: 1.65rem;
-    margin: 0;
+    margin: .5rem;
 }
 
 .grid-items-container .item .item-details h3 {
@@ -381,24 +382,7 @@ input:checked + .slider:before {
 }
 /* #endregion program-items */
 
-/* #region program */
-.program-nav {
-    width: 100%;
-    text-align: center;
-}
-
-.program-nav a {
-    margin-top: 5px;
-}
-
-.program-day.program-nav {
-    position: fixed;
-    bottom: 2.5rem;
-    left: 0;
-    background-color: var(--bg-color);
-    padding-bottom: 15px;
-}
-
+/* #region program all */
 .program-all-container {
     display: flex;
     align-items: start;
@@ -408,7 +392,7 @@ input:checked + .slider:before {
     gap: 10px;
     max-width: 100vw;
 }
-/* #endregion program */
+/* #endregion program all */
 
 /* #region search */
 .search-input {
@@ -472,8 +456,8 @@ input:checked + .slider:before {
     text-decoration: none;
     font-size: 19px;
     text-transform: uppercase;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .topnav #search {
@@ -485,10 +469,9 @@ input:checked + .slider:before {
 .topnav a.logo {
     font-size: 23px;
     font-weight: bold;
-    padding: 11px 20px 10px 0;
-    padding-right: 1.4vw;
-    margin-left: 1vw;
-    margin-right: 1.4vw;
+    padding: 11px 20px 10px 20px;
+    min-width: fit-content;
+    margin-right: 20px;
     position: relative;
 }
 
@@ -509,6 +492,8 @@ input:checked + .slider:before {
 
 .topnav:not(.responsive) .topnav-links {
     display: flex;
+    justify-content: space-between;
+    width: 80%;
 }
 
 .topnav:not(.responsive) .topnav-links a:hover {
@@ -540,8 +525,8 @@ input:checked + .slider:before {
 
 #search {
     padding: 10px;
-    padding-left: 11px;
-    padding-right: 11px;
+    padding-left: 7px;
+    padding-right: 7px;
     margin-top: 2px;
     border-radius: 400px;
 }
@@ -732,7 +717,8 @@ footer .theme-switch {
 }
 
 .history-year-box p {
-    max-width: max(60vw, 500px);
+    max-width: min(95vw, 1000px);
+    text-align: left;
 }
 
 .history-year-box {
@@ -740,6 +726,29 @@ footer .theme-switch {
     margin-bottom: 1rem;
 }
 /* #endregion history */
+
+/* #region uvod */
+#uvod-text {
+    text-align: justify;
+    max-width: min(95vw, 1080px);
+    font-size: 17px;
+    margin-top: 1rem;
+}
+
+.logo-text {
+    width: 97vw;
+    max-width: 847px;
+    display: none;
+}
+
+:root.light #logo-text-cervena {
+    display: block;
+}
+
+:root.dark #logo-text-modra, :root:not(.light) #logo-text-modra {
+    display: block;
+}
+/* #endregion uvod */
 
 @media screen and (max-width: 1312px) {
     .topnav a {
@@ -776,9 +785,16 @@ footer .theme-switch {
     }
 }
 
+@media screen and (min-width: 1455px) {
+    .topnav:not(.responsive) .topnav-links > a, .topnav:not(.responsive) .topnav-links > div > a { /* aby byly topnav linky roztazeny, ale jenom dokud neni topnav collapsed */
+        width: 100%;
+        min-width: max-content;
+    }
+}
+
 @media screen and (max-width: 1455px) { /* stejny jako breakpoint v program.css  - od totohle bodu predpokladam ze user je na necem co ma touchscreen*/
     .topnav:not(.responsive) .topnav-links > a:not(.logo):not(.active):not(.icon) {
-        display: none;
+        display: none !important; /* musi byt !important protoze u search icon nastavuju display flex kvuli zarovnani a to by melo vetsi prioritu */
     }
 
     .topnav:not(.responsive) .topnav-links .program-dropdown:not(.active) {
@@ -809,8 +825,7 @@ footer .theme-switch {
     }
 
     .topnav a.logo {
-        padding: 11px 20px 8px 3px;
-        padding-right: 10px;
+        padding: 11px 10px 8px 10px;
         margin-right: 10px;
     }
 
@@ -831,7 +846,7 @@ footer .theme-switch {
         z-index: 10;
         overflow: hidden;
         overflow-y: auto;
-        max-height: 90svh;
+        max-height: calc(95svh - 90px);
     }
 
     .topnav.responsive .program-dropdown-content {

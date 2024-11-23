@@ -75,6 +75,13 @@ def hoste():
 def workshopy():
     return render_template('workshopy.html', items=Workshop.query.all())
 
+@app.route('/filmy')
+@wip_disabled
+def filmy():
+    films = Film.query.all()
+    films.sort(key=lambda x: x.name.lower())
+    return render_template('filmy.html', items=films)
+
 @app.route('/historie')
 def historie():
     return render_template('historie.html')
