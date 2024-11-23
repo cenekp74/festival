@@ -187,7 +187,6 @@ def edit_film(id):
         film.time_to = form.time_to.data.strftime('%H:%M')
         film.day = form.day.data
         film.room = form.room.data
-        film.picture_filename = form.picture.data
         film.language = form.language.data
         film.description = form.description.data
         film.short_description = form.short_description.data
