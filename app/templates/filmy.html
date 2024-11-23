@@ -9,7 +9,7 @@
 <h1>Filmy</h1>
 <div class="grid-items-container">
     {% for item in items %}
-    <div id="w_{{item.id}}" class="item" onclick="showDescription(this)">
+    <div id="f_{{item.id}}" class="item" onclick="showDescription(this)">
         <img src="/static/upload/{{ item.picture_filename }}">
         <div class="item-details">
             <h2>{{ item.name }}</h2>
