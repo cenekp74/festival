@@ -174,7 +174,8 @@ def edit_film(id):
     if form.validate_on_submit():
         if form.picture.data:
             try:
-                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], film.picture_filename))
+                if not film.picture_filename == "default.png":
+                    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], film.picture_filename))
             except Exception as e:
                 flash(f'Unable to delete old image: {e}')
             picture = form.picture.data
