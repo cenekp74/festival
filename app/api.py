@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
-from app.db_classes import Film, Beseda, Workshop
+from app.db_classes import Film, Beseda, Workshop, ShopItem
 from app.utils import get_all_rooms, correct_uid, update_rooms
 from flask_login import login_required
 from .decorators import admin_required, perm_program_edit_required
@@ -91,3 +91,12 @@ def film_rooms():
     - vyuziva se v apf
     """
     return jsonify(get_all_rooms(films_only=True))
+
+@api.route('/get_kavarna_cajovna_items')
+def kavarna_cajovna():
+    kavarna_items = [item.serialize for item in ShopItem.query.filter_by(item_type="kavarna").all()]
+    cajovna_items = [item.serialize for item in ShopItem.query.filter_by(item_type="cajovna").all()]
+    return jsonify({
+        "kavarna":kavarna_items,
+        "cajovna":cajovna_items
+    })
