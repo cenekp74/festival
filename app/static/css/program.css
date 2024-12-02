@@ -160,6 +160,7 @@
 
 .item-details {
     background-color: var(--secondary-color);
+    opacity: .97;
     margin: 1px;
     padding: 5px;
     border: 1px solid var(--disabled-text-color);
