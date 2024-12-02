@@ -738,15 +738,6 @@ footer .theme-switch {
 .logo-text {
     width: 97vw;
     max-width: 847px;
-    display: none;
-}
-
-:root.light #logo-text-cervena {
-    display: block;
-}
-
-:root.dark #logo-text-modra, :root:not(.light) #logo-text-modra {
-    display: block;
 }
 /* #endregion uvod */
 
