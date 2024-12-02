@@ -66,17 +66,17 @@ def program_day(dayn):
     return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn)
 
 @app.route('/hoste')
-@wip_disabled
+#@wip_disabled # DOCASNA ZMENA - vratit
 def hoste():
     return render_template('hoste.html', items=Host.query.all())
 
 @app.route('/workshopy')
-@wip_disabled
+#@wip_disabled # DOCASNA ZMENA - vratit
 def workshopy():
     return render_template('workshopy.html', items=Workshop.query.all())
 
 @app.route('/filmy')
-@wip_disabled
+#@wip_disabled # DOCASNA ZMENA - vratit
 def filmy():
     films = Film.query.all()
     films.sort(key=lambda x: (x.name.startswith("?"), x.name.lower()))
