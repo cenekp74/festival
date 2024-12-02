@@ -174,6 +174,7 @@
     max-width: 210px;
     min-width: 150px;
     font-size: 17px;
+    transition: opacity 0.1s ease-in;
 }
 
 .item-details .cm-item-name {

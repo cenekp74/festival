@@ -88,15 +88,16 @@ function showContextMenu(event, element) {
         contextMenu.style.width = '0';
         contextMenu.style.height = '0';
     }
+    contextMenu.style.opacity = ''
 }
 
 function hideAllContextMenu() {
-    var cms = document.getElementsByClassName('item-details');
-    for (var i=0; i < cms.length; i++) {
-        cms[i].style.visibility = 'hidden';
-        cms[i].style.width = '0';
-        cms[i].style.height = '0';
-    }
+    document.querySelectorAll('.item-details').forEach(cm => {
+        cm.style.width = '0';
+        cm.style.height = '0';
+        cm.style.opacity = '0';
+        cm.style.visibility = 'hidden';
+    });
 }
 
 function getCookie(name) {
@@ -201,6 +202,7 @@ function resizeProgramContainer() {
 }
 window.addEventListener('resize', resizeProgramContainer);
 resizeProgramContainer()
+hideAllContextMenu()
 
 const mediaQuery = window.matchMedia('(max-width: 330px)');
 if (mediaQuery.matches) {
