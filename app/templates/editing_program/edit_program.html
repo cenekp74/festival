@@ -24,6 +24,7 @@
                 <th>Obrázek</th>
                 <th>Odkaz</th>
                 <th>Pro vyšší gympl</th>
+                <th>Skrytý</th>
                 <th>Program</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -49,6 +50,7 @@
                     <a href="{{ film.link }}">odkaz</a>
                 </td>
                 <td>{{ 'ano' if film.vg else 'ne' }}</td>
+                <td>{{ 'ano' if film.hidden else 'ne' }}</td>
                 <td>
                     <a href="{{ url_for('program_day', dayn=film.day) }}?f_{{film.id}}">program</a>
                 </td>

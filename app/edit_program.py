@@ -78,6 +78,7 @@ def add_film():
                     short_description = form.short_description.data,
                     filename = form.filename.data,
                     vg = form.vg.data,
+                    hidden = form.hidden.data,
                     )
         db.session.add(film)
         db.session.commit()
@@ -170,7 +171,7 @@ def edit_film(id):
     film = Film.query.get(id)
     form = FilmForm(name=film.name, 
                     link=film.link, time_from=datetime.datetime.strptime(film.time_from, '%H:%M').time(), time_to=datetime.datetime.strptime(film.time_to, '%H:%M').time(),
-                    day=film.day, room=film.room, language=film.language, description=film.description, short_description=film.short_description, filename=film.filename, vg=film.vg)
+                    day=film.day, room=film.room, language=film.language, description=film.description, short_description=film.short_description, filename=film.filename, vg=film.vg, hidden=film.hidden)
     if form.validate_on_submit():
         if form.picture.data:
             try:
@@ -194,6 +195,7 @@ def edit_film(id):
         film.short_description = form.short_description.data
         film.filename = form.filename.data
         film.vg = form.vg.data
+        film.hidden = form.hidden.data
         db.session.commit()
         update_rooms()
         flash('Změny uloženy')

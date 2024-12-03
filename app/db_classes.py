@@ -37,6 +37,7 @@ class Film(db.Model):
     room = db.Column(db.String(10))
     filename = db.Column(db.String(50))
     vg = db.Column(db.Integer, default=0, nullable=False) # je jen pro vyssi gymnazium?
+    hidden = db.Column(db.Integer, default=0, nullable=False) # mel by byt film skryty na strance filmy (zobrazovat se jen v programu)?
 
     @property
     def serialize(self):

@@ -29,7 +29,7 @@ def uvod():
 @app.route('/program/all')
 @wip_disabled
 def program_all():
-    films = Film.query.all()
+    films = Film.query.filter_by(hidden=False).all()
     besedy = Beseda.query.all()
     workshops = Workshop.query.all()
     hosts = Host.query.all()
@@ -78,7 +78,7 @@ def workshopy():
 @app.route('/filmy')
 #@wip_disabled # DOCASNA ZMENA - vratit
 def filmy():
-    films = Film.query.all()
+    films = Film.query.filter_by(hidden=False).all()
     films.sort(key=lambda x: (x.name.startswith("?"), x.name.lower()))
     return render_template('filmy.html', items=films)
 

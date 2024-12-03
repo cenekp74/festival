@@ -41,6 +41,7 @@ class FilmForm(FlaskForm):
     short_description = StringField('Krátký popis', render_kw={"list": "short-description-suggestions"})
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     vg = BooleanField('Jen pro vyšší gymnázium')
+    hidden = BooleanField('Skrytý')
     submit = SubmitField('Potvrdit')
 
 class WorkshopForm(FlaskForm):
