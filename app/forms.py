@@ -41,7 +41,6 @@ class FilmForm(FlaskForm):
     short_description = StringField('Krátký popis', render_kw={"list": "short-description-suggestions"})
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     vg = BooleanField('Jen pro vyšší gymnázium')
-    recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
 class WorkshopForm(FlaskForm):
@@ -54,7 +53,6 @@ class WorkshopForm(FlaskForm):
     author = StringField('Autor', validators=[DataRequired()])
     description = TextAreaField('Popis')
     vg = BooleanField('Jen pro vyšší gymnázium')
-    recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
 class BesedaForm(FlaskForm):
@@ -65,7 +63,6 @@ class BesedaForm(FlaskForm):
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = SelectField('Místnost', choices=app.config['ROOMS'], validators=[DataRequired()])
     vg = BooleanField('Jen pro vyšší gymnázium')
-    recommended = BooleanField('Doporučeno')
     submit = SubmitField('Potvrdit')
 
 class HostForm(FlaskForm):

@@ -64,7 +64,7 @@
             
             {% for room in rooms %}
                 {% for film in program[room]["films"] %}
-                    <div id="f_{{film.id}}" class="program-item film {{ 'vg' if film.vg else '' }} {{ 'recom' if film.recommended else '' }}" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showContextMenu(event, this)">
+                    <div id="f_{{film.id}}" class="program-item film {{ 'vg' if film.vg else '' }}" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onclick="showContextMenu(event, this)">
                         <div>
                             {{ film.name }}
                         </div>
@@ -72,7 +72,7 @@
                     </div>
                 {% endfor %}
                 {% for beseda in program[room]["besedy"] %}
-                    <div id="b_{{beseda.id}}" class="program-item beseda {{ 'vg' if beseda.vg else '' }} {{ 'recom' if beseda.recommended else '' }}" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}" item-id="b_{{beseda.id}}" onclick="showContextMenu(event, this)">
+                    <div id="b_{{beseda.id}}" class="program-item beseda {{ 'vg' if beseda.vg else '' }}" start-time="{{beseda.time_from}}" end-time="{{beseda.time_to}}" room="{{beseda.room}}" item-id="b_{{beseda.id}}" onclick="showContextMenu(event, this)">
                         <div>
                             {{ beseda.name }}
                         </div>
@@ -80,7 +80,7 @@
                     </div>
                 {% endfor %}
                 {% for workshop in program[room]["workshops"] %}
-                    <div id="w_{{workshop.id}}" class="program-item workshop {{ 'vg' if workshop.vg else '' }} {{ 'recom' if workshop.recommended else '' }}" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}" item-id="w_{{workshop.id}}" onclick="showContextMenu(event, this)">
+                    <div id="w_{{workshop.id}}" class="program-item workshop {{ 'vg' if workshop.vg else '' }}" start-time="{{workshop.time_from}}" end-time="{{workshop.time_to}}" room="{{workshop.room}}" item-id="w_{{workshop.id}}" onclick="showContextMenu(event, this)">
                         <div>
                             {{ workshop.name }}
                         </div>

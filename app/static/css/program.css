@@ -81,12 +81,6 @@
     max-width: 70%;
 }
 
-.program-item.recom {
-    background-image: url(/static/img/recom.png);
-    background-size: 30px;
-    background-repeat: no-repeat;
-}
-
 .program-item.vg {
     background-image: url(/static/img/vg.png);
     background-size: 30px;
