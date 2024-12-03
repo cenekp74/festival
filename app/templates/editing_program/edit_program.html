@@ -27,6 +27,7 @@
                 <th>Skrytý</th>
                 <th>Program</th>
                 <th>Edit</th>
+                <th>Přidat skrytou kopii</th>
                 <th>Delete</th>
             </tr>
             {% for film in films %}
@@ -56,6 +57,9 @@
                 </td>
                 <td>
                     <a href="/edit_film/{{ film.id }}">edit</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('edit_program.add_hidden_copy_film', film_id=film.id) }}" onclick="return confirm('Přidat skrytou kopii filmu {{ film.name }}?')">skrytá kopie</a>
                 </td>
                 <td>
                     <a href="/delete_film/{{ film.id }}" onclick="return confirm('Smazat film?')">delete</a>

@@ -202,6 +202,37 @@ def edit_film(id):
         return redirect(url_for('edit_program.index'))
     return render_template('editing_program/edit_film.html', film=film, form=form)
 
+@edit_program.route('/add-hidden-copy-film/<film_id>')
+@login_required
+@perm_program_edit_required
+def add_hidden_copy_film(film_id):
+    """
+    prida kopii filmu s danym id s property hidden = True a s defaultnim obrazkem
+    """
+    if not film_id.isdigit(): abort(404)
+    film_id = int(film_id)
+    film = Film.query.get(film_id)
+    new_film = Film(
+        name=film.name,
+        link=film.link,
+        time_from = film.time_from,
+        time_to = film.time_to,
+        day = film.day,
+        room = film.room,
+        picture_filename = "default.png",
+        language = film.language,
+        description = film.description,
+        short_description = film.short_description,
+        filename = film.filename,
+        vg = film.vg,
+        hidden = True,
+    )
+    db.session.add(new_film)
+    db.session.commit()
+    update_rooms()
+    flash('Změny uloženy')
+    return redirect(url_for('edit_program.index'))
+
 @edit_program.route('/edit_beseda/<id>', methods=['GET', 'POST'])
 @login_required
 @perm_program_edit_required
