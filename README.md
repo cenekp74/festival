@@ -15,6 +15,7 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 - v program_day se po prihlaseni jakehokoliv usera ukaze moznost lokalne menit barvy program itemu
 - u filmu property hidden znamena, ze se nebude zobrazovat na strance "filmy" a "cely program" - pouzivam k tomu, kdyz chci nejaky film pustit ve vice tridach najednou, ale nechci ho vickrat na strance filmy
 - fce add_hidden_copy_film (odkaz z edit_program.html) vytvori kopii daneho filmu s hidden=True a image_filename="default.png"
+- u hidden filmu je problem s odkazemz z programu na stranku filmy - resim tak, ze hidden filmy prevedu do dict a zmenim u nich id na id filmu se stejnym nazvem co neni hidden, pak se odkaz v programu vytvori na ten co neni hidden a funguje to spravne 
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
 Lze obejit tim, ze do url pridam ?force-display (kvuli testovani s ostatnima abych nemusel delat loginy)
