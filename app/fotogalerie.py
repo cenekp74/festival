@@ -5,7 +5,7 @@ from app.utils import write_albums, load_albums
 import random
 import shutil
 from werkzeug.utils import secure_filename
-from .decorators import admin_required
+from .decorators import perm_fotogalerie_required
 import os
 
 IMAGE_THUMBNAIL_WIDTH = 500
@@ -35,7 +35,7 @@ def album(album_id):
 
 @fotogalerie.route('/<album_id>', methods=['POST'])
 @login_required
-@admin_required
+@perm_fotogalerie_required
 def add_photos(album_id):
     try:
         if album_id not in list(app.albums_dict.keys()):
@@ -52,7 +52,7 @@ def add_photos(album_id):
 
 @fotogalerie.route('/new_album', methods=['POST'])
 @login_required
-@admin_required
+@perm_fotogalerie_required
 def new_album():
     album_name = request.form.get('album_name')
     id = str(random.randint(0, 9999)).zfill(4)
@@ -69,7 +69,7 @@ def new_album():
         
 @fotogalerie.route('/delete_album/<album_id>')
 @login_required
-@admin_required
+@perm_fotogalerie_required
 def delete_album(album_id):
     if album_id not in list(app.albums_dict.keys()):
         abort(404)
@@ -81,7 +81,7 @@ def delete_album(album_id):
 
 @fotogalerie.route('/<album_id>/delete_photo/<photo_name>')
 @login_required
-@admin_required
+@perm_fotogalerie_required
 def delete_photo(album_id, photo_name):
     if album_id not in list(app.albums_dict.keys()):
         abort(404)

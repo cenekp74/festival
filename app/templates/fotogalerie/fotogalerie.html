@@ -12,7 +12,7 @@
     {% endfor %}
 </div>
 
-{% if current_user.admin %}
+{% if current_user.admin or current_user.perm_fotogalerie %}
 <br>
 <br>
 <form style="margin-top: 2rem;" method="POST" enctype="multipart/form-data" action="/fotogalerie/new_album">

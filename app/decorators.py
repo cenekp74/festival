@@ -24,6 +24,13 @@ def perm_shop_required(func):
         return func(*args, **kwargs)
     return decorated_function
 
+def perm_fotogalerie_required(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        if not (current_user.admin or current_user.perm_fotogalerie): abort(403)
+        return func(*args, **kwargs)
+    return decorated_function
+
 def wip_disabled(func): # decorator pro funkce co maj bejt zakazany v WIP modu
     @wraps(func)
     def decorated_function(*args, **kwargs):

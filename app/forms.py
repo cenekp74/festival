@@ -20,6 +20,7 @@ class UserForm(FlaskForm):
     admin = BooleanField('admin')
     perm_shop = BooleanField('perm_shop')
     perm_program_edit = BooleanField('perm_program_edit')
+    perm_fotogalerie = BooleanField('perm_fotogalerie')
     submit = SubmitField('Potvrdit')
 
     def __init__(self, require_password=True, *args, **kwargs): # tohle je kvuli tomu, ze pri editovani usera nechci aby byl password field required

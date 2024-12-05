@@ -295,7 +295,8 @@ def add_user():
                     password=bcrypt.generate_password_hash(form.password.data),
                     admin="1" if form.admin.data else "0",
                     perm_shop="1" if form.perm_shop.data else "0",
-                    perm_program_edit="1" if form.perm_program_edit.data else "0"
+                    perm_program_edit="1" if form.perm_program_edit.data else "0",
+                    perm_fotogalerie="1" if form.perm_fotogalerie.data else "0",
                     )
         db.session.add(user)
         db.session.commit()
@@ -310,7 +311,7 @@ def edit_user(id):
     if not id.isdigit(): abort(404)
     id = int(id)
     user = User.query.get(id)
-    form = UserForm(require_password=False, username=user.username, admin=user.admin, perm_shop=user.perm_shop, perm_program_edit=user.perm_program_edit)
+    form = UserForm(require_password=False, username=user.username, admin=user.admin, perm_shop=user.perm_shop, perm_program_edit=user.perm_program_edit, perm_fotogalerie=user.perm_fotogalerie)
     
     if form.validate_on_submit():
         user.username = form.username.data
@@ -319,6 +320,7 @@ def edit_user(id):
         user.admin = "1" if form.admin.data else "0"
         user.perm_shop = "1" if form.perm_shop.data else "0"
         user.perm_program_edit = "1" if form.perm_program_edit.data else "0"
+        user.perm_fotogalerie = "1" if form.perm_fotogalerie.data else "0"
         db.session.commit()
         flash('Změny uloženy')
         return redirect(url_for('users'))

@@ -15,7 +15,7 @@
         <a class="spotlight" href="{{ img[0] }}">
             <img src="{{ img[1] }}">
         </a>
-        {% if current_user.admin %}
+        {% if current_user.admin or current_user.perm_fotogalerie %}
         <a href="{{ url_for('fotogalerie.delete_photo', album_id=id, photo_name=img[0].split('/')[-1]) }}">
             <i class="fa fa-trash"></i>
         </a>
@@ -24,7 +24,7 @@
     {% endfor %}
 </div>
 
-{% if current_user.admin %}
+{% if current_user.admin or current_user.perm_fotogalerie %}
 <form style="margin-top: 2rem;" action="/fotogalerie/{{ id }}"
       class="dropzone"
       id="dropzone">
