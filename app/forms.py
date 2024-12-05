@@ -26,7 +26,7 @@ class UserForm(FlaskForm):
         super(UserForm, self).__init__(*args, **kwargs)
         
         if require_password:
-            self.password.validators.append(DataRequired())
+            self.password.validators = [DataRequired()] # tady je problem, ze to smaze vsechny pripadne validators co tam uz byly nastaveny takze bacha na to, ale appendnout k tomu nejde protoze kdyz je validators prazdny tak je to tuple ne list
 
 class FilmForm(FlaskForm):
     name = StringField('Název filmu', validators=[DataRequired()])
