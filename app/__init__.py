@@ -22,6 +22,7 @@ app.config['ROOMS_BY_FLOOR'] = {
 }
 
 app.config['WIP_MODE'] = True # work in progress mode - pokud neni user prihlasen tak odkaze z programu, hostu a workshopu na /wip
+app.config['ROOMS_ORDERED'] = ["I", "III", "VII", "3.A", "1.A", "2.A", "V", "VI", "II", "VII", "4.A", "4.B"] # list trid podle toho, jak maji byt razeny v programu (utils.py -> get_rooms) - nemusi obsahovat vsechny tridy, co tu neni jde na konec
 
 UPLOAD_FOLDER = 'app/static/upload'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}

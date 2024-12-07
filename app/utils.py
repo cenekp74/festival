@@ -16,6 +16,13 @@ def get_rooms() -> dict:
             rooms[day].update([r[0] for r in list(db.session.query(Film.room).filter(Film.day == day).distinct().all())])
             rooms[day].update([r[0] for r in list(db.session.query(Beseda.room).filter(Beseda.day == day).distinct().all())])
             rooms[day].update([r[0] for r in list(db.session.query(Workshop.room).filter(Workshop.day == day).distinct().all())])
+            
+    def rooms_sort_function(room):
+        if room in app.config["ROOMS_ORDERED"]: return app.config["ROOMS_ORDERED"].index(room)
+        return len(app.config["ROOMS_ORDERED"])+1
+    for day in [1, 2, 3]:
+        rooms[day] = list(rooms[day])
+        rooms[day].sort(key=rooms_sort_function)
     return rooms
 
 def update_rooms():
