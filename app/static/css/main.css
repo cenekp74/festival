@@ -344,6 +344,10 @@ input:checked + .slider:before {
     text-align: left;
 }
 
+.grid-items-container .item-description > h2 {
+    margin: .5rem;
+}
+
 .hidden {
     visibility: hidden;
 }
