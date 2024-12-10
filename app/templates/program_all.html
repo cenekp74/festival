@@ -86,7 +86,6 @@
                 <th class="sort sort-day">Den</th>
                 <th class="sort sort-time">Čas</th>
                 <th class="sort sort-room">Místnost</th>
-                <th>Autor</th>
                 <th>Pouze pro vyšší gympl</th>
                 <th>Program</th>
             </tr>
@@ -98,7 +97,6 @@
                 <td>{{ workshop.day }}</td>
                 <td>{{ workshop.time_from }} - {{ workshop.time_to }}</td>
                 <td>{{ workshop.room }}</td>
-                <td>{{ workshop.author }}</td>
                 <td>{{ 'ano' if workshop.vg else 'ne' }}</td>
                 <td>
                     <a href="{{ url_for('program_day', dayn=workshop.day) }}?w_{{workshop.id}}">program</a>

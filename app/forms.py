@@ -52,7 +52,6 @@ class WorkshopForm(FlaskForm):
     day = IntegerField('Den', validators=[DataRequired(), NumberRange(min=1, max=3)])
     room = SelectField('Místnost', choices=app.config['ROOMS'], validators=[DataRequired()])
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
-    author = StringField('Autor', validators=[DataRequired()])
     description = TextAreaField('Popis')
     vg = BooleanField('Jen pro vyšší gymnázium')
     submit = SubmitField('Potvrdit')

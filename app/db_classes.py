@@ -65,7 +65,6 @@ class Workshop(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
-    author = db.Column(db.String(50))
     description = db.Column(db.String(1000))
     picture_filename = db.Column(db.String(20), nullable=False, default='default.png')
     vg = db.Column(db.Integer, default=0, nullable=False) # je jen pro vyssi gymnazium?
@@ -81,7 +80,6 @@ class Workshop(db.Model):
            "time_to": self.time_to,
            "day": self.day,
            "room": self.room,
-           "author": self.author,
            "description": self.description,
            "picture_filename": self.picture_filename
        }

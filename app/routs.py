@@ -204,7 +204,6 @@ def search_query():
             results.extend(Beseda.query.filter(Beseda.name.icontains(q)))
 
             results.extend(Workshop.query.filter(Workshop.description.icontains(q)))
-            results.extend(Workshop.query.filter(Workshop.author.icontains(q)))
             results.extend(Workshop.query.filter(Workshop.name.icontains(q)))
 
             results.sort(key=lambda item:item.day)
@@ -218,7 +217,6 @@ def search_query():
                 elif isinstance(item, Beseda):
                     item.type = 'beseda'
                 elif isinstance(item, Workshop):
-                    item.author = item.author.replace(q, f'<mark>{q}</mark>')
                     item.description = item.description.replace(q, f'<mark>{q}</mark>')
                     item.type = 'workshop'
                 elif isinstance(item, Host):
