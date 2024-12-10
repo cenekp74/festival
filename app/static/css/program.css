@@ -146,7 +146,7 @@
     position: absolute;
     top: 0;
     right: -2px;
-    bottom: -100vh;
+    bottom: -200vh;
     top: 1.5rem;
     border-right: 1px dashed var(--time-vlines-color);
     z-index: -1;
