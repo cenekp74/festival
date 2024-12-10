@@ -336,16 +336,9 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-.grid-items-container .item-description > div {
-    height: calc(100% - 40px); /* 40px je cca vyska navu s odkazem na program */
-    display: flex;
-    align-items: center; /* aby byl text vertikalne uprostred */
-    justify-content: center;
+.grid-items-container .item-description > p {
     text-align: left;
-}
-
-.grid-items-container .item-description > h2 {
-    margin: .5rem;
+    font-size: 1.1rem;
 }
 
 .hidden {
