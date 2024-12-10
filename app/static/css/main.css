@@ -264,7 +264,7 @@ input:checked + .slider:before {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 10px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-right: 1vw;
 }
 
 .gallery img {
