@@ -1,4 +1,4 @@
-Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná v prosinci, stránka neni ani trochu hotová)
+Webová stránka pro filmový festival na GEKOMu pro rok 2024
 
 # Poznámky
 - server ukládá do variable app.room všechny místnosti, ve kterých se něco děje (podle jednotlivých dní). to je důležitý pro zobrazování programu. tahle variable se ale musí updatovat před každým requestem, protože když běží wsgi na víc workerech tak ta promenna se nesyncuje a tim padem když se něco updatne v programu tak je to potom out of sync. podobnej problem je u fotogalerie (variable app.albums_dict)
@@ -15,7 +15,8 @@ Webová stránka pro filmový festival na GEKOMu pro rok 2024 (festival se koná
 - v program_day se po prihlaseni jakehokoliv usera ukaze moznost lokalne menit barvy program itemu
 - u filmu property hidden znamena, ze se nebude zobrazovat na strance "filmy" a "cely program" - pouzivam k tomu, kdyz chci nejaky film pustit ve vice tridach najednou, ale nechci ho vickrat na strance filmy
 - fce add_hidden_copy_film (odkaz z edit_program.html) vytvori kopii daneho filmu s hidden=True a image_filename="default.png"
-- u hidden filmu je problem s odkazemz z programu na stranku filmy - resim tak, ze hidden filmy prevedu do dict a zmenim u nich id na id filmu se stejnym nazvem co neni hidden, pak se odkaz v programu vytvori na ten co neni hidden a funguje to spravne 
+- u hidden filmu je problem s odkazemz z programu na stranku filmy - resim tak, ze hidden filmy prevedu do dict a zmenim u nich id na id filmu se stejnym nazvem co neni hidden, pak se odkaz v programu vytvori na ten co neni hidden a funguje to spravne
+- program_all.html a s tim spojeny endpoint jsou stary a neni na ne nikde odkaz, ale nechavam je kdyby se to nekdy melo pouzit tak staci pridat link do base.html
 ### WIP mod
 Work in progress mode - kdyz je zapnuty, tak se requesty na program, workshopy a hosty presmeruji na /wip (pokud neni user prihlaseny).
 Lze obejit tim, ze do url pridam ?force-display (kvuli testovani s ostatnima abych nemusel delat loginy)
@@ -27,6 +28,7 @@ Na serveru je jednoduchy system prihlaseni a opravneni. User muze mit 3 typy opr
 1. admin - muze vsechno
 2. perm_shop - muze editovat kavarnu/cajovnu
 3. perm_program_edit - muze editovat program
+4. perm_fotogalerie - muze editovat fotogalerii
 Pro kazdy typ opravneni je v `decorators.py` definovany dekorator, ktery danou route chrani. Vsechny 3 dekoratory pocitaji s tim, ze je current user prihlaseny (takze napr. k funkci, ke ktere ma mit pristup jenom admin musim dat po rade dekoratory @login_required a @admin_required)
 
 Usery lze editovat po admin prihlaseni na /admin/users (definovano v `routs.py`)
