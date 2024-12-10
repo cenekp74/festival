@@ -55,7 +55,7 @@ class Film(db.Model):
            "day": self.day,
            "room": self.room,
            "filename": self.filename if self.filename else "",
-           "vg": self.vg=="1",
+           "vg": self.vg==1,
        }
 
 class Workshop(db.Model):
