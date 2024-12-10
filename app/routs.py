@@ -62,11 +62,12 @@ def program_day(dayn):
     for room in app.rooms[dayn]:
         program[room] = {}
         films = sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from)
-        for film in films: # pokud je film hidden, nefungoval by odkaz na stranku filmy. proto zkusim najit film co neni hidden se stejnym jmenem a zmenim objekt skryteho filmu na dict, kam dam id=id toho filmu se stejnym jmenem (musim z toho udelat dict jinak failne unique constraint v db)
+        for film in films: # pokud je film hidden, nefungoval by odkaz na stranku filmy. proto zkusim najit film co neni hidden se stejnym jmenem a pridam k novymu objektu property original s dict originalniho filmu
             if film.hidden:
                 for film2 in Film.query.filter_by(name=film.name).all():
                     if not film2.hidden:
                         film.original = film2.serialize
+                        break
         program[room]["films"] = films
         program[room]["besedy"] = sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from)
         program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
@@ -173,12 +174,12 @@ def favorite_day(dayn):
     for room in app.rooms[dayn]:
         program[room] = {}
         films = [item for item in sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from) if item.id in films]
-        for index, film in enumerate(films): # viz comment v program_day
+        for film in films: # pokud je film hidden, nefungoval by odkaz na stranku filmy. proto zkusim najit film co neni hidden se stejnym jmenem a pridam k novymu objektu property original s dict originalniho filmu
             if film.hidden:
                 for film2 in Film.query.filter_by(name=film.name).all():
                     if not film2.hidden:
-                        films[index] = film.serialize
-                        films[index]["id"] = film2.id
+                        film.original = film2.serialize
+                        break
         program[room]["films"] = films
         program[room]["besedy"] = [item for item in sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from) if item.id in besedy]
         program[room]["workshops"] = [item for item in sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from) if item.id in workshops]
