@@ -69,7 +69,6 @@ class BesedaForm(FlaskForm):
 class HostForm(FlaskForm):
     name = StringField('Jméno hosta', validators=[DataRequired()])
     description = TextAreaField('Popis')
-    short_description = StringField('Krátký popis')
     picture = FileField('Obrázek', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Potvrdit')
 

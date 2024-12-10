@@ -152,7 +152,6 @@ def add_host():
             picture_filename = 'default.png'
         host = Host(name=form.name.data,
                     description = form.description.data,
-                    short_description = form.short_description.data,
                     picture_filename = picture_filename
                     )
         db.session.add(host)
@@ -301,7 +300,7 @@ def edit_host(id):
     id = int(id)
     host = Host.query.get(id)
     form = HostForm(name=host.name,
-                    description=host.description, short_description=host.short_description)
+                    description=host.description)
     if form.validate_on_submit():
         if form.picture.data:
             try:
@@ -316,7 +315,6 @@ def edit_host(id):
             host.picture_filename = picture_filename
         host.name = form.name.data
         host.description = form.description.data
-        host.short_description = form.short_description.data
         db.session.commit()
         flash('Změny uloženy')
         return redirect(url_for('edit_program.index'))
