@@ -29,6 +29,7 @@
       class="dropzone"
       id="dropzone">
       <div class="dz-message">Zde nahrajte soubory</div>
+      <small style="font-size: small;">Povolené typy souborů jsou: {{ extensions }}, chceš-li jiný napiš na <a href="mailto:admin@jsnsgekom.cz">mail</a></small>
 </form>
 <a style="margin-top: .5rem;" class="btn" href="{{ url_for('fotogalerie.delete_album', album_id=id) }}" onclick="return confirm('Smazat album?')">Smazat album</a>
 {% endif %}

@@ -7,8 +7,10 @@ import shutil
 from werkzeug.utils import secure_filename
 from .decorators import perm_fotogalerie_required
 import os
+from app.utils import allowed_file
 
 IMAGE_THUMBNAIL_WIDTH = 500
+ALLOWED_IMAGE_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
 
 from PIL import Image
 def resize_image(input_path, output_path, new_width):
@@ -31,7 +33,7 @@ def album(album_id):
         abort(404)
     files = [f for f in os.listdir(f'app/static/fotogalerie/{album_id}/') if not f.startswith('thumb')]
     images = [(f"/static/fotogalerie/{album_id}/{file}", f"/static/fotogalerie/{album_id}/thumb-{file}") for file in files] # [(imgae, thumbnail)]
-    return render_template('fotogalerie/album.html', images=images, name=app.albums_dict[album_id], id=album_id)
+    return render_template('fotogalerie/album.html', images=images, name=app.albums_dict[album_id], id=album_id, extensions=", ".join(ALLOWED_IMAGE_EXTENSIONS))
 
 @fotogalerie.route('/<album_id>', methods=['POST'])
 @login_required
@@ -42,6 +44,8 @@ def add_photos(album_id):
             return abort(404)
         uploaded_files = request.files.getlist("file")
         for file in uploaded_files:
+            if not allowed_file(file.filename, ALLOWED_IMAGE_EXTENSIONS):
+                abort(400)
             fn = secure_filename(file.filename)
             file.save(f'app/static/fotogalerie/{album_id}/{fn}')
             resize_image(f'app/static/fotogalerie/{album_id}/{fn}', f'app/static/fotogalerie/{album_id}/thumb-{fn}', IMAGE_THUMBNAIL_WIDTH)
