@@ -172,13 +172,12 @@ def favorite_day(dayn):
     program = {}
     for room in app.rooms[dayn]:
         program[room] = {}
-        films = [item for item in sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from) if item.id in films]
-        for film in films: # pokud je film hidden, nefungoval by odkaz na stranku filmy. proto zkusim najit film co neni hidden se stejnym jmenem a pridam k novymu objektu property original s dict originalniho filmu
+        films_ = [item for item in sorted(Film.query.filter_by(day=dayn, room=room).all(), key=lambda film:film.time_from) if item.id in films]
+        for film in films_: # pokud je film hidden, nefungoval by odkaz na stranku filmy. proto zkusim najit film co neni hidden se stejnym jmenem a pridam k novymu objektu property original s dict originalniho filmu
             if film.hidden:
                 film2 = Film.query.filter_by(name=film.name, hidden=False).first()
                 if film2: film.original = film2.serialize
-                
-        program[room]["films"] = films
+        program[room]["films"] = films_
         program[room]["besedy"] = [item for item in sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from) if item.id in besedy]
         program[room]["workshops"] = [item for item in sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from) if item.id in workshops]
         if not program[room]["films"] and not program[room]["besedy"] and not program[room]["workshops"]:
