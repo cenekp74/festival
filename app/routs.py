@@ -73,17 +73,17 @@ def program_day(dayn):
     return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn)
 
 @app.route('/hoste')
-@wip_disabled
+#@wip_disabled
 def hoste():
     return render_template('hoste.html', items=Host.query.all())
 
 @app.route('/workshopy')
-@wip_disabled
+#@wip_disabled
 def workshopy():
     return render_template('workshopy.html', items=Workshop.query.all())
 
 @app.route('/filmy')
-@wip_disabled
+#@wip_disabled
 def filmy():
     films = Film.query.filter_by(hidden=False).all()
     films.sort(key=lambda x: (x.name.startswith("?"), x.name.lower()))
