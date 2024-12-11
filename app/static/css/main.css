@@ -373,6 +373,12 @@ input:checked + .slider:before {
 
 .grid-items-container .item .item-description p {
     margin: 7px;
+    overflow-y: scroll;
+    height: calc(100% - 28px - 4.7rem);
+}
+
+.grid-items-container .item .item-description > h2 {
+    margin: 1rem 0 1rem 0;
 }
 
 .item-description {
