@@ -129,17 +129,17 @@ function showFavoriteAlert(uid) {
     let itemName = itemEle.querySelector('div').innerText
     let isFavorite = document.getElementById(`star-${uid}`).classList.contains("in-favorite")
     let favoriteAlertHTMLString = `<div class="alert alert-favorite">
-    <span></span><a href="#">Vrátit</a><i onclick="setParentDisplayNone(this)" class="fa fa-xmark"></i>
+    <span><span></span><a href="/favorite">mého programu</a>: ${itemName} - </span><a class="favorite-alert-back" href="#">Vrátit</a><i onclick="setParentDisplayNone(this)" class="fa fa-xmark"></i>
     </div>` // fuj
     let favoriteAlertEle = createElementFromHTML(favoriteAlertHTMLString)
     if (isFavorite) {
-        favoriteAlertEle.querySelector('span').innerText = `Přídáno do oblíbených: ${itemName} - `
+        favoriteAlertEle.querySelector('span span').innerText = `Přídáno do `
         favoriteAlertEle.classList.add('alert-success')
     } else {
-        favoriteAlertEle.querySelector('span').innerText = `Odebráno z oblíbených: ${itemName} - `
+        favoriteAlertEle.querySelector('span span').innerText = `Odebráno z `
         favoriteAlertEle.classList.add('alert-danger')
     }
-    favoriteAlertEle.querySelector('a').setAttribute('onclick', `toggleFavorite("${uid}")`)
+    favoriteAlertEle.querySelector('a.favorite-alert-back').setAttribute('onclick', `toggleFavorite("${uid}")`)
     setTimeout(function() { // pred pridanim alertu je malej delay, aby to vypadalo lip kdyz kliknu na Vratit
         document.querySelector('.content').insertBefore(favoriteAlertEle, document.querySelector('.program-nav')) // alert pridam pred program-nav (takze za program)
     }, 50)

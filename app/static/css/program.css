@@ -232,7 +232,7 @@
 
 .alert-favorite {
     transition: opacity 2s ease-in;
-    position: absolute;
+    position: fixed;
     right: .2rem;
     margin-left: .3rem;
     bottom: 50px; /* vyska footbaru + 2px margin */
