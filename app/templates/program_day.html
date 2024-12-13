@@ -45,6 +45,10 @@
 
 <div class="day-heading">Den {{ day }}</div>
 <div class="program-wrapper">
+    <div class="download">
+        <a class="download-dark" href="/static/img/program/program-{{ day }}-dark.png" download><i class="fa fa-download"></i></a>
+        <a class="download-light" href="/static/img/program/program-{{ day }}-light.png" download><i class="fa fa-download"></i></a>
+    </div>
     <div class="rooms-container">
         {% for room in rooms %}
         <div class="room">{{ room }}</div>

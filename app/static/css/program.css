@@ -111,6 +111,7 @@
 .program-wrapper {
     display: flex;
     justify-content: left;
+    position: relative; /* kvuli download linkum */
 }
 
 .rooms-container {
@@ -252,6 +253,25 @@
     margin-top: .25rem;
     background-color: var(--bg-color);
     padding-bottom: 15px;
+}
+
+.download {
+    position: absolute;
+    top: -2rem;
+    right: 1rem;
+    font-size: 20px;
+}
+
+.download a {
+    display: none;
+}
+
+:root.light .download a.download-light {
+    display: block;
+}
+
+:root.dark .download a.download-dark {
+    display: block;
 }
 
 @media screen and (min-width: 800px) {
