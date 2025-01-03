@@ -1,5 +1,6 @@
 :root, :root.dark {
     --text-color: #dde2e7;
+    --secondary-text-color: #bdc5cc;
     --bg-color: #0e0505;
     --active-page-color: #4b0000;
     --secondary-color: #690000;
@@ -25,6 +26,7 @@
 
 :root.light {
     --text-color: #240202;
+    --secondary-text-color: #3b1010;
     --bg-color: #edf2f7;
     --active-page-color: #55a5cabb;
     --secondary-color: #00b7ce;
@@ -357,6 +359,7 @@ input:checked + .slider:before {
 .grid-items-container .item .item-details h3 {
     margin: 0;
     font-size: 1.2rem;
+    color: var(--secondary-text-color);
 }
 
 .grid-items-container .item .item-description p {
