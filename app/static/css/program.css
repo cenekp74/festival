@@ -72,7 +72,7 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    line-clamp: 2;
     line-height: 1.5rem;        /* fallback */
     max-height: 48px;       /* fallback */
     text-indent: 4px;
@@ -94,7 +94,7 @@
 
 .vertical div {
     writing-mode: vertical-rl;
-    -webkit-line-clamp: 1;
+    line-clamp: 1;
     font-size: 80%;
 }
 
@@ -286,7 +286,7 @@
     }
     .program-item:hover div {
         font-size: 100%;
-        -webkit-line-clamp: 2;
+        line-clamp: 2;
         writing-mode: initial;
     }
 }
