@@ -11,7 +11,7 @@
 }
 
 .rooms-container {
-    margin-top: 1.5rem;
+    margin-top: 24px;
 }
 
 .program-item {
@@ -33,7 +33,7 @@
 
 .program-editor {
     display: flex;
-    gap: 1rem;
+    gap: 16px;
     position: relative;
     width: max-content;
 }
@@ -41,7 +41,7 @@
 .interactive-item-details { /* musi mit divnej nazev protoze trida item-details uz existuje v program.css */
     border: 1px solid var(--text-color);
     border-radius: 2px;
-    padding: .5rem;
+    padding: 8px;
     min-width: 300px;
 }
 
@@ -50,29 +50,29 @@
 }
 
 .save-program-button {
-    width: 4rem;
-    height: 3rem;
+    width: 64px;
+    height: 48px;
     position: absolute;
     right: 0;
-    bottom: -4rem;
+    bottom: -64px;
 }
 
 .new-items {
-    width: 4rem;
-    height: 3rem;
+    width: 64px;
+    height: 60px;
     position: absolute;
-    left: 2rem;
-    bottom: -4rem;
+    left: 32px;
+    bottom: -64px;
     width: max-content;
 }
 
 .new-items div {
-    margin-bottom: .2rem;
+    margin-bottom: 4px;
     font-size: large;
 }
 
 .alert {
     position: fixed;
-    right: .1rem;
-    bottom: calc(50px + .1rem);
+    right: 2px;
+    bottom: 52px;
 }
