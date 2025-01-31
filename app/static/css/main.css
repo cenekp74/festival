@@ -408,7 +408,7 @@ input:checked + .slider:before {
 }
 
 .search-bar {
-    margin-top: 48px;
+    margin-top: 8px;
     display: flex;
     justify-content: space-between;
     width: 70%;
@@ -419,6 +419,7 @@ input:checked + .slider:before {
     border: 1px solid var(--text-color);
     height: 40px;
     position: relative;
+    margin-bottom: 8px;
 }
 
 .search-input:focus {
@@ -432,7 +433,7 @@ input:checked + .slider:before {
 
 .search-results {
     min-width: 300px;
-    width: 60%;
+    width: 60vw;
 }
 
 /* #endregion search */
