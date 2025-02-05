@@ -195,6 +195,70 @@ function getTimeDifferenceInMs(time1, time2) { // input jsou stringy ve formatu 
     return time2Obj - time1Obj
 }
 
+/** function to move item one minute to the left */
+function moveItemLeft(itemId) {
+    const itemEle = document.getElementById(itemId)
+    prevStartTime = itemEle.getAttribute("start-time")
+    newStartTime = msToTimeString(timeStringToMs(prevStartTime)-60000)
+    prevEndTime = itemEle.getAttribute("end-time")
+    newEndTime = msToTimeString(timeStringToMs(prevEndTime)-60000)
+    itemEle.setAttribute("start-time", newStartTime)
+    itemEle.setAttribute("end-time", newEndTime)
+    updateAllTimeInputs()
+    updateAllItemsPosition()
+    if (!(modifiedItemUids.includes(itemId))) {
+        modifiedItemUids.push(itemId)
+    }
+}
+
+/** function to move item one minute to the right */
+function moveItemRight(itemId) {
+    const itemEle = document.getElementById(itemId)
+    prevStartTime = itemEle.getAttribute("start-time")
+    newStartTime = msToTimeString(timeStringToMs(prevStartTime)+60000)
+    prevEndTime = itemEle.getAttribute("end-time")
+    newEndTime = msToTimeString(timeStringToMs(prevEndTime)+60000)
+    itemEle.setAttribute("start-time", newStartTime)
+    itemEle.setAttribute("end-time", newEndTime)
+    updateAllTimeInputs()
+    updateAllItemsPosition()
+    if (!(modifiedItemUids.includes(itemId))) {
+        modifiedItemUids.push(itemId)
+    }
+}
+
+/** function to move item one row up */
+function moveItemUp(itemId) {
+    const itemEle = document.getElementById(itemId)
+    prevRoom = itemEle.getAttribute("room")
+    rooms = Array.from(document.querySelectorAll(".rooms-container .room"));
+    roomNames = rooms.map(room => room.textContent.trim());
+    prevRoomIndex = roomNames.indexOf(prevRoom);
+    if (prevRoomIndex === -1 || prevRoomIndex <= 0) {
+        return null;
+    }
+    newRoom = roomNames[prevRoomIndex - 1];
+    itemEle.setAttribute("room", newRoom)
+    updateAllItemsPosition()
+    updateAllItemDetailsRooms()
+}
+
+/** function to move item one row down */
+function moveItemDown(itemId) {
+    const itemEle = document.getElementById(itemId)
+    prevRoom = itemEle.getAttribute("room")
+    rooms = Array.from(document.querySelectorAll(".rooms-container .room"));
+    roomNames = rooms.map(room => room.textContent.trim());
+    prevRoomIndex = roomNames.indexOf(prevRoom);
+    if (prevRoomIndex === -1 || prevRoomIndex === roomNames.length-1) {
+        return null;
+    }
+    newRoom = roomNames[prevRoomIndex + 1];
+    itemEle.setAttribute("room", newRoom)
+    updateAllItemsPosition()
+    updateAllItemDetailsRooms()
+}
+
 let timeFromInputs = document.querySelectorAll('.time-from-input')
 timeFromInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {
@@ -212,7 +276,9 @@ timeFromInputs.forEach(inputEle => {
         programItem.setAttribute('start-time', newStartTime)
         updateAllTimeInputs()
         updateAllItemsPosition()
-        modifiedItemUids.push(programItem.id)
+        if (!(modifiedItemUids.includes(programItem.id))) {
+            modifiedItemUids.push(programItem.id)
+        }
     })
 })
 
@@ -301,3 +367,20 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener("beforeunload", function (event) {
     event.preventDefault();
 });
+
+window.addEventListener("keydown", function(event) {
+    switch (event.key) {
+        case "ArrowLeft":
+            moveItemLeft(document.querySelector(".program-item.selected").id);
+            break;
+        case "ArrowRight":
+            moveItemRight(document.querySelector(".program-item.selected").id);
+            break;
+        case "ArrowUp":
+            moveItemUp(document.querySelector(".program-item.selected").id);
+            break;
+        case "ArrowDown":
+            moveItemDown(document.querySelector(".program-item.selected").id);
+            break;
+    }
+})
