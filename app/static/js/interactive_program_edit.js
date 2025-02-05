@@ -156,7 +156,6 @@ async function saveProgram() {
 }
 
 /** funkce na updatovani doby trvani v item details na zaklade hodnot time inputu */
-
 function updateAllItemLengths() {
     itemDetailsEles = document.querySelectorAll('.details')
     itemDetailsEles.forEach(ele => {
@@ -171,7 +170,9 @@ function updateAllItemLengths() {
     })
 }
 
+/** funkce co z casu v ms udela cas ve formatu HH:MM */
 function msToTimeString(ms) {
+    ms = ms%86400000
     let totalSeconds = Math.floor(ms / 1000);
     let totalMinutes = Math.floor(totalSeconds / 60);
     let seconds = totalSeconds % 60;
@@ -180,6 +181,12 @@ function msToTimeString(ms) {
     let formattedHours = String(hours).padStart(2, '0');
     let formattedMinutes = String(minutes).padStart(2, '0');
     return `${formattedHours}:${formattedMinutes}`;
+}
+
+/** funkce co z casu ve formatu HH:MM vypocita milisekundy */
+function timeStringToMs(time) {
+    const [hours, minutes] = time.split(":").map(Number);
+    return (hours * 3600 + minutes * 60) * 1000;
 }
 
 function getTimeDifferenceInMs(time1, time2) { // input jsou stringy ve formatu "%H:%M"
@@ -193,16 +200,16 @@ timeFromInputs.forEach(inputEle => {
     inputEle.addEventListener('input', (e) => {
         uid = e.target.closest('.details').id.split('-')[1]
         let programItem = document.getElementById(uid)
-        newTime = e.target.value
+        newStartTime = e.target.value
 
-        prevTime = programItem.getAttribute('start-time')     
-        diff = getTimeDifferenceInMs(newTime, prevTime)
+        prevStartTime = programItem.getAttribute('start-time')
+        diff = getTimeDifferenceInMs(newStartTime, prevStartTime)
         let timeEnd = programItem.getAttribute('end-time')
-        let timeEndObj = new Date("01/01/2007 " + timeEnd).getTime()
-        let newEndTime = msToTimeString(timeEndObj - diff)
+        let timeEndMs = timeStringToMs(timeEnd)
+        let newEndTime = msToTimeString(timeEndMs - diff)
         
         programItem.setAttribute('end-time', newEndTime)
-        programItem.setAttribute('start-time', newTime)
+        programItem.setAttribute('start-time', newStartTime)
         updateAllTimeInputs()
         updateAllItemsPosition()
         modifiedItemUids.push(programItem.id)
@@ -289,4 +296,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
+
+window.addEventListener("beforeunload", function (event) {
+    event.preventDefault();
 });
