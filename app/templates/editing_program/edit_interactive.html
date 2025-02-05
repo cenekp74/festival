@@ -73,6 +73,7 @@
                 <div>Délka trvání: <b class="item-length"></b></div>
                 <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
                 <a target=”_blank” href="/edit_film/{{ item.id }}">edit</a>
+                <a target="_blank" href="/delete_film/{{ item.id }}" onclick="return confirm('Smazat film?')">delete</a>
             </div>
             {% endfor %}
 
@@ -91,6 +92,7 @@
                 <div>Délka trvání: <b class="item-length"></b></div>
                 <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
                 <a target=”_blank” href="/edit_workshop/{{ item.id }}">edit</a>
+                <a target="_blank" href="/delete_workshop/{{ item.id }}" onclick="return confirm('Smazat workshop?')">delete</a>
             </div>
             {% endfor %}
 
@@ -112,6 +114,7 @@
                 <div>Délka trvání: <b class="item-length"></b></div>
                 <div>Místnost: <b class="item-details-room">{{ room }}</b></div>
                 <a target=”_blank” href="/edit_beseda/{{ item.id }}">edit</a>
+                <a target="_blank" href="/delete_beseda/{{ item.id }}" onclick="return confirm('Smazat besedu?')">delete</a>
             </div>
             {% endfor %}
         {% endfor %}
