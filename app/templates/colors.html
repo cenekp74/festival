@@ -100,13 +100,15 @@ function updateInputs() {
 function updateColor(event) {
     root.style.setProperty('--' + event.target.id, event.target.value);
     updateColorLabels()
-} 
+}
 
-updateInputs()
-updateColorLabels()
+document.addEventListener('DOMContentLoaded', function() {
+    updateInputs()
+    updateColorLabels()
 
-document.querySelectorAll('input[type=color]').forEach((ele) => {
-    ele.addEventListener("input", updateColor, false);
+    document.querySelectorAll('input[type=color]').forEach((ele) => {
+        ele.addEventListener("input", updateColor, false);
+    })
 })
 
 </script>
