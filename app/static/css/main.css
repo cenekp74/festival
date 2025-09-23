@@ -1,4 +1,4 @@
-:root, :root.dark {
+:root.dark {
     --text-color: #dde2e7;
     --secondary-text-color: #bdc5cc;
     --bg-color: #0e0505;
@@ -12,7 +12,6 @@
     --button-color: #4b0900;
     --disabled-button-color: #2c1e1e;
     --disabled-text-color: #3c4d42;
-    --border-radius: 24px;
     --favorite-color: #ffff00;
     --table-hover-color: #4b0000bb;
     --search-highlight-color: #fceb04ad;
@@ -24,10 +23,10 @@
     --alert-danger-color: #f57373;
 }
 
-:root.light {
+:root, :root.light {
     --text-color: #240202;
     --secondary-text-color: #3b1010;
-    --bg-color: #edf2f7;
+    --bg-color: #fddcf1;
     --active-page-color: #55a5cabb;
     --secondary-color: #00b7ce;
     --topnav-color: var(--bg-color);
@@ -47,6 +46,7 @@
     --search-bar-hover-color: var(--table-hover-color);
     --alert-success-color: darkgreen;
     --alert-danger-color: #771616;
+    --border-radius: 24px;
 }
 
 body {
