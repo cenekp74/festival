@@ -51,7 +51,7 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
 }
@@ -788,7 +788,7 @@ footer .theme-switch {
     }
 }
 
-@media screen and (max-width: 1455px) { /* stejny jako breakpoint v program.css  - od totohle bodu predpokladam ze user je na necem co ma touchscreen*/
+@media screen and (max-width: 1490px) { /* stejny jako breakpoint v program.css  - od totohle bodu predpokladam ze user je na necem co ma touchscreen*/
     .topnav:not(.responsive) .topnav-links > a:not(.logo):not(.active):not(.icon) {
         display: none !important; /* musi byt !important protoze u search icon nastavuju display flex kvuli zarovnani a to by melo vetsi prioritu */
     }
