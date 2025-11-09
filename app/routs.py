@@ -269,8 +269,7 @@ def upload_file():
 
     return render_template('upload.html', files=files)
 
-@app.route('/colors') # testovani barvicek
-@login_required
+@app.route('/colors') # testovani barvicek - verejny, protoze proc ne
 def colors():
     return render_template('colors.html')
 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<meta name="robots" content="noindex">
 {% endblock %}
 
 
@@ -12,63 +13,63 @@
         <input type="color" id="bg-color">
         <label for="bg-color">Pozadí</label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="bg-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="secondary-color">
         <label for="secondary-color">Sekundární barva</label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="secondary-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="text-color">
         <label for="text-color">Barva textu</label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="text-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="active-page-color">
         <label for="active-page-color">Barva aktivní stránky</label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="active-page-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="link-color">
         <label for="link-color"><a href="#">Barva odkazu</a></label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="link-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="hover-link-color">
         <label for="hover-link-color"><a href="#">Hover barva odkazu (na počítači)</a></label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="hover-link-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="button-color">
         <label for="button-color"><a class="button-link" href="#">Barva tlačítka</a></label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="button-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="disabled-button-color">
         <label for="disabled-button-color"><a class="button-link disabled" href="#">Barva neaktivního tlačítka</a></label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="disabled-button-color">
         <br><br>
     </div>
     <div class="color-selector">
         <input type="color" id="disabled-text-color">
         <label for="disabled-text-color" class="disabled">Barva neaktivního textu</label>
         <br>
-        <b></b>
+        <input type="text" maxlength="7" data-for="disabled-text-color">
         <br><br>
     </div>
 </div>
@@ -85,7 +86,7 @@ let root = document.querySelector(':root')
 function updateColorLabels() {
     document.querySelectorAll('.color-selector').forEach((ele) => {
         value = ele.querySelector('input').value
-        ele.querySelector('b').innerHTML = value
+        ele.querySelector('input[type=text]').value = value
     })
 }
 
@@ -111,5 +112,26 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
+document.querySelectorAll("input[type=text]").forEach((hexInput) => {
+    hexInput.addEventListener("input", (event) => {
+        valueName = event.target.getAttribute("data-for")
+        value = hexInput.value
+        if (/^#([0-9A-F]{3}){1,2}$/i.test(value)) {
+            document.getElementById(valueName).value = value
+            document.getElementById(valueName).dispatchEvent(new Event('input', { bubbles: true }));
+        }
+    })
+})
+
 </script>
+
+<style>
+    input[type=text] {
+        padding: 4px;
+        margin: 4px 0 8px 0;
+        border-radius: 4px;
+        outline: none;
+        border: 1px solid var(--secondary-color);
+    }
+</style>
 {% endblock %}
