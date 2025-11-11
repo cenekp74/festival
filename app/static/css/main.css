@@ -1,17 +1,18 @@
 :root.dark {
-    --text-color: #dde2e7;
+    --text-color: #ffd4ef;
     --secondary-text-color: #bdc5cc;
-    --bg-color: #0e0505;
-    --active-page-color: #4b0000;
-    --secondary-color: #690000;
-    --topnav-color: #2b0000;
-    --division-line-color: #440a00; /* barva cary mezi topnavem a contentem a footerem a contentem */
-    --responsive-topnav-color: #100000;
+    --bg-color: #000b4d;
+    --active-page-color: #ff80e8;
+    --secondary-color: #e946cb;
+    --topnav-color: #000b4d;
+    --division-line-color: #47153e; /* barva cary mezi topnavem a contentem a footerem a contentem */
+    --responsive-topnav-color: #10000f;
     --link-color: var(--text-color);
-    --hover-link-color: #ffc095;
-    --button-color: #4b0900;
-    --disabled-button-color: #2c1e1e;
-    --disabled-text-color: #3c4d42;
+    --hover-link-color: #ffa8df;
+    --button-color: #ff80e8;
+    --button-text-color: var(--bg-color);
+    --disabled-button-color: #b188a9;
+    --disabled-text-color: #c7e2ef;
     --favorite-color: #ffff00;
     --table-hover-color: #4b0000bb;
     --search-highlight-color: #fceb04ad;
@@ -35,6 +36,7 @@
     --link-color: var(--text-color);
     --hover-link-color: #003541;
     --button-color: #68b6e4;
+    --button-text-color: var(--text-color);
     --disabled-button-color: #788b99;
     --disabled-text-color: #424d53;
     --favorite-color: #ffff00;
@@ -107,7 +109,7 @@ html.dark body::-webkit-scrollbar:hover { /* z nejakyho duvodu kdyz pouziju :roo
     text-align: center;
     text-decoration: none;
     background-color: var(--button-color);
-    color: var(--link-color);
+    color: var(--button-text-color) !important;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -501,6 +503,7 @@ input:checked + .slider:before {
 
 .topnav:not(.responsive) .topnav-links a:hover {
     background-color: var(--secondary-color);
+    color: var(--button-text-color);
     transition: .3s ease;
 }
 
@@ -510,7 +513,7 @@ input:checked + .slider:before {
 
 .topnav a.active {
     background-color: var(--active-page-color);
-    color: var(--text-color);
+    color: var(--button-text-color);
 }
 
 .topnav .icon {
