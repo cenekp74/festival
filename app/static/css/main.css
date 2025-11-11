@@ -735,20 +735,6 @@ footer .theme-switch {
 }
 /* #endregion history */
 
-/* #region uvod */
-#uvod-text {
-    text-align: justify;
-    max-width: min(95vw, 1080px);
-    font-size: 17px;
-    margin-top: 16px;
-}
-
-.logo-text {
-    width: 97vw;
-    max-width: 847px;
-}
-/* #endregion uvod */
-
 @media screen and (max-width: 1312px) {
     .topnav a {
         font-size: 18px;
