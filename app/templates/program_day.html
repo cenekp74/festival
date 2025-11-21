@@ -57,13 +57,13 @@
     <div class="program-container-wrapper" onscroll="hideAllContextMenu(); hide_topnav()">
         <div class="program-container">
             <div class="times-wrapper">
-                <div class="time-item" style="grid-column: 1/30">8:30</div>
-                <div class="time-item" style="grid-column: 30/90">9:00</div>
-                <div class="time-item" style="grid-column: 90/150">10:00</div>
-                <div class="time-item" style="grid-column: 150/210">11:00</div>
-                <div class="time-item" style="grid-column: 210/270">12:00</div>
-                <div class="time-item" style="grid-column: 270/330">13:00</div>
-                <div class="time-item" style="grid-column: 330/390">14:00</div>
+                <div class="time-item" style="grid-column: 1/40">8:20</div>
+                <div class="time-item" style="grid-column: 40/100">9:00</div>
+                <div class="time-item" style="grid-column: 100/160">10:00</div>
+                <div class="time-item" style="grid-column: 160/220">11:00</div>
+                <div class="time-item" style="grid-column: 220/280">12:00</div>
+                <div class="time-item" style="grid-column: 280/340">13:00</div>
+                <div class="time-item" style="grid-column: 340/400">14:00</div>
             </div>
             
             {% for room in rooms %}
@@ -185,7 +185,7 @@
     <a id="nav-day-3" class="button-link" href="/program/day/3">Den 3</a>
     <a class="button-link" href="{{ url_for('favorite_day', dayn=day) }}">Můj program</a>
 </nav>
-<script src="{{ url_for('static', filename='js/program.js') }}"></script>
+<script src="{{ url_for('static', filename='js/program.js') }}?v=004"></script>
 <script>
     document.getElementById('program').classList.add('active');
     var day = "{{day}}";

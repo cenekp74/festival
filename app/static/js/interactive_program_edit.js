@@ -5,18 +5,18 @@ function timeToMinutes(time) {
     return hours * 60 + minutes;
 }
 
-function getMinutesFrom830am() {
+function getMinutesFrom820am() {
     var currentDate = new Date();
     var targetTime = new Date(currentDate);
-    targetTime.setHours(8, 30, 0, 0);
+    targetTime.setHours(8, 20, 0, 0);
     var timeDifference = currentDate - targetTime;
     var minutesPassed = Math.floor(timeDifference / (1000 * 60));
     return minutesPassed
 }
 
-// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8:30 rano
+// vypocita z casu ve formatu HH:MM pocet minut ktery ubehnul od 8:20 rano
 function calculateMinutesFromStart(startTime, endTime) {
-    const timeRangeStart = timeToMinutes("08:30");
+    const timeRangeStart = timeToMinutes("08:20");
     const startMinutes = timeToMinutes(startTime);
     const endMinutes = timeToMinutes(endTime);
 
@@ -29,9 +29,9 @@ function calculateMinutesFromStart(startTime, endTime) {
     };
 }
 
-/** vypocita z minut od 1 do 390 cas od 8:30 do 15:00 */
+/** vypocita z minut od 1 do 400 cas od 8:20 do 15:00 */
 function convertMinutesToTime(minutes) {
-    if (minutes == 0) return "08:30"
+    if (minutes == 0) return "08:20"
     let hours = Math.floor(minutes / 60);
     let mins = minutes % 60;
     hours += 8;
@@ -95,7 +95,7 @@ function updateAllItemsPosition() {
         var minutesFromStart = calculateMinutesFromStart(start_time, end_time);
         items[i].style.gridColumnStart = minutesFromStart.start+1;
         items[i].style.gridColumnEnd = minutesFromStart.end+1;
-        if (items[i].style.gridColumnEnd > 391) {
+        if (items[i].style.gridColumnEnd > 401) {
             items[i].style.borderRight = '4px solid black'
         } else {items[i].style.borderRight = ''}
         items[i].style.gridRowStart = rooms.indexOf(room)+2; //+2 je protoze index zacina od 0 a prvni row jsou casy
@@ -303,7 +303,7 @@ let modifiedItemUids = [];
 document.addEventListener('DOMContentLoaded', function() {
     var grid = document.querySelector('.program-container');
     var gridWidth = grid.offsetWidth;
-    var columnWidth = gridWidth / 390;
+    var columnWidth = gridWidth / 400;
     var rowHeight = 69; // vyska jednoho radku v px + 5px
   
     var items = document.querySelectorAll('.program-item');
@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.style.gridColumn = String(column_start) + '/' + String(column_end)
                 }
                 item.style.left = 0
-                if (item.style.gridColumnEnd > 391) {
+                if (item.style.gridColumnEnd > 401) {
                     item.style.borderRight = '4px solid black'
                 } else {item.style.borderRight = ''}
 

@@ -18,17 +18,17 @@
         <div class="program-container-wrapper">
             <div class="program-container">
                 <div class="times-wrapper">
-                    <div class="time-item" style="grid-column: 1/30">8:30</div>
-                    <div class="time-item" style="grid-column: 30/90">9:00</div>
-                    <div class="time-item" style="grid-column: 90/150">10:00</div>
-                    <div class="time-item" style="grid-column: 150/210">11:00</div>
-                    <div class="time-item" style="grid-column: 210/270">12:00</div>
-                    <div class="time-item" style="grid-column: 270/330">13:00</div>
-                    <div class="time-item" style="grid-column: 330/390">14:00</div>
+                    <div class="time-item" style="grid-column: 1/40">8:20</div>
+                    <div class="time-item" style="grid-column: 40/100">9:00</div>
+                    <div class="time-item" style="grid-column: 100/160">10:00</div>
+                    <div class="time-item" style="grid-column: 160/220">11:00</div>
+                    <div class="time-item" style="grid-column: 220/280">12:00</div>
+                    <div class="time-item" style="grid-column: 280/340">13:00</div>
+                    <div class="time-item" style="grid-column: 340/400">14:00</div>
                 </div>
                 
                 {% for room in rooms %}
-                    <div class="program-item" room="{{room}}" start-time="8:30" end-time="8:30" style="visibility: hidden;"></div>
+                    <div class="program-item" room="{{room}}" start-time="8:20" end-time="8:20" style="visibility: hidden;"></div>
                     {% for film in program[room]["films"] %}
                         <div id="f_{{film.id}}" class="program-item film" start-time="{{film.time_from}}" end-time="{{film.time_to}}" room="{{film.room}}" item-id="f_{{film.id}}" onmousedown="showItemDetails(this)">
                             <div>

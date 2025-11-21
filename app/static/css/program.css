@@ -4,7 +4,7 @@
 
 .program-container {
     display: grid;
-    grid-template-columns: repeat(390, 1fr);
+    grid-template-columns: repeat(400, 1fr); /* 400 je pocet minut programu */
     row-gap: 5px;
     position: relative;
     border: 1px solid var(--bg-color);
