@@ -34,8 +34,13 @@
 .program-editor {
     display: flex;
     gap: 16px;
-    position: relative;
+    position: fixed;
     width: max-content;
+    top: 208px;
+    left: 8px;
+    overflow: scroll;
+    max-width: 100vw;
+    min-height: fit-content;
 }
 
 .interactive-item-details { /* musi mit divnej nazev protoze trida item-details uz existuje v program.css */
@@ -50,20 +55,23 @@
 }
 
 .save-program-button {
-    width: 64px;
+    width: 128px;
     height: 48px;
-    position: absolute;
-    right: 0;
-    bottom: -64px;
+    position: fixed;
+    right: 16px;
+    bottom: 72px;
+    font-size: 24px;
 }
 
 .new-items {
     width: 64px;
     height: 60px;
-    position: absolute;
-    left: 32px;
-    bottom: -64px;
+    position: fixed;
+    left: 16px;
+    bottom: 72px;
     width: max-content;
+    background-color: var(--bg-color);
+    border-top-right-radius: var(--border-radius);
 }
 
 .new-items div {

@@ -35,7 +35,7 @@ function convertMinutesToTime(minutes) {
     let hours = Math.floor(minutes / 60);
     let mins = minutes % 60;
     hours += 8;
-    mins += 30;
+    mins += 20;
     if (mins >= 60) {
         mins = mins - 60;
         hours += 1;

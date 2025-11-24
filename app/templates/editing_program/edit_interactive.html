@@ -2,7 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/program.css') }}?v=004">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/interactive_program_edit.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/interactive_program_edit.css') }}?v=004">
 {% endblock %}
 
 {% block body %}
@@ -133,7 +133,7 @@
     <a id="nav-day-2" class="button-link" href="{{ url_for('edit_program.interactive', dayn=2) }}">Den 2</a>
     <a id="nav-day-3" class="button-link" href="{{ url_for('edit_program.interactive', dayn=3) }}">Den 3</a>
 </nav>
-<script src="{{ url_for('static', filename='js/interactive_program_edit.js') }}?v=004"></script>
+<script src="{{ url_for('static', filename='js/interactive_program_edit.js') }}?v=005"></script>
 <script>
     document.getElementById('program').classList.add('active');
     var day = "{{day}}";
