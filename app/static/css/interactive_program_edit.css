@@ -10,6 +10,11 @@
     user-select: none;
 }
 
+.program-container-wrapper {
+    overflow-y: scroll !important;
+
+}
+
 .rooms-container {
     margin-top: 24px;
 }
@@ -64,11 +69,10 @@
 }
 
 .new-items {
-    width: 64px;
-    height: 60px;
     position: fixed;
-    left: 16px;
-    bottom: 72px;
+    left: 0;
+    bottom: 48px;
+    padding: 8px;
     width: max-content;
     background-color: var(--bg-color);
     border-top-right-radius: var(--border-radius);
