@@ -20,9 +20,9 @@
 :root, :root.dark {
     --vline-left: 0; /* tohle je potreba protoze z js se nedaji modifikovat pseudoelementy */
     --vline-visibility: hidden;
-    --film-color: #a03765de;
-    --workshop-color: #ffd740ee;
-    --beseda-color: #ff7400ee;
+    --film-color: #ff80e8;
+    --workshop-color: #c7e2ff;
+    --beseda-color: #04b2cd;
     --flash-border-color: var(--text-color);
     --program-text-color: #121212;
     --time-vlines-color: #801b0e; /* barva carecek co jsou u kazdy hodiny */
