@@ -10,6 +10,7 @@
 <!-- <img id="uvod-logo" class="logo-text" src="{{ url_for('static', filename='img/logo_color.svg') }}"> -->
 
 <div id="uvod-text">
+    <!-- <img id="logo-bg" src="{{ url_for('static', filename='img/logo_pink.svg') }}"> -->
     <p>
         Vítejte na stránkách filmového festivalu <b>Jeden Svět na Ohradní</b>! Letošní ročník pro vás chystáme s tématem <b>NADĚJE</b>. 
         Více informací na našem <a href="https://www.instagram.com/ffgekom/" target="_blank">instagramu</a>.
@@ -44,6 +45,20 @@
         font-size: 18px;
         line-height: 1.6rem;
         margin-top: 8px;
+    }
+
+    #uvod-text::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 53%;
+        width: 100%;
+        height: 65%;
+        transform: translate(-49.5%, -50%);
+        background: url("{{ url_for('static', filename='img/logo_pink.svg') }}") center/contain no-repeat;
+        z-index: -1;
+        pointer-events: none;
+        opacity: .7;
     }
 </style>
 {% endblock %}
