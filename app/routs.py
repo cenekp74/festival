@@ -70,7 +70,8 @@ def program_day(dayn):
         program[room]["films"] = films
         program[room]["besedy"] = sorted(Beseda.query.filter_by(day=dayn, room=room).all(), key=lambda beseda:beseda.time_from)
         program[room]["workshops"] = sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from)
-    return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn)
+    hosts = Host.query.all()
+    return render_template('program_day.html', program=program, rooms=app.rooms[dayn], day=dayn, hosts=hosts)
 
 @app.route('/hoste')
 @wip_disabled
@@ -182,7 +183,8 @@ def favorite_day(dayn):
         program[room]["workshops"] = [item for item in sorted(Workshop.query.filter_by(day=dayn, room=room).all(), key=lambda workshop:workshop.time_from) if item.id in workshops]
         if not program[room]["films"] and not program[room]["besedy"] and not program[room]["workshops"]:
             rooms_.remove(room)
-    return render_template('favorite_day.html', program=program, rooms=rooms_, day=dayn)
+    hosts = Host.query.all()
+    return render_template('favorite_day.html', program=program, rooms=rooms_, day=dayn, hosts=hosts)
 
 @app.route('/favorite')
 @wip_disabled

@@ -125,7 +125,11 @@
         <div class="cm-item-time">{{ item.time_from }} - {{ item.time_to }}</div>
         {% if item.host_id %}
             <a href="{{url_for('hoste')}}#h_{{item.host_id}}">
-                <div>host</div>
+                {% for host in hosts %}
+                    {% if host.id == item.host_id %}
+                        <div>{{ host.name }}</div>
+                    {% endif %}
+                {% endfor %}
             </a>
         {% endif %}
         {% if item.vg %}
