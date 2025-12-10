@@ -3,7 +3,7 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from app.forms import LoginForm, WorkshopForm, UserForm
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.utils import allowed_file, correct_uid, update_rooms
+from app.utils import allowed_file, correct_uid, update_rooms, get_object_by_uid
 from app.decorators import admin_required, wip_disabled
 import os
 from werkzeug.utils import secure_filename
@@ -26,6 +26,21 @@ def send_favicon():
 @app.route('/uvod')
 def uvod():
     return render_template('uvod.html')
+
+@app.route('/reflexe/<uid>')
+@wip_disabled
+def reflexe_redirect(uid):
+    """
+    vrati redirect na reflexe_link pokud je item film a ma reflexe_link\n
+    pokud film nema reflexe_link, vrati chybu 404\n
+    slouzi ke zkraceni url aby byly mensi qr kody
+    """
+    if not correct_uid(uid, h_allowed=False): abort(400)
+    if not uid.startswith("f_"): abort(400)
+    item = get_object_by_uid(uid)
+    if not item: abort(404)
+    if not item.reflexe_link: abort(404)
+    return redirect(item.reflexe_link)
 
 @app.route('/program/all')
 @wip_disabled
