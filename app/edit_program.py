@@ -76,6 +76,7 @@ def add_film():
                     language = form.language.data,
                     description = form.description.data,
                     short_description = form.short_description.data,
+                    reflexe_link = form.reflexe_link.data,
                     filename = form.filename.data,
                     vg = form.vg.data,
                     hidden = form.hidden.data,
@@ -191,6 +192,7 @@ def edit_film(id):
         film.language = form.language.data
         film.description = form.description.data
         film.short_description = form.short_description.data
+        film.reflexe_link = form.reflexe_link.data
         film.filename = form.filename.data
         film.vg = form.vg.data
         film.hidden = form.hidden.data

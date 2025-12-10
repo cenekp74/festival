@@ -23,6 +23,7 @@
                 <th>Filename</th>
                 <th>Obrázek</th>
                 <th>Odkaz</th>
+                <th>Reflexe</th>
                 <th>Pro vyšší gympl</th>
                 <th>Skrytý</th>
                 <th>Program</th>
@@ -49,6 +50,13 @@
                 </td>
                 <td>
                     <a href="{{ film.link }}">odkaz</a>
+                </td>
+                <td>
+                    {% if film.reflexe_link %}
+                    <a target="_blank" href="{{ film.reflexe_link }}">reflexe</a>
+                    {% else %}
+                    <a>---</a>
+                    {% endif %}
                 </td>
                 <td>{{ 'ano' if film.vg else 'ne' }}</td>
                 <td>{{ 'ano' if film.hidden else 'ne' }}</td>

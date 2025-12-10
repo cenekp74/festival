@@ -40,6 +40,7 @@ class FilmForm(FlaskForm):
     language = SelectField('Jazyk', choices=VALID_LANGUAGE_VALUES, validators=[DataRequired()])
     description = TextAreaField('Popis')
     short_description = StringField('Krátký popis', render_kw={"list": "short-description-suggestions"})
+    reflexe_link = StringField('Reflexe link', render_kw={"placeholder": "link na form k reflexi - zobrazí se jako qr kód po filmu"})
     filename = StringField('Filename', render_kw={"placeholder": "filename souboru filmu na serveru (pokud nevis nech prazdny)"})
     vg = BooleanField('Jen pro vyšší gymnázium')
     hidden = BooleanField('Skrytý')

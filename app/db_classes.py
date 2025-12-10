@@ -35,6 +35,7 @@ class Film(db.Model):
     time_to = db.Column(db.String(5))
     day = db.Column(db.Integer)
     room = db.Column(db.String(10))
+    reflexe_link = db.Column(db.String(200))
     filename = db.Column(db.String(50))
     vg = db.Column(db.Integer, default=0, nullable=False) # je jen pro vyssi gymnazium?
     hidden = db.Column(db.Integer, default=0, nullable=False) # mel by byt film skryty na strance filmy (zobrazovat se jen v programu)?
@@ -53,6 +54,7 @@ class Film(db.Model):
            "time_to": self.time_to,
            "day": self.day,
            "room": self.room,
+           "reflexe_link": self.reflexe_link if self.reflexe_link else "",
            "filename": self.filename if self.filename else "",
            "vg": self.vg,
        }
